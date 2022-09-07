@@ -6,7 +6,11 @@ class Accountant: Employee {
         super.init(name: name)
     }
     
-    func count(washer: Washer) {
-        super.takeMoney(another: washer)
+    func count(washer: Washer) -> Bool {
+        if washer.money >= self.price {
+            super.takeMoney(another: washer)
+            return true
+        }
+        return false
     }
 }

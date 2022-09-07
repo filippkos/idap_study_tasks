@@ -3,33 +3,49 @@ import Foundation
 class Controller {
     
     var cars = [Car]()
+    let view = CarwashView()
     
     let adminBuiding = AdministrationBuilding()
-    let carWashBuilding = CarwashBuilding()
+    let carwashBuilding = CarwashBuilding()
+    var washRooms: [WashingRoom]
     
     let accountant = Accountant(name: "Bob")
     let washer = Washer(name: "Brian")
-    let director = Director(name: "Barry")
+    let director = Director(name: "Bill")
     
-    init() {
-        
+    init(cars: [Car]) {
+        self.cars = cars
+        self.washRooms = carwashBuilding.rooms
     }
     
-    func takecars(cars: [Car]) {
-        cars.forEach { car in
-            self.cars.append(car)
+    func spreadCars() {
+        self.washRooms.forEach { room in
+            if room.car == nil && !cars.isEmpty {
+                room.car = cars.first
+                self.cars.removeFirst()
+            }
         }
     }
     
-    
     func process() {
-        self.cars.forEach { car in
-            
-            self.washer.wash(car: car)
-            self.accountant.count(washer: washer)
-            self.director.collect(accountant: accountant)
-
-            Thread.sleep(forTimeInterval: 0.1)
+        while !cars.isEmpty {
+            self.spreadCars()
+            self.washRooms.forEach { room in
+                if let car = room.car {
+                    self.washer.wash(car: car)
+                    self.view.printCarWashed()
+                    room.car = nil
+                }
+                if self.accountant.count(washer: washer) {
+                    self.view.printEnoughMoney()
+                } else {
+                    self.view.printMoneyIsNotEnough()
+                }
+                self.director.collect(accountant: accountant)
+                self.view.printMoneyReceived()
+                Thread.sleep(forTimeInterval: 0.2)
+                
+            }
         }
     }
 }

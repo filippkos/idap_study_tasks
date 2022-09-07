@@ -2,10 +2,6 @@ import Foundation
 
 class CarwashView {
     
-    func printCarHasntWashed() {
-        print("car has not been washed. not enough money")
-    }
-    
     func printEnoughMoney() {
         print("enough money")
     }

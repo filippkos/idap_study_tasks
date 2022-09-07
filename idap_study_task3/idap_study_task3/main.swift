@@ -1,7 +1,7 @@
 import Foundation
 
 var cars = [Car]()
-var controller = Controller()
+var controller: Controller
 
 var i = 0
 repeat {
@@ -9,21 +9,9 @@ repeat {
     cars.append(Car(money: i * 10))
 } while i < 10
 
-controller.takecars(cars: cars)
-
-controller.cars.forEach {
-    print("car money: \($0.money)")
-}
+controller = Controller(cars: cars)
 
 controller.process()
-
-controller.cars.forEach {
-    print("car money: \($0.money)")
-}
-
-print("washer's money: \(controller.washer.money)")
-print("accountant's money: \(controller.accountant.money)")
-print("director's money: \(controller.director.money)")
 
 
 

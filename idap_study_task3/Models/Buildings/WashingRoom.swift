@@ -2,7 +2,7 @@ import Foundation
 
 protocol AbleToPlaceCar {
     
-    var car: Car? { get }
+    var car: Car? { get set }
 }
 
 class WashingRoom: Room, AbleToPlaceCar {
