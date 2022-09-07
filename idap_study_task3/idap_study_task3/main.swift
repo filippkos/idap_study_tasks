@@ -21,9 +21,9 @@ controller.cars.forEach {
     print("car money: \($0.money)")
 }
 
-print("washer's money: \(controller.washer.operaingFunds)")
-print("accountant's money: \(controller.accountant.operaingFunds)")
-print("director's money: \(controller.director.operaingFunds)")
+print("washer's money: \(controller.washer.money)")
+print("accountant's money: \(controller.accountant.money)")
+print("director's money: \(controller.director.money)")
 
 
 

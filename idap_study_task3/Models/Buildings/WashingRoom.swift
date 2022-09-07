@@ -2,18 +2,14 @@ import Foundation
 
 protocol AbleToPlaceCar {
     
-    var cars: [Car] { get }
+    var car: Car? { get }
 }
 
 class WashingRoom: Room, AbleToPlaceCar {
     
-    var cars: [Car]
+    var car: Car?
         
     override init() {
-        self.cars = [Car]()
-    }
-    
-    func washCar(washer: Washer, car: Car) {
-        washer.wash(car: car)
+        self.car = nil
     }
 }

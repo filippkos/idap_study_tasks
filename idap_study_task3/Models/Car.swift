@@ -1,6 +1,6 @@
 import Foundation
 
-class Car {
+class Car: MoneyContaible {
     
     var money: Int
     var isClean: Bool
