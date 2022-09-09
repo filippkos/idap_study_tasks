@@ -2,13 +2,10 @@ import Foundation
 
 class Controller {
     
-    
     let view = CarwashView()
-    
     
     let adminBuiding = AdministrationBuilding()
     let carwashBuilding = CarwashBuilding()
-    
     
     var cars = [Car]()
     var washers = [Washer]()
@@ -22,6 +19,13 @@ class Controller {
         self.washRooms = carwashBuilding.rooms
         self.createWashers()
         self.adminBuiding.rooms.first?.employeеs.append(contentsOf: [accountant, director])
+    }
+    
+    func createWashers() {
+        let names = ["bill", "bob", "bred", "boris", "bart"]
+        for _ in 1...5 {
+            self.washers.append(Washer(name: names.randomElement() ?? "unnamed"))
+        }
     }
     
     func spreadCars() {
@@ -44,40 +48,43 @@ class Controller {
         }
     }
     
-    func createWashers() {
-        let names = ["bill", "bob", "bred", "boris", "bart"]
-        for _ in 1...5 {
-            self.washers.append(Washer(name: names.randomElement() ?? "unnamed"))
-        }
-    }
-    
-    
     func process() {
         while !cars.isEmpty {
             self.spreadCars()
             self.spreadWashers()
             self.washRooms.forEach { room in
                 if room.car != nil && room.employeеs.count == 1 {
-                    if let car = room.car {
-                        if let washer = room.employeеs.first as? Washer {
-                            washer.wash(car: car)
-                            self.view.printCarWashed()
-                            room.car = nil
-                            room.employeеs.removeAll()
-                            washer.inside = false
-                            if self.accountant.count(washer: washer) {
-                                self.view.printEnoughMoney()
-                            } else {
-                                self.view.printMoneyIsNotEnough()
-                            }
-                            self.director.collect(accountant: accountant)
-                            self.view.printMoneyReceived()
-                            Thread.sleep(forTimeInterval: 0.2)
-                        }
-                    }
+                    let washer = wash(room: room)
+                    handleTheMoney(washer: washer)
+                    Thread.sleep(forTimeInterval: 0.2)
                 }
             }
         }
+    }
+    
+    func wash(room: WashingRoom) -> Washer {
+        var result = Washer(name: "empty")
+        if let car = room.car {
+            if let washer = room.employeеs.first as? Washer {
+                washer.wash(car: car)
+                self.view.printCarWashed()
+                room.car = nil
+                room.employeеs.removeAll()
+                washer.inside = false
+                result = washer
+            }
+        }
+        return result
+    }
+    
+    func handleTheMoney(washer: Washer) {
+        if self.accountant.count(washer: washer) {
+            self.view.printEnoughMoney()
+        } else {
+            self.view.printMoneyIsNotEnough()
+        }
+        self.director.collect(accountant: accountant)
+        self.view.printMoneyReceived()
     }
 }
 
