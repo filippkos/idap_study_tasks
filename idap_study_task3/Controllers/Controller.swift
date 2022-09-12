@@ -55,7 +55,7 @@ class Controller {
             self.washRooms.forEach { room in
                 if room.car != nil && room.employeеs.count == 1 {
                     let washer = wash(room: room)
-                    handleTheMoney(washer: washer)
+                    self.handleTheMoney(washer: washer)
                     Thread.sleep(forTimeInterval: 0.2)
                 }
             }
