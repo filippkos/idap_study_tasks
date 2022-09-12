@@ -1,6 +1,6 @@
 import Foundation
 
-class Room {
+class Room<Post: Employee> {
     
-    var employeеs = [Employee]()
+    var employeеs = [Post]()
 }

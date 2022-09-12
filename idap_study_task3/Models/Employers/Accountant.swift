@@ -7,10 +7,12 @@ class Accountant: Employee {
     }
     
     func count(washer: Washer) -> Bool {
-        if washer.money >= self.price {
+        let isEnough = washer.money >= self.price
+        
+        if isEnough {
             super.takeMoney(another: washer)
-            return true
         }
-        return false
+        
+        return isEnough
     }
 }

@@ -10,8 +10,8 @@ class CarwashView {
         print("money is not enough")
     }
     
-    func printCarWashed() {
-        print("car washed")
+    func printCarWashed(name: String) {
+        print("car washed by \(name)")
     }
     
     func printMoneyReceived() {

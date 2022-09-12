@@ -16,22 +16,19 @@ class Controller {
     
     init(cars: [Car]) {
         self.cars = cars
-        self.washRooms = carwashBuilding.rooms
+        self.washRooms = self.carwashBuilding.rooms
         self.createWashers()
         self.adminBuiding.rooms.first?.employeеs.append(contentsOf: [accountant, director])
     }
     
     func createWashers() {
-        let names = ["bill", "bob", "bred", "boris", "bart"]
-        for _ in 1...5 {
-            self.washers.append(Washer(name: names.randomElement() ?? "unnamed"))
-        }
+        (0...5).forEach { _ in self.washers.append(Washer(name: String.generate())) }
     }
     
     func spreadCars() {
         self.washRooms.forEach { room in
-            if room.car == nil && !cars.isEmpty {
-                room.car = cars.first
+            if room.car == nil && !self.cars.isEmpty {
+                room.car = self.cars.first
                 self.cars.removeFirst()
             }
         }
@@ -40,7 +37,7 @@ class Controller {
     func spreadWashers() {
         self.washRooms.forEach { room in
             if room.car != nil && room.employeеs.isEmpty {
-                if let washer = washers.first(where: { $0.inside == false }) {
+                if let washer = self.washers.first(where: { $0.inside == false }) {
                     washer.inside = true
                     room.employeеs.append(washer)
                 }
@@ -54,30 +51,28 @@ class Controller {
             self.spreadWashers()
             self.washRooms.forEach { room in
                 if room.car != nil && room.employeеs.count == 1 {
-                    let washer = wash(room: room)
-                    self.handleTheMoney(washer: washer)
+                    let washer = self.process(room: room)
+                    washer.map(self.handleMoney)
                     Thread.sleep(forTimeInterval: 0.2)
                 }
             }
         }
     }
     
-    func wash(room: WashingRoom) -> Washer {
-        var result = Washer(name: "empty")
-        if let car = room.car {
-            if let washer = room.employeеs.first as? Washer {
-                washer.wash(car: car)
-                self.view.printCarWashed()
-                room.car = nil
-                room.employeеs.removeAll()
-                washer.inside = false
-                result = washer
-            }
-        }
-        return result
+    func process(room: WashingRoom) -> Washer? {
+        let car = room.car
+        let washer = room.employeеs.first
+        
+        car.map { washer?.wash(car: $0) }
+        self.view.printCarWashed(name: washer?.name ?? "")
+        room.car = nil
+        room.employeеs.removeAll()
+        washer?.inside = false
+
+        return washer
     }
     
-    func handleTheMoney(washer: Washer) {
+    func handleMoney(washer: Washer) {
         if self.accountant.count(washer: washer) {
             self.view.printEnoughMoney()
         } else {

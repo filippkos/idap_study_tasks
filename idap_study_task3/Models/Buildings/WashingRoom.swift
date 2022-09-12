@@ -5,7 +5,7 @@ protocol AbleToPlaceCar {
     var car: Car? { get set }
 }
 
-class WashingRoom: Room, AbleToPlaceCar {
+class WashingRoom: Room<Washer>, AbleToPlaceCar {
     
     var car: Car?
         
