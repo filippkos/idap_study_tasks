@@ -4,13 +4,18 @@ protocol MoneyContaible {
     var money: Int { get set }
 }
 
-class Employee: MoneyContaible {
+protocol MoneyTransferProtocol: MoneyContaible {
+    func getMoney<T: MoneyTransferProtocol>(another: T)
+}
+
+class Employee: MoneyContaible, MoneyTransferProtocol {
     
     let name: String
     var money: Int
     var experience: Double
     var salary: Int
     let price: Int
+    var moneyReceiver: MoneyTransferProtocol?
 
     init(name: String) {
         self.name = name
@@ -25,4 +30,9 @@ class Employee: MoneyContaible {
         self.money += price
         another.money -= price
     }
+    
+    func getMoney<T: MoneyTransferProtocol>(another: T) {
+        takeMoney(another: another)
+    }
+
 }

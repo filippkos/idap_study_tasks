@@ -8,8 +8,10 @@ class Washer: Employee {
         super.init(name: name)
     }
     
-    func wash(car: Car) {
+    func wash(car: Car) -> Bool {
         car.isClean = true
         super.takeMoney(another: car)
+        self.moneyReceiver?.getMoney(another: self)
+        return true
     }
 }

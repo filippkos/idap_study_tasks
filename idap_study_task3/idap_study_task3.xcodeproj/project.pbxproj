@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F8E6F7328C0D83E009D9C49 /* CarwashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E6F7228C0D83E009D9C49 /* CarwashView.swift */; };
-		3F9E4B0D28CF2093002AD11F /* StringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4B0C28CF2093002AD11F /* StringGenerator.swift */; };
+		3F9E4B0D28CF2093002AD11F /* String+randomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4B0C28CF2093002AD11F /* String+randomGenerator.swift */; };
 		3FC0F45F28BE0E5A00ACBEA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F45E28BE0E5A00ACBEA1 /* main.swift */; };
 		3FC0F46828BE0F7300ACBEA1 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F46728BE0F7300ACBEA1 /* Room.swift */; };
 		3FC0F46A28BE0FA600ACBEA1 /* Еmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F46928BE0FA600ACBEA1 /* Еmployee.swift */; };
@@ -17,8 +17,6 @@
 		3FC0F47328BE350A00ACBEA1 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F47228BE350A00ACBEA1 /* Accountant.swift */; };
 		3FC0F47528BE354500ACBEA1 /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F47428BE354500ACBEA1 /* Director.swift */; };
 		3FC0F47728BE4A6500ACBEA1 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F47628BE4A6500ACBEA1 /* Controller.swift */; };
-		3FC0F47928BE53AE00ACBEA1 /* CarwashBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F47828BE53AE00ACBEA1 /* CarwashBuilding.swift */; };
-		3FC0F47B28BE53EF00ACBEA1 /* AdministrationBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F47A28BE53EF00ACBEA1 /* AdministrationBuilding.swift */; };
 		3FC5EF9828BF407300B69FFF /* WashingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5EF9728BF407300B69FFF /* WashingRoom.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		3F8E6F7228C0D83E009D9C49 /* CarwashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarwashView.swift; sourceTree = "<group>"; };
-		3F9E4B0C28CF2093002AD11F /* StringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringGenerator.swift; sourceTree = "<group>"; };
+		3F9E4B0C28CF2093002AD11F /* String+randomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+randomGenerator.swift"; sourceTree = "<group>"; };
 		3FC0F45B28BE0E5A00ACBEA1 /* idap_study_task3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap_study_task3; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC0F45E28BE0E5A00ACBEA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3FC0F46728BE0F7300ACBEA1 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -46,8 +44,6 @@
 		3FC0F47228BE350A00ACBEA1 /* Accountant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
 		3FC0F47428BE354500ACBEA1 /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
 		3FC0F47628BE4A6500ACBEA1 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		3FC0F47828BE53AE00ACBEA1 /* CarwashBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarwashBuilding.swift; sourceTree = "<group>"; };
-		3FC0F47A28BE53EF00ACBEA1 /* AdministrationBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdministrationBuilding.swift; sourceTree = "<group>"; };
 		3FC5EF9728BF407300B69FFF /* WashingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingRoom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,20 +77,18 @@
 		3F9E4B0B28CF2048002AD11F /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				3F9E4B0C28CF2093002AD11F /* StringGenerator.swift */,
+				3F9E4B0C28CF2093002AD11F /* String+randomGenerator.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
 		};
-		3FB8841728C639A30068861F /* Buildings */ = {
+		3FB8841728C639A30068861F /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
 				3FC0F46728BE0F7300ACBEA1 /* Room.swift */,
-				3FC0F47828BE53AE00ACBEA1 /* CarwashBuilding.swift */,
-				3FC0F47A28BE53EF00ACBEA1 /* AdministrationBuilding.swift */,
 				3FC5EF9728BF407300B69FFF /* WashingRoom.swift */,
 			);
-			path = Buildings;
+			path = Rooms;
 			sourceTree = "<group>";
 		};
 		3FB8841828C639DF0068861F /* Employers */ = {
@@ -140,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				3FB8841828C639DF0068861F /* Employers */,
-				3FB8841728C639A30068861F /* Buildings */,
+				3FB8841728C639A30068861F /* Rooms */,
 				3FC0F46B28BE0FDC00ACBEA1 /* Car.swift */,
 			);
 			path = Models;
@@ -214,13 +208,11 @@
 			files = (
 				3F8E6F7328C0D83E009D9C49 /* CarwashView.swift in Sources */,
 				3FC0F47728BE4A6500ACBEA1 /* Controller.swift in Sources */,
-				3FC0F47B28BE53EF00ACBEA1 /* AdministrationBuilding.swift in Sources */,
-				3FC0F47928BE53AE00ACBEA1 /* CarwashBuilding.swift in Sources */,
 				3FC0F45F28BE0E5A00ACBEA1 /* main.swift in Sources */,
 				3FC0F47128BE34E200ACBEA1 /* Washer.swift in Sources */,
 				3FC0F46A28BE0FA600ACBEA1 /* Еmployee.swift in Sources */,
 				3FC0F46C28BE0FDC00ACBEA1 /* Car.swift in Sources */,
-				3F9E4B0D28CF2093002AD11F /* StringGenerator.swift in Sources */,
+				3F9E4B0D28CF2093002AD11F /* String+randomGenerator.swift in Sources */,
 				3FC0F47528BE354500ACBEA1 /* Director.swift in Sources */,
 				3FC0F47328BE350A00ACBEA1 /* Accountant.swift in Sources */,
 				3FC5EF9828BF407300B69FFF /* WashingRoom.swift in Sources */,
