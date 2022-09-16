@@ -43,7 +43,8 @@ class Controller {
     func spreadWashers() {
         self.washRooms.forEach { room in
             if room.car != nil && room.employeеs.isEmpty {
-                if let washer = self.washers.first(where: { $0.inside == false }) {
+                if let washer = self.washers.first(where: { $0.inside == false })
+                {
                     washer.inside = true
                     room.employeеs.append(washer)
                 }
@@ -58,7 +59,6 @@ class Controller {
             self.washRooms.forEach { room in
                 if room.car != nil && room.employeеs.count == 1 {
                     let washer = self.process(room: room)
-                    washer.map(self.handleMoney)
                     Thread.sleep(forTimeInterval: 0.2)
                 }
             }
@@ -66,24 +66,16 @@ class Controller {
     }
     
     func process(room: WashingRoom) -> Washer? {
+        
         let car = room.car
         let washer = room.employeеs.first
         
-        car.map { washer?.wash(car: $0) }
+        car.map { washer?.action(car: $0) }
         self.view.printCarWashed(name: washer?.name ?? "")
         room.car = nil
         room.employeеs.removeAll()
         washer?.inside = false
         return washer
-    }
-    
-    func handleMoney(washer: Washer) {
-        if self.accountant.count(washer: washer) {
-            self.view.printEnoughMoney()
-        } else {
-            self.view.printMoneyIsNotEnough()
-        }
-        self.view.printMoneyReceived()
     }
 }
 
