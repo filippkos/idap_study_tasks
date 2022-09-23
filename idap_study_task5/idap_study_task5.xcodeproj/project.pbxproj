@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3FBFB78328DCA52E0038C94D /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB78228DCA52E0038C94D /* Protocols.swift */; };
+		3FC9462F28D9A2B60098D525 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9462E28D9A2B60098D525 /* main.swift */; };
+		3FC9464028D9A61B0098D525 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463828D9A61B0098D525 /* Accountant.swift */; };
+		3FC9464128D9A61B0098D525 /* Еmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463928D9A61B0098D525 /* Еmployee.swift */; };
+		3FC9464228D9A61B0098D525 /* Washer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463A28D9A61B0098D525 /* Washer.swift */; };
+		3FC9464328D9A61B0098D525 /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463B28D9A61B0098D525 /* Director.swift */; };
+		3FC9464428D9A61B0098D525 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463C28D9A61B0098D525 /* Car.swift */; };
+		3FC9464528D9A61B0098D525 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463E28D9A61B0098D525 /* Room.swift */; };
+		3FC9464628D9A61B0098D525 /* WashingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463F28D9A61B0098D525 /* WashingRoom.swift */; };
+		3FC9464A28D9A6250098D525 /* String+randomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9464928D9A6250098D525 /* String+randomGenerator.swift */; };
+		3FC9464D28D9A6310098D525 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9464C28D9A6310098D525 /* Controller.swift */; };
+		3FC9465028D9A63A0098D525 /* CarwashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9464F28D9A63A0098D525 /* CarwashView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3FC9462928D9A2B60098D525 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3FBFB78228DCA52E0038C94D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		3FC9462B28D9A2B60098D525 /* idap_study_task5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap_study_task5; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FC9462E28D9A2B60098D525 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3FC9463828D9A61B0098D525 /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
+		3FC9463928D9A61B0098D525 /* Еmployee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Еmployee.swift"; sourceTree = "<group>"; };
+		3FC9463A28D9A61B0098D525 /* Washer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Washer.swift; sourceTree = "<group>"; };
+		3FC9463B28D9A61B0098D525 /* Director.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
+		3FC9463C28D9A61B0098D525 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		3FC9463E28D9A61B0098D525 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		3FC9463F28D9A61B0098D525 /* WashingRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WashingRoom.swift; sourceTree = "<group>"; };
+		3FC9464928D9A6250098D525 /* String+randomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+randomGenerator.swift"; sourceTree = "<group>"; };
+		3FC9464C28D9A6310098D525 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		3FC9464F28D9A63A0098D525 /* CarwashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarwashView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3FC9462828D9A2B60098D525 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3FBFB78128DCA5130038C94D /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				3FBFB78228DCA52E0038C94D /* Protocols.swift */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
+		3FC9462228D9A2B60098D525 = {
+			isa = PBXGroup;
+			children = (
+				3FC9464E28D9A63A0098D525 /* Views */,
+				3FC9464B28D9A6310098D525 /* Controllers */,
+				3FC9464728D9A6240098D525 /* F */,
+				3FC9463628D9A61B0098D525 /* Models */,
+				3FC9462D28D9A2B60098D525 /* idap_study_task5 */,
+				3FC9462C28D9A2B60098D525 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3FC9462C28D9A2B60098D525 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9462B28D9A2B60098D525 /* idap_study_task5 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3FC9462D28D9A2B60098D525 /* idap_study_task5 */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9462E28D9A2B60098D525 /* main.swift */,
+			);
+			path = idap_study_task5;
+			sourceTree = "<group>";
+		};
+		3FC9463628D9A61B0098D525 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FBFB78128DCA5130038C94D /* sources */,
+				3FC9463728D9A61B0098D525 /* Employers */,
+				3FC9463C28D9A61B0098D525 /* Car.swift */,
+				3FC9463D28D9A61B0098D525 /* Rooms */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3FC9463728D9A61B0098D525 /* Employers */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9463828D9A61B0098D525 /* Accountant.swift */,
+				3FC9463928D9A61B0098D525 /* Еmployee.swift */,
+				3FC9463A28D9A61B0098D525 /* Washer.swift */,
+				3FC9463B28D9A61B0098D525 /* Director.swift */,
+			);
+			path = Employers;
+			sourceTree = "<group>";
+		};
+		3FC9463D28D9A61B0098D525 /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9463E28D9A61B0098D525 /* Room.swift */,
+				3FC9463F28D9A61B0098D525 /* WashingRoom.swift */,
+			);
+			path = Rooms;
+			sourceTree = "<group>";
+		};
+		3FC9464728D9A6240098D525 /* F */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9464828D9A6250098D525 /* sources */,
+			);
+			path = F;
+			sourceTree = "<group>";
+		};
+		3FC9464828D9A6250098D525 /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9464928D9A6250098D525 /* String+randomGenerator.swift */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
+		3FC9464B28D9A6310098D525 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9464C28D9A6310098D525 /* Controller.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3FC9464E28D9A63A0098D525 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9464F28D9A63A0098D525 /* CarwashView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3FC9462A28D9A2B60098D525 /* idap_study_task5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FC9463228D9A2B60098D525 /* Build configuration list for PBXNativeTarget "idap_study_task5" */;
+			buildPhases = (
+				3FC9462728D9A2B60098D525 /* Sources */,
+				3FC9462828D9A2B60098D525 /* Frameworks */,
+				3FC9462928D9A2B60098D525 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = idap_study_task5;
+			productName = idap_study_task5;
+			productReference = 3FC9462B28D9A2B60098D525 /* idap_study_task5 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3FC9462328D9A2B60098D525 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					3FC9462A28D9A2B60098D525 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 3FC9462628D9A2B60098D525 /* Build configuration list for PBXProject "idap_study_task5" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3FC9462228D9A2B60098D525;
+			productRefGroup = 3FC9462C28D9A2B60098D525 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3FC9462A28D9A2B60098D525 /* idap_study_task5 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3FC9462728D9A2B60098D525 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC9462F28D9A2B60098D525 /* main.swift in Sources */,
+				3FC9464228D9A61B0098D525 /* Washer.swift in Sources */,
+				3FC9464628D9A61B0098D525 /* WashingRoom.swift in Sources */,
+				3FBFB78328DCA52E0038C94D /* Protocols.swift in Sources */,
+				3FC9464528D9A61B0098D525 /* Room.swift in Sources */,
+				3FC9464428D9A61B0098D525 /* Car.swift in Sources */,
+				3FC9464D28D9A6310098D525 /* Controller.swift in Sources */,
+				3FC9464328D9A61B0098D525 /* Director.swift in Sources */,
+				3FC9465028D9A63A0098D525 /* CarwashView.swift in Sources */,
+				3FC9464028D9A61B0098D525 /* Accountant.swift in Sources */,
+				3FC9464128D9A61B0098D525 /* Еmployee.swift in Sources */,
+				3FC9464A28D9A6250098D525 /* String+randomGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3FC9463028D9A2B60098D525 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3FC9463128D9A2B60098D525 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		3FC9463328D9A2B60098D525 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3FC9463428D9A2B60098D525 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3FC9462628D9A2B60098D525 /* Build configuration list for PBXProject "idap_study_task5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FC9463028D9A2B60098D525 /* Debug */,
+				3FC9463128D9A2B60098D525 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FC9463228D9A2B60098D525 /* Build configuration list for PBXNativeTarget "idap_study_task5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FC9463328D9A2B60098D525 /* Debug */,
+				3FC9463428D9A2B60098D525 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3FC9462328D9A2B60098D525 /* Project object */;
+}
