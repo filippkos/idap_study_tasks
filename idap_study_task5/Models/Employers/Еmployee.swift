@@ -1,7 +1,8 @@
 import Foundation
 
-class Employee: MoneyContaible, MoneyTransferProtocol {
+class Employee: MoneyContaibleProtocol, MoneyTransferProtocol {
     
+    // MARK: Variables
     let name: String
     var money: Int
     var experience: Double
@@ -9,6 +10,7 @@ class Employee: MoneyContaible, MoneyTransferProtocol {
     let price: Int
     weak var moneyReceiver: MoneyTransferProtocol?
 
+    // MARK: Initializations and Deallocations
     init(name: String) {
         self.name = name
         self.money = 0
@@ -17,7 +19,8 @@ class Employee: MoneyContaible, MoneyTransferProtocol {
         self.price = 5
     }
     
-    func takeMoney<T: MoneyContaible>(another: T) {
+    // MARK: Public ( Public visible funcs )
+    func takeMoney<T: MoneyContaibleProtocol>(another: T) {
         var another = another
         self.money += price
         another.money -= price
@@ -26,5 +29,4 @@ class Employee: MoneyContaible, MoneyTransferProtocol {
     func getMoney<T: MoneyTransferProtocol>(another: T) {
         takeMoney(another: another)
     }
-
 }

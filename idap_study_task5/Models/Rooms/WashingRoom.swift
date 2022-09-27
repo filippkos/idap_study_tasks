@@ -1,36 +1,32 @@
 import Foundation
 
-protocol AbleToPlaceCar {
+class WashingRoom: Room<Washer>, AbleToPlaceCarProtocol, RoomObservableProtocol {
     
-    var car: Car? { get set }
-}
-
-class WashingRoom: Room<Washer>, AbleToPlaceCar, RoomObservable {
-    
-    var observer: RoomObserver?
-    
+    // MARK: Variables
+    var observer: RoomObserverProtocol?
     var car: Car? {
         didSet {
             if self.car == nil {
-                notifyObservers()
+                self.observer?.updateCarInRoom(room: self)
+            }
+            if self.car != nil && self.employeеs.count == 0 {
+                self.observer?.updateWasherInRoom(room: self)
             }
         }
     }
     
-    func add(observer: RoomObserver) {
-        self.observer = observer
-    }
-    
-    func remove(observer: RoomObserver) {
-        self.observer = nil
-    }
-    
-    func notifyObservers() {
-            observer?.updateRoom(room: self)
-    }
-    
+    // MARK: Initializations and Deallocations
     override init() {
         self.observer = nil
         self.car = nil
+    }
+    
+    // MARK: Public ( Public visible funcs )
+    func add(observer: RoomObserverProtocol) {
+        self.observer = observer
+    }
+    
+    func remove(observer: RoomObserverProtocol) {
+        self.observer = nil
     }
 }
