@@ -13,6 +13,7 @@ class Controller: RoomObserverProtocol {
         }
     }
     
+    let lock = NSLock()
     var isInit = false
     var washers = [Washer]()
     var washRooms = [WashingRoom]()
@@ -71,9 +72,8 @@ class Controller: RoomObserverProtocol {
     }
     
     func process() {
-            for room in self.washRooms {
-                //print(room.car?.id, room.employeеs.count, room.car?.isClean, room.employeеs.first?.state)
-                self.conQueue.async {
+        for room in self.washRooms {
+            self.conQueue.async {
                 if room.car != nil && room.employeеs.count == 1 && room.employeеs.first?.state == .readyToWork
                 {
                     room.employeеs.first?.state = .working
