@@ -1,7 +1,6 @@
 import Foundation
 
 enum EmployeeState {
-    case free
     case readyToWork
     case working
     case needsProcessing

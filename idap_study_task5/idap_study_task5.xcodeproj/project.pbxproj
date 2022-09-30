@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F7F74B828E1DE6700221B27 /* EmployeeStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F74B728E1DE6700221B27 /* EmployeeStateProtocol.swift */; };
 		3F7F74BA28E1DE9D00221B27 /* MoneyTransferProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F74B928E1DE9D00221B27 /* MoneyTransferProtocol.swift */; };
-		3F7F74BC28E1DEE500221B27 /* AbleToPlaceCarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F74BB28E1DEE500221B27 /* AbleToPlaceCarProtocol.swift */; };
-		3F7F74BE28E1DF7300221B27 /* RoomObserveProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F74BD28E1DF7300221B27 /* RoomObserveProtocols.swift */; };
+		3F9C6B8D28E47FFB00D3E8A2 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C6B8C28E47FFB00D3E8A2 /* Atomic.swift */; };
 		3FBFB78328DCA52E0038C94D /* MoneyContaibleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB78228DCA52E0038C94D /* MoneyContaibleProtocol.swift */; };
 		3FC9462F28D9A2B60098D525 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9462E28D9A2B60098D525 /* main.swift */; };
 		3FC9464028D9A61B0098D525 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463828D9A61B0098D525 /* Accountant.swift */; };
@@ -18,8 +17,6 @@
 		3FC9464228D9A61B0098D525 /* Washer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463A28D9A61B0098D525 /* Washer.swift */; };
 		3FC9464328D9A61B0098D525 /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463B28D9A61B0098D525 /* Director.swift */; };
 		3FC9464428D9A61B0098D525 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463C28D9A61B0098D525 /* Car.swift */; };
-		3FC9464528D9A61B0098D525 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463E28D9A61B0098D525 /* Room.swift */; };
-		3FC9464628D9A61B0098D525 /* WashingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9463F28D9A61B0098D525 /* WashingRoom.swift */; };
 		3FC9464A28D9A6250098D525 /* String+randomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9464928D9A6250098D525 /* String+randomGenerator.swift */; };
 		3FC9464D28D9A6310098D525 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9464C28D9A6310098D525 /* Controller.swift */; };
 		3FC9465028D9A63A0098D525 /* CarwashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9464F28D9A63A0098D525 /* CarwashView.swift */; };
@@ -40,8 +37,7 @@
 /* Begin PBXFileReference section */
 		3F7F74B728E1DE6700221B27 /* EmployeeStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeStateProtocol.swift; sourceTree = "<group>"; };
 		3F7F74B928E1DE9D00221B27 /* MoneyTransferProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTransferProtocol.swift; sourceTree = "<group>"; };
-		3F7F74BB28E1DEE500221B27 /* AbleToPlaceCarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbleToPlaceCarProtocol.swift; sourceTree = "<group>"; };
-		3F7F74BD28E1DF7300221B27 /* RoomObserveProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomObserveProtocols.swift; sourceTree = "<group>"; };
+		3F9C6B8C28E47FFB00D3E8A2 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		3FBFB78228DCA52E0038C94D /* MoneyContaibleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyContaibleProtocol.swift; sourceTree = "<group>"; };
 		3FC9462B28D9A2B60098D525 /* idap_study_task5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap_study_task5; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC9462E28D9A2B60098D525 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -50,8 +46,6 @@
 		3FC9463A28D9A61B0098D525 /* Washer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Washer.swift; sourceTree = "<group>"; };
 		3FC9463B28D9A61B0098D525 /* Director.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
 		3FC9463C28D9A61B0098D525 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
-		3FC9463E28D9A61B0098D525 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
-		3FC9463F28D9A61B0098D525 /* WashingRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WashingRoom.swift; sourceTree = "<group>"; };
 		3FC9464928D9A6250098D525 /* String+randomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+randomGenerator.swift"; sourceTree = "<group>"; };
 		3FC9464C28D9A6310098D525 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		3FC9464F28D9A63A0098D525 /* CarwashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarwashView.swift; sourceTree = "<group>"; };
@@ -74,8 +68,7 @@
 				3FBFB78228DCA52E0038C94D /* MoneyContaibleProtocol.swift */,
 				3F7F74B728E1DE6700221B27 /* EmployeeStateProtocol.swift */,
 				3F7F74B928E1DE9D00221B27 /* MoneyTransferProtocol.swift */,
-				3F7F74BB28E1DEE500221B27 /* AbleToPlaceCarProtocol.swift */,
-				3F7F74BD28E1DF7300221B27 /* RoomObserveProtocols.swift */,
+				3F9C6B8C28E47FFB00D3E8A2 /* Atomic.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -83,7 +76,6 @@
 		3FC9462228D9A2B60098D525 = {
 			isa = PBXGroup;
 			children = (
-				3FC9464E28D9A63A0098D525 /* Views */,
 				3FC9464B28D9A6310098D525 /* Controllers */,
 				3FC9464728D9A6240098D525 /* F */,
 				3FC9463628D9A61B0098D525 /* Models */,
@@ -114,7 +106,6 @@
 				3FBFB78128DCA5130038C94D /* sources */,
 				3FC9463728D9A61B0098D525 /* Employers */,
 				3FC9463C28D9A61B0098D525 /* Car.swift */,
-				3FC9463D28D9A61B0098D525 /* Rooms */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,15 +119,6 @@
 				3FC9463B28D9A61B0098D525 /* Director.swift */,
 			);
 			path = Employers;
-			sourceTree = "<group>";
-		};
-		3FC9463D28D9A61B0098D525 /* Rooms */ = {
-			isa = PBXGroup;
-			children = (
-				3FC9463E28D9A61B0098D525 /* Room.swift */,
-				3FC9463F28D9A61B0098D525 /* WashingRoom.swift */,
-			);
-			path = Rooms;
 			sourceTree = "<group>";
 		};
 		3FC9464728D9A6240098D525 /* F */ = {
@@ -158,17 +140,10 @@
 		3FC9464B28D9A6310098D525 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FC9464F28D9A63A0098D525 /* CarwashView.swift */,
 				3FC9464C28D9A6310098D525 /* Controller.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		3FC9464E28D9A63A0098D525 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3FC9464F28D9A63A0098D525 /* CarwashView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,15 +208,12 @@
 				3F7F74BA28E1DE9D00221B27 /* MoneyTransferProtocol.swift in Sources */,
 				3FC9462F28D9A2B60098D525 /* main.swift in Sources */,
 				3FC9464228D9A61B0098D525 /* Washer.swift in Sources */,
-				3F7F74BC28E1DEE500221B27 /* AbleToPlaceCarProtocol.swift in Sources */,
-				3FC9464628D9A61B0098D525 /* WashingRoom.swift in Sources */,
+				3F9C6B8D28E47FFB00D3E8A2 /* Atomic.swift in Sources */,
 				3FBFB78328DCA52E0038C94D /* MoneyContaibleProtocol.swift in Sources */,
-				3FC9464528D9A61B0098D525 /* Room.swift in Sources */,
 				3FC9464428D9A61B0098D525 /* Car.swift in Sources */,
 				3FC9464D28D9A6310098D525 /* Controller.swift in Sources */,
 				3FC9464328D9A61B0098D525 /* Director.swift in Sources */,
 				3FC9465028D9A63A0098D525 /* CarwashView.swift in Sources */,
-				3F7F74BE28E1DF7300221B27 /* RoomObserveProtocols.swift in Sources */,
 				3FC9464028D9A61B0098D525 /* Accountant.swift in Sources */,
 				3FC9464128D9A61B0098D525 /* Еmployee.swift in Sources */,
 				3FC9464A28D9A6250098D525 /* String+randomGenerator.swift in Sources */,

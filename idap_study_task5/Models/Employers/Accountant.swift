@@ -1,33 +1,26 @@
 import Foundation
 
-class Accountant: Employee, EmployeeStateProtocol {
+class Accountant: Employee<Washer>, EmployeeStateProtocol {
     
-    // MARK: Variables
-    var state: EmployeeState
-    let lock = NSLock()
-    override var money: Int {
-        didSet {
-            if self.money - oldValue == price {
-                self.lock.lock()
-                if self.action() {
-                    print("counting done")
-                    self.moneyReceiver?.getMoney(another: self)
-                }
-                self.lock.unlock()
-            }
-        }
-    }
+    // MARK: -
     
     // MARK: Initializations and Deallocations
+
+    let lock = NSLock()
     override init(name: String) {
-        self.state = .readyToWork
         super.init(name: name)
     }
     
+    // MARK: -
+    
     // MARK: Public ( Public visible funcs )
-    func action() -> Bool {
+    
+    override func action(object: Washer) -> Bool {
+        self.lock.lock()
         sleep(1)
         let isEnough = self.money >= self.price
+        self.moneyReceiver?.getMoney(another: self)
+        defer { self.lock.unlock() }
         return isEnough
     }
 }
