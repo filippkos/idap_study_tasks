@@ -45,13 +45,13 @@ class Controller {
                             if washer.action(object: car) {
                                 self.view.printCarWashed(carId: car.id, name: washer.name)
                                 $0.removeFirst()
+                                self.accountant.action(object: washer)
+                                self.view.printCountingDone(name: washer.name)
+                                self.view.printMoneyReceived(sum: self.director.money)
                             }
                         }
                     }
-                    self.accountant.action(object: washer)
-                    self.view.printCountingDone(name: washer.name)
-                    self.director.action(object: self.accountant)
-                    self.view.printMoneyReceived(sum: self.director.money)
+
                 }
             }
         }
