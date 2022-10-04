@@ -4,7 +4,6 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     
     
     // MARK: -
-    
     // MARK: Variables
     
     let name: String
@@ -17,7 +16,6 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
 
 
     // MARK: -
-    
     // MARK: Initializations and Deallocations
     
     init(name: String) {
@@ -30,7 +28,6 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     }
     
     // MARK: -
-    
     // MARK: Public ( Public visible funcs )
     
     func takeMoney<T: MoneyContaibleProtocol>(another: T) {
@@ -44,6 +41,7 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     }
     
     func action(object: Object) -> Bool {
+        self.moneyReceiver?.getMoney(another: self)
         return true
     }
 }

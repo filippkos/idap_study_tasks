@@ -3,7 +3,6 @@ import Foundation
 class Car: MoneyContaibleProtocol {
     
     // MARK: -
-    
     // MARK: Variables
     
     var id: Int
@@ -12,7 +11,6 @@ class Car: MoneyContaibleProtocol {
     var time: UInt32
     
     // MARK: -
-    
     // MARK: Initializations and Deallocations
     
     init(id: Int, money: Int) {

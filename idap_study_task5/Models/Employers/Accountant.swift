@@ -3,7 +3,6 @@ import Foundation
 class Accountant: Employee<Washer>, EmployeeStateProtocol {
     
     // MARK: -
-    
     // MARK: Initializations and Deallocations
 
     let lock = NSLock()
@@ -12,14 +11,13 @@ class Accountant: Employee<Washer>, EmployeeStateProtocol {
     }
     
     // MARK: -
-    
-    // MARK: Public ( Public visible funcs )
+    // MARK: Public
     
     override func action(object: Washer) -> Bool {
         self.lock.lock()
         sleep(1)
         let isEnough = self.money >= self.price
-        self.moneyReceiver?.getMoney(another: self)
+        super.action(object: object)
         defer { self.lock.unlock() }
         return isEnough
     }

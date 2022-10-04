@@ -1,9 +1,18 @@
 import Foundation
 
+enum WasherEvents {
+    
+    case done
+}
+
 class Washer: Employee<Car>, EmployeeStateProtocol {
     
     // MARK: -
+    // MARK: Variables
     
+    var eventHandler: ((WasherEvents) -> ())?
+    
+    // MARK: -
     // MARK: Initializations and Deallocations
     
     override init(name: String) {
@@ -11,8 +20,7 @@ class Washer: Employee<Car>, EmployeeStateProtocol {
     }
     
     // MARK: -
-    
-    // MARK: Public ( Public visible funcs )
+    // MARK: Public
     
     override func action(object: Car) -> Bool {
         self.state = .working
@@ -20,8 +28,9 @@ class Washer: Employee<Car>, EmployeeStateProtocol {
         object.isClean = true
         super.takeMoney(another: object)
         self.state = .needsProcessing
-        self.moneyReceiver?.getMoney(another: self)
+        super.action(object: object)
         defer { self.state = .readyToWork }
+        self.eventHandler?(.done)
         return true
     }
 }

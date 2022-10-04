@@ -3,9 +3,8 @@ import Foundation
 class Atomic<Value> {
     
     // MARK: -
-    
     // MARK: Variables
-
+    
     private var value: Value
     private let lock = NSLock()
 
@@ -15,7 +14,6 @@ class Atomic<Value> {
     }
     
     // MARK: -
-    
     // MARK: Initializations and Deallocations
     
     init(wrappedValue value: Value) {
@@ -23,7 +21,6 @@ class Atomic<Value> {
     }
 
     // MARK: -
-    
     // MARK: Public ( Public visible funcs )
     
     private func load() -> Value {
@@ -38,9 +35,16 @@ class Atomic<Value> {
         lock.unlock()
     }
 
-    func modify(_ execute: (inout Value) -> ()) {
+    func modify<Result>(_ execute: (inout Value) -> Result) -> Result {
         self.lock.lock()
-        execute(&value)
-        self.lock.unlock()
+        defer { lock.unlock() }
+        return execute(&value)
     }
+    
+    func takeValue() -> Value {
+        self.lock.lock()
+        defer { lock.unlock() }
+        return value
+    }
+    
 }

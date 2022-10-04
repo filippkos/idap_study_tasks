@@ -2,8 +2,7 @@ import Foundation
 
 class CarwashView {
     
-    // MARK: -
-    
+    // MARK: -			
     // MARK: Public ( Public visible funcs )
     
     func printCountingDone(name: String) {
