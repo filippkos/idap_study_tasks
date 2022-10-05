@@ -2,7 +2,6 @@ import Foundation
 
 class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     
-    
     // MARK: -
     // MARK: Variables
     
@@ -13,7 +12,6 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     var salary: Int
     let price: Int
     weak var moneyReceiver: MoneyTransferProtocol?
-
 
     // MARK: -
     // MARK: Initializations and Deallocations
@@ -28,7 +26,7 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     }
     
     // MARK: -
-    // MARK: Public ( Public visible funcs )
+    // MARK: Public
     
     func takeMoney<T: MoneyContaibleProtocol>(another: T) {
         var another = another

@@ -20,7 +20,7 @@ class Washer: Employee<Car>, EmployeeStateProtocol {
     }
     
     // MARK: -
-    // MARK: Public
+    // MARK: Overrided
     
     override func action(object: Car) -> Bool {
         self.state = .working

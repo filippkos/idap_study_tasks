@@ -9,6 +9,9 @@ class Director: Employee<Accountant> {
         super.init(name: name)
     }
     
+    // MARK: -
+    // MARK: Overrided
+    
     override func action(object: Accountant) -> Bool {
         return true
     }

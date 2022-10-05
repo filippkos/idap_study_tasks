@@ -9,8 +9,8 @@ class Atomic<Value> {
     private let lock = NSLock()
 
     var wrappedValue: Value {
-      get { return load() }
-      set { store(newValue: newValue) }
+        get { return load() }
+        set { store(newValue: newValue) }
     }
     
     // MARK: -
@@ -21,19 +21,7 @@ class Atomic<Value> {
     }
 
     // MARK: -
-    // MARK: Public ( Public visible funcs )
-    
-    private func load() -> Value {
-        lock.lock()
-        defer { lock.unlock() }
-        return value
-    }
-
-    private func store(newValue: Value) {
-        lock.lock()
-        value = newValue
-        lock.unlock()
-    }
+    // MARK: Public
 
     func modify<Result>(_ execute: (inout Value) -> Result) -> Result {
         self.lock.lock()
@@ -41,10 +29,19 @@ class Atomic<Value> {
         return execute(&value)
     }
     
-    func takeValue() -> Value {
+    // MARK: -
+    // MARK: Private
+    
+    private func load() -> Value {
         self.lock.lock()
         defer { lock.unlock() }
         return value
+    }
+
+    private func store(newValue: Value) {
+        self.lock.lock()
+        value = newValue
+        self.lock.unlock()
     }
     
 }
