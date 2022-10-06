@@ -6,12 +6,17 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     // MARK: Variables
     
     let name: String
-    var state: EmployeeState
+    var state: EmployeeState {
+        didSet {
+            self.eventHandler?(self.state)
+        }
+    }
     var money: Int
     var experience: Double
     var salary: Int
     let price: Int
     weak var moneyReceiver: MoneyTransferProtocol?
+    var eventHandler: ((EmployeeState) -> ())?
 
     // MARK: -
     // MARK: Initializations and Deallocations
@@ -38,8 +43,7 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
         takeMoney(another: another)
     }
     
-    func action(object: Object) -> Bool {
+    func action(object: Object) {
         self.moneyReceiver?.getMoney(another: self)
-        return true
     }
 }

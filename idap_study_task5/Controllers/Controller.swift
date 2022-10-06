@@ -10,6 +10,7 @@ class Controller {
     var washers = [Washer]()
     
     let conQueue = DispatchQueue.global(qos: .background)
+    let serQueue = DispatchQueue(label: "serQueue")
 
     let accountant = Accountant(name: "Bob")
     let director = Director(name: "Bill")
@@ -29,10 +30,14 @@ class Controller {
         (0...Int.random(in: 1...maxNum)).forEach { _ in
             let washer = Washer(name: String.generate(letters: Alphabets.en.rawValue, maxRange: 3))
             washer.moneyReceiver = accountant
-            washer.eventHandler = {event in
+            washer.eventHandler = { event in
                 switch event {
-                    case .done:
+                    case .readyToWork:
                         self.process(washer: washer)
+                    case .working:
+                        return
+                    case .needsProcessing:
+                        self.process(moneyFrom: washer)
                 }
             }
             self.washers.append(washer)
@@ -40,24 +45,32 @@ class Controller {
     }
     
     func initWashers() {
-        self.washers.forEach {
-            $0.eventHandler?(.done)
+        washers.forEach {
+            $0.eventHandler?(.readyToWork)
         }
     }
     
     func process(washer: Washer) {
         self.conQueue.async {
-            let car = self.cars.modify {
-                    return $0.removeFirst()
+            if !self.cars.wrappedValue.isEmpty {
+                let car = self.cars.modify {
+                    $0.removeFirst()
+                }
+                car.eventHandler = { event in
+                    switch event {
+                        case true:
+                            self.view.printCarWashed(carId: car.id, name: washer.name)
+                        case false:
+                            return
+                    }
+                }
+                washer.action(object: car)
             }
-            washer.action(object: car)
-            self.view.printCarWashed(carId: car.id, name: washer.name)
-            self.process(moneyFrom: washer)
         }
     }
     
     func process(moneyFrom: Washer) {
-        self.conQueue.sync {
+        self.serQueue.sync {
             self.accountant.action(object: moneyFrom)
             self.view.printCountingDone(name: moneyFrom.name)
             self.view.printMoneyReceived(sum: self.director.money)

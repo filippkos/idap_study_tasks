@@ -7,8 +7,13 @@ class Car: MoneyContaibleProtocol {
     
     var id: Int
     var money: Int
-    var isClean: Bool
+    var isClean: Bool {
+        didSet {
+            self.eventHandler?(self.isClean)
+        }
+    }
     var time: UInt32
+    var eventHandler: ((Bool) -> ())?
     
     // MARK: -
     // MARK: Initializations and Deallocations

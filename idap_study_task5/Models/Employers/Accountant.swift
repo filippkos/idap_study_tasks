@@ -12,10 +12,13 @@ class Accountant: Employee<Washer>, EmployeeStateProtocol {
     // MARK: -
     // MARK: Overrided
     
-    override func action(object: Washer) -> Bool {
+    override func action(object: Washer) {
+        self.state = .working
         sleep(1)
-        let isEnough = self.money >= self.price
-        super.action(object: object)
-        return isEnough
+        self.state = .needsProcessing
+        if self.money >= self.price {
+            super.action(object: object)
+        }
+        self.state = .readyToWork
     }
 }

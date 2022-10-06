@@ -12,7 +12,6 @@ class Director: Employee<Accountant> {
     // MARK: -
     // MARK: Overrided
     
-    override func action(object: Accountant) -> Bool {
-        return true
+    override func action(object: Accountant) {
     }
 }

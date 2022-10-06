@@ -1,16 +1,6 @@
 import Foundation
 
-enum WasherEvents {
-    
-    case done
-}
-
 class Washer: Employee<Car>, EmployeeStateProtocol {
-    
-    // MARK: -
-    // MARK: Variables
-    
-    var eventHandler: ((WasherEvents) -> ())?
     
     // MARK: -
     // MARK: Initializations and Deallocations
@@ -22,15 +12,13 @@ class Washer: Employee<Car>, EmployeeStateProtocol {
     // MARK: -
     // MARK: Overrided
     
-    override func action(object: Car) -> Bool {
+    override func action(object: Car) {
         self.state = .working
         sleep(object.time)
         object.isClean = true
-        super.takeMoney(another: object)
-        self.state = .needsProcessing
+        self.takeMoney(another: object)
         super.action(object: object)
-        defer { self.state = .readyToWork }
-        self.eventHandler?(.done)
-        return true
+        self.state = .needsProcessing
+        self.state = .readyToWork
     }
 }
