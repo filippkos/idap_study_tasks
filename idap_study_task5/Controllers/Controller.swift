@@ -30,14 +30,14 @@ class Controller {
         (0...Int.random(in: 1...maxNum)).forEach { _ in
             let washer = Washer(name: String.generate(letters: Alphabets.en.rawValue, maxRange: 3))
             washer.moneyReceiver = accountant
-            washer.eventHandler = { event in
+            washer.eventHandler = { [weak self] event in
                 switch event {
                     case .readyToWork:
-                        self.process(washer: washer)
+                        self?.process(washer: washer)
                     case .working:
                         return
                     case .needsProcessing:
-                        self.process(moneyFrom: washer)
+                        self?.process(moneyFrom: washer)
                 }
             }
             self.washers.append(washer)
@@ -56,10 +56,10 @@ class Controller {
                 let car = self.cars.modify {
                     $0.removeFirst()
                 }
-                car.eventHandler = { event in
+                car.eventHandler = { [weak self] event in
                     switch event {
                         case true:
-                            self.view.printCarWashed(carId: car.id, name: washer.name)
+                            self?.view.printCarWashed(carId: car.id, name: washer.name)
                         case false:
                             return
                     }
