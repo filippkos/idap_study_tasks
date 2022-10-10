@@ -5,8 +5,8 @@ class CarwashView {
     // MARK: -			
     // MARK: Public ( Public visible funcs )
     
-    func printCountingDone(name: String) {
-            print("counting done from \(name)")
+    func printCountingDone() {
+            print("counting done")
     }
     
     func printMoneyIsNotEnough() {
@@ -18,6 +18,6 @@ class CarwashView {
     }
     
     func printMoneyReceived(sum: Int) {
-            print("Money received. Now its \(sum)")
+        print("Money received. Now its \(sum)")
     }
 }

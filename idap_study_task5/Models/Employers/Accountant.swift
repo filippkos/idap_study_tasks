@@ -15,10 +15,8 @@ class Accountant: Employee<Washer>, EmployeeStateProtocol {
     override func action(object: Washer) {
         self.state = .working
         sleep(1)
+        self.takeMoney(another: object) 
         self.state = .needsProcessing
-        if self.money >= self.price {
-            super.action(object: object)
-        }
         self.state = .readyToWork
     }
 }

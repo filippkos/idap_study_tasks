@@ -13,5 +13,9 @@ class Director: Employee<Accountant> {
     // MARK: Overrided
     
     override func action(object: Accountant) {
+        self.state = .working
+        self.takeMoney(another: object)
+        self.state = .needsProcessing
+        self.state = .readyToWork
     }
 }

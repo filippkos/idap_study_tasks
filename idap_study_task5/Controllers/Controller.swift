@@ -8,19 +8,30 @@ class Controller {
     let view = CarwashView()
     var cars = Atomic(wrappedValue: [Car]())
     var washers = [Washer]()
+    let accountants = Atomic(wrappedValue: [Accountant]())
+    let director = Director(name: "Bill")
     
     let conQueue = DispatchQueue.global(qos: .background)
     let serQueue = DispatchQueue(label: "serQueue")
 
-    let accountant = Accountant(name: "Bob")
-    let director = Director(name: "Bill")
-    
     // MARK: -
     // MARK: Initializations and Deallocations
     
     init() {
         self.createWashers(maxNum: 2)
-        self.accountant.moneyReceiver = self.director
+        self.createAccountants(maxNum: 2)
+        self.director.eventHandler = { [weak self] event in
+            switch event {
+                case .readyToWork:
+                    return
+                case .working:
+                    return
+                case .needsProcessing:
+                    if let director = self?.director {
+                        self?.view.printMoneyReceived(sum: director.money)
+                    }
+            }
+        }
     }
     
     // MARK: -
@@ -29,7 +40,6 @@ class Controller {
     func createWashers(maxNum: Int) {
         (0...Int.random(in: 1...maxNum)).forEach { _ in
             let washer = Washer(name: String.generate(letters: Alphabets.en.rawValue, maxRange: 3))
-            washer.moneyReceiver = accountant
             washer.eventHandler = { [weak self] event in
                 switch event {
                     case .readyToWork:
@@ -44,6 +54,30 @@ class Controller {
         }
     }
     
+    func createAccountants(maxNum: Int) {
+        (0...Int.random(in: 1...maxNum)).forEach { _ in
+            let accountant = Accountant(name: String.generate(letters: Alphabets.en.rawValue, maxRange: 3))
+            accountant.eventHandler = { [weak self] event in
+                switch event {
+                    case .readyToWork:
+                        return
+                    case .working:
+                        return
+                    case .needsProcessing:
+                        self?.view.printCountingDone()
+                        self?.serQueue.sync {
+                            if let director = self?.director {
+                                director.action(object: accountant)
+                            }
+                        }
+                }
+            }
+            self.accountants.modify {
+                $0.append(accountant)
+            }
+        }
+    }
+    
     func initWashers() {
         washers.forEach {
             $0.eventHandler?(.readyToWork)
@@ -52,10 +86,10 @@ class Controller {
     
     func process(washer: Washer) {
         self.conQueue.async {
-            if !self.cars.wrappedValue.isEmpty {
-                let car = self.cars.modify {
-                    $0.removeFirst()
-                }
+            let car = self.cars.modify {
+                $0.isEmpty ? nil : $0.removeFirst()
+            }
+            if let car = car {
                 car.eventHandler = { [weak self] event in
                     switch event {
                         case true:
@@ -70,10 +104,13 @@ class Controller {
     }
     
     func process(moneyFrom: Washer) {
-        self.serQueue.sync {
-            self.accountant.action(object: moneyFrom)
-            self.view.printCountingDone(name: moneyFrom.name)
-            self.view.printMoneyReceived(sum: self.director.money)
+        self.conQueue.async {
+            let accountant = self.accountants.modify {
+                $0.first(where: { $0.state == .readyToWork })
+            }
+            if let accountant = accountant {
+                accountant.action(object: moneyFrom)
+            }
         }
     }
 }

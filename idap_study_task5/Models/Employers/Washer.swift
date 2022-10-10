@@ -17,7 +17,6 @@ class Washer: Employee<Car>, EmployeeStateProtocol {
         sleep(object.time)
         object.isClean = true
         self.takeMoney(another: object)
-        super.action(object: object)
         self.state = .needsProcessing
         self.state = .readyToWork
     }

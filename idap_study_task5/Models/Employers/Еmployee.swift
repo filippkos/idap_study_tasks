@@ -1,6 +1,6 @@
 import Foundation
 
-class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
+class Employee<Object>: MoneyContaibleProtocol {
     
     // MARK: -
     // MARK: Variables
@@ -15,7 +15,6 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
     var experience: Double
     var salary: Int
     let price: Int
-    weak var moneyReceiver: MoneyTransferProtocol?
     var eventHandler: ((EmployeeState) -> ())?
 
     // MARK: -
@@ -39,11 +38,7 @@ class Employee<Object>: MoneyContaibleProtocol, MoneyTransferProtocol {
         another.money -= price
     }
     
-    func getMoney<T: MoneyTransferProtocol>(another: T) {
-        takeMoney(another: another)
-    }
-    
     func action(object: Object) {
-        self.moneyReceiver?.getMoney(another: self)
+        
     }
 }
