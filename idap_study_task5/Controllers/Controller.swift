@@ -10,6 +10,7 @@ class Controller {
     var washers = [Washer]()
     let accountants = Atomic(wrappedValue: [Accountant]())
     let director = Director(name: "Bill")
+    var idCounter = 0
     
     let conQueue = DispatchQueue.global(qos: .background)
     let serQueue = DispatchQueue(label: "serQueue")
@@ -64,7 +65,7 @@ class Controller {
                     case .working:
                         return
                     case .needsProcessing:
-                        self?.view.printCountingDone()
+                    self?.view.printCountingDone(name: accountant.name)
                         self?.serQueue.sync {
                             if let director = self?.director {
                                 director.action(object: accountant)
@@ -111,6 +112,18 @@ class Controller {
             if let accountant = accountant {
                 accountant.action(object: moneyFrom)
             }
+        }
+    }
+    
+    func process(car: Car) {
+        while true {
+            self.idCounter += 1
+            let car = Car(id: idCounter, money: idCounter * 10)
+            self.cars.modify { $0.append(car) }
+            if self.idCounter == self.washers.count {
+                self.initWashers()
+            }
+            sleep(UInt32.random(in: 0..<1))
         }
     }
 }

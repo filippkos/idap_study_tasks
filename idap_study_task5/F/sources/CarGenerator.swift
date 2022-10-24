@@ -16,7 +16,7 @@ class CarGenerator {
     }
     
     // MARK: -
-    // MARK: Public
+    // MARK: Public 
     
     public func start() {
         while true {
