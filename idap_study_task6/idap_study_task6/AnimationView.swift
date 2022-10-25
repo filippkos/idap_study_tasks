@@ -1,29 +1,42 @@
 import UIKit
 
-enum squarePosition {
-    case topLeft(Int, Int)
-    case topRight(Int, Int)
-    case bottomLeft(Int, Int)
-    case bottomRight(Int, Int)
+enum SquarePosition {
+    case TopLeft
+    case TopRight
+    case BottomLeft
+    case BottomRight
+
+    var coordinates: (posX: Int, posY: Int) {
+       switch self {
+        case .TopLeft:
+            return (0, 0)
+        case .TopRight:
+            return (50, 0)
+        case .BottomLeft:
+            return (0, 50)
+        case .BottomRight:
+            return (50, 50)
+       }
+    }
 }
 
 class AnimationView: UIView {
-
-    @IBOutlet var square: UIView?
-
-    var squarePos: squarePosition
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet var square: UIView? = UIKit.UIView(frame: CGRect())
     
-    func prepareView(with model: AnimationInfo) {
-        
-        self.square?.frame.size.width = CGFloat(model.sizeX ) 
-        self.square?.frame.size.height = CGFloat(model.sizeY)
-        self.square?.frame.origin.x = 0
-        self.square?.frame.origin.y = 0
+    func prepareView(with model: SquareInfo) {
         self.square?.backgroundColor = model.color
+        self.square?.frame.origin.x = CGFloat(model.squarePosition.coordinates.posX)
+        self.square?.frame.origin.y = CGFloat(model.squarePosition.coordinates.posY)
+        self.square?.frame.size.width = CGFloat(model.sizeX)
+        self.square?.frame.size.height = CGFloat(model.sizeY)
     }
+    
+    func animate(){
+        UIView.animate(withDuration: 2.0, animations: {
+            self.square?.frame.origin.x = 500
+        })
+    }
+
 
 }

@@ -1,17 +1,23 @@
 import UIKit
 
-struct AnimationInfo {
+struct SquareInfo {
+    
     let sizeX: Int
     let sizeY: Int
     let color: UIColor
+    var squarePosition: SquarePosition
+    
+    mutating func setSqarePosition (newPosition: SquarePosition) {
+        self.squarePosition = newPosition
+    }
 }
 
 
 class AnimationViewController: UIViewController {
 
-    let info: AnimationInfo
+    let info: SquareInfo
     
-    init(model: AnimationInfo) {
+    init(model: SquareInfo) {
         self.info = model
         
         super.init(nibName: nil, bundle: nil)
