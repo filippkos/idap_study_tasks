@@ -32,9 +32,9 @@ class AnimationView: UIView {
         self.square?.frame.size.height = CGFloat(model.sizeY)
     }
     
-    func animate(){
+    func animate(model: SquareInfo){
         UIView.animate(withDuration: 2.0, animations: {
-            self.square?.frame.origin.x = 500
+            self.square?.frame.origin.x = self.frame.width - CGFloat(model.sizeX) 
         })
     }
 

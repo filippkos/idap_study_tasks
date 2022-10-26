@@ -32,5 +32,9 @@ class AnimationViewController: UIViewController {
         
         let rootView = self.view as? AnimationView
         rootView?.prepareView(with: self.info)
+        
+        rootView?.animate(model: self.info)
     }
+    
+    
 }
