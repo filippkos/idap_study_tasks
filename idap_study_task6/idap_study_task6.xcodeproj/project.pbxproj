@@ -39,6 +39,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F9FC733290945420035CB0F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3F9FC734290945530035CB0F /* AnimationViewController */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		3F9FC734290945530035CB0F /* AnimationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FAAF30C29069DBA00333992 /* AnimationViewController.swift */,
+				3FAAF31029069E4C00333992 /* AnimationView.swift */,
+				3FAAF30D29069DBA00333992 /* AnimationViewController.xib */,
+			);
+			path = AnimationViewController;
+			sourceTree = "<group>";
+		};
 		3FAAF2EC290697B900333992 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +76,12 @@
 		3FAAF2F7290697BA00333992 /* idap_study_task6 */ = {
 			isa = PBXGroup;
 			children = (
+				3F9FC733290945420035CB0F /* Source */,
 				3FAAF2F8290697BA00333992 /* AppDelegate.swift */,
 				3FAAF2FC290697BA00333992 /* ViewController.swift */,
 				3FAAF301290697C100333992 /* Assets.xcassets */,
 				3FAAF303290697C100333992 /* LaunchScreen.storyboard */,
 				3FAAF306290697C100333992 /* Info.plist */,
-				3FAAF30C29069DBA00333992 /* AnimationViewController.swift */,
-				3FAAF30D29069DBA00333992 /* AnimationViewController.xib */,
-				3FAAF31029069E4C00333992 /* AnimationView.swift */,
 			);
 			path = idap_study_task6;
 			sourceTree = "<group>";

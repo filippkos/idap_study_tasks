@@ -2,17 +2,21 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    // MARK: -
+    // MARK: Variables
 
     let window = UIWindow()
+    
+    // MARK: -
+    // MARK: UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = self.window
-        let model = SquareInfo(sizeX: 100, sizeY: 100, color: .green, squarePosition: .TopLeft)
-        let controller = AnimationViewController(model: model)
+        let controller = AnimationViewController()
         window.rootViewController = controller
         window.makeKeyAndVisible()
         return true
     }
-
 }
 
