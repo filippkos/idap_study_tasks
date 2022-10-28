@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,22 +8,42 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimationViewController" customModule="idap_study_task6">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimationViewController" customModule="idap_study_task6" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="AnimationView" customModule="idap_study_task6">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="AnimationView" customModule="idap_study_task6" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogk-96-uiw">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJK-ij-frM">
+                            <rect key="frame" x="132" y="318" width="150" height="100"/>
+                            <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.40306613870000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="1gX-ln-kqF"/>
+                                <constraint firstAttribute="height" constant="100" id="RRv-lH-xH3"/>
+                                <constraint firstAttribute="width" secondItem="hJK-ij-frM" secondAttribute="height" multiplier="15:10" id="wH9-vX-fjz"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Pause"/>
+                            <connections>
+                                <action selector="pauseButton:" destination="i5M-Pr-FkT" eventType="touchUpInside" id="FsX-mz-jO9"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="hJK-ij-frM" firstAttribute="centerY" secondItem="ogk-96-uiw" secondAttribute="centerY" id="0NE-De-jsy"/>
+                        <constraint firstItem="hJK-ij-frM" firstAttribute="centerX" secondItem="ogk-96-uiw" secondAttribute="centerX" id="lCW-q3-qYB"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScY-xt-ylb">
-                    <rect key="frame" x="0.0" y="44" width="100" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ScY-xt-ylb" secondAttribute="height" multiplier="1:1" id="bK4-1o-gqW"/>
@@ -45,7 +65,7 @@
                 <outlet property="square" destination="ScY-xt-ylb" id="tLR-lo-c2w"/>
                 <outlet property="squareContainerView" destination="ogk-96-uiw" id="YYJ-IK-Alx"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="129.91071428571428"/>
+            <point key="canvasLocation" x="131.8840579710145" y="129.61956521739131"/>
         </view>
     </objects>
     <resources>

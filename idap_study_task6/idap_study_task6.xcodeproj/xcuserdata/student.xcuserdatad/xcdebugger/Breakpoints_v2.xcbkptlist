@@ -14,8 +14,8 @@
             filePath = "idap_study_task6/Source/AnimationViewController/AnimationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "prepareView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,15 +23,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "23CE2F21-457B-4B79-979B-C822941F805A"
-            shouldBeEnabled = "Yes"
+            uuid = "98837C07-0B52-4AA3-98A9-D644F14F6553"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "idap_study_task6/Source/AnimationViewController/AnimationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "verticalValue()"
             landmarkType = "7">
          </BreakpointContent>

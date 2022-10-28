@@ -10,16 +10,42 @@ enum SquarePosition {
 
 class AnimationView: UIView {
     
+    // MARK: -
+    // MARK: IBActions
+    
+    @IBAction func pauseButton(_ sender: Any) {
+        if let layer = self.square?.layer {
+            self.isPause = !self.isPause
+            if isPause {
+                self.pauseLayer(layer: layer)
+            } else {
+                self.resumeLayer(layer: layer)
+            }
+        }
+    }
+    
+    // MARK: -
+    // MARK: IBOutlets
+    
     @IBOutlet private var square: UIView?
     @IBOutlet private var squareContainerView: UIView?
+
+    // MARK: -
+    // MARK: Variables
     
     private var isAnimate: Bool = false
     private var isPause: Bool = false
     private var squarePosition: SquarePosition = .topLeft
     
+    // MARK: -
+    // MARK: Public
+    
     public func prepareView() {
         self.animate()
     }
+    
+    // MARK: -
+    // MARK: Private
     
     private func animate() {
         if !self.isAnimate {
@@ -39,7 +65,7 @@ class AnimationView: UIView {
         }
     }
     
-    func animationPart(time: Double, offset: CGFloat, position: SquarePosition) {
+    private func animationPart(time: Double, offset: CGFloat, position: SquarePosition) {
         UIView.addKeyframe(
             withRelativeStartTime: time,
             relativeDuration: 1,
@@ -50,7 +76,6 @@ class AnimationView: UIView {
                 case .topRight, .bottomLeft:
                     self?.square?.frame.origin.x = offset
                 }
-                
                 self?.squarePosition = position
             }
         )
@@ -65,18 +90,26 @@ class AnimationView: UIView {
     
     private func verticalValue() -> CGFloat {
         let squareSize = self.square?.frame.height ?? 0
-        
-        return (self.squareContainerView?.frame.maxY ?? 0) - squareSize * 2
-    }
-}
 
-extension UIScreen {
-    
-    static var width: CGFloat {
-        return UIScreen.main.bounds.width
+        let result = (self.squareContainerView?.frame.maxY ?? 0) - squareSize
+        
+        return result
     }
     
-    static var height: CGFloat {
-        return UIScreen.main.bounds.height
+    private func pauseLayer(layer: CALayer) {
+        let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.speed = 0.0
+        layer.timeOffset = pausedTime
     }
+
+    private func resumeLayer(layer: CALayer) {
+        let pausedTime: CFTimeInterval = layer.timeOffset
+        layer.speed = 1.0
+        layer.timeOffset = 0.0
+        layer.beginTime = 0.0
+        let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        layer.beginTime = timeSincePause
+    }
+    
+
 }

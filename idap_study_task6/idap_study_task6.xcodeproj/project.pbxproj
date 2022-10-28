@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F92C85A290BB22200F1795A /* UIScreen+WidthHeightGetters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C859290BB22200F1795A /* UIScreen+WidthHeightGetters.swift */; };
+		3F92C85C290BBC8A00F1795A /* UIViewController+ViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */; };
 		3FAAF2F9290697BA00333992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAF2F8290697BA00333992 /* AppDelegate.swift */; };
-		3FAAF2FD290697BA00333992 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAF2FC290697BA00333992 /* ViewController.swift */; };
 		3FAAF302290697C100333992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAF301290697C100333992 /* Assets.xcassets */; };
 		3FAAF305290697C100333992 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAF303290697C100333992 /* LaunchScreen.storyboard */; };
 		3FAAF30E29069DBA00333992 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAF30C29069DBA00333992 /* AnimationViewController.swift */; };
@@ -17,9 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F92C859290BB22200F1795A /* UIScreen+WidthHeightGetters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+WidthHeightGetters.swift"; sourceTree = "<group>"; };
+		3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewCast.swift"; sourceTree = "<group>"; };
 		3FAAF2F5290697BA00333992 /* idap_study_task6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAAF2F8290697BA00333992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3FAAF2FC290697BA00333992 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3FAAF301290697C100333992 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FAAF304290697C100333992 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FAAF306290697C100333992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,9 +41,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F92C858290BB18800F1795A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F92C859290BB22200F1795A /* UIScreen+WidthHeightGetters.swift */,
+				3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3F9FC733290945420035CB0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3F92C858290BB18800F1795A /* Extensions */,
 				3F9FC734290945530035CB0F /* AnimationViewController */,
 			);
 			path = Source;
@@ -78,7 +90,6 @@
 			children = (
 				3F9FC733290945420035CB0F /* Source */,
 				3FAAF2F8290697BA00333992 /* AppDelegate.swift */,
-				3FAAF2FC290697BA00333992 /* ViewController.swift */,
 				3FAAF301290697C100333992 /* Assets.xcassets */,
 				3FAAF303290697C100333992 /* LaunchScreen.storyboard */,
 				3FAAF306290697C100333992 /* Info.plist */,
@@ -158,8 +169,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAAF30E29069DBA00333992 /* AnimationViewController.swift in Sources */,
+				3F92C85A290BB22200F1795A /* UIScreen+WidthHeightGetters.swift in Sources */,
 				3FAAF31129069E4C00333992 /* AnimationView.swift in Sources */,
-				3FAAF2FD290697BA00333992 /* ViewController.swift in Sources */,
+				3F92C85C290BBC8A00F1795A /* UIViewController+ViewCast.swift in Sources */,
 				3FAAF2F9290697BA00333992 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
