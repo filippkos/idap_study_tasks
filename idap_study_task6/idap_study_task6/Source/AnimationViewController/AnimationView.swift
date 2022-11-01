@@ -11,98 +11,34 @@ enum SquarePosition {
 class AnimationView: UIView {
     
     // MARK: -
-    // MARK: IBActions
-    
-    @IBAction func pauseButton(_ sender: Any) {
-        if let layer = self.square?.layer {
-            self.isPause = !self.isPause
-            if isPause {
-                self.pauseLayer(layer: layer)
-            } else {
-                self.resumeLayer(layer: layer)
-            }
-        }
-    }
-    
-    // MARK: -
     // MARK: IBOutlets
     
-    @IBOutlet private var square: UIView?
-    @IBOutlet private var squareContainerView: UIView?
+    @IBOutlet var square: UIView?
+    @IBOutlet var squareContainerView: UIView?
 
-    // MARK: -
-    // MARK: Variables
-    
-    private var isAnimate: Bool = false
-    private var isPause: Bool = false
-    private var squarePosition: SquarePosition = .topLeft
-    
     // MARK: -
     // MARK: Public
     
-    public func prepareView() {
-        self.animate()
-    }
-    
-    // MARK: -
-    // MARK: Private
-    
-    private func animate() {
-        if !self.isAnimate {
-            self.isAnimate = true
-            
-            UIView.animateKeyframes(
-                withDuration: 5.0,
-                delay: 0,
-                options: [.calculationModeLinear, .repeat],
-                animations: {
-                    self.animationPart(time: 0, offset: self.horizontalValue(), position: .topRight)
-                    self.animationPart(time: 0.25, offset: self.verticalValue(), position: .bottomRight)
-                    self.animationPart(time: 0.5, offset: 0, position: .bottomLeft)
-                    self.animationPart(time: 0.75, offset: self.squareContainerView?.frame.minY ?? 0, position: .topLeft)
-            }, completion: nil)
-            self.isAnimate = false
-        }
-    }
-    
-    private func animationPart(time: Double, offset: CGFloat, position: SquarePosition) {
-        UIView.addKeyframe(
-            withRelativeStartTime: time,
-            relativeDuration: 1,
-            animations: { [weak self] in
-                switch position {
-                case .topLeft, .bottomRight:
-                    self?.square?.frame.origin.y = offset
-                case .topRight, .bottomLeft:
-                    self?.square?.frame.origin.x = offset
-                }
-                self?.squarePosition = position
+    public func setSquarePositionAnimatedWithCompletion(nextPosition: SquarePosition, animated: Bool, cycled: Bool, currentPosition: SquarePosition) -> SquarePosition {
+        let duration = animated ? 3.0 : 0.0
+        var position = cycled ? self.getNextposition(currentPosition: currentPosition) : nextPosition
+        UIView.animate(withDuration: duration, animations: {
+            self.setSquarePosition(position: position)
+        }, completion:  {_ in
+            if cycled {
+                position = self.setSquarePositionAnimatedWithCompletion(nextPosition: position, animated: true, cycled: true, currentPosition: position)
             }
-        )
+        })
+        return position
     }
     
-    private func horizontalValue() -> CGFloat {
-        let screenWidth = UIScreen.width
-        let squareSize = self.square?.frame.width ?? 0
-        
-        return screenWidth - squareSize
-    }
-    
-    private func verticalValue() -> CGFloat {
-        let squareSize = self.square?.frame.height ?? 0
-
-        let result = (self.squareContainerView?.frame.maxY ?? 0) - squareSize
-        
-        return result
-    }
-    
-    private func pauseLayer(layer: CALayer) {
+    public func pauseLayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
         layer.speed = 0.0
         layer.timeOffset = pausedTime
     }
 
-    private func resumeLayer(layer: CALayer) {
+    public func resumeLayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.timeOffset
         layer.speed = 1.0
         layer.timeOffset = 0.0
@@ -111,5 +47,57 @@ class AnimationView: UIView {
         layer.beginTime = timeSincePause
     }
     
+    // MARK: -
+    // MARK: Private
+    
+    private func getNextposition(currentPosition: SquarePosition) -> SquarePosition {
+        switch currentPosition {
+        case .topLeft:
+            return .topRight
+        case .topRight:
+            return .bottomRight
+        case .bottomLeft:
+            return .topLeft
+        case .bottomRight:
+            return .bottomLeft
+        }
+    }
+    
+    private func setSquarePositionAnimated(position: SquarePosition, duration: Double) {
+        UIView.animate(withDuration: duration, animations: {
+            self.setSquarePosition(position: position)
+        })
+    }
+    
+    private func setSquarePosition(position: SquarePosition) {
+        switch position {
+        case .topLeft:
+            self.square?.frame.origin.x = 0
+            self.square?.frame.origin.y = 0
+        case .topRight:
+            self.square?.frame.origin.x = self.horizontalValue()
+            self.square?.frame.origin.y = 0
+        case .bottomLeft:
+            self.square?.frame.origin.x = 0
+            self.square?.frame.origin.y = self.verticalValue()
+        case .bottomRight:
+            self.square?.frame.origin.x = self.horizontalValue()
+            self.square?.frame.origin.y = self.verticalValue()
+        }
+    }
+    
+    private func horizontalValue() -> CGFloat {
+        let screenWidth = self.squareContainerView?.frame.width ?? 0
+        let squareSize = self.square?.frame.width ?? 0
+        
+        return screenWidth - squareSize
+    }
+    
+    private func verticalValue() -> CGFloat {
+        let squareSize = self.square?.frame.height ?? 0
 
+        let result = (self.squareContainerView?.frame.height ?? 0) - squareSize
+        
+        return result
+    }
 }

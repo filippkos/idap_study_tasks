@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIViewController {
-    func view() -> AnimationView {
-       return self.view as! AnimationView
+    func view<T: UIView>() -> T? {
+        return self.view as? T
     }
 }

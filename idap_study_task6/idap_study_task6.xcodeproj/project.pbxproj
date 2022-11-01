@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F92C85A290BB22200F1795A /* UIScreen+WidthHeightGetters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C859290BB22200F1795A /* UIScreen+WidthHeightGetters.swift */; };
 		3F92C85C290BBC8A00F1795A /* UIViewController+ViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */; };
 		3FAAF2F9290697BA00333992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAF2F8290697BA00333992 /* AppDelegate.swift */; };
 		3FAAF302290697C100333992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAF301290697C100333992 /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F92C859290BB22200F1795A /* UIScreen+WidthHeightGetters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+WidthHeightGetters.swift"; sourceTree = "<group>"; };
 		3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewCast.swift"; sourceTree = "<group>"; };
 		3FAAF2F5290697BA00333992 /* idap_study_task6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAAF2F8290697BA00333992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +42,6 @@
 		3F92C858290BB18800F1795A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3F92C859290BB22200F1795A /* UIScreen+WidthHeightGetters.swift */,
 				3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */,
 			);
 			path = Extensions;
@@ -169,7 +166,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAAF30E29069DBA00333992 /* AnimationViewController.swift in Sources */,
-				3F92C85A290BB22200F1795A /* UIScreen+WidthHeightGetters.swift in Sources */,
 				3FAAF31129069E4C00333992 /* AnimationView.swift in Sources */,
 				3F92C85C290BBC8A00F1795A /* UIViewController+ViewCast.swift in Sources */,
 				3FAAF2F9290697BA00333992 /* AppDelegate.swift in Sources */,
