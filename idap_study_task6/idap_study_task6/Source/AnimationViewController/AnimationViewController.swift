@@ -6,50 +6,54 @@ class AnimationViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func topLeftButton(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .topLeft, animated: false, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .topLeft, completion: nil)
+        self.squarePosition = .topLeft
     }
     
     @IBAction func topRightButton(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .topRight, animated: false, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .topRight, completion: nil)
+        self.squarePosition = .topRight
     }
     
     @IBAction func bottomLeftButton(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .bottomLeft, animated: false, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .bottomLeft, completion: nil)
+        self.squarePosition = .bottomLeft
     }
     
     @IBAction func bottomRightButton(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .bottomRight, animated: false, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .bottomRight, completion: nil)
+        self.squarePosition = .bottomRight
     }
     
     @IBAction func topLeftButtonAnimated(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .topLeft, animated: true, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .topLeft, animated: true, completion: nil)
+        self.squarePosition = .topLeft
     }
     
     @IBAction func topRightButtonAnimated(_ sender: Any) {
-        self.squarePosition =  self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .topRight, animated: true, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .topRight, animated: true, completion: nil)
+        self.squarePosition = .topRight
     }
     
     @IBAction func bottomLeftButtonAnimated(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .bottomLeft, animated: true, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.rootView?.setSquare(position: .bottomLeft, animated: true, completion: nil)
+        self.squarePosition = .bottomLeft
     }
     
     @IBAction func bottomRightButtonAnimated(_ sender: Any) {
-        self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: .bottomRight, animated: true, cycled: false, currentPosition: self.squarePosition) ?? self.squarePosition
-        
+        self.rootView?.setSquare(position: .bottomRight, animated: true, completion: nil)
+        self.squarePosition = .bottomRight
     }
     
     @IBAction func clockwiseMovementButton(_ sender: Any) {
-            self.squarePosition = self.rootView?.setSquarePositionAnimatedWithCompletion(nextPosition: self.squarePosition, animated: true, cycled: true, currentPosition: self.squarePosition) ?? self.squarePosition
+        self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
     }
     
     @IBAction func pauseButton(_ sender: Any) {
-        if let layer = self.rootView?.square?.layer {
-            self.isPause = !self.isPause
-            if isPause {
-                self.rootView?.pauseLayer(layer: layer)
-            } else {
-                self.rootView?.resumeLayer(layer: layer)
-            }
+        self.isPause = !self.isPause
+        
+        if !self.isPause {
+            self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
         }
     }
     
@@ -57,7 +61,6 @@ class AnimationViewController: UIViewController {
     // MARK: Variables
     
     private var rootView: AnimationView?
-    private var animator: UIViewPropertyAnimator!
     private var isAnimate: Bool = false
     private var isPause: Bool = false
     private var squarePosition: SquarePosition = .topLeft
@@ -75,10 +78,32 @@ class AnimationViewController: UIViewController {
     }
     
     // MARK: -
-    // MARK: Overrided functions
+    // MARK: Private
     
-    override func viewDidLoad() {
-        
+    private func startAnimation(position: SquarePosition) {
+        if self.isPause {
+            return
+        }
+        self.rootView?.setSquare(
+            position: position,
+            animated: true,
+            completion: {_ in
+                self.squarePosition = position
+                self.startAnimation(position: self.getNextposition(currentPosition: position))
+            }
+        )
     }
-
+    
+    private func getNextposition(currentPosition: SquarePosition) -> SquarePosition {
+        switch currentPosition {
+        case .topLeft:
+            return .topRight
+        case .topRight:
+            return .bottomRight
+        case .bottomLeft:
+            return .topLeft
+        case .bottomRight:
+            return .bottomLeft
+        }
+    }
 }

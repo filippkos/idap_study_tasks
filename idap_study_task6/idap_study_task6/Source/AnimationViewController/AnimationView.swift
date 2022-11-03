@@ -11,6 +11,11 @@ enum SquarePosition {
 class AnimationView: UIView {
     
     // MARK: -
+    // MARK: Type Inferences
+    
+    typealias optionalCompletion = ((Bool) -> ())?
+    
+    // MARK: -
     // MARK: IBOutlets
     
     @IBOutlet var square: UIView?
@@ -18,56 +23,23 @@ class AnimationView: UIView {
 
     // MARK: -
     // MARK: Public
-    
-    public func setSquarePositionAnimatedWithCompletion(nextPosition: SquarePosition, animated: Bool, cycled: Bool, currentPosition: SquarePosition) -> SquarePosition {
-        let duration = animated ? 3.0 : 0.0
-        var position = cycled ? self.getNextposition(currentPosition: currentPosition) : nextPosition
-        UIView.animate(withDuration: duration, animations: {
-            self.setSquarePosition(position: position)
-        }, completion:  {_ in
-            if cycled {
-                position = self.setSquarePositionAnimatedWithCompletion(nextPosition: position, animated: true, cycled: true, currentPosition: position)
+     
+    public func setSquare(position: SquarePosition, animated: Bool = false, paused: Bool = false, completion: optionalCompletion = nil) {
+        UIView.animate(
+            withDuration: animated ? 3.0 : 0.0,
+            delay: 0,
+            options: [],
+            animations: {
+                self.setSquarePosition(position: position)
+            },
+            completion: {
+                completion?($0)
             }
-        })
-        return position
-    }
-    
-    public func pauseLayer(layer: CALayer) {
-        let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
-        layer.speed = 0.0
-        layer.timeOffset = pausedTime
-    }
-
-    public func resumeLayer(layer: CALayer) {
-        let pausedTime: CFTimeInterval = layer.timeOffset
-        layer.speed = 1.0
-        layer.timeOffset = 0.0
-        layer.beginTime = 0.0
-        let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-        layer.beginTime = timeSincePause
+        )
     }
     
     // MARK: -
     // MARK: Private
-    
-    private func getNextposition(currentPosition: SquarePosition) -> SquarePosition {
-        switch currentPosition {
-        case .topLeft:
-            return .topRight
-        case .topRight:
-            return .bottomRight
-        case .bottomLeft:
-            return .topLeft
-        case .bottomRight:
-            return .bottomLeft
-        }
-    }
-    
-    private func setSquarePositionAnimated(position: SquarePosition, duration: Double) {
-        UIView.animate(withDuration: duration, animations: {
-            self.setSquarePosition(position: position)
-        })
-    }
     
     private func setSquarePosition(position: SquarePosition) {
         switch position {
