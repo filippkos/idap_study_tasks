@@ -126,7 +126,7 @@
                                 <action selector="bottomRightButtonAnimated:" destination="-1" eventType="touchUpInside" id="8cc-11-Gci"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKM-pi-BNF">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKM-pi-BNF">
                             <rect key="frame" x="120" y="500" width="188" height="40"/>
                             <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.40306613870000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -141,7 +141,7 @@
                                 <action selector="pauseButton:" destination="-1" eventType="touchUpInside" id="FyG-4e-0OD"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXR-Er-vay">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXR-Er-vay">
                             <rect key="frame" x="120" y="548" width="188" height="40"/>
                             <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.40306613870000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>

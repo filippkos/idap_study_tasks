@@ -46,16 +46,19 @@ class AnimationViewController: UIViewController {
     }
     
     @IBAction func clockwiseMovementButton(_ sender: Any) {
-        self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
+        if !isAnimate {
+            self.isAnimate = true
+            self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
+        }
     }
     
     @IBAction func pauseButton(_ sender: Any) {
         self.isPause = !self.isPause
-        
-        if !self.isPause {
+        if !self.isPause && self.isAnimate == true {
             self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
         }
     }
+    
     
     // MARK: -
     // MARK: Variables
