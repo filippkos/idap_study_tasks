@@ -1,7 +1,13 @@
 import UIKit
 
-extension UIViewController {
-    func view<T: UIView>() -> T? {
-        return self.view as? T
+protocol RootViewGettable: UIViewController {
+    
+    associatedtype RootView: UIView
+    var rootView: RootView? { get }
+}
+
+extension RootViewGettable {
+    var rootView: RootView? {
+        self.view as? RootView
     }
 }

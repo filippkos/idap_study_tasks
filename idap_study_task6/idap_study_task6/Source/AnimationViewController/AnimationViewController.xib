@@ -33,7 +33,7 @@
                                 <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="10"/>
                             </buttonConfiguration>
                             <connections>
-                                <action selector="topLeftButton:" destination="-1" eventType="touchUpInside" id="ntv-pV-buI"/>
+                                <action selector="topLeftButton:" destination="-1" eventType="touchUpInside" id="TKz-fy-xg0"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZh-d7-wMX">
@@ -156,14 +156,6 @@
                                 <action selector="clockwiseMovementButton:" destination="-1" eventType="touchUpInside" id="Htf-KA-zQm"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScY-xt-ylb" propertyAccessControl="none">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                            <color key="backgroundColor" systemColor="systemGreenColor"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="ScY-xt-ylb" secondAttribute="height" multiplier="1:1" id="bK4-1o-gqW"/>
-                                <constraint firstAttribute="height" constant="100" id="cSh-oI-ttM"/>
-                            </constraints>
-                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekv-Yj-6Pa" userLabel="BottomLeftAnimated">
                             <rect key="frame" x="120" y="452" width="90" height="40"/>
                             <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.40306613870000002" colorSpace="custom" customColorSpace="sRGB"/>
@@ -179,6 +171,14 @@
                                 <action selector="bottomLeftButtonAnimated:" destination="-1" eventType="touchUpInside" id="SMG-uU-Jsx"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScY-xt-ylb" propertyAccessControl="none">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ScY-xt-ylb" secondAttribute="height" multiplier="1:1" id="bK4-1o-gqW"/>
+                                <constraint firstAttribute="height" constant="100" id="cSh-oI-ttM"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

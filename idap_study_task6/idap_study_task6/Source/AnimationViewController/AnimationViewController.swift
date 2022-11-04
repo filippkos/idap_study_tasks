@@ -1,6 +1,11 @@
 import UIKit
 
-class AnimationViewController: UIViewController {
+class AnimationViewController: UIViewController, RootViewGettable {
+    
+    // MARK: -
+    // MARK: Type Inferences
+    
+    typealias RootView = AnimationView
     
     // MARK: -
     // MARK: IBActions
@@ -48,37 +53,23 @@ class AnimationViewController: UIViewController {
     @IBAction func clockwiseMovementButton(_ sender: Any) {
         if !isAnimate {
             self.isAnimate = true
-            self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
+            self.startAnimation(position: next(currentPosition: self.squarePosition))
         }
     }
     
     @IBAction func pauseButton(_ sender: Any) {
         self.isPause = !self.isPause
         if !self.isPause && self.isAnimate == true {
-            self.startAnimation(position: getNextposition(currentPosition: self.squarePosition))
+            self.startAnimation(position: next(currentPosition: self.squarePosition))
         }
     }
-    
     
     // MARK: -
     // MARK: Variables
     
-    private var rootView: AnimationView?
     private var isAnimate: Bool = false
     private var isPause: Bool = false
     private var squarePosition: SquarePosition = .topLeft
-    
-    // MARK: -
-    // MARK: Initializations and Deallocations
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.rootView = self.view()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: -
     // MARK: Private
@@ -92,12 +83,12 @@ class AnimationViewController: UIViewController {
             animated: true,
             completion: {_ in
                 self.squarePosition = position
-                self.startAnimation(position: self.getNextposition(currentPosition: position))
+                self.startAnimation(position: self.next(currentPosition: position))
             }
         )
     }
     
-    private func getNextposition(currentPosition: SquarePosition) -> SquarePosition {
+    private func next(currentPosition: SquarePosition) -> SquarePosition {
         switch currentPosition {
         case .topLeft:
             return .topRight

@@ -11,11 +11,6 @@ enum SquarePosition {
 class AnimationView: UIView {
     
     // MARK: -
-    // MARK: Type Inferences
-    
-    typealias optionalCompletion = ((Bool) -> ())?
-    
-    // MARK: -
     // MARK: IBOutlets
     
     @IBOutlet var square: UIView?
@@ -24,7 +19,7 @@ class AnimationView: UIView {
     // MARK: -
     // MARK: Public
      
-    public func setSquare(position: SquarePosition, animated: Bool = false, paused: Bool = false, completion: optionalCompletion = nil) {
+    public func setSquare(position: SquarePosition, animated: Bool = false, paused: Bool = false, completion: F.Completion<Bool>? = nil) {
         UIView.animate(
             withDuration: animated ? 3.0 : 0.0,
             delay: 0,
@@ -66,10 +61,9 @@ class AnimationView: UIView {
     }
     
     private func verticalValue() -> CGFloat {
+        let screenHeight = self.squareContainerView?.frame.height ?? 0
         let squareSize = self.square?.frame.height ?? 0
-
-        let result = (self.squareContainerView?.frame.height ?? 0) - squareSize
         
-        return result
+        return screenHeight - squareSize
     }
 }

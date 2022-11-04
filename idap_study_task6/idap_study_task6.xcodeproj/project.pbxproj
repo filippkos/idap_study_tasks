@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0D23EF29154D1B0070BD76 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D23EE29154D1B0070BD76 /* Functions.swift */; };
 		3F92C85C290BBC8A00F1795A /* UIViewController+ViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */; };
 		3FAAF2F9290697BA00333992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAF2F8290697BA00333992 /* AppDelegate.swift */; };
 		3FAAF302290697C100333992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAF301290697C100333992 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F0D23EE29154D1B0070BD76 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		3F92C85B290BBC8A00F1795A /* UIViewController+ViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewCast.swift"; sourceTree = "<group>"; };
 		3FAAF2F5290697BA00333992 /* idap_study_task6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAAF2F8290697BA00333992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F0D23ED29154D0C0070BD76 /* F */ = {
+			isa = PBXGroup;
+			children = (
+				3F0D23EE29154D1B0070BD76 /* Functions.swift */,
+			);
+			path = F;
+			sourceTree = "<group>";
+		};
 		3F92C858290BB18800F1795A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -50,6 +60,7 @@
 		3F9FC733290945420035CB0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3F0D23ED29154D0C0070BD76 /* F */,
 				3F92C858290BB18800F1795A /* Extensions */,
 				3F9FC734290945530035CB0F /* AnimationViewController */,
 			);
@@ -169,6 +180,7 @@
 				3FAAF31129069E4C00333992 /* AnimationView.swift in Sources */,
 				3F92C85C290BBC8A00F1795A /* UIViewController+ViewCast.swift in Sources */,
 				3FAAF2F9290697BA00333992 /* AppDelegate.swift in Sources */,
+				3F0D23EF29154D1B0070BD76 /* Functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
