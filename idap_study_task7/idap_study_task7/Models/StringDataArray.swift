@@ -1,3 +1,3 @@
 import Foundation
 
-typealias StringDataArray = [String]
+typealias StringDataArray = [NSMutableAttributedString]

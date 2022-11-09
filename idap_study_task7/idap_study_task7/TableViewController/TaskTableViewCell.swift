@@ -14,8 +14,8 @@ class TaskTableViewCell: UITableViewCell {
         self.label?.text = number.description
     }
     
-    public func fill(word: String) {
-        self.label?.text = word.description
+    public func fill(word: NSMutableAttributedString) {
+        self.label?.attributedText = word
     }
     
     // MARK: -

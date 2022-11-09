@@ -11,7 +11,7 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     // MARK: IBActions
     
     @IBAction func addRowButton(_ sender: Any) {
-        self.stringArray.append(String.generate(letters: Alphabets.en.rawValue, maxRange: 15))
+        self.stringArray.append(atributedText())
         self.indexOfSelectedRow = nil
     }
     @IBAction func removeRowButton(_ sender: Any) {
@@ -21,7 +21,7 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
         }
     }
     @IBAction func sortRowsButton(_ sender: Any) {
-        self.stringArray = self.stringArray.sorted(by: <)
+       // self.stringArray = self.stringArray.sorted(by: <)
         self.indexOfSelectedRow = nil
     }
     
@@ -34,6 +34,15 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
         }
     }
     var indexOfSelectedRow: Int?
+    
+    // MARK: -
+    // MARK: Private
+    
+    func atributedText() -> NSMutableAttributedString {
+        let text = String.generate(letters: Alphabets.en.rawValue, maxRange: 15)
+        let fontAtribute = [NSAttributedString.Key.font:UIFont(name: "Times New Roman", size: 20) as Any]
+        return NSMutableAttributedString(string: text, attributes: fontAtribute)
+    }
     
     // MARK: -
     // MARK: Overrided
