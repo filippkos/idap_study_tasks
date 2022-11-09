@@ -14,14 +14,16 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
         self.stringArray.append(atributedText())
         self.indexOfSelectedRow = nil
     }
+    
     @IBAction func removeRowButton(_ sender: Any) {
         if let index = self.indexOfSelectedRow {
             self.stringArray.remove(at: index)
             self.indexOfSelectedRow = nil
         }
     }
+    
     @IBAction func sortRowsButton(_ sender: Any) {
-       // self.stringArray = self.stringArray.sorted(by: <)
+        self.stringArray = self.stringArray.sorted{ $0.string < $1.string }
         self.indexOfSelectedRow = nil
     }
     
