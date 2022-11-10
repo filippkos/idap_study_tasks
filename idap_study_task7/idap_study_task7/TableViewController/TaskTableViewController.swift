@@ -41,8 +41,8 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     // MARK: Private
     
     func atributedText() -> NSMutableAttributedString {
-        let text = String.generate(letters: Alphabets.en.rawValue, maxRange: 15)
-        let fontAtribute = [NSAttributedString.Key.font:UIFont(name: "Times New Roman", size: 20) as Any]
+        let text = String.generate(letters: .en, maxRange: 15)
+        let fontAtribute = [NSAttributedString.Key.font: Fonts.TimesNewRoman.regular.size(30.0) as Any]
         return NSMutableAttributedString(string: text, attributes: fontAtribute)
     }
     
@@ -63,8 +63,8 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: TaskTableViewCell.self)
+        cell.addImage()
         cell.fill(word: stringArray[indexPath.row])
-        
         return cell
     }
     

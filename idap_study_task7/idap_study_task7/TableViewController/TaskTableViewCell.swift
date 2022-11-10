@@ -18,6 +18,12 @@ class TaskTableViewCell: UITableViewCell {
         self.label?.attributedText = word
     }
     
+    func addImage() {
+        let cellImage = UIImage(named:"logoimage.png")
+        let cellHeight = self.frame.size.height
+        self.imageView?.image = cellImage?.compress(cellHeight: cellHeight)
+    }
+    
     // MARK: -
     // MARK: Overrided
 

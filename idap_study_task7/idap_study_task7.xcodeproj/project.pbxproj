@@ -15,11 +15,12 @@
 		3F0D241A291563A80070BD76 /* TaskTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D2418291563A80070BD76 /* TaskTableViewController.xib */; };
 		3F0D241C291563C40070BD76 /* TaskTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D241B291563C40070BD76 /* TaskTableView.swift */; };
 		3F0D241F2915644C0070BD76 /* UIViewController+ViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D241E2915644C0070BD76 /* UIViewController+ViewCast.swift */; };
+		3F43FD52291D2B66008741EA /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43FD51291D2B66008741EA /* UIImage+Compression.swift */; };
+		3F43FD54291D3742008741EA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43FD53291D3742008741EA /* Fonts.swift */; };
 		3F9D668A29190B9D00F0C5CB /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D668829190B9D00F0C5CB /* TaskTableViewCell.swift */; };
 		3F9D668B29190B9D00F0C5CB /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9D668929190B9D00F0C5CB /* TaskTableViewCell.xib */; };
-		3F9D668F2919351F00F0C5CB /* String+randomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D668E2919351F00F0C5CB /* String+randomGenerator.swift */; };
-		3F9D66912919389300F0C5CB /* TableView+classRegister&Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D66902919389300F0C5CB /* TableView+classRegister&Dequeue.swift */; };
-		3F9D6693291951ED00F0C5CB /* DequeueReusableCellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D6692291951ED00F0C5CB /* DequeueReusableCellError.swift */; };
+		3F9D668F2919351F00F0C5CB /* String+RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D668E2919351F00F0C5CB /* String+RandomGenerator.swift */; };
+		3F9D66912919389300F0C5CB /* TableView+ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D66902919389300F0C5CB /* TableView+ReusableCell.swift */; };
 		3FAE9EE9291A945E00742B3A /* StringDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE9EE8291A945E00742B3A /* StringDataArray.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,11 +35,12 @@
 		3F0D2418291563A80070BD76 /* TaskTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewController.xib; sourceTree = "<group>"; };
 		3F0D241B291563C40070BD76 /* TaskTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableView.swift; sourceTree = "<group>"; };
 		3F0D241E2915644C0070BD76 /* UIViewController+ViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewCast.swift"; sourceTree = "<group>"; };
+		3F43FD51291D2B66008741EA /* UIImage+Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
+		3F43FD53291D3742008741EA /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3F9D668829190B9D00F0C5CB /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		3F9D668929190B9D00F0C5CB /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
-		3F9D668E2919351F00F0C5CB /* String+randomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+randomGenerator.swift"; sourceTree = "<group>"; };
-		3F9D66902919389300F0C5CB /* TableView+classRegister&Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+classRegister&Dequeue.swift"; sourceTree = "<group>"; };
-		3F9D6692291951ED00F0C5CB /* DequeueReusableCellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DequeueReusableCellError.swift; sourceTree = "<group>"; };
+		3F9D668E2919351F00F0C5CB /* String+RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RandomGenerator.swift"; sourceTree = "<group>"; };
+		3F9D66902919389300F0C5CB /* TableView+ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+ReusableCell.swift"; sourceTree = "<group>"; };
 		3FAE9EE8291A945E00742B3A /* StringDataArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDataArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,10 +109,11 @@
 		3F9D668D2919350F00F0C5CB /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				3F9D668E2919351F00F0C5CB /* String+randomGenerator.swift */,
-				3F9D66902919389300F0C5CB /* TableView+classRegister&Dequeue.swift */,
+				3F9D668E2919351F00F0C5CB /* String+RandomGenerator.swift */,
+				3F9D66902919389300F0C5CB /* TableView+ReusableCell.swift */,
 				3F0D241E2915644C0070BD76 /* UIViewController+ViewCast.swift */,
-				3F9D6692291951ED00F0C5CB /* DequeueReusableCellError.swift */,
+				3F43FD51291D2B66008741EA /* UIImage+Compression.swift */,
+				3F43FD53291D3742008741EA /* Fonts.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -196,15 +199,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F0D241F2915644C0070BD76 /* UIViewController+ViewCast.swift in Sources */,
-				3F9D66912919389300F0C5CB /* TableView+classRegister&Dequeue.swift in Sources */,
+				3F9D66912919389300F0C5CB /* TableView+ReusableCell.swift in Sources */,
 				3F0D241C291563C40070BD76 /* TaskTableView.swift in Sources */,
 				3F9D668A29190B9D00F0C5CB /* TaskTableViewCell.swift in Sources */,
+				3F43FD52291D2B66008741EA /* UIImage+Compression.swift in Sources */,
 				3FAE9EE9291A945E00742B3A /* StringDataArray.swift in Sources */,
 				3F0D2419291563A80070BD76 /* TaskTableViewController.swift in Sources */,
-				3F9D668F2919351F00F0C5CB /* String+randomGenerator.swift in Sources */,
+				3F9D668F2919351F00F0C5CB /* String+RandomGenerator.swift in Sources */,
+				3F43FD54291D3742008741EA /* Fonts.swift in Sources */,
 				3F0D24012915605D0070BD76 /* ViewController.swift in Sources */,
 				3F0D23FD2915605D0070BD76 /* AppDelegate.swift in Sources */,
-				3F9D6693291951ED00F0C5CB /* DequeueReusableCellError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
