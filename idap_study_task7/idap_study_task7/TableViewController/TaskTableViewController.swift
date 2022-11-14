@@ -30,12 +30,24 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     // MARK: -
     // MARK: Variables
     
-    var stringArray: StringDataArray = [] {
+    var stringArray: StringDataArray {
         didSet {
             self.rootView?.tableView?.reloadData()
         }
     }
     var indexOfSelectedRow: Int?
+    
+    // MARK: -
+    // MARK: Initializations and Deallocations
+    
+    init(stringArray: StringDataArray) {
+        self.stringArray = stringArray
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: -
     // MARK: Private
@@ -44,6 +56,15 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
         let text = String.generate(letters: .en, maxRange: 15)
         let fontAtribute = [NSAttributedString.Key.font: Fonts.TimesNewRoman.regular.size(30.0) as Any]
         return NSMutableAttributedString(string: text, attributes: fontAtribute)
+    }
+    
+    func process(imageIn cell: TaskTableViewCell) {
+        var cellImage = UIImage(named:"logoimage.png")
+        let cellHeight = cell.logo.frame.size.height
+        DispatchQueue.global(qos: .background).async {
+            cellImage = cellImage?.compress(cellHeight: cellHeight)
+        }
+        cell.add(logo: cellImage)
     }
     
     // MARK: -
@@ -63,7 +84,7 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: TaskTableViewCell.self)
-        cell.addImage()
+        self.process(imageIn: cell)
         cell.fill(word: stringArray[indexPath.row])
         return cell
     }
@@ -71,5 +92,4 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.indexOfSelectedRow = indexPath.row
     }
-
 }

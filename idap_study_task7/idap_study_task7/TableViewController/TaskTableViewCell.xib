@@ -17,25 +17,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xby-te-fce">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="64" y="0.0" width="256" height="44"/>
                         <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.40306613870000002" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="jaK-eG-kBF"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cLU-ae-WHq" userLabel="Logo">
+                        <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="xby-te-fce" secondAttribute="bottom" id="6fD-7R-Jm9"/>
                     <constraint firstItem="xby-te-fce" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ffq-bb-VIn"/>
                     <constraint firstAttribute="trailing" secondItem="xby-te-fce" secondAttribute="trailing" id="RNu-qZ-CC0"/>
+                    <constraint firstItem="xby-te-fce" firstAttribute="leading" secondItem="cLU-ae-WHq" secondAttribute="trailing" id="Wa3-IS-USZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="xby-te-fce" id="8ZJ-bW-px2"/>
+                <outlet property="logo" destination="cLU-ae-WHq" id="vdO-hS-24c"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
         </tableViewCell>

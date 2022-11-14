@@ -6,6 +6,7 @@ class TaskTableViewCell: UITableViewCell {
     // MARK: IBOutlets
     
     @IBOutlet var label: UILabel?
+    @IBOutlet var logo: UIImageView!
     
     // MARK: -
     // MARK: Private
@@ -18,10 +19,8 @@ class TaskTableViewCell: UITableViewCell {
         self.label?.attributedText = word
     }
     
-    func addImage() {
-        let cellImage = UIImage(named:"logoimage.png")
-        let cellHeight = self.frame.size.height
-        self.imageView?.image = cellImage?.compress(cellHeight: cellHeight)
+    func add(logo: UIImage?) {
+        self.logo.image = logo
     }
     
     // MARK: -
