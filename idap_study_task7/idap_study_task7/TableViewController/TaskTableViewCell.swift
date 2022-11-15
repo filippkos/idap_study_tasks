@@ -6,7 +6,13 @@ class TaskTableViewCell: UITableViewCell {
     // MARK: IBOutlets
     
     @IBOutlet var label: UILabel?
-    @IBOutlet var logo: UIImageView!
+    @IBOutlet var logo: UIImageView?
+    @IBOutlet var spinner: UIActivityIndicatorView?
+    
+    // MARK: -
+    // MARK: Variables
+    
+    private(set) var id = UUID()
     
     // MARK: -
     // MARK: Private
@@ -20,21 +26,15 @@ class TaskTableViewCell: UITableViewCell {
     }
     
     func add(logo: UIImage?) {
-        self.logo.image = logo
+        self.logo?.image = logo
     }
     
     // MARK: -
     // MARK: Overrided
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.id = UUID()
+        self.label?.text = "Label"
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

@@ -60,11 +60,18 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     
     func process(imageIn cell: TaskTableViewCell) {
         var cellImage = UIImage(named:"logoimage.png")
-        let cellHeight = cell.logo.frame.size.height
+        let cellHeight = cell.logo?.frame.size.height
         DispatchQueue.global(qos: .background).async {
-            cellImage = cellImage?.compress(cellHeight: cellHeight)
+            DispatchQueue.main.async {
+                cell.spinner?.startAnimating()
+            }
+            cellImage = cellImage?.compress(cellHeight: cellHeight ?? 0)
+            DispatchQueue.main.async {
+                cell.add(logo: cellImage)
+                cell.spinner?.stopAnimating()
+                cell.spinner?.removeFromSuperview()
+            }
         }
-        cell.add(logo: cellImage)
     }
     
     // MARK: -
@@ -84,8 +91,11 @@ class TaskTableViewController: UIViewController, RootViewGettable, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: TaskTableViewCell.self)
-        self.process(imageIn: cell)
-        cell.fill(word: stringArray[indexPath.row])
+        let initialId = cell.id
+        if initialId == cell.id {
+            self.process(imageIn: cell)
+            cell.fill(word: self.stringArray[indexPath.row])
+        }
         return cell
     }
     

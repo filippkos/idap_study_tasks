@@ -1,6 +1,7 @@
 import UIKit
 
 extension UIImage {
+    
     func compress(cellHeight: Double) -> UIImage {
         let finalHeight = cellHeight
         let finalWidth = (finalHeight * self.size.width) / self.size.height

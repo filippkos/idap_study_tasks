@@ -27,6 +27,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="k1z-UN-kls">
+                        <rect key="frame" x="22" y="12" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="xby-te-fce" secondAttribute="bottom" id="6fD-7R-Jm9"/>
@@ -39,6 +43,7 @@
             <connections>
                 <outlet property="label" destination="xby-te-fce" id="8ZJ-bW-px2"/>
                 <outlet property="logo" destination="cLU-ae-WHq" id="vdO-hS-24c"/>
+                <outlet property="spinner" destination="k1z-UN-kls" id="gK3-Xa-jKg"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
         </tableViewCell>

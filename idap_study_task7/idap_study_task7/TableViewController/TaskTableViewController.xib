@@ -26,12 +26,13 @@
                         <outlet property="delegate" destination="-1" id="klh-iM-Hab"/>
                     </connections>
                 </tableView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6w-dX-UQK">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6w-dX-UQK">
                     <rect key="frame" x="0.0" y="50" width="414" height="44"/>
+                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                     <items>
                         <barButtonItem style="plain" id="Aul-Gh-x0w">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Sq-NA-DBd">
-                                <rect key="frame" x="20" y="5" width="81" height="34.5"/>
+                                <rect key="frame" x="20" y="4.5" width="120" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.57272046229999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -43,7 +44,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" id="5E3-RX-Kit">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Zrc-T3-ovw">
-                                <rect key="frame" x="101" y="4.5" width="102" height="35"/>
+                                <rect key="frame" x="140" y="4.5" width="133" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.57272046229999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,7 +56,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" id="464-6g-Abl">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p97-DY-JNG">
-                                <rect key="frame" x="319" y="4.5" width="75" height="35"/>
+                                <rect key="frame" x="273" y="4.5" width="121" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.2571554553" green="1" blue="0.30536680329999999" alpha="0.57272046229999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
