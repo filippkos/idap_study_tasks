@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = self.window
-        let controller = WeatherViewController(weatherArray:["65","54","43","32","12","12"])
+        let controller = WeatherViewController()
         window.rootViewController = controller
         window.makeKeyAndVisible()
         return true
