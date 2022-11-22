@@ -1,17 +1,16 @@
 import Foundation
+import UIKit
 
 class NetworkManager {
     private init() {}
     
     static let shared: NetworkManager = NetworkManager()
     
-    func getWeather(city: String, completion: @escaping ((OfferModel?) -> ())) {
+    func getPokemon(name: String, completion: @escaping ((TopLevel?) -> ())) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/forecast/daily"
-        urlComponents.queryItems = [URLQueryItem(name: "q", value: city),
-                                    URLQueryItem(name: "appid", value: "85a70f7d616efc9081af3b10e12690e3")]
+        urlComponents.host = "pokeapi.co"
+        urlComponents.path = "/api/v2/pokemon/\(name)"
         
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
@@ -20,21 +19,46 @@ class NetworkManager {
         task.dataTask(with: request) { (data, responce, error) in
             if (responce as! HTTPURLResponse).statusCode != 200 {
                 completion(nil)
-                
                 return
             }
             
-            if data == nil {
+            if data != nil {
                 let decoder = JSONDecoder()
-                var decoderOfferModel: OfferModel?
+                var decoderOfferModel: TopLevel?
                 
                 if data != nil {
-                    decoderOfferModel = try? decoder.decode(OfferModel.self, from: data!)
+                    decoderOfferModel = try? decoder.decode(TopLevel.self, from: data!)
                 }
                 
                 completion(decoderOfferModel)
+                
             } else {
                 print(error as Any)
+            }
+        }.resume()
+    }
+    
+    func getImage(from url: String, completion: @escaping ((UIImage) -> ())) {
+        let picUrl = URL(string: url)!
+        let session = URLSession(configuration: .default)
+
+        let downloadPicTask = session.dataTask(with: picUrl) { (data, response, error) in
+            if let e = error {
+                print("Error downloading cat picture: \(e)")
+            } else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            completion(image!)
+                        }
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
             }
         }.resume()
     }

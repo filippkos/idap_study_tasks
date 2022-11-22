@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = self.window
-        let controller = WeatherViewController()
+        let controller = PokemonViewController()
         window.rootViewController = controller
         window.makeKeyAndVisible()
         return true
