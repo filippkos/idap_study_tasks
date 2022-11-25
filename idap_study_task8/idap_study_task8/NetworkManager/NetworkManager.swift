@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class NetworkManager {
-    private init() {}
     
     static let shared: NetworkManager = NetworkManager()
     
