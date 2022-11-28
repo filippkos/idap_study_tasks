@@ -10,15 +10,12 @@ class TopLevel: Codable, ModelPropertyContent {
     let order, weight: Int
     let abilities: [Ability]
     let forms: [Species]
-    let gameIndices: [GameIndex]
     let heldItems: [HeldItem]
-    let locationAreaEncounters: String
     let moves: [Move]
     let species: Species
     let sprites: Sprites
     let stats: [Stat]
     let types: [TypeElement]
-    let pastTypes: [PastType]
 
     enum CodingKeys: String, CodingKey {
         
@@ -27,14 +24,11 @@ class TopLevel: Codable, ModelPropertyContent {
         case height
         case isDefault = "is_default"
         case order, weight, abilities, forms
-        case gameIndices = "game_indices"
         case heldItems = "held_items"
-        case locationAreaEncounters = "location_area_encounters"
         case moves, species, sprites, stats, types
-        case pastTypes = "past_types"
     }
 
-    init(id: Int, name: String, baseExperience: Int, height: Int, isDefault: Bool, order: Int, weight: Int, abilities: [Ability], forms: [Species], gameIndices: [GameIndex], heldItems: [HeldItem], locationAreaEncounters: String, moves: [Move], species: Species, sprites: Sprites, stats: [Stat], types: [TypeElement], pastTypes: [PastType]) {
+    init(id: Int, name: String, baseExperience: Int, height: Int, isDefault: Bool, order: Int, weight: Int, abilities: [Ability], forms: [Species], heldItems: [HeldItem], moves: [Move], species: Species, sprites: Sprites, stats: [Stat], types: [TypeElement]) {
         self.id = id
         self.name = name
         self.baseExperience = baseExperience
@@ -44,15 +38,12 @@ class TopLevel: Codable, ModelPropertyContent {
         self.weight = weight
         self.abilities = abilities
         self.forms = forms
-        self.gameIndices = gameIndices
         self.heldItems = heldItems
-        self.locationAreaEncounters = locationAreaEncounters
         self.moves = moves
         self.species = species
         self.sprites = sprites
         self.stats = stats
         self.types = types
-        self.pastTypes = pastTypes
     }
 }
 
@@ -85,24 +76,6 @@ class Species: Codable {
     init(name: String, url: String) {
         self.name = name
         self.url = url
-    }
-}
-
-// MARK: - GameIndex
-class GameIndex: Codable {
-    
-    let gameIndex: Int
-    let version: Species
-
-    enum CodingKeys: String, CodingKey {
-        
-        case gameIndex = "game_index"
-        case version
-    }
-
-    init(gameIndex: Int, version: Species) {
-        self.gameIndex = gameIndex
-        self.version = version
     }
 }
 
@@ -171,18 +144,6 @@ class VersionGroupDetail: Codable {
         self.levelLearnedAt = levelLearnedAt
         self.versionGroup = versionGroup
         self.moveLearnMethod = moveLearnMethod
-    }
-}
-
-// MARK: - PastType
-class PastType: Codable {
-    
-    let generation: Species
-    let types: [TypeElement]
-
-    init(generation: Species, types: [TypeElement]) {
-        self.generation = generation
-        self.types = types
     }
 }
 

@@ -22,6 +22,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     
     var model: TopLevel? {
         didSet {
+            self.rootView?.nameLabel?.text = model?.name
             self.rootView?.tableView?.reloadData()
         }
     }
@@ -60,9 +61,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dataIsReady {
-            
             if let content = model?.modelPropertyContent()?[section].1 {
-                
                 if content is [Any] {
                     return (content as! [Any]).count
                 } else {
@@ -78,7 +77,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
         if self.model != nil {
-            self.rootView?.nameLabel?.text = model?.name
             if let content = model?.modelPropertyContent()?[indexPath.section].1 {
                 cell.parameterLabel?.text = anyPokeTypeToString(content: content, index: indexPath.row)
             }
@@ -92,7 +90,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
             arr = self.model!.modelPropertyContent()!
         }
         return arr.count
-        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -118,8 +115,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
                 return (content as! [Ability])[index].ability.name
             case is [Species]:
                 return (content as! [Species])[index].name
-            case is [GameIndex]:
-                return (content as! [GameIndex])[index].gameIndex.description
             case is [HeldItem]:
                 return (content as! [HeldItem])[index].item.name
             case is [Move]:
