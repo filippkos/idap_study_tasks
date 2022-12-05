@@ -2,5 +2,9 @@ import UIKit
 
 class PokemonTableViewCell: UITableViewCell {
 
-    @IBOutlet var parameterLabel: UILabel?
+    @IBOutlet internal var parameterLabel: UILabel?
+    
+    public func fill(text: String) {
+        self.parameterLabel?.text = text
+    }
 }

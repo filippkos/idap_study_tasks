@@ -1,43 +1,62 @@
 import Foundation
 import UIKit
 
+enum NetworkManagerErrors: Error {
+    
+    case invalidUrl
+    case decodingError
+    case resultDoesNotExist
+}
+
+enum HttpMethod: String {
+    
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+
 class NetworkManager {
     
+    // MARK: -
+    // MARK: Variables
+     
     static let shared: NetworkManager = NetworkManager()
     
-    func getPokemon(name: String, completion: @escaping ((TopLevel?) -> ())) {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "pokeapi.co"
-        urlComponents.path = "/api/v2/pokemon/\(name)"
+    // MARK: -
+    // MARK: Public
+
+    func response(
+        name: String,
+        completion: @escaping (Result<Pokemon, Error>) -> ()
+    )
+        ->URLSessionDataTask
+    {
+        var request: URLRequest
+        let urlComponents = self.createUrlComponents(query: "/pokemon/\(name)")
+        let httpMethod: HttpMethod = .get
         
-        var request = URLRequest(url: urlComponents.url!)
-        request.httpMethod = "GET"
+        request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
+        request.httpMethod = httpMethod.rawValue
         
-        let task = URLSession(configuration: .default)
-        task.dataTask(with: request) { (data, responce, error) in
-            if (responce as! HTTPURLResponse).statusCode != 200 {
-                completion(nil)
-                return
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { (data, responce, error) in
+            if let data = data {
+                completion(self.decode(data: data))
             }
-            
-            if data != nil {
-                let decoder = JSONDecoder()
-                var decoderOfferModel: TopLevel?
-                
-                if data != nil {
-                    decoderOfferModel = try? decoder.decode(TopLevel.self, from: data!)
-                }
-                
-                completion(decoderOfferModel)
-                
-            } else {
-                print(error as Any)
+            if let error = error {
+                completion(.failure(error))
             }
-        }.resume()
+        }
+        task.resume()
+        
+        return task
     }
     
-    func getImage(from url: String, completion: @escaping ((UIImage) -> ())) {
+    func getImage(
+        from url: String,
+        completion: @escaping ((UIImage) -> ())
+    ) {
         let picUrl = URL(string: url)!
         let session = URLSession(configuration: .default)
 
@@ -48,9 +67,10 @@ class NetworkManager {
                 if let res = response as? HTTPURLResponse {
                     print("Downloaded cat picture with response code \(res.statusCode)")
                     if let imageData = data {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            completion(image!)
+                        if let image = UIImage(data: imageData) {
+                            DispatchQueue.main.async {
+                                completion(image)
+                            }
                         }
                     } else {
                         print("Couldn't get image: Image is nil")
@@ -60,5 +80,30 @@ class NetworkManager {
                 }
             }
         }.resume()
+    }
+    
+    // MARK: -
+    // MARK: Private
+    
+    private func createUrlComponents(query: String) -> URLComponents {
+        var components = URLComponents()
+            components.scheme = ServerConstants.scheme
+            components.host = ServerConstants.host
+            components.path = ServerConstants.path + ServerConstants.version + query
+        
+        return components
+    }
+    
+    private func decode<Model: Codable>(
+        data: Data
+    )
+        -> Result<Model, Error>
+    {
+        let decoder = JSONDecoder()
+        do {
+            return .success(try decoder.decode(Model.self, from: data))
+        } catch {
+            return .failure(NetworkManagerErrors.decodingError)
+        }
     }
 }

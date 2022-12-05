@@ -3,7 +3,7 @@ import UIKit
 class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: -
-    // MARK: Type Inferences
+    // MARK: Typealiases
     
     typealias RootView = PokemonView
     
@@ -20,88 +20,153 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     // MARK: -
     // MARK: Variables
     
-    var model: TopLevel? {
+    private var model: Pokemon? {
         didSet {
             self.rootView?.nameLabel?.text = model?.name
             self.rootView?.tableView?.reloadData()
         }
     }
-    var timer = Timer()
-    var dataIsReady: Bool = false
+    private var timer = Timer()
+    private var content: [(String, Any)]? {
+        return self.model?.modelPropertyContent()
+    }
     
     // MARK: -
-    // MARK: Delegates
+    // MARK: UISearchBarDelegate
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(
+        _ searchBar: UISearchBar,
+        textDidChange searchText: String
+    ) {
         let name = searchText.lowercased()
         
-        timer.invalidate()
-        
         if name != "" {
-            timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
-                NetworkManager.shared.getPokemon(name: name, completion: { (model) in
-                    DispatchQueue.main.async {
-                        if model != nil {
-                            self.dataIsReady = true
-                            self.model = model
-                            NetworkManager.shared.getImage(from: self.model?.sprites.frontDefault ?? "", completion: { image in
-                                    self.rootView?.imageView?.image = image
-                            })
-                        } else {
-                            let alert = UIAlertController(title: "error", message: "something wrong", preferredStyle: .alert)
-                            let action = UIAlertAction(title: "ок", style: .cancel)
-                            alert.addAction(action)
-                            self.present(alert, animated: true)
-                        }
-                    }
-                })
-            })
+            self.createSearchTimer { [weak self] in
+                self?.getPokemon(by: name)
+            }
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dataIsReady {
-            if let content = model?.modelPropertyContent()?[section].1 {
-                if content is [Any] {
-                    return (content as! [Any]).count
-                } else {
-                    return 1
-                }
-            }
+    // MARK: -
+    // MARK: UISearchBarDelegate
+    
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    )
+        -> Int
+    {
+        if let content = self.content?[section].1 {
+            return (content as? [Any])?.count ?? 1
         } else {
+            
             return 0
         }
-        return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
+    // MARK: -
+    // MARK: UITableViewDelegate
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    )
+        -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(
+            cellClass: PokemonTableViewCell.self
+        )
         if self.model != nil {
-            if let content = model?.modelPropertyContent()?[indexPath.section].1 {
-                cell.parameterLabel?.text = anyPokeTypeToString(content: content, index: indexPath.row)
+            if let content = self.content?[indexPath.section].1 {
+                let text = anyPokeTypeToString(
+                    content: content,
+                    index: indexPath.row
+                )
+                cell.fill(text: text)
             }
         }
+        
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        var arr: [(String, Any)] = []
-        if model != nil {
-            arr = self.model!.modelPropertyContent()!
-        }
-        return arr.count
+    func numberOfSections(
+        in tableView: UITableView
+    )
+        -> Int
+    {
+        
+        return self.content?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(
+        _ tableView: UITableView,
+        titleForHeaderInSection section: Int
+    )
+        -> String?
+    {
         var sectionName: String = ""
-        if model != nil {
-            sectionName = self.model?.modelPropertyContent()?[section].0 ?? ""
+        if self.model != nil {
+            sectionName = self.content?[section].0 ?? ""
         }
+        
         return sectionName
     }
     
     // MARK: -
     // MARK: Private funcs
+    
+    private func createSearchTimer(completion: @escaping () -> ()) {
+        self.timer.invalidate()
+        
+        self.timer = Timer.scheduledTimer(
+            withTimeInterval: 2,
+            repeats: false,
+            block: { timer in
+                completion()
+                
+                timer.invalidate()
+            }
+        )
+    }
+    
+    private func getPokemon(by name: String) {
+        let task = NetworkManager.shared.response(
+            name: name,
+            completion: { result in
+                DispatchQueue.main.async { [weak self] in
+                    switch result {
+                        
+                    case .success(let model):
+                        self?.processPokemons(model: model)
+                    case let .failure(error):
+                        self?.presentAlert(error: error)
+                    }
+                }
+            }
+        )
+    }
+    
+    private func processPokemons(model: Pokemon) {
+        self.model = model
+        self.rootView?.imageView?.setImage(
+            from: self.model?.sprites.frontDefault
+        )
+    }
+    
+    private func presentAlert(error: Error) {
+        let alert = UIAlertController(
+            title: "Error",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(
+            title: "ок",
+            style: .cancel
+        )
+        alert.addAction(action)
+        
+        self.present(alert, animated: true)
+    }
     
     private func anyPokeTypeToString(content: Any, index: Int) -> String {
         switch content {
@@ -125,9 +190,8 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
                 return (content as! [Stat])[index].stat.name
             case is [TypeElement]:
                 return (content as! [TypeElement])[index].type.name
-            
             default:
-                return "..."
+                return "-"
         }
     }
 }

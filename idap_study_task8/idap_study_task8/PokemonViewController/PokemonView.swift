@@ -1,9 +1,13 @@
 import UIKit
 
-class PokemonView: UIView {
+final class PokemonView: UIView {
 
-    @IBOutlet var searchBar: UISearchBar?
-    @IBOutlet var tableView: UITableView?
-    @IBOutlet var nameLabel: UILabel?
-    @IBOutlet var imageView: UIImageView?
+    // MARK: -
+    // MARK: Outlets
+    
+    @IBOutlet internal var searchBar: UISearchBar?
+    @IBOutlet internal var tableView: UITableView?
+    @IBOutlet internal var nameLabel: UILabel?
+    @IBOutlet internal var imageView: UIImageView?
 }
+ 
