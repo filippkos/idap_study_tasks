@@ -16,8 +16,15 @@ class NetworkManager<Model: Codable> {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (data, responce, error) in
             if let data = data {
-                completion(self.decode(data: data))
-            }	
+                let statusCode = responce?.getStatusCode()
+                if statusCode != 200 {
+                    completion(.failure(self.handleNetworkResponce(statusCode ?? 0)))
+                } else {
+                    completion(self.decode(data: data))
+                }
+            } else {
+                completion(.failure(NetworkResponce.noData))
+            }
             if let error = error {
                 completion(.failure(error))
             }
@@ -29,7 +36,6 @@ class NetworkManager<Model: Codable> {
     
     func getImage(from url: String, completion: @escaping ((UIImage) -> ())) ->URLSessionDataTask {
         let url = URL(string: url) ?? URL(fileURLWithPath: "")
-        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
@@ -77,22 +83,19 @@ class NetworkManager<Model: Codable> {
         do {
             return .success(try decoder.decode(Model.self, from: data))
         } catch {
-            return .failure(NetworkManagerErrors.decodingError)
+            return .failure(NetworkResponce.unableToDecode)
         }
     }
     
-    enum ResponceResult<String> {
-        case success
-        case failure(String)
-    }
-    
-    private func handleNetworkResponce(_ responce: HTTPURLResponse) -> ResponceResult<String> {
-        switch responce.statusCode {
-        case 200...209: return .success
-        case 401...500: return .failure(NetworkResponce.authentificationError.rawValue)
-        case 501...599: return .failure(NetworkResponce.badRequest.rawValue)
+    private func handleNetworkResponce(_ statusCode: Int) -> Error {
+        switch statusCode {
+        case 400: return NetworkResponce.badRequest
+        case 403: return NetworkResponce.forbidden
+        case 404: return NetworkResponce.notFound
+        case 405...500: return NetworkResponce.clientError
+        case 501...599: return NetworkResponce.serverError
         default:
-            return .failure(NetworkResponce.failed.rawValue)
+            return NetworkResponce.failed
         }
     }
 }

@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func prepareRootController() {
         let window = self.window
-        let controller = PokemonViewController(searchHandler: PokemonSearchHandler())
+        let searchHandler = PokemonSearchHandler()
+        let controller = PokemonViewController(searchHandler: searchHandler)
         window.rootViewController = controller
         window.makeKeyAndVisible()
     }
 }
-

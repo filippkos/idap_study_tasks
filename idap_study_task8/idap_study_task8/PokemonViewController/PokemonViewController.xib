@@ -69,9 +69,18 @@
                                         <constraint firstAttribute="width" secondItem="1Mo-rg-Np6" secondAttribute="height" multiplier="1:1" id="SBg-nw-eNI"/>
                                     </constraints>
                                 </imageView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="k8l-e2-EB2">
+                                    <rect key="frame" x="143.5" y="11.5" width="127" height="127"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="k8l-e2-EB2" secondAttribute="height" multiplier="1:1" id="pfr-Af-67T"/>
+                                    </constraints>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="k8l-e2-EB2" firstAttribute="centerY" secondItem="Kqp-Vx-bGL" secondAttribute="centerY" id="1uO-lJ-ajC"/>
+                                <constraint firstItem="k8l-e2-EB2" firstAttribute="centerX" secondItem="Kqp-Vx-bGL" secondAttribute="centerX" id="BEc-6E-YcZ"/>
+                                <constraint firstItem="k8l-e2-EB2" firstAttribute="height" secondItem="1Mo-rg-Np6" secondAttribute="height" id="V9x-no-hti"/>
                                 <constraint firstItem="1Mo-rg-Np6" firstAttribute="width" secondItem="Kqp-Vx-bGL" secondAttribute="width" multiplier="250/812" id="aYg-4a-KIj"/>
                                 <constraint firstItem="1Mo-rg-Np6" firstAttribute="centerX" secondItem="Kqp-Vx-bGL" secondAttribute="centerX" id="tci-vi-hFY"/>
                                 <constraint firstAttribute="height" constant="150" id="uCf-ML-T3l"/>
@@ -117,19 +126,31 @@
                         </view>
                     </subviews>
                 </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9j-dE-X8V" userLabel="Place hHolder Label">
+                    <rect key="frame" x="0.0" y="441" width="414" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="E5Y-ps-NFa" secondAttribute="trailing" id="4cn-6f-6d0"/>
                 <constraint firstItem="E5Y-ps-NFa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Bfu-7G-YM9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="g9j-dE-X8V" secondAttribute="trailing" id="Vgj-4u-cy0"/>
+                <constraint firstItem="g9j-dE-X8V" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="dMa-df-aTa"/>
                 <constraint firstItem="E5Y-ps-NFa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="e6s-4D-xsl"/>
+                <constraint firstItem="g9j-dE-X8V" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="gxg-OS-zfk"/>
+                <constraint firstItem="g9j-dE-X8V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hD6-bS-q2D"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="E5Y-ps-NFa" secondAttribute="bottom" id="icU-tT-ADU"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="1Mo-rg-Np6" id="smm-nT-gFU"/>
                 <outlet property="nameLabel" destination="mEW-R6-kPe" id="wOj-WI-z7U"/>
+                <outlet property="placeHolderLabel" destination="g9j-dE-X8V" id="yLE-9g-qfE"/>
                 <outlet property="searchBar" destination="E1W-tv-2X0" id="h3l-ZX-wqv"/>
+                <outlet property="spinner" destination="k8l-e2-EB2" id="d0f-R1-QYF"/>
                 <outlet property="tableView" destination="b8Z-og-FG3" id="oVk-QI-uUv"/>
             </connections>
             <point key="canvasLocation" x="115.38461538461539" y="-16.350710900473931"/>

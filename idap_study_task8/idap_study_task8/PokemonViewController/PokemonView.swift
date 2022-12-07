@@ -9,5 +9,7 @@ final class PokemonView: UIView {
     @IBOutlet internal var tableView: UITableView?
     @IBOutlet internal var nameLabel: UILabel?
     @IBOutlet internal var imageView: UIImageView?
+    @IBOutlet var spinner: UIActivityIndicatorView?
+    @IBOutlet var placeHolderLabel: UILabel?
 }
  
