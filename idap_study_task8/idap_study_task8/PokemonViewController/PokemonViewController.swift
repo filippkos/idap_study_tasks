@@ -30,86 +30,15 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     private var content: [(String, Any)]? {
         return self.model?.modelPropertyContent()
     }
+    private var searchHandler: PokemonProvidable
     
-    // MARK: -
-    // MARK: UISearchBarDelegate
-    
-    func searchBar(
-        _ searchBar: UISearchBar,
-        textDidChange searchText: String
-    ) {
-        let name = searchText.lowercased()
-        
-        if name != "" {
-            self.createSearchTimer { [weak self] in
-                self?.getPokemon(by: name)
-            }
-        }
+    init(searchHandler: PokemonProvidable) {
+        self.searchHandler = searchHandler
+        super.init(nibName: nil, bundle: nil)
     }
     
-    // MARK: -
-    // MARK: UISearchBarDelegate
-    
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    )
-        -> Int
-    {
-        if let content = self.content?[section].1 {
-            return (content as? [Any])?.count ?? 1
-        } else {
-            
-            return 0
-        }
-    }
-    
-    // MARK: -
-    // MARK: UITableViewDelegate
-    
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    )
-        -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(
-            cellClass: PokemonTableViewCell.self
-        )
-        if self.model != nil {
-            if let content = self.content?[indexPath.section].1 {
-                let text = anyPokeTypeToString(
-                    content: content,
-                    index: indexPath.row
-                )
-                cell.fill(text: text)
-            }
-        }
-        
-        return cell
-    }
-    
-    func numberOfSections(
-        in tableView: UITableView
-    )
-        -> Int
-    {
-        
-        return self.content?.count ?? 0
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
-        titleForHeaderInSection section: Int
-    )
-        -> String?
-    {
-        var sectionName: String = ""
-        if self.model != nil {
-            sectionName = self.content?[section].0 ?? ""
-        }
-        
-        return sectionName
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: -
@@ -130,7 +59,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     }
     
     private func getPokemon(by name: String) {
-        let task = NetworkManager.shared.response(
+        let task = self.searchHandler.pokemon(
             name: name,
             completion: { result in
                 DispatchQueue.main.async { [weak self] in
@@ -148,21 +77,15 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     
     private func processPokemons(model: Pokemon) {
         self.model = model
-        self.rootView?.imageView?.setImage(
-            from: self.model?.sprites.frontDefault
-        )
+        
+        self.searchHandler.image(from: model.sprites.frontDefault) {
+            self.rootView?.imageView?.image = $0
+        }
     }
     
     private func presentAlert(error: Error) {
-        let alert = UIAlertController(
-            title: "Error",
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        let action = UIAlertAction(
-            title: "ок",
-            style: .cancel
-        )
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let action = UIAlertAction(title: "ок", style: .cancel)
         alert.addAction(action)
         
         self.present(alert, animated: true)
@@ -193,5 +116,64 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
             default:
                 return "-"
         }
+    }
+    
+    // MARK: -
+    // MARK: UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let name = searchText.lowercased()
+        
+        if name != "" {
+            self.createSearchTimer { [weak self] in
+                self?.getPokemon(by: name)
+            }
+        }
+    }
+    
+    // MARK: -
+    // MARK: UISearchBarDelegate
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let content = self.content?[section].1 {
+            return (content as? [Any])?.count ?? 1
+        } else {
+            
+            return 0
+        }
+    }
+    
+    // MARK: -
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            cellClass: PokemonTableViewCell.self
+        )
+        if self.model != nil {
+            if let content = self.content?[indexPath.section].1 {
+                let text = anyPokeTypeToString(
+                    content: content,
+                    index: indexPath.row
+                )
+                cell.fill(text: text)
+            }
+        }
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return self.content?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionName: String = ""
+        if self.model != nil {
+            sectionName = self.content?[section].0 ?? ""
+        }
+        
+        return sectionName
     }
 }
