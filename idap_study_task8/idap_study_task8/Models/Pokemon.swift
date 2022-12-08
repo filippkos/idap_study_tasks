@@ -25,6 +25,26 @@ struct Pokemon: Codable, ModelPropertyContent {
         case heldItems = "held_items"
         case moves, species, sprites, stats, types
     }
+    
+    var grouped: [Int: [String]] {
+        [
+         0 : [id.description],
+         1 : [name.description],
+         2 : [baseExperience.description],
+         3 : [height.description],
+         4 : [isDefault.description],
+         5 : [order.description],
+         6 : [weight.description],
+         7 : abilities.map(\.ability.name),
+         8 : forms.map(\.name),
+         9 : heldItems.map(\.item.name),
+         10 : moves.map(\.move.name),
+         11 : [species.name],
+         12 : [sprites.frontShiny],
+         13 : stats.map(\.stat.name),
+         14 : types.map(\.type.name)
+        ]
+    }
 }
 
 // MARK: - Ability
