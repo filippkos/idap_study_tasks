@@ -12,4 +12,3 @@ final class PokemonView: UIView {
     @IBOutlet var spinner: UIActivityIndicatorView?
     @IBOutlet var placeHolderLabel: UILabel?
 }
- 
