@@ -10,4 +10,5 @@ enum NetworkResponce: String, Error {
     case serverError = "Server is not available."
     case noData = "Response returned with no data to decode."
     case unableToDecode = "We could not decode the responce."
+    case downloadError = "Error downloading data."
 }

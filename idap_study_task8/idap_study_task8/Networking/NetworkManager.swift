@@ -1,18 +1,26 @@
 import UIKit
 
-class NetworkManager<Model: Codable> {
+protocol NetworkManagerType {
+    
+    var parser: NetworkParser { get }
+    func request<Model: Codable>(name: String, query: String, completion: @escaping (Result<Model, Error>) -> ()) ->URLSessionDataTask
+    func getImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> ()) ->URLSessionDataTask
+    func getData(session: URLSession, from url: URL, completion: @escaping (Result<Data, Error>) -> ()) -> URLSessionDataTask
+}
+
+class NetworkManager: NetworkManagerType {
+    
+    // MARK: -
+    // MARK: Variables
+    
+    let parser = NetworkParser()
     
     // MARK: -
     // MARK: Public
 
-    func request(name: String, query: String, completion: @escaping (Result<Model, Error>) -> ()) ->URLSessionDataTask {
-        var request: URLRequest
-        let urlComponents = self.createUrlComponents(query: query)
-        let httpMethod = HttpMethod.get
+    func request<Model: Codable>(name: String, query: String, completion: @escaping (Result<Model, Error>) -> ()) ->URLSessionDataTask {
         
-        request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
-        request.httpMethod = httpMethod.rawValue
-        
+        let request = prepareRequest(query: query, httpMethod: HttpMethod.get)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (data, responce, error) in
             if let data = data {
@@ -34,26 +42,42 @@ class NetworkManager<Model: Codable> {
         return task
     }
     
-    func getImage(from url: String, completion: @escaping ((UIImage) -> ())) ->URLSessionDataTask {
+    func getImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> ()) ->URLSessionDataTask {
+        
         let url = URL(string: url) ?? URL(fileURLWithPath: "")
         let session = URLSession(configuration: .default)
+        let task = self.getData(
+            session: session,
+            from: url,
+            completion: { result in
+                switch result {
+                case let .success(data):
+                    completion(.success(self.parser.image(from: data)))
+                case let .failure(error):
+                    completion(.failure(error))
+                }
+            }
+        )
+        
+        return task
+    }
+    
+    func getData(session: URLSession, from url: URL, completion: @escaping (Result<Data, Error>) -> ()) -> URLSessionDataTask {
+
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
-                print("Error downloading picture: \(e)")
+                print("Error downloading data: \(e)")
+                completion(.failure(NetworkResponce.downloadError))
             } else {
                 if let res = response as? HTTPURLResponse {
-                    print("Downloaded cat picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        if let image = UIImage(data: imageData) {
-                            DispatchQueue.main.async {
-                                completion(image)
-                            }
-                        }
+                    print("Downloaded data with response code \(res.statusCode)")
+                    if let data = data {
+                            completion(.success(data))
                     } else {
-                        print("Couldn't get image: Image is nil")
+                        completion(.failure(NetworkResponce.noData))
                     }
                 } else {
-                    print("Couldn't get response code for some reason")
+                    completion(.failure(NetworkResponce.notFound))
                 }
             }
         }
@@ -65,6 +89,17 @@ class NetworkManager<Model: Codable> {
     // MARK: -
     // MARK: Private
     
+    private func prepareRequest(query: String, httpMethod: HttpMethod) -> URLRequest {
+        var request: URLRequest
+        let urlComponents = self.createUrlComponents(query: query)
+        let httpMethod = HttpMethod.get
+        
+        request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
+        request.httpMethod = httpMethod.rawValue
+        
+        return request
+    }
+    
     private func createUrlComponents(query: String) -> URLComponents {
         var components = URLComponents()
             components.scheme = ServerConstants.scheme
@@ -73,12 +108,8 @@ class NetworkManager<Model: Codable> {
         
         return components
     }
-    
-    private func decode<Model: Codable>(
-        data: Data
-    )
-        -> Result<Model, Error>
-    {
+
+    private func decode<Model: Codable>(data: Data) -> Result<Model, Error> {
         let decoder = JSONDecoder()
         do {
             return .success(try decoder.decode(Model.self, from: data))

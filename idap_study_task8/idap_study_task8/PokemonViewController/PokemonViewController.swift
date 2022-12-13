@@ -26,14 +26,20 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
             self.rootView?.tableView?.reloadData()
         }
     }
+    
     private var timer = Timer()
     private var content: [(String, Any)]? {
         return self.model?.modelPropertyContent()
     }
-    private var searchHandler: PokemonProvidable
     
-    init(searchHandler: PokemonProvidable) {
-        self.searchHandler = searchHandler
+    private var pokemonProvider: PokemonProvider
+    private var networkManager = NetworkManager()
+    
+    // MARK: -
+    // MARK: Init
+    
+    init(pokemonProvider: PokemonProvider) {
+        self.pokemonProvider = pokemonProvider
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -59,29 +65,34 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     }
     
     private func getPokemon(by name: String) {
-        let task = self.searchHandler.pokemon(
-            name: name,
-            completion: { result in
-                DispatchQueue.main.async { [weak self] in
-                    self?.setViewMode(.pokemonShoving)
-                    switch result {
-                        
-                    case .success(let model):
-                        self?.processPokemons(model: model)
-                    case let .failure(error):
-                        self?.presentAlert(error: error)
-                    }
+        let task = self.pokemonProvider.getPokemon(name: name,completion: { result in
+            DispatchQueue.main.async { [weak self] in
+                self?.setViewMode(.pokemonShoving)
+                switch result {
+                    
+                case .success(let model):
+                    self?.processPokemons(model: model)
+                case let .failure(error):
+                    self?.presentAlert(error: error)
                 }
             }
+        }
         )
     }
     
     private func processPokemons(model: Pokemon) {
         self.model = model
-        
-        let task = self.searchHandler.image(from: model.sprites.frontDefault) {
-            self.rootView?.imageView?.image = $0
-            self.setViewMode(.imageShoving)
+        let task = self.networkManager.getImage(from: model.sprites.frontDefault) { result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                    
+                case let .success(image):
+                    self?.rootView?.imageView?.image = image
+                    self?.setViewMode(.imageShoving)
+                case let .failure(error):
+                    self?.presentAlert(error: error)
+                }
+            }
         }
     }
     
@@ -98,7 +109,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let name = searchText.lowercased()
-        
         if name != "" {
             self.createSearchTimer { [weak self] in
                 self?.getPokemon(by: name)
@@ -124,9 +134,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            cellClass: PokemonTableViewCell.self
-        )
+        let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
         if self.model != nil {
             cell.fill(text: (self.model?.grouped[indexPath.section]?[indexPath.row]) ?? "")
         }
@@ -153,39 +161,31 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
         case pokemonShoving
         case emptySearchTextField
         case imageShoving
-        
     }
     
     private func setViewMode(_ mode: ViewMode) {
         switch mode {
-        case .firstShoving: do {
+        case .firstShoving:
             self.rootView?.placeHolderLabel?.text = "Enter pokemon name or id."
             self.rootView?.spinner?.startAnimating()
             self.rootView?.spinner?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
-        }
-            
-        case .pokemonShoving: do {
+        case .pokemonShoving:
             self.rootView?.imageView?.image = nil
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
             self.rootView?.spinner?.isHidden = false
             self.rootView?.placeHolderLabel?.isHidden = true
-        }
-        
-        case .imageShoving: do {
+        case .imageShoving:
             self.rootView?.tableView?.isHidden = false
             self.rootView?.nameLabel?.isHidden = false
             self.rootView?.spinner?.isHidden = true
-        }
-            
-        case .emptySearchTextField: do {
+        case .emptySearchTextField:
             self.rootView?.imageView?.image = nil
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
             self.rootView?.spinner?.isHidden = true
             self.rootView?.placeHolderLabel?.isHidden = false
-        }
         }
     }
 }
