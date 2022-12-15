@@ -10,7 +10,7 @@ class PokemonProvider {
     // MARK: -
     // MARK: Internal
     
-    internal func getPokemon(name: String, completion: @escaping (Result<Pokemon, Error>) -> ()) -> URLSessionDataTask {
+    internal func getPokemon(name: String, completion: @escaping F.ResultHandler<Pokemon>) -> URLSessionDataTask {
         
         let task = self.networkManager.request(name: name, query: "/pokemon/\(name)", completion: completion)
         

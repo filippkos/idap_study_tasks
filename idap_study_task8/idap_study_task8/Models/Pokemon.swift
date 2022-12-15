@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - Pokemon
-struct Pokemon: Codable, ModelPropertyContent {
+struct Pokemon: Codable {
     let id: Int
     let name: String
     let baseExperience, height: Int
@@ -26,23 +26,23 @@ struct Pokemon: Codable, ModelPropertyContent {
         case moves, species, sprites, stats, types
     }
     
-    var grouped: [Int: [String]] {
+    var grouped: [Int: (String ,[String])] {
         [
-         0 : [id.description],
-         1 : [name.description],
-         2 : [baseExperience.description],
-         3 : [height.description],
-         4 : [isDefault.description],
-         5 : [order.description],
-         6 : [weight.description],
-         7 : abilities.map(\.ability.name),
-         8 : forms.map(\.name),
-         9 : heldItems.map(\.item.name),
-         10 : moves.map(\.move.name),
-         11 : [species.name],
-         12 : [sprites.frontShiny],
-         13 : stats.map(\.stat.name),
-         14 : types.map(\.type.name)
+         0 : ("Id", [id.description]),
+         1 : ("Name", [name.description]),
+         2 : ("Base experiemce", [baseExperience.description]),
+         3 : ("Height", [height.description]),
+         4 : ("Is default", [isDefault.description]),
+         5 : ("Order", [order.description]),
+         6 : ("Weight", [weight.description]),
+         7 : ("Abilities", abilities.map(\.ability.name)),
+         8 : ("Forms", forms.map(\.name)),
+         9 : ("Held Items", heldItems.map(\.item.name)),
+         10 : ("Moves", moves.map(\.move.name)),
+         11 : ("Species", [species.name]),
+         12 : ("Sprites", [sprites.frontShiny]),
+         13 : ("Stats", stats.map(\.stat.name)),
+         14 : ("Types", types.map(\.type.name))
         ]
     }
 }

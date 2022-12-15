@@ -28,10 +28,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     }
     
     private var timer = Timer()
-    private var content: [(String, Any)]? {
-        return self.model?.modelPropertyContent()
-    }
-    
     private var pokemonProvider: PokemonProvider
     private var networkManager = NetworkManager()
     
@@ -122,12 +118,8 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     // MARK: UISearchBarDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let content = self.content?[section].1 {
-            return (content as? [Any])?.count ?? 1
-        } else {
-            
-            return 0
-        }
+        
+        self.model?.grouped[section]?.1.count ?? 0
     }
     
     // MARK: -
@@ -136,7 +128,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
         if self.model != nil {
-            cell.fill(text: (self.model?.grouped[indexPath.section]?[indexPath.row]) ?? "")
+            cell.fill(text: (self.model?.grouped[indexPath.section]?.1[indexPath.row]) ?? "")
         }
         
         return cell
@@ -144,13 +136,13 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return self.content?.count ?? 0
+        self.model?.grouped.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var sectionName: String = ""
         if self.model != nil {
-            sectionName = self.content?[section].0 ?? ""
+            sectionName = self.model?.grouped[section]?.0 ?? ""
         }
         
         return sectionName

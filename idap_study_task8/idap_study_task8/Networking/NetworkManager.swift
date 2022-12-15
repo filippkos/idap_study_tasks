@@ -3,7 +3,7 @@ import UIKit
 protocol NetworkManagerType {
     
     var parser: NetworkParser { get }
-    func request<Model: Codable>(name: String, query: String, completion: @escaping (Result<Model, Error>) -> ()) ->URLSessionDataTask
+    func request<Model: Codable>(name: String, query: String, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask
     func getData(session: URLSession, from url: URL, completion: @escaping (Result<Data, Error>) -> ()) -> URLSessionDataTask
 }
 
@@ -17,7 +17,7 @@ class NetworkManager: NetworkManagerType {
     // MARK: -
     // MARK: Public
 
-    func request<Model: Codable>(name: String, query: String, completion: @escaping (Result<Model, Error>) -> ()) ->URLSessionDataTask {
+    func request<Model: Codable>(name: String, query: String, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask {
         let request = self.parser.prepareRequest(query: query, httpMethod: HttpMethod.get)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (data, responce, error) in
@@ -40,7 +40,7 @@ class NetworkManager: NetworkManagerType {
         return task
     }
     
-    func getImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> ()) ->URLSessionDataTask {
+    func getImage(from url: String, completion: @escaping F.ResultHandler<UIImage>) -> URLSessionDataTask {
         let url = URL(string: url) ?? URL(fileURLWithPath: "")
         let session = URLSession(configuration: .default)
         let task = self.getData(
@@ -59,7 +59,7 @@ class NetworkManager: NetworkManagerType {
         return task
     }
     
-    func getData(session: URLSession, from url: URL, completion: @escaping (Result<Data, Error>) -> ()) -> URLSessionDataTask {
+    func getData(session: URLSession, from url: URL, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 print("Error downloading data: \(e)")
