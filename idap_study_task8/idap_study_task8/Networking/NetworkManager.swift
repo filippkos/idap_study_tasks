@@ -3,8 +3,8 @@ import UIKit
 protocol NetworkManagerType {
     
     var parser: NetworkParser { get }
-    func request<Model: Codable>(name: String, query: String, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask
-    func getData(session: URLSession, from url: URL, completion: @escaping (Result<Data, Error>) -> ()) -> URLSessionDataTask
+    func task<Model: Codable>(request: URLRequest, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask
+    func getData(from url: URL, session: URLSession, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask
 }
 
 class NetworkManager: NetworkManagerType {
@@ -17,8 +17,7 @@ class NetworkManager: NetworkManagerType {
     // MARK: -
     // MARK: Public
 
-    func request<Model: Codable>(name: String, query: String, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask {
-        let request = self.parser.prepareRequest(query: query, httpMethod: HttpMethod.get)
+    func task<Model: Codable>(request: URLRequest, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (data, responce, error) in
             if let data = data {
@@ -44,8 +43,8 @@ class NetworkManager: NetworkManagerType {
         let url = URL(string: url) ?? URL(fileURLWithPath: "")
         let session = URLSession(configuration: .default)
         let task = self.getData(
-            session: session,
             from: url,
+            session: session,
             completion: { result in
                 switch result {
                 case let .success(data):
@@ -59,7 +58,7 @@ class NetworkManager: NetworkManagerType {
         return task
     }
     
-    func getData(session: URLSession, from url: URL, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask {
+    func getData(from url: URL, session: URLSession, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 print("Error downloading data: \(e)")

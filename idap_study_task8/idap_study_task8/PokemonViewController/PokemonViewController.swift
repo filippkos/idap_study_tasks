@@ -1,6 +1,6 @@
 import UIKit
 
-class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class PokemonViewController: UIViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -8,25 +8,16 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     typealias RootView = PokemonView
     
     // MARK: -
-    // MARK: Controller LifeCycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setViewMode(.firstShoving)
-        self.rootView?.searchBar?.delegate = self
-        self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
-    }
-    
-    // MARK: -
     // MARK: Variables
     
     private var model: Pokemon? {
         didSet {
-            self.rootView?.nameLabel?.text = model?.name
+            self.rootView?.nameLabel?.text = self.pokemonName
             self.rootView?.tableView?.reloadData()
         }
     }
     
+    private var pokemonName: String
     private var timer = Timer()
     private var pokemonProvider: PokemonProvider
     private var networkManager = NetworkManager()
@@ -34,13 +25,28 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     // MARK: -
     // MARK: Init
     
-    init(pokemonProvider: PokemonProvider) {
+    init(pokemonProvider: PokemonProvider, name: String) {
         self.pokemonProvider = pokemonProvider
+        self.pokemonName = name
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("asdffasgagsa")
+    }
+    
+    // MARK: -
+    // MARK: Controller LifeCycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setViewMode(.firstShoving)
+        self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
+        self.getPokemon(by: self.pokemonName)
     }
     
     // MARK: -
@@ -61,7 +67,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     }
     
     private func getPokemon(by name: String) {
-        let task = self.pokemonProvider.getPokemon(name: name,completion: { result in
+        let task = self.pokemonProvider.getPokemon(name: name, completion: { result in
             DispatchQueue.main.async { [weak self] in
                 self?.setViewMode(.pokemonShoving)
                 switch result {
@@ -99,23 +105,9 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
         
         self.present(alert, animated: true)
     }
-
-    // MARK: -
-    // MARK: UISearchBarDelegate
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let name = searchText.lowercased()
-        if name != "" {
-            self.createSearchTimer { [weak self] in
-                self?.getPokemon(by: name)
-            }
-        } else {
-            self.setViewMode(.emptySearchTextField)
-        }
-    }
     
     // MARK: -
-    // MARK: UISearchBarDelegate
+    // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -123,7 +115,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     }
     
     // MARK: -
-    // MARK: UITableViewDelegate
+    // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
@@ -158,7 +150,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
     private func setViewMode(_ mode: ViewMode) {
         switch mode {
         case .firstShoving:
-            self.rootView?.placeHolderLabel?.text = "Enter pokemon name or id."
             self.rootView?.spinner?.startAnimating()
             self.rootView?.spinner?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
@@ -167,7 +158,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
             self.rootView?.spinner?.isHidden = false
-            self.rootView?.placeHolderLabel?.isHidden = true
         case .imageShoving:
             self.rootView?.tableView?.isHidden = false
             self.rootView?.nameLabel?.isHidden = false
@@ -177,7 +167,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UISearchBarDele
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
             self.rootView?.spinner?.isHidden = true
-            self.rootView?.placeHolderLabel?.isHidden = false
         }
     }
 }

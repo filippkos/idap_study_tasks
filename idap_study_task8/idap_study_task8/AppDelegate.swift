@@ -23,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func prepareRootController() {
         let window = self.window
         let pokemonProvider = PokemonProvider()
-        let controller = PokemonViewController(pokemonProvider: pokemonProvider)
-        window.rootViewController = controller
+        let controller = PokemonListViewController(pokemonProvider: pokemonProvider)
+        let navigationController = UINavigationController(rootViewController: controller)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 }

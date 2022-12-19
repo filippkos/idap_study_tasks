@@ -7,15 +7,23 @@ class NetworkParser {
             components.scheme = ServerConstants.scheme
             components.host = ServerConstants.host
             components.path = ServerConstants.path + ServerConstants.version + query
-        
+            
         return components
+    }
+    
+    func prepareRequest(url: String, httpMethod: HttpMethod) -> URLRequest {
+        var request: URLRequest
+        let httpMethod = HttpMethod.get
+        request = URLRequest(url: URL(string: url) ?? URL(fileURLWithPath: ""))
+        request.httpMethod = httpMethod.rawValue
+        
+        return request
     }
     
     func prepareRequest(query: String, httpMethod: HttpMethod) -> URLRequest {
         var request: URLRequest
         let urlComponents = self.createUrlComponents(query: query)
         let httpMethod = HttpMethod.get
-        
         request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
         request.httpMethod = httpMethod.rawValue
         
