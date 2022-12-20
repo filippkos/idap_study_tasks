@@ -3,22 +3,4 @@
    uuid = "6FF9F33A-8202-4B95-BF82-D5509674945B"
    type = "1"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7A6DEB4E-5528-4D51-8389-DA9CC8296D3B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "idap_study_task8/Networking/NetworkManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "task(request:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

@@ -19,6 +19,7 @@ class PokemonProvider {
     }
     
     internal func getPokemonList(url: String, completion: @escaping F.ResultHandler<PokemonList>) -> URLSessionDataTask {
+        let url = URL(string: url) ?? URL(fileURLWithPath: "")
         let request = self.networkManager.parser.prepareRequest(url: url, httpMethod: .get)
         let task = self.networkManager.task(request: request, completion: completion)
         

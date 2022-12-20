@@ -11,21 +11,17 @@ class NetworkParser {
         return components
     }
     
-    func prepareRequest(url: String, httpMethod: HttpMethod) -> URLRequest {
-        var request: URLRequest
-        let httpMethod = HttpMethod.get
-        request = URLRequest(url: URL(string: url) ?? URL(fileURLWithPath: ""))
-        request.httpMethod = httpMethod.rawValue
+    func prepareRequest(url: URL, httpMethod: HttpMethod) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = (HttpMethod.get).rawValue
         
         return request
     }
     
     func prepareRequest(query: String, httpMethod: HttpMethod) -> URLRequest {
-        var request: URLRequest
         let urlComponents = self.createUrlComponents(query: query)
-        let httpMethod = HttpMethod.get
-        request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
-        request.httpMethod = httpMethod.rawValue
+        var request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
+        request.httpMethod = (HttpMethod.get).rawValue
         
         return request
     }
