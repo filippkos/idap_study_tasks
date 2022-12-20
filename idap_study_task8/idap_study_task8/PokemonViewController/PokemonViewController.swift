@@ -36,7 +36,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     }
     
     deinit {
-        print("asdffasgagsa")
+        print("PokemonViewController is dead")
     }
     
     // MARK: -
@@ -44,7 +44,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setViewMode(.firstShoving)
+        self.setViewMode(.firstShowing)
         self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
         self.getPokemon(by: self.pokemonName)
     }
@@ -69,7 +69,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     private func getPokemon(by name: String) {
         let task = self.pokemonProvider.getPokemon(name: name, completion: { result in
             DispatchQueue.main.async { [weak self] in
-                self?.setViewMode(.pokemonShoving)
+                self?.setViewMode(.pokemonShowing)
                 switch result {
                     
                 case .success(let model):
@@ -90,7 +90,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
                     
                 case let .success(image):
                     self?.rootView?.imageView?.image = image
-                    self?.setViewMode(.imageShoving)
+                    self?.setViewMode(.imageShowing)
                 case let .failure(error):
                     self?.presentAlert(error: error)
                 }
@@ -141,24 +141,24 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     }
     
     private enum ViewMode {
-        case firstShoving
-        case pokemonShoving
+        case firstShowing
+        case pokemonShowing
         case emptySearchTextField
-        case imageShoving
+        case imageShowing
     }
     
     private func setViewMode(_ mode: ViewMode) {
         switch mode {
-        case .firstShoving:
+        case .firstShowing:
             self.rootView?.spinner?.startAnimating()
             self.rootView?.spinner?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
-        case .pokemonShoving:
+        case .pokemonShowing:
             self.rootView?.imageView?.image = nil
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
             self.rootView?.spinner?.isHidden = false
-        case .imageShoving:
+        case .imageShowing:
             self.rootView?.tableView?.isHidden = false
             self.rootView?.nameLabel?.isHidden = false
             self.rootView?.spinner?.isHidden = true

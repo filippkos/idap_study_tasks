@@ -2,24 +2,23 @@ import UIKit
 
 class NetworkParser {
     
-    private func createUrlComponents(query: String) -> URLComponents {
+    private func createUrlComponents(query: String, offset: Int?) -> URLComponents {
         var components = URLComponents()
             components.scheme = ServerConstants.scheme
             components.host = ServerConstants.host
             components.path = ServerConstants.path + ServerConstants.version + query
-            
+        if offset != nil {
+            components.queryItems = [
+                URLQueryItem(name: "limit", value: "50"),
+                URLQueryItem(name: "offset", value: String(offset ?? 0))
+            ]
+        }
+        
         return components
     }
     
-    func prepareRequest(url: URL, httpMethod: HttpMethod) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = (HttpMethod.get).rawValue
-        
-        return request
-    }
-    
-    func prepareRequest(query: String, httpMethod: HttpMethod) -> URLRequest {
-        let urlComponents = self.createUrlComponents(query: query)
+    func prepareRequest(query: String, offset: Int?, httpMethod: HttpMethod) -> URLRequest {
+        let urlComponents = self.createUrlComponents(query: query, offset: offset ?? 0)
         var request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
         request.httpMethod = (HttpMethod.get).rawValue
         

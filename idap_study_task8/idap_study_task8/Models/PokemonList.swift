@@ -2,6 +2,7 @@ import Foundation
 
 // MARK: - Empty
 struct PokemonList: Codable {
+    
     let count: Int
     let next: String
     let previous: String?
@@ -10,6 +11,7 @@ struct PokemonList: Codable {
 
 // MARK: - Unit
 struct Unit: Codable {
+    
     let name: String
     let url: String
 }

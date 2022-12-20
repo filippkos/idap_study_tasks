@@ -12,15 +12,15 @@ class PokemonProvider {
     
     internal func getPokemon(name: String, completion: @escaping F.ResultHandler<Pokemon>) -> URLSessionDataTask {
         let query = "/pokemon/\(name)"
-        let request = self.networkManager.parser.prepareRequest(query: query, httpMethod: .get)
+        let request = self.networkManager.parser.prepareRequest(query: query, offset: nil, httpMethod: .get)
         let task = self.networkManager.task(request: request, completion: completion)
         
         return task
     }
     
-    internal func getPokemonList(url: String, completion: @escaping F.ResultHandler<PokemonList>) -> URLSessionDataTask {
-        let url = URL(string: url) ?? URL(fileURLWithPath: "")
-        let request = self.networkManager.parser.prepareRequest(url: url, httpMethod: .get)
+    internal func getPokemonList(offset: Int, completion: @escaping F.ResultHandler<PokemonList>) -> URLSessionDataTask {
+        let query = "/pokemon/"
+        let request = self.networkManager.parser.prepareRequest(query: query, offset: offset, httpMethod: .get)
         let task = self.networkManager.task(request: request, completion: completion)
         
         return task

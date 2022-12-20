@@ -19,16 +19,13 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
         }
     }
     
-    private let initUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50&offset=0"
-    private var nextUrl: String
-    
     // MARK: -
     // MARK: Init
     
     init(pokemonProvider: PokemonProvider) {
         self.pokemonProvider = pokemonProvider
         self.pokemonList = []
-        self.nextUrl = ""
+        //self.nextUrl = ""
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,20 +39,19 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
-        self.task(url: initUrl)
+        self.task()
     }
     
     // MARK: -
     // MARK: Private
     
-    private func task(url: String) -> URLSessionDataTask {
-        return self.pokemonProvider.getPokemonList(url: url) { result in
+    private func task() {
+        _ = self.pokemonProvider.getPokemonList(offset: self.pokemonList.count) { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let model):
                     self?.model = model
                     self?.appendPokemons()
-                    self?.nextUrl = self?.model?.next ?? ""
                 case let .failure(error):
                     self?.presentAlert(error: error)
                 }
@@ -105,7 +101,7 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
         let position = scrollView.contentOffset.y
         let sectionHeight = (self.rootView?.tableView?.contentSize.height ?? 0) - scrollView.frame.size.height
         if position > sectionHeight {
-            let task = self.task(url: self.nextUrl)
+            self.task()
         }
     }
 }

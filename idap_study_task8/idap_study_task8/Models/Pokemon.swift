@@ -2,6 +2,7 @@ import Foundation
 
 // MARK: - Pokemon
 struct Pokemon: Codable {
+    
     let id: Int
     let name: String
     let baseExperience, height: Int
@@ -17,6 +18,7 @@ struct Pokemon: Codable {
     let types: [TypeElement]
 
     enum CodingKeys: String, CodingKey {
+        
         case id, name
         case baseExperience = "base_experience"
         case height
@@ -49,11 +51,13 @@ struct Pokemon: Codable {
 
 // MARK: - Ability
 struct Ability: Codable {
+    
     let isHidden: Bool
     let slot: Int
     let ability: Species
 
     enum CodingKeys: String, CodingKey {
+        
         case isHidden = "is_hidden"
         case slot, ability
     }
@@ -61,16 +65,19 @@ struct Ability: Codable {
 
 // MARK: - Species
 struct Species: Codable {
+    
     let name: String
     let url: String
 }
 
 // MARK: - HeldItem
 struct HeldItem: Codable {
+    
     let item: Species
     let versionDetails: [VersionDetail]
 
     enum CodingKeys: String, CodingKey {
+        
         case item
         case versionDetails = "version_details"
     }
@@ -78,16 +85,19 @@ struct HeldItem: Codable {
 
 // MARK: - VersionDetail
 struct VersionDetail: Codable {
+    
     let rarity: Int
     let version: Species
 }
 
 // MARK: - Move
 struct Move: Codable {
+    
     let move: Species
     let versionGroupDetails: [VersionGroupDetail]
 
     enum CodingKeys: String, CodingKey {
+        
         case move
         case versionGroupDetails = "version_group_details"
     }
@@ -95,10 +105,12 @@ struct Move: Codable {
 
 // MARK: - VersionGroupDetail
 struct VersionGroupDetail: Codable {
+    
     let levelLearnedAt: Int
     let versionGroup, moveLearnMethod: Species
 
     enum CodingKeys: String, CodingKey {
+        
         case levelLearnedAt = "level_learned_at"
         case versionGroup = "version_group"
         case moveLearnMethod = "move_learn_method"
@@ -107,24 +119,29 @@ struct VersionGroupDetail: Codable {
 
 // MARK: - TypeElement
 struct TypeElement: Codable {
+    
     let slot: Int
     let type: Species
 }
 
 // MARK: - GenerationV
 struct GenerationV: Codable {
+    
     let blackWhite: Sprites
 
     enum CodingKeys: String, CodingKey {
+        
         case blackWhite = "black-white"
     }
 }
 
 // MARK: - GenerationIv
 struct GenerationIv: Codable {
+    
     let diamondPearl, heartgoldSoulsilver, platinum: Sprites
 
     enum CodingKeys: String, CodingKey {
+        
         case diamondPearl = "diamond-pearl"
         case heartgoldSoulsilver = "heartgold-soulsilver"
         case platinum
@@ -133,6 +150,7 @@ struct GenerationIv: Codable {
 
 // MARK: - Versions
 struct Versions: Codable {
+    
     let generationI: GenerationI
     let generationIi: GenerationIi
     let generationIii: GenerationIii
@@ -143,6 +161,7 @@ struct Versions: Codable {
     let generationViii: GenerationViii
 
     enum CodingKeys: String, CodingKey {
+        
         case generationI = "generation-i"
         case generationIi = "generation-ii"
         case generationIii = "generation-iii"
@@ -156,6 +175,7 @@ struct Versions: Codable {
 
 // MARK: - Sprites
 class Sprites: Codable {
+    
     let backDefault: String
     let backFemale: JSONNull?
     let backShiny: String
@@ -169,6 +189,7 @@ class Sprites: Codable {
     let animated: Sprites?
 
     enum CodingKeys: String, CodingKey {
+        
         case backDefault = "back_default"
         case backFemale = "back_female"
         case backShiny = "back_shiny"
@@ -197,9 +218,11 @@ class Sprites: Codable {
 
 // MARK: - GenerationI
 struct GenerationI: Codable {
+    
     let redBlue, yellow: RedBlue
 
     enum CodingKeys: String, CodingKey {
+        
         case redBlue = "red-blue"
         case yellow
     }
@@ -207,9 +230,11 @@ struct GenerationI: Codable {
 
 // MARK: - RedBlue
 struct RedBlue: Codable {
+    
     let backDefault, backGray, frontDefault, frontGray: String
 
     enum CodingKeys: String, CodingKey {
+        
         case backDefault = "back_default"
         case backGray = "back_gray"
         case frontDefault = "front_default"
@@ -219,14 +244,17 @@ struct RedBlue: Codable {
 
 // MARK: - GenerationIi
 struct GenerationIi: Codable {
+    
     let crystal, gold, silver: Crystal
 }
 
 // MARK: - Crystal
 struct Crystal: Codable {
+    
     let backDefault, backShiny, frontDefault, frontShiny: String
 
     enum CodingKeys: String, CodingKey {
+        
         case backDefault = "back_default"
         case backShiny = "back_shiny"
         case frontDefault = "front_default"
@@ -236,10 +264,12 @@ struct Crystal: Codable {
 
 // MARK: - GenerationIii
 struct GenerationIii: Codable {
+    
     let emerald: Emerald
     let fireredLeafgreen, rubySapphire: Crystal
 
     enum CodingKeys: String, CodingKey {
+        
         case emerald
         case fireredLeafgreen = "firered-leafgreen"
         case rubySapphire = "ruby-sapphire"
@@ -248,9 +278,11 @@ struct GenerationIii: Codable {
 
 // MARK: - Emerald
 struct Emerald: Codable {
+    
     let frontDefault, frontShiny: String
 
     enum CodingKeys: String, CodingKey {
+        
         case frontDefault = "front_default"
         case frontShiny = "front_shiny"
     }
@@ -258,12 +290,14 @@ struct Emerald: Codable {
 
 // MARK: - Home
 struct Home: Codable {
+    
     let frontDefault: String
     let frontFemale: JSONNull?
     let frontShiny: String
     let frontShinyFemale: JSONNull?
 
     enum CodingKeys: String, CodingKey {
+        
         case frontDefault = "front_default"
         case frontFemale = "front_female"
         case frontShiny = "front_shiny"
@@ -273,10 +307,12 @@ struct Home: Codable {
 
 // MARK: - GenerationVii
 struct GenerationVii: Codable {
+    
     let icons: DreamWorld
     let ultraSunUltraMoon: Home
 
     enum CodingKeys: String, CodingKey {
+        
         case icons
         case ultraSunUltraMoon = "ultra-sun-ultra-moon"
     }
@@ -284,6 +320,7 @@ struct GenerationVii: Codable {
 
 // MARK: - DreamWorld
 struct DreamWorld: Codable {
+    
     let frontDefault: String
     let frontFemale: JSONNull?
 
@@ -295,16 +332,19 @@ struct DreamWorld: Codable {
 
 // MARK: - GenerationViii
 struct GenerationViii: Codable {
+    
     let icons: DreamWorld
 }
 
 // MARK: - Other
 struct Other: Codable {
+    
     let dreamWorld: DreamWorld
     let home: Home
     let officialArtwork: OfficialArtwork
 
     enum CodingKeys: String, CodingKey {
+        
         case dreamWorld = "dream_world"
         case home
         case officialArtwork = "official-artwork"
@@ -313,19 +353,23 @@ struct Other: Codable {
 
 // MARK: - OfficialArtwork
 struct OfficialArtwork: Codable {
+    
     let frontDefault: String
 
     enum CodingKeys: String, CodingKey {
+        
         case frontDefault = "front_default"
     }
 }
 
 // MARK: - Stat
 struct Stat: Codable {
+    
     let baseStat, effort: Int
     let stat: Species
 
     enum CodingKeys: String, CodingKey {
+        
         case baseStat = "base_stat"
         case effort, stat
     }
@@ -340,6 +384,7 @@ class JSONNull: Codable, Hashable {
     }
 
     public var hashValue: Int {
+        
         return 0
     }
 
