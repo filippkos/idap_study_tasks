@@ -18,6 +18,7 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
             self.rootView?.tableView?.reloadData()
         }
     }
+    weak var coordinator: AppCoordinator?
     
     // MARK: -
     // MARK: Init
@@ -25,7 +26,6 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     init(pokemonProvider: PokemonProvider) {
         self.pokemonProvider = pokemonProvider
         self.pokemonList = []
-        //self.nextUrl = ""
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -90,7 +90,7 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(PokemonViewController(pokemonProvider: self.pokemonProvider, name: self.pokemonList[indexPath.row]), animated: false)
+        self.coordinator?.details(name: self.pokemonList[indexPath.row])
     }
     
     

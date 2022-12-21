@@ -21,6 +21,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     private var timer = Timer()
     private var pokemonProvider: PokemonProvider
     private var networkManager = NetworkManager()
+    weak var coordinator: AppCoordinator?
     
     // MARK: -
     // MARK: Init

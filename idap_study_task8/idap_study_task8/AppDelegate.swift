@@ -7,6 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Variables
     
     private let window = UIWindow()
+    var coordinator: AppCoordinator?
     
     // MARK: -
     // MARK: UIApplicationDelegate
@@ -21,11 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Private
     
     private func prepareRootController() {
+        
+        let navigationController = UINavigationController()
+        self.coordinator = AppCoordinator(navigationViewController: navigationController)
+        self.coordinator?.start()
+        
         let window = self.window
-        let pokemonProvider = PokemonProvider()
-        let controller = PokemonListViewController(pokemonProvider: pokemonProvider)
-        let navigationController = UINavigationController(rootViewController: controller)
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
+        self.window.rootViewController = navigationController
+        self.window.makeKeyAndVisible()
+        
     }
 }

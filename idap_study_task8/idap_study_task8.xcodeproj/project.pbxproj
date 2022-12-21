@@ -11,6 +11,8 @@
 		3F0873DC29264D2500465974 /* PokemonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0873DA29264D2500465974 /* PokemonViewController.xib */; };
 		3F0873DF292670A900465974 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0873DE292670A900465974 /* NetworkManager.swift */; };
 		3F0873E1292671C500465974 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0873E0292671C500465974 /* Pokemon.swift */; };
+		3F14BBBB2952FF6B00CF3CFE /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14BBBA2952FF6B00CF3CFE /* CoordinatorProtocol.swift */; };
+		3F14BBBF29530B5300CF3CFE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14BBBE29530B5300CF3CFE /* AppCoordinator.swift */; };
 		3F629C81293F65A9004193EF /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F629C80293F65A9004193EF /* HttpMethod.swift */; };
 		3F629C87293F92F3004193EF /* NetworkResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F629C86293F92F3004193EF /* NetworkResponce.swift */; };
 		3F885B232940B0A0009BE2F8 /* URLResponce+GetStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F885B222940B0A0009BE2F8 /* URLResponce+GetStatusCode.swift */; };
@@ -37,6 +39,8 @@
 		3F0873DA29264D2500465974 /* PokemonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonViewController.xib; sourceTree = "<group>"; };
 		3F0873DE292670A900465974 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3F0873E0292671C500465974 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		3F14BBBA2952FF6B00CF3CFE /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		3F14BBBE29530B5300CF3CFE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		3F629C80293F65A9004193EF /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		3F629C86293F92F3004193EF /* NetworkResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponce.swift; sourceTree = "<group>"; };
 		3F885B222940B0A0009BE2F8 /* URLResponce+GetStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponce+GetStatusCode.swift"; sourceTree = "<group>"; };
@@ -82,6 +86,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		3F14BBB92952FF4F00CF3CFE /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3F14BBBA2952FF6B00CF3CFE /* CoordinatorProtocol.swift */,
+				3F14BBBE29530B5300CF3CFE /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		3F629C7F293F6593004193EF /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 		3FC8EBD72924EF160087258E /* idap_study_task8 */ = {
 			isa = PBXGroup;
 			children = (
+				3F14BBB92952FF4F00CF3CFE /* Coordinator */,
 				3F0873DD2926707B00465974 /* Networking */,
 				3FC8EBF7292533C30087258E /* Models */,
 				3FAC88C1294B1B6C00F6C21B /* PokemonListViewController */,
@@ -261,6 +275,7 @@
 				3F898196293A4FDE00933889 /* ServerConstants.swift in Sources */,
 				3FC8EBD92924EF160087258E /* AppDelegate.swift in Sources */,
 				3FAC88C9294B499A00F6C21B /* PokemonList.swift in Sources */,
+				3F14BBBF29530B5300CF3CFE /* AppCoordinator.swift in Sources */,
 				3F0873DF292670A900465974 /* NetworkManager.swift in Sources */,
 				3FAC88C4294B1BD300F6C21B /* PokemonListViewController.swift in Sources */,
 				3F0873DB29264D2500465974 /* PokemonViewController.swift in Sources */,
@@ -268,6 +283,7 @@
 				3FAC88C0294B119C00F6C21B /* F.swift in Sources */,
 				3F629C87293F92F3004193EF /* NetworkResponce.swift in Sources */,
 				3F9FA0082947743200CD6366 /* NetworkParser.swift in Sources */,
+				3F14BBBB2952FF6B00CF3CFE /* CoordinatorProtocol.swift in Sources */,
 				3F0873E1292671C500465974 /* Pokemon.swift in Sources */,
 				3FCC1AE8292B881E00A621EA /* PokemonTableViewCell.swift in Sources */,
 				3F885B232940B0A0009BE2F8 /* URLResponce+GetStatusCode.swift in Sources */,
