@@ -1,3 +1,6 @@
+//Created for idap_study_task8 in 2022
+// Using Swift 5.0
+
 import UIKit
 
 @main
@@ -25,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController()
         self.coordinator = AppCoordinator(navigationViewController: navigationController)
-        self.coordinator?.start()
+        self.coordinator?.pushPokemonListViewController()
         
         let window = self.window
         self.window.rootViewController = navigationController

@@ -1,4 +1,12 @@
+//Created for idap_study_task8 in 2022
+// Using Swift 5.0
+
 import UIKit
+
+enum PokemonViewControllerOutputEvents {
+
+    case needShowAlert(error: Error)
+}
 
 class PokemonViewController: UIViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate {
     
@@ -21,7 +29,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     private var timer = Timer()
     private var pokemonProvider: PokemonProvider
     private var networkManager = NetworkManager()
-    weak var coordinator: AppCoordinator?
+    public var outputEvents: ((PokemonViewControllerOutputEvents) -> ())?
     
     // MARK: -
     // MARK: Init
@@ -48,6 +56,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
         self.setViewMode(.firstShowing)
         self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
         self.getPokemon(by: self.pokemonName)
+        
     }
     
     // MARK: -
@@ -76,7 +85,7 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
                 case .success(let model):
                     self?.processPokemons(model: model)
                 case let .failure(error):
-                    self?.presentAlert(error: error)
+                    self?.outputEvents?(.needShowAlert(error: error))
                 }
             }
         }
@@ -93,19 +102,13 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
                     self?.rootView?.imageView?.image = image
                     self?.setViewMode(.imageShowing)
                 case let .failure(error):
-                    self?.presentAlert(error: error)
+                    self?.outputEvents?(.needShowAlert(error: error))
                 }
             }
         }
     }
     
-    private func presentAlert(error: Error) {
-        let alert = UIAlertController(title: "Error", message: (error as! NetworkResponce).rawValue, preferredStyle: .alert)
-        let action = UIAlertAction(title: "ок", style: .cancel)
-        alert.addAction(action)
-        
-        self.present(alert, animated: true)
-    }
+
     
     // MARK: -
     // MARK: UITableViewDataSource
@@ -151,23 +154,21 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     private func setViewMode(_ mode: ViewMode) {
         switch mode {
         case .firstShowing:
-            self.rootView?.spinner?.startAnimating()
-            self.rootView?.spinner?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
         case .pokemonShowing:
             self.rootView?.imageView?.image = nil
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
-            self.rootView?.spinner?.isHidden = false
+            self.rootView?.showSpinner(on: self.rootView, configure: nil)
         case .imageShowing:
             self.rootView?.tableView?.isHidden = false
             self.rootView?.nameLabel?.isHidden = false
-            self.rootView?.spinner?.isHidden = true
+            self.rootView?.hideSpinner(on: self.rootView, configure: nil)
         case .emptySearchTextField:
             self.rootView?.imageView?.image = nil
             self.rootView?.tableView?.isHidden = true
             self.rootView?.nameLabel?.isHidden = true
-            self.rootView?.spinner?.isHidden = true
+            self.rootView?.hideSpinner(on: self.rootView, configure: nil)
         }
     }
 }

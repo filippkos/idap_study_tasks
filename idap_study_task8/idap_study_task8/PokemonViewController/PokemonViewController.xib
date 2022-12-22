@@ -30,18 +30,9 @@
                                         <constraint firstAttribute="width" secondItem="1Mo-rg-Np6" secondAttribute="height" multiplier="1:1" id="SBg-nw-eNI"/>
                                     </constraints>
                                 </imageView>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="k8l-e2-EB2">
-                                    <rect key="frame" x="143.5" y="11.5" width="127" height="127"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="k8l-e2-EB2" secondAttribute="height" multiplier="1:1" id="pfr-Af-67T"/>
-                                    </constraints>
-                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="k8l-e2-EB2" firstAttribute="centerY" secondItem="Kqp-Vx-bGL" secondAttribute="centerY" id="1uO-lJ-ajC"/>
-                                <constraint firstItem="k8l-e2-EB2" firstAttribute="centerX" secondItem="Kqp-Vx-bGL" secondAttribute="centerX" id="BEc-6E-YcZ"/>
-                                <constraint firstItem="k8l-e2-EB2" firstAttribute="height" secondItem="1Mo-rg-Np6" secondAttribute="height" id="V9x-no-hti"/>
                                 <constraint firstItem="1Mo-rg-Np6" firstAttribute="width" secondItem="Kqp-Vx-bGL" secondAttribute="width" multiplier="250/812" id="aYg-4a-KIj"/>
                                 <constraint firstItem="1Mo-rg-Np6" firstAttribute="centerX" secondItem="Kqp-Vx-bGL" secondAttribute="centerX" id="tci-vi-hFY"/>
                                 <constraint firstAttribute="height" constant="150" id="uCf-ML-T3l"/>
@@ -100,7 +91,6 @@
             <connections>
                 <outlet property="imageView" destination="1Mo-rg-Np6" id="smm-nT-gFU"/>
                 <outlet property="nameLabel" destination="mEW-R6-kPe" id="wOj-WI-z7U"/>
-                <outlet property="spinner" destination="k8l-e2-EB2" id="d0f-R1-QYF"/>
                 <outlet property="tableView" destination="b8Z-og-FG3" id="oVk-QI-uUv"/>
             </connections>
             <point key="canvasLocation" x="115.38461538461539" y="-16.350710900473931"/>

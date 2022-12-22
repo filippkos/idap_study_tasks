@@ -1,4 +1,13 @@
+//Created for idap_study_task8 in 2022
+// Using Swift 5.0
+
 import UIKit
+
+enum PokemonListViewControllerOutputEvents {
+    
+    case needShowDetails(name: String)
+    case needShowAlert(error: Error)
+}
 
 class PokemonListViewController: UIViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
@@ -18,7 +27,8 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
             self.rootView?.tableView?.reloadData()
         }
     }
-    weak var coordinator: AppCoordinator?
+    
+    public var outputEvents: ((PokemonListViewControllerOutputEvents) -> ())?
     
     // MARK: -
     // MARK: Init
@@ -46,14 +56,16 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     // MARK: Private
     
     private func task() {
+        self.rootView?.showSpinner()
         _ = self.pokemonProvider.getPokemonList(offset: self.pokemonList.count) { result in
             DispatchQueue.main.async { [weak self] in
+                self?.rootView?.hideSpinner()
                 switch result {
                 case .success(let model):
                     self?.model = model
                     self?.appendPokemons()
                 case let .failure(error):
-                    self?.presentAlert(error: error)
+                    self?.outputEvents?(.needShowAlert(error: error))
                 }
             }
         }
@@ -63,14 +75,6 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
         self.model?.results.forEach {unit in
             pokemonList.append(unit.name)
         }
-    }
-    
-    private func presentAlert(error: Error) {
-        let alert = UIAlertController(title: "Error", message: (error as! NetworkResponce).rawValue, preferredStyle: .alert)
-        let action = UIAlertAction(title: "ок", style: .cancel)
-        alert.addAction(action)
-        
-        self.present(alert, animated: true)
     }
     
     // MARK: -
@@ -90,9 +94,8 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.coordinator?.details(name: self.pokemonList[indexPath.row])
+        self.outputEvents?(.needShowDetails(name: self.pokemonList[indexPath.row]))
     }
-    
     
     // MARK: -
     // MARK: UIScrollViewDelegate
