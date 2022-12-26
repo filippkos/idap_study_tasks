@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController()
         self.coordinator = AppCoordinator(navigationViewController: navigationController)
-        self.coordinator?.pushPokemonListViewController()
+        self.coordinator?.pushLaunchViewController()
         
         let window = self.window
         self.window.rootViewController = navigationController

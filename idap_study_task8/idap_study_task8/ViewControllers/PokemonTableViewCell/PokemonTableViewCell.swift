@@ -5,9 +5,16 @@ import UIKit
 
 class PokemonTableViewCell: UITableViewCell {
 
+    // MARK: -
+    // MARK: Outlets
+    
     @IBOutlet internal var parameterLabel: UILabel?
+    
+    // MARK: -
+    // MARK: Public
     
     public func fill(text: String) {
         self.parameterLabel?.text = text
     }
 }
+

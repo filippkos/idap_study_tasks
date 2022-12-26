@@ -11,6 +11,19 @@ class AppCoordinator: Coordinator {
         self.navigationViewController = navigationViewController
     }
     
+    func pushLaunchViewController() {
+        let controller = LaunchViewController()
+        controller.outputEvents = { [weak self] event in
+            switch event {
+            case .needShowPokemonList:
+                self?.pushPokemonListViewController()
+            case let .needShowAlert(error):
+                self?.presentAlert(error: error, controller: controller)
+            }
+        }
+        self.navigationViewController.pushViewController(controller, animated: false)
+    }
+    
     func pushPokemonListViewController() {
         let controller = PokemonListViewController(pokemonProvider: PokemonProvider())
         controller.outputEvents = { [weak self] event in

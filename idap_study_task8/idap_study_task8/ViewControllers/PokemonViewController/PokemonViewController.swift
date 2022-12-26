@@ -81,7 +81,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
             DispatchQueue.main.async { [weak self] in
                 self?.setViewMode(.pokemonShowing)
                 switch result {
-                    
                 case .success(let model):
                     self?.processPokemons(model: model)
                 case let .failure(error):
@@ -97,7 +96,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
         let task = self.networkManager.getImage(from: model.sprites.frontDefault) { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                    
                 case let .success(image):
                     self?.rootView?.imageView?.image = image
                     self?.setViewMode(.imageShowing)
@@ -147,7 +145,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
     private enum ViewMode {
         case firstShowing
         case pokemonShowing
-        case emptySearchTextField
         case imageShowing
     }
     
@@ -163,11 +160,6 @@ class PokemonViewController: UIViewController, RootViewGettable, UITableViewData
         case .imageShowing:
             self.rootView?.tableView?.isHidden = false
             self.rootView?.nameLabel?.isHidden = false
-            self.rootView?.hideSpinner(on: self.rootView, configure: nil)
-        case .emptySearchTextField:
-            self.rootView?.imageView?.image = nil
-            self.rootView?.tableView?.isHidden = true
-            self.rootView?.nameLabel?.isHidden = true
             self.rootView?.hideSpinner(on: self.rootView, configure: nil)
         }
     }

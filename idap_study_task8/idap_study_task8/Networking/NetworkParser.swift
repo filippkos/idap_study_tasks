@@ -33,6 +33,8 @@ class NetworkParser {
         do {
             return .success(try decoder.decode(Model.self, from: data))
         } catch {
+            debugPrint("***Parser log - \(error)")
+            
             return .failure(NetworkResponce.unableToDecode)
         }
     }

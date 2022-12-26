@@ -5,6 +5,7 @@ import UIKit
 
 public protocol Coordinator: AnyObject {
     
+    func pushLaunchViewController()
     func pushPokemonListViewController()
     func pushPokemonViewController(name: String)
     func presentAlert(error: Error, controller: UIViewController)
