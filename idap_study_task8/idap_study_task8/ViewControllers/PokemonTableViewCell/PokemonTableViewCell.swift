@@ -17,4 +17,3 @@ class PokemonTableViewCell: UITableViewCell {
         self.parameterLabel?.text = text
     }
 }
-

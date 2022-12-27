@@ -3,8 +3,8 @@
 
 import UIKit
 
-class PokemonListView: UIView, Spinnable {
-
+class BaseView: UIView, Spinnable {
+    
     // MARK: -
     // MARK: Typealiases
     
@@ -13,10 +13,13 @@ class PokemonListView: UIView, Spinnable {
     // MARK: -
     // MARK: Variables
     
-    var isLoaded: Bool = true
+    public var isLoaded: Bool = true
+}
+
+final class PokemonListView: BaseView {
     
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var tableView: UITableView?
+    @IBOutlet internal var tableView: UITableView?
 }

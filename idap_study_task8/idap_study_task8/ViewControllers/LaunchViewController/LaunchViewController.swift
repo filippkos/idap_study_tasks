@@ -9,17 +9,17 @@ enum LaunchViewControllerOutputEvents {
     case needShowAlert(error: Error)
 }
 
-class LaunchViewController: UIViewController {
-
+final class LaunchViewController: BaseViewController {
+    
+    // MARK: -
+    // MARK: IBActions
+    
     @IBAction func startButton(_ sender: Any) {
         self.outputEvents?(.needShowPokemonList)
     }
     
+    // MARK: -
+    // MARK: Variables
+    
     public var outputEvents: ((LaunchViewControllerOutputEvents) -> ())?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
 }

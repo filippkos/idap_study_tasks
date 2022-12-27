@@ -3,6 +3,6 @@
 
 import UIKit
 
-class LaunchView: UIView {
+class LaunchView: BaseView {
     
 }

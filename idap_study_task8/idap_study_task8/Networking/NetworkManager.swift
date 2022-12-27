@@ -37,7 +37,6 @@ class NetworkManager: NetworkManagerType {
                 completion(.failure(error))
             }
         }
-            
         task.resume()
 
         return task

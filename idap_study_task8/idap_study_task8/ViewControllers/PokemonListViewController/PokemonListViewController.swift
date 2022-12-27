@@ -5,11 +5,11 @@ import UIKit
 
 enum PokemonListViewControllerOutputEvents {
     
-    case needShowDetails(name: String)
+    case needShowDetails(pokemonModel: PokemonModel)
     case needShowAlert(error: Error)
 }
 
-class PokemonListViewController: UIViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class PokemonListViewController: BaseViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -22,7 +22,7 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     private var model: PokemonList?
     private var pokemonProvider: PokemonProvider
     private var networkManager = NetworkManager()
-    private var pokemonList: [PokemonCellData] {
+    private var pokemonList: [PokemonModel] {
         didSet {
             self.rootView?.tableView?.reloadData()
         }
@@ -30,13 +30,15 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     
     private var pokemonsAreLoading = false
     public var outputEvents: ((PokemonListViewControllerOutputEvents) -> ())?
+    private let limit = 50
     
     // MARK: -
     // MARK: Init
     
-    init(pokemonProvider: PokemonProvider) {
+    public init(pokemonProvider: PokemonProvider) {
         self.pokemonProvider = pokemonProvider
         self.pokemonList = []
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,6 +51,7 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.rootView?.tableView?.register(cellClass: PokemonListTableViewCell.self)
         self.loadPokemonList()
     }
@@ -58,12 +61,10 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     
     private func loadPokemonList() {
         if !self.pokemonsAreLoading {
-            print("model \(self.model?.count)")
-            print("pokeList \(self.pokemonList.count)")
             if self.model?.count != self.pokemonList.count {
                 self.pokemonsAreLoading = true
                 self.rootView?.showSpinner()
-                _ = self.pokemonProvider.getPokemonList(offset: self.pokemonList.count) { result in
+                _ = self.pokemonProvider.getPokemonList(limit: self.limit, offset: self.pokemonList.count) { result in
                     DispatchQueue.main.async { [weak self] in
                         switch result {
                         case .success(let model):
@@ -82,39 +83,36 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     
     private func appendPokemons() {
         self.model?.results.forEach {unit in
-            let pokemonCellData = PokemonCellData(name: unit.name, image: nil, handler: nil)
-            pokemonList.append(pokemonCellData)
+            let pokemonCellData = PokemonModel(name: unit.name, image: nil, handler: nil) // need check for unique by id
+            self.pokemonList.append(pokemonCellData)
         }
-    }
-    
-    private func lastPage() {
-        
     }
     
     // MARK: -
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.pokemonList.count
+        return self.pokemonList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
-        if self.model != nil {
             cell.fill(text: self.pokemonList[indexPath.row].name)
             
             if let image = self.pokemonList[indexPath.row].image {
                 cell.fill(image: image)
             }
-        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let pokemon = self.pokemonList.object(at: indexPath.row) {
-            self.outputEvents?(.needShowDetails(name: pokemon.name))
-            self.pokemonList[indexPath.row].image = UIImage(systemName: "eyes.inverse")
+            let pokemonModel = PokemonModel(name: pokemon.name, image: pokemon.image) { [weak self] image in
+                self?.pokemonList[indexPath.row].image = image
+            }
+            
+            self.outputEvents?(.needShowDetails(pokemonModel: pokemonModel))
         }
     }
     
@@ -124,6 +122,7 @@ class PokemonListViewController: UIViewController, RootViewGettable, UITableView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         let sectionHeight = (self.rootView?.tableView?.contentSize.height ?? 0) - scrollView.frame.size.height
+        
         if position > sectionHeight {
             self.loadPokemonList()
         }

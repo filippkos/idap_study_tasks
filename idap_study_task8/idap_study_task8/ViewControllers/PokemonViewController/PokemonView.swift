@@ -3,17 +3,7 @@
 
 import UIKit
 
-final class PokemonView: UIView, Spinnable {
-    
-    // MARK: -
-    // MARK: Typealiases
-    
-    typealias SpinnerType = SpinnerView
-    
-    // MARK: -
-    // MARK: Variables
-    
-    var isLoaded: Bool = true
+final class PokemonView: BaseView {
     
     // MARK: -
     // MARK: Outlets
@@ -21,4 +11,11 @@ final class PokemonView: UIView, Spinnable {
     @IBOutlet internal var tableView: UITableView?
     @IBOutlet internal var nameLabel: UILabel?
     @IBOutlet internal var imageView: UIImageView?
+    
+    // MARK: -
+    // MARK: Public
+    
+    public func show(image: UIImage) {
+        self.imageView?.image = image
+    }
 }

@@ -3,10 +3,7 @@
 
 import UIKit
 
-struct PokemonCellData {
-    
-    // MARK: -
-    // MARK: Variables
+struct PokemonModel {
     
     let name: String
     var image: UIImage?

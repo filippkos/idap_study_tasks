@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Variables
     
     private let window = UIWindow()
-    var coordinator: AppCoordinator?
+    private var coordinator: AppCoordinator?
     
     // MARK: -
     // MARK: UIApplicationDelegate
@@ -25,14 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Private
     
     private func prepareRootController() {
-        
         let navigationController = UINavigationController()
         self.coordinator = AppCoordinator(navigationViewController: navigationController)
         self.coordinator?.pushLaunchViewController()
         
-        let window = self.window
         self.window.rootViewController = navigationController
         self.window.makeKeyAndVisible()
-        
     }
 }

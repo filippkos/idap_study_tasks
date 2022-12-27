@@ -19,7 +19,7 @@ class PokemonListTableViewCell: UITableViewCell {
     }
     
     public func fill(image: UIImage) {
-            self.viewedIcon?.image = image
+        self.viewedIcon?.image = image
     }
     
     // MARK: -
@@ -27,6 +27,7 @@ class PokemonListTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         self.viewedIcon?.image = nil
     }
 }
