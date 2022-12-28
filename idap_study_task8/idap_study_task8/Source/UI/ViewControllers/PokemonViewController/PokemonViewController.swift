@@ -3,13 +3,6 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-    
-    deinit {
-        debugPrint("deinit - \(type(of: self))")
-    }
-}
-
 enum PokemonViewControllerOutputEvents {
 
     case needShowAlert(error: Error)

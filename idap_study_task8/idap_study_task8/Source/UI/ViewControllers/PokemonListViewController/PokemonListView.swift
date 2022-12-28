@@ -3,19 +3,6 @@
 
 import UIKit
 
-class BaseView: UIView, Spinnable {
-    
-    // MARK: -
-    // MARK: Typealiases
-    
-    typealias SpinnerType = SpinnerView
-    
-    // MARK: -
-    // MARK: Variables
-    
-    public var isLoaded: Bool = true
-}
-
 final class PokemonListView: BaseView {
     
     // MARK: -

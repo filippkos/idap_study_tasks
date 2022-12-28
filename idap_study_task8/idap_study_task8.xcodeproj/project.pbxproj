@@ -35,6 +35,8 @@
 		3FAC88C7294B1C1C00F6C21B /* PokemonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC88C6294B1C1C00F6C21B /* PokemonListView.swift */; };
 		3FAC88C9294B499A00F6C21B /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC88C8294B499A00F6C21B /* PokemonList.swift */; };
 		3FB18264293E291E007FBC41 /* PokemonProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB18263293E291E007FBC41 /* PokemonProvider.swift */; };
+		3FC37441295C945000F751F8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC37440295C945000F751F8 /* BaseViewController.swift */; };
+		3FC37443295C947E00F751F8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC37442295C947E00F751F8 /* BaseView.swift */; };
 		3FC8EBD92924EF160087258E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8EBD82924EF160087258E /* AppDelegate.swift */; };
 		3FC8EBE22924EF190087258E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC8EBE12924EF190087258E /* Assets.xcassets */; };
 		3FC8EBE52924EF190087258E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FC8EBE32924EF190087258E /* LaunchScreen.storyboard */; };
@@ -74,6 +76,8 @@
 		3FAC88C6294B1C1C00F6C21B /* PokemonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListView.swift; sourceTree = "<group>"; };
 		3FAC88C8294B499A00F6C21B /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
 		3FB18263293E291E007FBC41 /* PokemonProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonProvider.swift; sourceTree = "<group>"; };
+		3FC37440295C945000F751F8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		3FC37442295C947E00F751F8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3FC8EBD52924EF160087258E /* idap_study_task8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC8EBD82924EF160087258E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FC8EBE12924EF190087258E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -222,6 +226,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3FC3743F295C942200F751F8 /* BaseTypes */ = {
+			isa = PBXGroup;
+			children = (
+				3FC37440295C945000F751F8 /* BaseViewController.swift */,
+				3FC37442295C947E00F751F8 /* BaseView.swift */,
+			);
+			path = BaseTypes;
+			sourceTree = "<group>";
+		};
 		3FC8EBCC2924EF160087258E = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +269,7 @@
 		3FC8EBF2292522A10087258E /* F */ = {
 			isa = PBXGroup;
 			children = (
+				3FC3743F295C942200F751F8 /* BaseTypes */,
 				3FC37436295C6A3900F751F8 /* Extensions */,
 				3FC37435295C6A2900F751F8 /* Protocols */,
 				3FAC88BF294B119C00F6C21B /* F.swift */,
@@ -373,6 +387,7 @@
 				3FC8EBFF292536E90087258E /* TableView+ReusableCell.swift in Sources */,
 				3F629C81293F65A9004193EF /* HttpMethod.swift in Sources */,
 				3F9649602955B282009208C9 /* LaunchView.swift in Sources */,
+				3FC37441295C945000F751F8 /* BaseViewController.swift in Sources */,
 				3F898196293A4FDE00933889 /* ServerConstants.swift in Sources */,
 				3FC8EBD92924EF160087258E /* AppDelegate.swift in Sources */,
 				3FAC88C9294B499A00F6C21B /* PokemonList.swift in Sources */,
@@ -387,6 +402,7 @@
 				3FC8EBF12925218C0087258E /* PokemonView.swift in Sources */,
 				3F89CBF729599B4400CB9284 /* Array+OptionalValue.swift in Sources */,
 				3FAC88C0294B119C00F6C21B /* F.swift in Sources */,
+				3FC37443295C947E00F751F8 /* BaseView.swift in Sources */,
 				3F629C87293F92F3004193EF /* NetworkResponce.swift in Sources */,
 				3F96495D2955B247009208C9 /* LaunchViewController.swift in Sources */,
 				3F9FA0082947743200CD6366 /* NetworkParser.swift in Sources */,
