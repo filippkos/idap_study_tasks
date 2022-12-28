@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzo-AQ-r9N" userLabel="Start Button">
                     <rect key="frame" x="169" y="432" width="76" height="42"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.08235294118" green="0.43921568630000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="tzo-AQ-r9N" secondAttribute="height" multiplier="56:31" id="vH8-dB-kA3"/>
                     </constraints>
@@ -34,7 +33,7 @@
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.48889752920000001" green="0.82677558330000001" blue="0.95057094740000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="tzo-AQ-r9N" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="0l2-6o-6p6"/>
                 <constraint firstItem="tzo-AQ-r9N" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="150/812" id="onp-S7-dhI"/>
@@ -43,9 +42,4 @@
             <point key="canvasLocation" x="132" y="90"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

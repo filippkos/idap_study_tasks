@@ -7,7 +7,13 @@ public struct AlertModel {
     
     let title: String
     let message: String
-    // в этой модели должна быть возможность передать виды кнопок + действия на них(комплишены)
+    let actions: [UIAlertAction]?
+    
+    init(title: String, message: String, actions: [UIAlertAction]?) {
+        self.title = title
+        self.message = message
+        self.actions = actions
+    }
 }
 
 public protocol Coordinator: AnyObject {
@@ -29,6 +35,10 @@ extension Coordinator {
     }
     
     public func alertModel(error: Error) -> AlertModel {
-        return AlertModel(title: "Error", message: (error as? NetworkResponce)?.rawValue ?? "")
+        return AlertModel(title: "Error", message: responce(error: error), actions: nil)
+    }
+    
+    private func responce(error: Error) -> String {
+        return (error as? NetworkResponce)?.rawValue ?? ""
     }
 }

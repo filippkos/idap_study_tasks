@@ -30,7 +30,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     private var pokemonsAreLoading = false
     public var outputEvents: ((PokemonListViewControllerOutputEvents) -> ())?
-    private let limit = 50
+    private let limit = 200
     
     // MARK: -
     // MARK: Init
@@ -83,8 +83,8 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     private func appendPokemons() {
         self.model?.results.forEach {unit in
-            let pokemonCellData = PokemonModel(name: unit.name, image: nil, handler: nil) // need check for unique by id
-            self.pokemonList.append(pokemonCellData)
+            let pokemonModel = PokemonModel(name: unit.name, image: nil, handler: nil) // need check for unique by id
+            self.pokemonList.append(pokemonModel)
         }
     }
     

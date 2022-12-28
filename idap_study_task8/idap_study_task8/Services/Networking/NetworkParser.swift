@@ -5,6 +5,9 @@ import UIKit
 
 class NetworkParser {
     
+    // MARK: -
+    // MARK: Private
+    
     private func createUrlComponents(query: String, params: [String : String]?) -> URLComponents {
         var components = URLComponents()
             components.scheme = ServerConstants.scheme
@@ -19,7 +22,10 @@ class NetworkParser {
         return components
     }
     
-    func prepareRequest(query: String, params: [String : String]?, httpMethod: HttpMethod) -> URLRequest {
+    // MARK: -
+    // MARK: Internal
+    
+    internal func prepareRequest(query: String, params: [String : String]?, httpMethod: HttpMethod) -> URLRequest {
         let urlComponents = self.createUrlComponents(query: query, params: params)
         var request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
         request.httpMethod = (HttpMethod.get).rawValue
@@ -27,7 +33,7 @@ class NetworkParser {
         return request
     }
     
-    func decode<Model: Codable>(data: Data) -> Result<Model, Error> {
+    internal func decode<Model: Codable>(data: Data) -> Result<Model, Error> {
         let decoder = JSONDecoder()
         do {
             return .success(try decoder.decode(Model.self, from: data))
@@ -38,7 +44,7 @@ class NetworkParser {
         }
     }
     
-    func image(from data: Data) -> UIImage {
+    internal func image(from data: Data) -> UIImage {
         var result = UIImage()
         if let image = UIImage(data: data) {
             result = image
@@ -47,7 +53,7 @@ class NetworkParser {
         return result
     }
     
-    func handleNetworkResponce(_ statusCode: Int) -> Error {
+    internal func handleNetworkResponce(_ statusCode: Int) -> Error {
         switch statusCode {
         case 400: return NetworkResponce.badRequest
         case 403: return NetworkResponce.forbidden

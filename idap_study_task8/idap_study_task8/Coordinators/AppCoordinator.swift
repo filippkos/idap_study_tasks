@@ -5,11 +5,20 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
+    // MARK: -
+    // MARK: Variables
+    
     internal var navigationViewController: UINavigationController
+    
+    // MARK: -
+    // MARK: Init
     
     init(navigationViewController: UINavigationController) {
         self.navigationViewController = navigationViewController
     }
+    
+    // MARK: -
+    // MARK: Internal
     
     internal func pushLaunchViewController() {
         let controller = LaunchViewController()
@@ -18,16 +27,6 @@ final class AppCoordinator: Coordinator {
         }
         
         self.navigationViewController.pushViewController(controller, animated: false)
-    }
-    
-    private func handle(event: LaunchViewControllerOutputEvents) {
-        switch event {
-        case .needShowPokemonList:
-            self.pushPokemonListViewController()
-        case let .needShowAlert(error):
-            let alertModel = self.alertModel(error: error)
-            self.presentAlert(alertModel: alertModel, controller: nil)
-        }
     }
     
     internal func pushPokemonListViewController() {
@@ -46,7 +45,7 @@ final class AppCoordinator: Coordinator {
         self.navigationViewController.pushViewController(controller, animated: false)
     }
     
-    func pushPokemonViewController(pokemonModel: PokemonModel) {
+    internal func pushPokemonViewController(pokemonModel: PokemonModel) {
         let controller = PokemonViewController(
             pokemonProvider: PokemonProvider(),
             pokemonModel: pokemonModel
@@ -60,5 +59,18 @@ final class AppCoordinator: Coordinator {
             }
         }
         self.navigationViewController.pushViewController(controller, animated: false)
+    }
+    
+    // MARK: -
+    // MARK: Private
+    
+    private func handle(event: LaunchViewControllerOutputEvents) {
+        switch event {
+        case .needShowPokemonList:
+            self.pushPokemonListViewController()
+        case let .needShowAlert(error):
+            let alertModel = self.alertModel(error: error)
+            self.presentAlert(alertModel: alertModel, controller: nil)
+        }
     }
 }

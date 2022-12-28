@@ -147,9 +147,6 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
         return self.model?.grouped[section]?.1.count ?? 0
     }
     
-    // MARK: -
-    // MARK: UITableViewDataSource
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
         

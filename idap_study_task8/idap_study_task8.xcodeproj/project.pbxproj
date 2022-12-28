@@ -111,7 +111,6 @@
 		3F14BBB92952FF4F00CF3CFE /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				3F14BBBA2952FF6B00CF3CFE /* CoordinatorProtocol.swift */,
 				3F14BBBE29530B5300CF3CFE /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -178,6 +177,51 @@
 			path = PokemonListViewController;
 			sourceTree = "<group>";
 		};
+		3FC37432295C688200F751F8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3FC37434295C69F600F751F8 /* UI */,
+				3FC8EBF2292522A10087258E /* F */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		3FC37433295C68F400F751F8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F14BBC4295349F000CF3CFE /* SpinnerService */,
+				3F0873DD2926707B00465974 /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3FC37434295C69F600F751F8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3F9649612955B670009208C9 /* ViewControllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3FC37435295C6A2900F751F8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3F14BBBA2952FF6B00CF3CFE /* CoordinatorProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3FC37436295C6A3900F751F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3FC8EBF4292522D80087258E /* UIViewController+ViewCast.swift */,
+				3FC8EBFE292536E90087258E /* TableView+ReusableCell.swift */,
+				3F885B222940B0A0009BE2F8 /* URLResponce+GetStatusCode.swift */,
+				3F89CBF629599B4400CB9284 /* Array+OptionalValue.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3FC8EBCC2924EF160087258E = {
 			isa = PBXGroup;
 			children = (
@@ -197,12 +241,10 @@
 		3FC8EBD72924EF160087258E /* idap_study_task8 */ = {
 			isa = PBXGroup;
 			children = (
-				3F14BBC4295349F000CF3CFE /* SpinnerService */,
+				3FC37433295C68F400F751F8 /* Services */,
+				3FC37432295C688200F751F8 /* Source */,
 				3F14BBB92952FF4F00CF3CFE /* Coordinators */,
-				3F0873DD2926707B00465974 /* Networking */,
 				3FC8EBF7292533C30087258E /* Models */,
-				3F9649612955B670009208C9 /* ViewControllers */,
-				3FC8EBF2292522A10087258E /* F */,
 				3FC8EBD82924EF160087258E /* AppDelegate.swift */,
 				3FC8EBE12924EF190087258E /* Assets.xcassets */,
 				3FC8EBE32924EF190087258E /* LaunchScreen.storyboard */,
@@ -214,22 +256,12 @@
 		3FC8EBF2292522A10087258E /* F */ = {
 			isa = PBXGroup;
 			children = (
-				3FC8EBF3292522AE0087258E /* sources */,
-			);
-			path = F;
-			sourceTree = "<group>";
-		};
-		3FC8EBF3292522AE0087258E /* sources */ = {
-			isa = PBXGroup;
-			children = (
-				3FC8EBF4292522D80087258E /* UIViewController+ViewCast.swift */,
-				3FC8EBFE292536E90087258E /* TableView+ReusableCell.swift */,
-				3F885B222940B0A0009BE2F8 /* URLResponce+GetStatusCode.swift */,
+				3FC37436295C6A3900F751F8 /* Extensions */,
+				3FC37435295C6A2900F751F8 /* Protocols */,
 				3FAC88BF294B119C00F6C21B /* F.swift */,
 				3F14BBC929534ACF00CF3CFE /* WeakBox.swift */,
-				3F89CBF629599B4400CB9284 /* Array+OptionalValue.swift */,
 			);
-			path = sources;
+			path = F;
 			sourceTree = "<group>";
 		};
 		3FC8EBF6292528AC0087258E /* PokemonViewController */ = {

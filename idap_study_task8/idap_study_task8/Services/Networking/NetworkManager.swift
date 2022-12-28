@@ -64,11 +64,11 @@ class NetworkManager: NetworkManagerType {
     func getData(from url: URL, session: URLSession, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
-                print("Error downloading data: \(e)")
+                debugPrint("Error downloading data: \(e)")
                 completion(.failure(NetworkResponce.downloadError))
             } else {
                 if let res = response as? HTTPURLResponse {
-                    print("Downloaded data with response code \(res.statusCode)")
+                    debugPrint("Downloaded data with response code \(res.statusCode)")
                     if let data = data {
                             completion(.success(data))
                     } else {
