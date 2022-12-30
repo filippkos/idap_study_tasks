@@ -5,7 +5,7 @@ import UIKit
 
 enum PokemonViewControllerOutputEvents {
 
-    case needShowAlert(error: Error)
+    case needShowAlert(alertModel: AlertModel)
 }
 
 class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate {
@@ -28,6 +28,8 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     // MARK: -
     // MARK: Variables
     
+    public var outputEvents: ((PokemonViewControllerOutputEvents) -> ())?
+    
     private var model: Pokemon? {
         didSet {
             self.rootView?.nameLabel?.text = self.pokemonModel.name
@@ -36,19 +38,18 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     }
     
     private var pokemonModel: PokemonModel
-    private var timer = Timer()
     private var pokemonProvider: PokemonProvider
-    private var networkManager = NetworkManager()
-    public var outputEvents: ((PokemonViewControllerOutputEvents) -> ())?
+    private var networkManager: NetworkManagerType
     
     // MARK: -
     // MARK: Init
     
-    public init(pokemonProvider: PokemonProvider, pokemonModel: PokemonModel) {
-        self.pokemonProvider = pokemonProvider
+    public init(serviceManager: ServiceManager, pokemonModel: PokemonModel) {
+        self.pokemonProvider = serviceManager.pokemonProvider
+        self.networkManager = serviceManager.networkManager
         self.pokemonModel = pokemonModel
-        
-        super.init(nibName: nil, bundle: nil)
+
+        super.init(serviceManager: serviceManager)
     }
     
     required init?(coder: NSCoder) {
@@ -68,21 +69,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     // MARK: -
     // MARK: Private
-    
-    private func createSearchTimer(completion: @escaping () -> ()) {
-        self.timer.invalidate()
-        
-        self.timer = Timer.scheduledTimer(
-            withTimeInterval: 2,
-            repeats: false,
-            block: { timer in
-                completion()
-                
-                timer.invalidate()
-            }
-        )
-    }
-    
+   
     private func getPokemon() {
         let _ = self.pokemonProvider.getPokemon(
             name: self.pokemonModel.name,
@@ -93,7 +80,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
                     case .success(let model):
                         self?.processPokemons(model: model)
                     case let .failure(error):
-                        self?.outputEvents?(.needShowAlert(error: error))
+                        self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
                 }
             }
@@ -111,14 +98,14 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
                     self?.setViewMode(.imageShowing)
                     self?.pokemonModel.handler?(image)
                 case let .failure(error):
-                    self?.outputEvents?(.needShowAlert(error: error))
+                    self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                 }
             }
         }
     }
     
     private func setViewMode(_ mode: ViewMode) {
-        switch mode {
+        switch mode { // maybe need refactor
         case .firstShowing:
             self.rootView?.nameLabel?.isHidden = true
         case .pokemonShowing:

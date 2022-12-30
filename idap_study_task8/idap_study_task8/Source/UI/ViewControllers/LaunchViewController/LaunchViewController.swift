@@ -6,16 +6,21 @@ import UIKit
 enum LaunchViewControllerOutputEvents {
     
     case needShowPokemonList
-    case needShowAlert(error: Error)
 }
 
-final class LaunchViewController: BaseViewController {
+final class LaunchViewController: BaseViewController, RootViewGettable {
+    
+    // MARK: -
+    // MARK: Typealiases
+    
+    typealias RootView = LaunchView
     
     // MARK: -
     // MARK: IBActions
     
     @IBAction func startButton(_ sender: Any) {
         self.outputEvents?(.needShowPokemonList)
+        
     }
     
     // MARK: -

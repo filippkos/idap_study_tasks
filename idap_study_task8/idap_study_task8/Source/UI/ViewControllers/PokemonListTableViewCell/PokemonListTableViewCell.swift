@@ -3,6 +3,12 @@
 
 import UIKit
 
+struct PokemonListTableViewCellModel {
+    
+    let text: String
+    let image: UIImage?
+}
+
 class PokemonListTableViewCell: UITableViewCell {
 
     // MARK: -
@@ -14,12 +20,9 @@ class PokemonListTableViewCell: UITableViewCell {
     // MARK: -
     // MARK: Public
     
-    public func fill(text: String) {
-        self.parameterLabel?.text = text
-    }
-    
-    public func fill(image: UIImage) {
-        self.viewedIcon?.image = image
+    public func fill(with model: PokemonListTableViewCellModel) {
+        self.parameterLabel?.text = model.text
+        self.viewedIcon?.image = model.image
     }
     
     // MARK: -

@@ -9,8 +9,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: -
     // MARK: Variables
     
-    private let window = UIWindow()
     private var coordinator: AppCoordinator?
+    private var networkManager: NetworkManagerType?
+    
+    private let window = UIWindow()
     
     // MARK: -
     // MARK: UIApplicationDelegate
@@ -26,10 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func prepareRootController() {
         let navigationController = UINavigationController()
-        self.coordinator = AppCoordinator(navigationViewController: navigationController)
-        self.coordinator?.pushLaunchViewController()
+        self.coordinator = AppCoordinator(serviceManager: serviceManager(), navigationViewController: navigationController)
         
         self.window.rootViewController = navigationController
         self.window.makeKeyAndVisible()
+    }
+    
+    private func serviceManager() -> ServiceManager {
+        let networkManager = NetworkManager()
+        let pokemonProvider = PokemonProvider(networkManager: networkManager)
+        
+        return .init(networkManager: networkManager, pokemonProvider: pokemonProvider)
     }
 }

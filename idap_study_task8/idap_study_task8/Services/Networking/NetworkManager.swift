@@ -6,8 +6,10 @@ import UIKit
 protocol NetworkManagerType {
     
     var parser: NetworkParser { get }
+    
     func task<Model: Codable>(request: URLRequest, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask
     func getData(from url: URL, session: URLSession, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask
+    func getImage(from url: String, completion: @escaping F.ResultHandler<UIImage>) -> URLSessionDataTask
 }
 
 class NetworkManager: NetworkManagerType {

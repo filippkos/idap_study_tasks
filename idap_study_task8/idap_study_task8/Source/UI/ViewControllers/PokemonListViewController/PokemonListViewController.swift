@@ -3,10 +3,12 @@
 
 import UIKit
 
+// As an idea add swipe to refresh
+
 enum PokemonListViewControllerOutputEvents {
     
     case needShowDetails(pokemonModel: PokemonModel)
-    case needShowAlert(error: Error)
+    case needShowAlert(alertModel: AlertModel)
 }
 
 class PokemonListViewController: BaseViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
@@ -19,27 +21,26 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     // MARK: -
     // MARK: Variables
     
+    public var outputEvents: ((PokemonListViewControllerOutputEvents) -> ())?
+    
     private var model: PokemonList?
     private var pokemonProvider: PokemonProvider
-    private var networkManager = NetworkManager()
-    private var pokemonList: [PokemonModel] {
+    private var pokemonList: [PokemonModel] = [] {
         didSet {
             self.rootView?.tableView?.reloadData()
         }
     }
     
     private var pokemonsAreLoading = false
-    public var outputEvents: ((PokemonListViewControllerOutputEvents) -> ())?
     private let limit = 200
     
     // MARK: -
     // MARK: Init
     
-    public init(pokemonProvider: PokemonProvider) {
-        self.pokemonProvider = pokemonProvider
-        self.pokemonList = []
+    public override init(serviceManager: ServiceManager) {
+        self.pokemonProvider = serviceManager.pokemonProvider
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(serviceManager: serviceManager)
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +72,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
                             self?.model = model
                             self?.appendPokemons()
                         case let .failure(error):
-                            self?.outputEvents?(.needShowAlert(error: error))
+                            self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                         }
                         self?.rootView?.hideSpinner()
                         self?.pokemonsAreLoading = false
@@ -82,9 +83,11 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     private func appendPokemons() {
-        self.model?.results.forEach {unit in
-            let pokemonModel = PokemonModel(name: unit.name, image: nil, handler: nil) // need check for unique by id
-            self.pokemonList.append(pokemonModel)
+        self.model?.results.forEach { unit in
+            let pokemonModel = PokemonModel(name: unit.name, image: nil, handler: nil)
+            if !self.pokemonList.contains(pokemonModel) {
+                self.pokemonList.append(pokemonModel)
+            }
         }
     }
     
@@ -97,11 +100,9 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
-            cell.fill(text: self.pokemonList[indexPath.row].name)
-            
-            if let image = self.pokemonList[indexPath.row].image {
-                cell.fill(image: image)
-            }
+        let model = self.pokemonList[indexPath.row]
+        
+        cell.fill(with: .init(text: model.name, image: model.image))
         
         return cell
     }

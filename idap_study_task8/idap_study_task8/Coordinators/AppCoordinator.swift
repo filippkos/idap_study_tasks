@@ -9,68 +9,72 @@ final class AppCoordinator: Coordinator {
     // MARK: Variables
     
     internal var navigationViewController: UINavigationController
+    private let serviceManager: ServiceManager
+    private let pokemonProvider: PokemonProvider
     
     // MARK: -
     // MARK: Init
     
-    init(navigationViewController: UINavigationController) {
+    public init(serviceManager: ServiceManager, navigationViewController: UINavigationController) {
         self.navigationViewController = navigationViewController
-    }
-    
-    // MARK: -
-    // MARK: Internal
-    
-    internal func pushLaunchViewController() {
-        let controller = LaunchViewController()
-        controller.outputEvents = { [weak self] event in
-            self?.handle(event: event)
-        }
-        
-        self.navigationViewController.pushViewController(controller, animated: false)
-    }
-    
-    internal func pushPokemonListViewController() {
-        let controller = PokemonListViewController(pokemonProvider: PokemonProvider())
-        controller.outputEvents = { [weak self] event in
-            switch event {
-            case let .needShowDetails(model):
-                self?.pushPokemonViewController(pokemonModel: model)
-            case let .needShowAlert(error):
-                if let alertModel = self?.alertModel(error: error) {
-                    self?.presentAlert(alertModel: alertModel, controller: controller)
-                }
-            }
-        }
-        
-        self.navigationViewController.pushViewController(controller, animated: false)
-    }
-    
-    internal func pushPokemonViewController(pokemonModel: PokemonModel) {
-        let controller = PokemonViewController(
-            pokemonProvider: PokemonProvider(),
-            pokemonModel: pokemonModel
-        )
-        controller.outputEvents = { [weak self] event in
-            switch event {
-            case let .needShowAlert(error):
-                if let alertModel = self?.alertModel(error: error) {
-                    self?.presentAlert(alertModel: alertModel, controller: controller)
-                }
-            }
-        }
-        self.navigationViewController.pushViewController(controller, animated: false)
+        self.serviceManager = serviceManager
+        self.pokemonProvider = self.serviceManager.pokemonProvider
+        self.prepareLaunchViewController()
     }
     
     // MARK: -
     // MARK: Private
     
+    private func prepareLaunchViewController() {
+        let controller = LaunchViewController(serviceManager: self.serviceManager)
+        controller.outputEvents = { [weak self] event in
+            self?.handle(event: event)
+        }
+        
+        self.navigationViewController.setViewControllers([controller], animated: true)
+    }
+    
     private func handle(event: LaunchViewControllerOutputEvents) {
         switch event {
         case .needShowPokemonList:
             self.pushPokemonListViewController()
-        case let .needShowAlert(error):
-            let alertModel = self.alertModel(error: error)
-            self.presentAlert(alertModel: alertModel, controller: nil)
+        }
+    }
+    
+    private func pushPokemonListViewController() {
+        let controller = PokemonListViewController(serviceManager: self.serviceManager)
+        controller.outputEvents = { [weak self] event in
+            self?.handle(event: event, controller: controller)
+        }
+        
+        self.navigationViewController.pushViewController(controller, animated: false)
+    }
+    
+    private func handle(event: PokemonListViewControllerOutputEvents, controller: UIViewController) {
+        switch event {
+        case let .needShowDetails(model):
+            self.pushPokemonViewController(pokemonModel: model)
+        case let .needShowAlert(alertModel):
+            self.presentAlert(alertModel: alertModel, controller: controller)
+        }
+    }
+    
+    private func pushPokemonViewController(pokemonModel: PokemonModel) {
+        let controller = PokemonViewController(
+            serviceManager: self.serviceManager,
+            pokemonModel: pokemonModel
+        )
+        controller.outputEvents = { [weak self] event in
+            self?.handle(event: event, controller: controller)
+        }
+        
+        self.navigationViewController.pushViewController(controller, animated: false)
+    }
+    
+    private func handle(event: PokemonViewControllerOutputEvents, controller: UIViewController) {
+        switch event {
+        case let .needShowAlert(alertModel):
+            self.presentAlert(alertModel: alertModel, controller: controller)
         }
     }
 }
