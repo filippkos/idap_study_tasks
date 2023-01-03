@@ -44,12 +44,13 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEW-R6-kPe">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <color key="backgroundColor" red="0.48889752920000001" green="0.82677558330000001" blue="0.95057094740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.48889752920000001" green="0.82677558330000001" blue="0.95057094740000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.31497608690000001" green="0.63823223139999996" blue="0.73483471389999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.48889752920000001" green="0.82677558330000001" blue="0.95057094740000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="mEW-R6-kPe" secondAttribute="bottom" id="33f-eK-9ZS"/>
                                 <constraint firstItem="mEW-R6-kPe" firstAttribute="leading" secondItem="8mh-EC-eTY" secondAttribute="leading" id="O4g-Nq-Lr8"/>
@@ -78,7 +79,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.31497608690000001" green="0.63823223139999996" blue="0.73483471389999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.48889752920000001" green="0.82677558330000001" blue="0.95057094740000003" alpha="1" colorSpace="calibratedRGB"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

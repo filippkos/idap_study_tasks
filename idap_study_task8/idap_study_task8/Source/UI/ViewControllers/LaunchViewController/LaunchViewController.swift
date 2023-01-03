@@ -20,7 +20,6 @@ final class LaunchViewController: BaseViewController, RootViewGettable {
     
     @IBAction func startButton(_ sender: Any) {
         self.outputEvents?(.needShowPokemonList)
-        
     }
     
     // MARK: -

@@ -94,7 +94,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(image):
-                    self?.rootView?.show(image: image)
+                    self?.rootView?.set(image: image)
                     self?.setViewMode(.imageShowing)
                     self?.pokemonModel.handler?(image)
                 case let .failure(error):
@@ -105,19 +105,19 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     }
     
     private func setViewMode(_ mode: ViewMode) {
-        switch mode { // maybe need refactor
+        switch mode {
         case .firstShowing:
-            self.rootView?.nameLabel?.isHidden = true
+            break
         case .pokemonShowing:
             self.rootView?.imageView?.image = nil
-            self.rootView?.tableView?.isHidden = true
-            self.rootView?.nameLabel?.isHidden = true
             self.rootView?.showSpinner(on: self.rootView, configure: nil)
+            self.rootView?.showSpinner(on: self.rootView?.imageView, configure: nil)
         case .imageShowing:
-            self.rootView?.tableView?.isHidden = false
-            self.rootView?.nameLabel?.isHidden = false
             self.rootView?.hideSpinner(on: self.rootView, configure: nil)
+            self.rootView?.hideSpinner(on: self.rootView?.imageView, configure: nil)
         }
+        self.rootView?.nameLabel?.isHidden = mode != .imageShowing
+        self.rootView?.tableView?.isHidden = mode != .imageShowing
     }
     
     // MARK: -

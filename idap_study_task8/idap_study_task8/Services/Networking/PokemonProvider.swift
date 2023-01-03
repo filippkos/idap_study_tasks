@@ -3,12 +3,12 @@
 
 import UIKit
 
-class PokemonProvider { // create in app delegate and forward to coordinator
+class PokemonProvider {
     
     // MARK: -
     // MARK: Variables
     
-    private let networkManager: NetworkManagerType // add dependency injection
+    private let networkManager: NetworkManagerType
     
     public init(networkManager: NetworkManagerType) {
         self.networkManager = networkManager

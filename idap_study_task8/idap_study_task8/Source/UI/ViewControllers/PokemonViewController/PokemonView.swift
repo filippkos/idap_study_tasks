@@ -15,7 +15,7 @@ final class PokemonView: BaseView {
     // MARK: -
     // MARK: Public
     
-    public func show(image: UIImage) {
+    public func set(image: UIImage) {
         self.imageView?.image = image
     }
 }

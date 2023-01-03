@@ -3,8 +3,6 @@
 
 import UIKit
 
-// As an idea add swipe to refresh
-
 enum PokemonListViewControllerOutputEvents {
     
     case needShowDetails(pokemonModel: PokemonModel)
@@ -32,7 +30,17 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     private var pokemonsAreLoading = false
-    private let limit = 200
+    private let limit = 50
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(PokemonListViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged
+        )
+        refreshControl.tintColor = UIColor.cyan
+        
+        return refreshControl
+    }()
     
     // MARK: -
     // MARK: Init
@@ -52,13 +60,19 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.rootView?.tableView?.addSubview(self.refreshControl)
         self.rootView?.tableView?.register(cellClass: PokemonListTableViewCell.self)
         self.loadPokemonList()
     }
     
     // MARK: -
     // MARK: Private
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.pokemonList = []
+        self.loadPokemonList()
+        refreshControl.endRefreshing()
+    }
     
     private func loadPokemonList() {
         if !self.pokemonsAreLoading {
@@ -92,7 +106,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     // MARK: -
-    // MARK: UITableViewDelegate
+    // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.pokemonList.count
@@ -106,6 +120,9 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         
         return cell
     }
+    
+    // MARK: -
+    // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let pokemon = self.pokemonList.object(at: indexPath.row) {
