@@ -11,10 +11,10 @@ public protocol Spinnable: AnyObject {
     var isLoaded: Bool { get set }
 
     func showSpinner()
-    func showSpinner(on view: UIView?, configure: VoidFunc<SpinnerType.SpinnerView>?)
+    func showSpinner(on view: UIView?, configure: F.VoidFunc<SpinnerType.SpinnerView>?)
 
     func hideSpinner()
-    func hideSpinner(on view: UIView?, configure: VoidFunc<SpinnerType.SpinnerView>?)
+    func hideSpinner(on view: UIView?, configure: F.VoidFunc<SpinnerType.SpinnerView>?)
 }
 
 extension Spinnable where Self: UIView {
@@ -27,12 +27,12 @@ extension Spinnable where Self: UIView {
         self.hideSpinner(configure: nil)
     }
 
-    public func showSpinner(on view: UIView? = nil, configure: VoidFunc<SpinnerType.SpinnerView>?) {
+    public func showSpinner(on view: UIView? = nil, configure: F.VoidFunc<SpinnerType.SpinnerView>?) {
         self.isLoaded = true
         SpinnerService.show(on: view ?? self, provider: SpinnerType.self, configure: configure)
     }
 
-    public func hideSpinner(on view: UIView? = nil, configure: VoidFunc<SpinnerType.SpinnerView>?) {
+    public func hideSpinner(on view: UIView? = nil, configure: F.VoidFunc<SpinnerType.SpinnerView>?) {
         self.isLoaded = false
         SpinnerService.hide(from: view ?? self, provider: SpinnerType.self, configure: configure)
     }
@@ -48,13 +48,13 @@ extension Spinnable where Self: UIViewController {
         self.hideSpinner(configure: nil)
     }
 
-    public func showSpinner(on view: UIView? = nil, configure: VoidFunc<SpinnerType.SpinnerView>?) {
+    public func showSpinner(on view: UIView? = nil, configure: F.VoidFunc<SpinnerType.SpinnerView>?) {
         self.isLoaded = true
         self.hideSpinner()
         SpinnerService.show(on: view ?? self.view, provider: SpinnerType.self, configure: configure)
     }
 
-    public func hideSpinner(on view: UIView? = nil, configure: VoidFunc<SpinnerType.SpinnerView>?) {
+    public func hideSpinner(on view: UIView? = nil, configure: F.VoidFunc<SpinnerType.SpinnerView>?) {
         self.isLoaded = false
         SpinnerService.hide(from: view ?? self.view, provider: SpinnerType.self, configure: configure)
     }

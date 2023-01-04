@@ -2,10 +2,26 @@
 // Using Swift 5.0
 
 import Foundation
+import UIKit
+
+extension Pokemon: Hashable, Comparable {
+    
+    static func < (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        lhs.uid < rhs.uid
+    }
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.uid == rhs.uid
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uid)
+    }
+}
 
 // MARK: - Pokemon
 struct Pokemon: Codable {
     
+
     let id: Int
     let name: String
     let baseExperience: Int = 0
@@ -20,6 +36,9 @@ struct Pokemon: Codable {
     let sprites: Sprites
     let stats: [Stat]
     let types: [TypeElement]
+    var uid = UUID().uuidString
+    var image: UIImage?
+    var checkMark: UIImage?
 
     enum CodingKeys: String, CodingKey {
         

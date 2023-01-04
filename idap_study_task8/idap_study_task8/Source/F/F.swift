@@ -3,9 +3,10 @@
 
 import UIKit
 
-enum F {
+public enum F {
 
     typealias ResultHandler<T> = (Result<T, Error>) -> ()
+    public typealias VoidFunc<T> = (T) -> ()
 }
 
-public typealias VoidFunc<T> = (T) -> ()
+

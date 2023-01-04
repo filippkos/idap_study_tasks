@@ -10,7 +10,6 @@ final class AppCoordinator: Coordinator {
     
     internal var navigationViewController: UINavigationController
     private let serviceManager: ServiceManager
-    private let pokemonProvider: PokemonProvider
     
     // MARK: -
     // MARK: Init
@@ -18,7 +17,6 @@ final class AppCoordinator: Coordinator {
     public init(serviceManager: ServiceManager, navigationViewController: UINavigationController) {
         self.navigationViewController = navigationViewController
         self.serviceManager = serviceManager
-        self.pokemonProvider = self.serviceManager.pokemonProvider
         self.prepareLaunchViewController()
     }
     
@@ -59,7 +57,7 @@ final class AppCoordinator: Coordinator {
         }
     }
     
-    private func pushPokemonViewController(pokemonModel: PokemonModel) {
+    private func pushPokemonViewController(pokemonModel: Pokemon) {
         let controller = PokemonViewController(
             serviceManager: self.serviceManager,
             pokemonModel: pokemonModel

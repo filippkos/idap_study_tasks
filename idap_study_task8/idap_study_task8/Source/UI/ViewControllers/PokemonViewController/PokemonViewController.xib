@@ -91,6 +91,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="E5Y-ps-NFa" secondAttribute="bottom" id="icU-tT-ADU"/>
             </constraints>
             <connections>
+                <outlet property="imageContainer" destination="Kqp-Vx-bGL" id="6Uf-CZ-dhX"/>
                 <outlet property="imageView" destination="1Mo-rg-Np6" id="smm-nT-gFU"/>
                 <outlet property="nameLabel" destination="mEW-R6-kPe" id="wOj-WI-z7U"/>
                 <outlet property="tableView" destination="b8Z-og-FG3" id="oVk-QI-uUv"/>

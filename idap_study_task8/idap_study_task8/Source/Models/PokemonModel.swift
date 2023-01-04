@@ -3,20 +3,23 @@
 
 import UIKit
 
-struct PokemonModel: Equatable {
+struct PokemonModel {
     
     // MARK: -
     // MARK: Variables
     
+    var uid = UUID().uuidString
     let name: String
     var image: UIImage?
+    var checkMark: UIImage?
     var handler: ((UIImage) -> ())?
-    
-    // MARK: -
-    // MARK: Static
-    
-    static func == (lhs: PokemonModel, rhs: PokemonModel) -> Bool {
-            lhs.name == rhs.name &&
-            lhs.image == rhs.image
+}
+
+extension PokemonModel: Hashable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.uid == rhs.uid
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uid)
     }
 }

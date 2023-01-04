@@ -11,11 +11,13 @@ final class PokemonView: BaseView {
     @IBOutlet internal var tableView: UITableView?
     @IBOutlet internal var nameLabel: UILabel?
     @IBOutlet internal var imageView: UIImageView?
-    
+    @IBOutlet internal var imageContainer: UIView?
     // MARK: -
     // MARK: Public
     
-    public func set(image: UIImage) {
+    public func set(image: UIImage, text: String) {
         self.imageView?.image = image
+        self.nameLabel?.text = text
     }
+    
 }

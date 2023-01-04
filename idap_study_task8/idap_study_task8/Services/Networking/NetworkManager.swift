@@ -9,6 +9,7 @@ protocol NetworkManagerType {
     
     func task<Model: Codable>(request: URLRequest, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask
     func getData(from url: URL, session: URLSession, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask
+    @discardableResult
     func getImage(from url: String, completion: @escaping F.ResultHandler<UIImage>) -> URLSessionDataTask
 }
 
@@ -44,6 +45,7 @@ class NetworkManager: NetworkManagerType {
         return task
     }
     
+    @discardableResult
     func getImage(from url: String, completion: @escaping F.ResultHandler<UIImage>) -> URLSessionDataTask {
         let url = URL(string: url) ?? URL(fileURLWithPath: "")
         let session = URLSession(configuration: .default)

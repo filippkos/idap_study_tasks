@@ -5,7 +5,7 @@ import UIKit
 
 enum PokemonListViewControllerOutputEvents {
     
-    case needShowDetails(pokemonModel: PokemonModel)
+    case needShowDetails(pokemonModel: Pokemon)
     case needShowAlert(alertModel: AlertModel)
 }
 
@@ -21,9 +21,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     public var outputEvents: ((PokemonListViewControllerOutputEvents) -> ())?
     
-    private var model: PokemonList?
+    private var pokemon: Pokemon?
+    private var listModel: PokemonList?
+    private var networkManager: NetworkManagerType
     private var pokemonProvider: PokemonProvider
-    private var pokemonList: [PokemonModel] = [] {
+    
+    private var pokemonList: Set<Pokemon> = [] {
         didSet {
             self.rootView?.tableView?.reloadData()
         }
@@ -31,11 +34,13 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     private var pokemonsAreLoading = false
     private let limit = 50
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self,
-                                 action: #selector(PokemonListViewController.handleRefresh(_:)),
-                                 for: UIControl.Event.valueChanged
+        refreshControl.addTarget(
+            self,
+            action: #selector(PokemonListViewController.handleRefresh(_:)),
+            for: UIControl.Event.valueChanged
         )
         refreshControl.tintColor = UIColor.cyan
         
@@ -47,6 +52,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     public override init(serviceManager: ServiceManager) {
         self.pokemonProvider = serviceManager.pokemonProvider
+        self.networkManager = serviceManager.networkManager
         
         super.init(serviceManager: serviceManager)
     }
@@ -76,15 +82,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     private func loadPokemonList() {
         if !self.pokemonsAreLoading {
-            if self.model?.count != self.pokemonList.count {
+            if self.listModel?.count != self.pokemonList.count {
                 self.pokemonsAreLoading = true
                 self.rootView?.showSpinner()
-                _ = self.pokemonProvider.getPokemonList(limit: self.limit, offset: self.pokemonList.count) { result in
+                self.pokemonProvider.pokemonList(limit: self.limit, offset: self.pokemonList.count) { result in
                     DispatchQueue.main.async { [weak self] in
                         switch result {
                         case .success(let model):
-                            self?.model = model
-                            self?.appendPokemons()
+                            self?.listModel = model
+                            self?.iteratePokemons()
                         case let .failure(error):
                             self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                         }
@@ -96,11 +102,40 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         }
     }
     
-    private func appendPokemons() {
-        self.model?.results.forEach { unit in
-            let pokemonModel = PokemonModel(name: unit.name, image: nil, handler: nil)
-            if !self.pokemonList.contains(pokemonModel) {
-                self.pokemonList.append(pokemonModel)
+    private func iteratePokemons() {
+        self.listModel?.results.forEach { unit in
+            self.pokemon(name: unit.name)
+        }
+    }
+    
+    private func pokemon(name: String) {
+        self.pokemonProvider.pokemon(
+            name: name,
+            completion: { result in
+                DispatchQueue.main.async { [weak self] in
+                    switch result {
+                    case .success(let model):
+                        self?.pokemonList.insert(model)
+                        self?.processPokemons(model: model)
+                    case let .failure(error):
+                        self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
+                    }
+                }
+            }
+        )
+    }
+    
+    private func processPokemons(model: Pokemon) {
+        self.networkManager.getImage(from: model.sprites.frontDefault) { result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case let .success(image):
+                    var pokemon = model
+                    pokemon.image = image
+                    self?.pokemonList.update(with: pokemon)
+                case let .failure(error):
+                    self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
+                }
             }
         }
     }
@@ -114,10 +149,9 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
-        let model = self.pokemonList[indexPath.row]
-        
-        cell.fill(with: .init(text: model.name, image: model.image))
-        
+        let index = pokemonList.index(pokemonList.startIndex, offsetBy: indexPath.row)
+        let model = self.pokemonList[index]
+        cell.fill(with: model)
         return cell
     }
     
@@ -125,13 +159,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let pokemon = self.pokemonList.object(at: indexPath.row) {
-            let pokemonModel = PokemonModel(name: pokemon.name, image: pokemon.image) { [weak self] image in
-                self?.pokemonList[indexPath.row].image = image
-            }
-            
-            self.outputEvents?(.needShowDetails(pokemonModel: pokemonModel))
-        }
+        let index = pokemonList.index(pokemonList.startIndex, offsetBy: indexPath.row)
+        var pokemon = self.pokemonList[index]
+        pokemon.checkMark = .checkmark
+        self.pokemonList.update(with: pokemon)
+        
+        self.outputEvents?(.needShowDetails(pokemonModel: pokemon))
     }
     
     // MARK: -

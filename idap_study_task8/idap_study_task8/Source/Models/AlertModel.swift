@@ -7,9 +7,9 @@ public struct AlertModel { // need create file
     
     let title: String
     let message: String
-    let actions: [UIAlertAction]?
+    let actions: [UIAlertAction]
     
-    public init(title: String, message: String, actions: [UIAlertAction]?) {
+    public init(title: String, message: String, actions: [UIAlertAction]) {
         self.title = title
         self.message = message
         self.actions = actions
@@ -18,6 +18,6 @@ public struct AlertModel { // need create file
     public init(error: Error) {
         self.title = "Error"
         self.message = (error as? NetworkResponce)?.rawValue ?? ""
-        self.actions = nil
+        self.actions = []
     }
 }

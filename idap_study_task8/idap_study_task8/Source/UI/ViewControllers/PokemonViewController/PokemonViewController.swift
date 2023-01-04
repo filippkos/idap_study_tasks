@@ -20,7 +20,6 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     private enum ViewMode {
         
-        case firstShowing
         case pokemonShowing
         case imageShowing
     }
@@ -30,24 +29,13 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     public var outputEvents: ((PokemonViewControllerOutputEvents) -> ())?
     
-    private var model: Pokemon? {
-        didSet {
-            self.rootView?.nameLabel?.text = self.pokemonModel.name
-            self.rootView?.tableView?.reloadData()
-        }
-    }
-    
-    private var pokemonModel: PokemonModel
-    private var pokemonProvider: PokemonProvider
-    private var networkManager: NetworkManagerType
+    private var model: Pokemon
     
     // MARK: -
     // MARK: Init
     
-    public init(serviceManager: ServiceManager, pokemonModel: PokemonModel) {
-        self.pokemonProvider = serviceManager.pokemonProvider
-        self.networkManager = serviceManager.networkManager
-        self.pokemonModel = pokemonModel
+    public init(serviceManager: ServiceManager, pokemonModel: Pokemon) {
+        self.model = pokemonModel
 
         super.init(serviceManager: serviceManager)
     }
@@ -61,60 +49,26 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setViewMode(.firstShowing)
         self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
-        self.getPokemon()
+        self.setViewMode(.imageShowing)
+        if let image = self.model.image {
+            self.rootView?.set(image: image, text: self.model.name)
+        }
+        
     }
     
     // MARK: -
     // MARK: Private
-   
-    private func getPokemon() {
-        let _ = self.pokemonProvider.getPokemon(
-            name: self.pokemonModel.name,
-            completion: { result in
-                DispatchQueue.main.async { [weak self] in
-                    self?.setViewMode(.pokemonShowing)
-                    switch result {
-                    case .success(let model):
-                        self?.processPokemons(model: model)
-                    case let .failure(error):
-                        self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
-                    }
-                }
-            }
-        )
-    }
-    
-    private func processPokemons(model: Pokemon) {
-        self.model = model
-        
-        let _ = self.networkManager.getImage(from: model.sprites.frontDefault) { result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case let .success(image):
-                    self?.rootView?.set(image: image)
-                    self?.setViewMode(.imageShowing)
-                    self?.pokemonModel.handler?(image)
-                case let .failure(error):
-                    self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
-                }
-            }
-        }
-    }
     
     private func setViewMode(_ mode: ViewMode) {
         switch mode {
-        case .firstShowing:
-            break
         case .pokemonShowing:
             self.rootView?.imageView?.image = nil
             self.rootView?.showSpinner(on: self.rootView, configure: nil)
-            self.rootView?.showSpinner(on: self.rootView?.imageView, configure: nil)
+            self.rootView?.showSpinner(on: self.rootView?.imageContainer, configure: nil)
         case .imageShowing:
             self.rootView?.hideSpinner(on: self.rootView, configure: nil)
-            self.rootView?.hideSpinner(on: self.rootView?.imageView, configure: nil)
+            self.rootView?.hideSpinner(on: self.rootView?.imageContainer, configure: nil)
         }
         self.rootView?.nameLabel?.isHidden = mode != .imageShowing
         self.rootView?.tableView?.isHidden = mode != .imageShowing
@@ -124,26 +78,23 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model?.grouped[section]?.1.count ?? 0
+        return self.model.grouped[section]?.1.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
-        
-        if self.model != nil {
-            cell.fill(text: (self.model?.grouped[indexPath.section]?.1[indexPath.row]) ?? "")
-        }
+        cell.fill(text: (self.model.grouped[indexPath.section]?.1[indexPath.row]) ?? "")
         
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.model?.grouped.count ?? 0
+        return self.model.grouped.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var sectionName: String = ""
-        sectionName = self.model?.grouped[section]?.0 ?? ""
+        sectionName = self.model.grouped[section]?.0 ?? ""
         
         return sectionName
     }
