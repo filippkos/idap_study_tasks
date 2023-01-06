@@ -1,22 +1,7 @@
 //Created for idap_study_task8 in 2022
 // Using Swift 5.0
 
-import Foundation
 import UIKit
-
-extension Pokemon: Hashable, Comparable {
-    
-    static func < (lhs: Pokemon, rhs: Pokemon) -> Bool {
-        lhs.uid < rhs.uid
-    }
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.uid == rhs.uid
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(uid)
-    }
-}
 
 // MARK: - Pokemon
 struct Pokemon: Codable {
@@ -25,20 +10,20 @@ struct Pokemon: Codable {
     let id: Int
     let name: String
     let baseExperience: Int = 0
-    let height: Int
+    let height: Int = 0
     let isDefault: Bool
-    let order, weight: Int
-    let abilities: [Ability]
-    let forms: [Species]
-    let heldItems: [HeldItem]
-    let moves: [Move]
-    let species: Species
-    let sprites: Sprites
-    let stats: [Stat]
-    let types: [TypeElement]
-    var uid = UUID().uuidString
+    let order, weight: Int?
+    let abilities: [Ability]?
+    let forms: [Species]?
+    let heldItems: [HeldItem]?
+    let moves: [Move]?
+    let species: Species?
+    let sprites: Sprites?
+    let stats: [Stat]?
+    let types: [TypeElement]?
     var image: UIImage?
     var checkMark: UIImage?
+    var completion: ((UIImage) -> ())?
 
     enum CodingKeys: String, CodingKey {
         
@@ -58,16 +43,15 @@ struct Pokemon: Codable {
          2 : ("Base experiemce", [baseExperience.description]),
          3 : ("Height", [height.description]),
          4 : ("Is default", [isDefault.description]),
-         5 : ("Order", [order.description]),
-         6 : ("Weight", [weight.description]),
-         7 : ("Abilities", abilities.map(\.ability.name)),
-         8 : ("Forms", forms.map(\.name)),
-         9 : ("Held Items", heldItems.map(\.item.name)),
-         10 : ("Moves", moves.map(\.move.name)),
-         11 : ("Species", [species.name]),
-         12 : ("Sprites", [sprites.frontShiny]),
-         13 : ("Stats", stats.map(\.stat.name)),
-         14 : ("Types", types.map(\.type.name))
+         5 : ("Order", [order?.description ?? ""]),
+         6 : ("Weight", [weight?.description ?? ""]),
+         7 : ("Abilities", abilities?.map(\.ability.name) ?? []),
+         8 : ("Forms", forms?.map(\.name) ?? []),
+         9 : ("Held Items", heldItems?.map(\.item.name) ?? []),
+         10 : ("Moves", moves?.map(\.move.name) ?? []),
+         11 : ("Species", [species?.name ?? ""]),
+         12 : ("Stats", stats?.map(\.stat.name) ?? []),
+         13 : ("Types", types?.map(\.type.name) ?? [])
         ]
     }
 }
@@ -148,11 +132,11 @@ struct TypeElement: Codable {
 }
 
 // MARK: - Sprites
-class Sprites: Codable {
-    let backDefault: String
-    let backShiny: String
-    let frontDefault: String
-    let frontShiny: String
+struct Sprites: Codable {
+    let backDefault: String?
+    let backShiny: String?
+    let frontDefault: String?
+    let frontShiny: String?
 
     enum CodingKeys: String, CodingKey {
         
@@ -160,16 +144,6 @@ class Sprites: Codable {
         case backShiny = "back_shiny"
         case frontDefault = "front_default"
         case frontShiny = "front_shiny"
-    }
-
-    init(backDefault: String, backShiny: String, frontDefault: String, frontShiny: String) {
-        self.backDefault = backDefault
-
-        self.backShiny = backShiny
-
-        self.frontDefault = frontDefault
-
-        self.frontShiny = frontShiny
     }
 }
 

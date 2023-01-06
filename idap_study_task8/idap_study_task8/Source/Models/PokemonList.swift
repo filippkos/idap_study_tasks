@@ -3,7 +3,7 @@
 
 import Foundation
 
-// MARK: - Empty
+// MARK: - PokemonList
 struct PokemonList: Codable {
     
     let count: Int

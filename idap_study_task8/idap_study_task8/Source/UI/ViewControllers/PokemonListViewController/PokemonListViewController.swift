@@ -33,7 +33,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     private var pokemonsAreLoading = false
-    private let limit = 50
+    private let limit = 30
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -115,8 +115,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
                 DispatchQueue.main.async { [weak self] in
                     switch result {
                     case .success(let model):
-                        self?.pokemonList.insert(model)
-                        self?.processPokemons(model: model)
+                        var pokemon = model
+                        pokemon.completion = { [weak self] image in
+                            pokemon.image = image
+                            self?.pokemonList.insert(pokemon)
+                        }
+                        self?.processPokemons(model: pokemon)
                     case let .failure(error):
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
@@ -126,13 +130,13 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     private func processPokemons(model: Pokemon) {
-        self.networkManager.getImage(from: model.sprites.frontDefault) { result in
+        self.networkManager.getImage(from: model.sprites?.frontDefault ?? "") { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(image):
-                    var pokemon = model
-                    pokemon.image = image
-                    self?.pokemonList.update(with: pokemon)
+                    if let completion = model.completion {
+                        completion(image)
+                    }
                 case let .failure(error):
                     self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                 }
@@ -173,9 +177,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         let sectionHeight = (self.rootView?.tableView?.contentSize.height ?? 0) - scrollView.frame.size.height
-        
-        if position > sectionHeight {
-            self.loadPokemonList()
+        if let listModel = self.listModel {
+            if self.pokemonList.count < listModel.count {
+                if position > sectionHeight {
+                    self.loadPokemonList()
+                }
+            }
         }
     }
 }

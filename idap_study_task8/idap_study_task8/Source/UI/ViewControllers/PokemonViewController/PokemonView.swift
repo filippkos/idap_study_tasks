@@ -19,5 +19,4 @@ final class PokemonView: BaseView {
         self.imageView?.image = image
         self.nameLabel?.text = text
     }
-    
 }

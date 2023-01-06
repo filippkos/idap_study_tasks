@@ -3,7 +3,7 @@
 
 import UIKit
 
-public struct AlertModel { // need create file
+public struct AlertModel {
     
     let title: String
     let message: String
