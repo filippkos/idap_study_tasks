@@ -34,6 +34,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     private var pokemonsAreLoading = false
     private let limit = 30
+    private var storageService: StorageService
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -52,6 +53,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     public override init(serviceManager: ServiceManager) {
         self.pokemonProvider = serviceManager.pokemonProvider
+        self.storageService = serviceManager.storageService
         self.networkManager = serviceManager.networkManager
         
         super.init(serviceManager: serviceManager)
@@ -118,9 +120,17 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
                         var pokemon = model
                         pokemon.completion = { [weak self] image in
                             pokemon.image = image
+                            self?.storageService.createImage(image: image, name: model.name)
                             self?.pokemonList.insert(pokemon)
                         }
-                        self?.processPokemons(model: pokemon)
+                        if let check = self?.storageService.checkDirectory(name: model.name) {
+                            if check {
+                                pokemon.image = self?.storageService.readImage(name: name)
+                                self?.pokemonList.insert(pokemon)
+                            } else {
+                                self?.processPokemons(model: pokemon)
+                            }
+                        }
                     case let .failure(error):
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
@@ -135,6 +145,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
                 switch result {
                 case let .success(image):
                     if let completion = model.completion {
+                        
                         completion(image)
                     }
                 case let .failure(error):

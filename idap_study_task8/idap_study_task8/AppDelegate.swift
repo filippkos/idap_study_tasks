@@ -36,8 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func serviceManager() -> ServiceManager {
         let networkManager = NetworkManager()
+        let storageService = StorageService()
         let pokemonProvider = PokemonProvider(networkManager: networkManager)
         
-        return .init(networkManager: networkManager, pokemonProvider: pokemonProvider)
+        return .init(networkManager: networkManager, storageService: storageService, pokemonProvider: pokemonProvider)
     }
 }

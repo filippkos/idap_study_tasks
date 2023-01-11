@@ -31,6 +31,8 @@
 		3F98E96E29547DD30022D0DA /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98E96D29547DD30022D0DA /* SpinnerView.swift */; };
 		3F9D7C61295ECE0300F0A53F /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D7C60295ECE0300F0A53F /* AlertModel.swift */; };
 		3F9FA0082947743200CD6366 /* NetworkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9FA0072947743200CD6366 /* NetworkParser.swift */; };
+		3FA43547296D95D100937149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA43546296D95D100937149 /* DataManager.swift */; };
+		3FA4354A296DA4FA00937149 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA43549296DA4FA00937149 /* StorageService.swift */; };
 		3FAC88C0294B119C00F6C21B /* F.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC88BF294B119C00F6C21B /* F.swift */; };
 		3FAC88C4294B1BD300F6C21B /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC88C2294B1BD300F6C21B /* PokemonListViewController.swift */; };
 		3FAC88C5294B1BD300F6C21B /* PokemonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC88C3294B1BD300F6C21B /* PokemonListViewController.xib */; };
@@ -74,6 +76,8 @@
 		3F98E96D29547DD30022D0DA /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		3F9D7C60295ECE0300F0A53F /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		3F9FA0072947743200CD6366 /* NetworkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkParser.swift; sourceTree = "<group>"; };
+		3FA43546296D95D100937149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3FA43549296DA4FA00937149 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3FAC88BF294B119C00F6C21B /* F.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F.swift; sourceTree = "<group>"; };
 		3FAC88C2294B1BD300F6C21B /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		3FAC88C3294B1BD300F6C21B /* PokemonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonListViewController.xib; sourceTree = "<group>"; };
@@ -183,6 +187,22 @@
 			path = PokemonTableViewCell;
 			sourceTree = "<group>";
 		};
+		3FA43545296D959300937149 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				3FA43546296D95D100937149 /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		3FA43548296DA4DA00937149 /* StorageService */ = {
+			isa = PBXGroup;
+			children = (
+				3FA43549296DA4FA00937149 /* StorageService.swift */,
+			);
+			path = StorageService;
+			sourceTree = "<group>";
+		};
 		3FAC88C1294B1B6C00F6C21B /* PokemonListViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +226,8 @@
 		3FC37433295C68F400F751F8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3FA43548296DA4DA00937149 /* StorageService */,
+				3FA43545296D959300937149 /* DataManager */,
 				3F0066F0295DAEAF00B6D7CB /* ServiceManager */,
 				3F14BBC4295349F000CF3CFE /* SpinnerService */,
 				3F0873DD2926707B00465974 /* Networking */,
@@ -406,6 +428,7 @@
 				3FC8EBD92924EF160087258E /* AppDelegate.swift in Sources */,
 				3FAC88C9294B499A00F6C21B /* PokemonList.swift in Sources */,
 				3F14BBBF29530B5300CF3CFE /* AppCoordinator.swift in Sources */,
+				3FA43547296D95D100937149 /* DataManager.swift in Sources */,
 				3F14BBC629534A1700CF3CFE /* Spinnable.swift in Sources */,
 				3F0873DF292670A900465974 /* NetworkManager.swift in Sources */,
 				3FAC88C4294B1BD300F6C21B /* PokemonListViewController.swift in Sources */,
@@ -415,6 +438,7 @@
 				3FC8EBF12925218C0087258E /* PokemonView.swift in Sources */,
 				3F89CBF729599B4400CB9284 /* Array+OptionalValue.swift in Sources */,
 				3FAC88C0294B119C00F6C21B /* F.swift in Sources */,
+				3FA4354A296DA4FA00937149 /* StorageService.swift in Sources */,
 				3FC37443295C947E00F751F8 /* BaseView.swift in Sources */,
 				3F629C87293F92F3004193EF /* NetworkResponce.swift in Sources */,
 				3F96495D2955B247009208C9 /* LaunchViewController.swift in Sources */,
