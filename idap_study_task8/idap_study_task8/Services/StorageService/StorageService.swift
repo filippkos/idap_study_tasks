@@ -9,24 +9,27 @@ class StorageService {
     let tempDir = NSTemporaryDirectory()
     var cachedImagesFolderURL = URL(string: "") ?? URL(fileURLWithPath: "")
     
-    func checkDirectory(name: String) -> Bool {
-        var isExist = false
+    func checkDirectory(name: String, completion: @escaping F.ResultHandler<UIImage?>) {
         let fileName = "\(name).png"
         do {
+            var isFound = false
             let files = try fileManager.contentsOfDirectory(atPath: tempDir)
             if files.count > 0 {
                 files.forEach {
                     if $0 == fileName {
-                        isExist = true
-                        print("file \(fileName) is exist")
+                        isFound = true
+                        completion(.success(self.readImage(name: name)))
                     }
                 }
+                if isFound == false {
+                    completion(.success(nil))
+                }
+            } else {
+                completion(.success(nil))
             }
         } catch let error as NSError {
-            print(error)
+            completion(.failure(error))
         }
-        
-        return isExist
     }
     
     func createImage(image: UIImage, name: String) {

@@ -28,7 +28,6 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
     public func fill(with model: Pokemon) {
         self.parameterLabel?.text = model.name
         self.viewedIcon?.image = model.checkMark
-        self.pokemonIcon?.image = model.image
     }
     
     // MARK: -
@@ -36,7 +35,6 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         self.viewedIcon?.image = nil
     }
 }

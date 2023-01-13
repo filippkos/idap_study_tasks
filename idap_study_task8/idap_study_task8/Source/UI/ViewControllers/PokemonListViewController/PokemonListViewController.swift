@@ -35,6 +35,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     private var pokemonsAreLoading = false
     private let limit = 30
     private var storageService: StorageService
+    private var completion: ((UIImage) -> ())?
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -117,20 +118,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
                 DispatchQueue.main.async { [weak self] in
                     switch result {
                     case .success(let model):
-                        var pokemon = model
-                        pokemon.completion = { [weak self] image in
-                            pokemon.image = image
-                            self?.storageService.createImage(image: image, name: model.name)
-                            self?.pokemonList.insert(pokemon)
-                        }
-                        if let check = self?.storageService.checkDirectory(name: model.name) {
-                            if check {
-                                pokemon.image = self?.storageService.readImage(name: name)
-                                self?.pokemonList.insert(pokemon)
-                            } else {
-                                self?.processPokemons(model: pokemon)
-                            }
-                        }
+                        self?.pokemonList.insert(model)
                     case let .failure(error):
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
@@ -139,13 +127,29 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         )
     }
     
-    private func processPokemons(model: Pokemon) {
+    private func processPokemons(model: Pokemon, completion: @escaping F.VoidFunc<UIImage?>) {
+        self.storageService.checkDirectory(name: model.name, completion: { image in
+            switch image {
+            case let .success(image):
+                if image != nil {
+                    completion(image)
+                } else {
+                    self.getImage(model: model)
+                }
+            case let .failure(error):
+                self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
+            }
+        })
+
+    }
+    
+    private func getImage(model: Pokemon) {
         self.networkManager.getImage(from: model.sprites?.frontDefault ?? "") { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(image):
-                    if let completion = model.completion {
-                        
+                    if let completion = self?.completion {
+                        self?.storageService.createImage(image: image, name: model.name)
                         completion(image)
                     }
                 case let .failure(error):
@@ -167,6 +171,16 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         let index = pokemonList.index(pokemonList.startIndex, offsetBy: indexPath.row)
         let model = self.pokemonList[index]
         cell.fill(with: model)
+        self.completion = { image in
+            cell.pokemonIcon?.image = image
+        }
+        
+        self.processPokemons(model: model) { image in
+            DispatchQueue.main.async {
+                cell.pokemonIcon?.image = image
+            }
+        }
+        
         return cell
     }
     

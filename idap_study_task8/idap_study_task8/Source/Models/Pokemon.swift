@@ -23,7 +23,6 @@ struct Pokemon: Codable {
     let types: [TypeElement]?
     var image: UIImage?
     var checkMark: UIImage?
-    var completion: ((UIImage) -> ())?
 
     enum CodingKeys: String, CodingKey {
         
