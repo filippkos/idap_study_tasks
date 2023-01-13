@@ -3,11 +3,17 @@
 
 import UIKit
 
-class StorageService {
+final class StorageService {
+    
+    // MARK: -
+    // MARK: Variables
     
     var fileManager = FileManager()
     let tempDir = NSTemporaryDirectory()
     var cachedImagesFolderURL = URL(string: "") ?? URL(fileURLWithPath: "")
+    
+    // MARK: -
+    // MARK: Internal
     
     func checkDirectory(name: String, completion: @escaping F.ResultHandler<UIImage?>) {
         let fileName = "\(name).png"

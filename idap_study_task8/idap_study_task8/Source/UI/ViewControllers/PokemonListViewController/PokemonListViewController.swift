@@ -127,38 +127,6 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         )
     }
     
-    private func processPokemons(model: Pokemon, completion: @escaping F.VoidFunc<UIImage?>) {
-        self.storageService.checkDirectory(name: model.name, completion: { image in
-            switch image {
-            case let .success(image):
-                if image != nil {
-                    completion(image)
-                } else {
-                    self.getImage(model: model)
-                }
-            case let .failure(error):
-                self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
-            }
-        })
-
-    }
-    
-    private func getImage(model: Pokemon) {
-        self.networkManager.getImage(from: model.sprites?.frontDefault ?? "") { result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case let .success(image):
-                    if let completion = self?.completion {
-                        self?.storageService.createImage(image: image, name: model.name)
-                        completion(image)
-                    }
-                case let .failure(error):
-                    self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
-                }
-            }
-        }
-    }
-    
     // MARK: -
     // MARK: UITableViewDataSource
     
@@ -170,16 +138,9 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
         let index = pokemonList.index(pokemonList.startIndex, offsetBy: indexPath.row)
         let model = self.pokemonList[index]
-        cell.fill(with: model)
-        self.completion = { image in
-            cell.pokemonIcon?.image = image
-        }
-        
-        self.processPokemons(model: model) { image in
-            DispatchQueue.main.async {
-                cell.pokemonIcon?.image = image
-            }
-        }
+        cell.configure(with: model, completion: { error in
+            self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error as! Error)))
+        })
         
         return cell
     }

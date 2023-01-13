@@ -14,6 +14,9 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
     // MARK: Variables
     
     var isLoaded: Bool = false
+    private lazy var imageService = ImageService()
+    private var imageRequest: Cancellable?
+    private var onReuse: ((URLSessionDataTask?) -> ())?
     
     // MARK: -
     // MARK: Outlets
@@ -25,9 +28,17 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
     // MARK: -
     // MARK: Public
     
-    public func fill(with model: Pokemon) {
+    func configure(with model: Pokemon, completion: @escaping (Error?) -> ()) {
         self.parameterLabel?.text = model.name
         self.viewedIcon?.image = model.checkMark
+        
+        imageService.image(for: model) { [weak self] image in
+            self?.pokemonIcon?.image = image
+        } taskHandler: { task in
+            self.onReuse?(task)
+        } alertHandler: { error in
+            completion(error)
+        }
     }
     
     // MARK: -
@@ -35,6 +46,10 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.onReuse = { task in
+            task?.cancel()
+        }
         self.viewedIcon?.image = nil
+        self.imageRequest?.cancel()
     }
 }

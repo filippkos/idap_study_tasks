@@ -29,7 +29,7 @@ class NetworkParser {
         let urlComponents = self.createUrlComponents(query: query, params: params)
         var request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
         request.httpMethod = (HttpMethod.get).rawValue
-        
+
         return request
     }
     
