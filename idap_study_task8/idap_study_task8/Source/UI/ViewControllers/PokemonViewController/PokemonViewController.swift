@@ -28,7 +28,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     // MARK: Variables
     
     public var outputEvents: ((PokemonViewControllerOutputEvents) -> ())?
-    
+    private lazy var imageService = ImageService()
     private var model: Pokemon
     
     // MARK: -
@@ -51,9 +51,9 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
         super.viewDidLoad()
         self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
         self.setViewMode(.imageShowing)
-        if let image = self.model.image {
-            self.rootView?.set(image: image, text: self.model.name)
-        }
+        self.setImage(model: self.model, completion:{error in
+            self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error as! Error)))
+        })
         
     }
     
@@ -72,6 +72,18 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
         }
         self.rootView?.nameLabel?.isHidden = mode != .imageShowing
         self.rootView?.tableView?.isHidden = mode != .imageShowing
+    }
+    
+    private func setImage(model: Pokemon, completion: @escaping (Error?) -> ()) {
+        self.imageService.image(for: model) { [weak self] image in
+            if let image = image {
+                self?.rootView?.set(image: image, text: model.name)
+            }
+        } taskHandler: { task in
+            return
+        } alertHandler: { error in
+            completion(error)
+        }
     }
     
     // MARK: -
