@@ -14,9 +14,6 @@ final class ImageService {
         taskHandler: @escaping (URLSessionDataTask?) -> (),
         alertHandler: @escaping (Error?) -> ()
     ) {
-        
-        var image: UIImage?
-        
         self.storageService.checkDirectory(name: model.name, completion: { image in
             switch image {
             case let .success(image):
@@ -39,17 +36,13 @@ final class ImageService {
     
   private func getImage(model: Pokemon, completion: @escaping (UIImage?) -> Void, alertHandler: @escaping (Error?) -> ()) -> Cancellable {
         let task = self.networkManager.getImage(from: model.sprites?.frontDefault ?? "") { result in
-            defer {
-                DispatchQueue.main.async { [weak self] in
-                    switch result {
-                    case let .success(image):
-                        
-                            self?.storageService.createImage(image: image, name: model.name)
-                            completion(image)
-                
-                    case let .failure(error):
-                        alertHandler(error)
-                    }
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case let .success(image):
+                    self?.storageService.createImage(image: image, name: model.name)
+                    completion(image)
+                case let .failure(error):
+                    alertHandler(error)
                 }
             }
         }
