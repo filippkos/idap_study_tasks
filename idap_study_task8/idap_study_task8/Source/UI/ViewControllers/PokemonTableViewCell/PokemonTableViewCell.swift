@@ -11,11 +11,6 @@ class PokemonTableViewCell: UITableViewCell {
     @IBOutlet internal var parameterLabel: UILabel?
     
     // MARK: -
-    // MARK: Variables
-    
-    private lazy var imageService = ImageService()
-    
-    // MARK: -
     // MARK: Public
     
     public func fill(text: String) {

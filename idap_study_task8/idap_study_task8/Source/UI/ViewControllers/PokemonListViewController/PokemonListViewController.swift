@@ -26,16 +26,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     private var networkManager: NetworkManagerType
     private var pokemonProvider: PokemonProvider
     
-    private var pokemonList: Set<Pokemon> = [] {
-        didSet {
-            self.rootView?.tableView?.reloadData()
-        }
-    }
+    private var pokemonList: Set<Pokemon> = []
     
     private var pokemonsAreLoading = false
     private let limit = 30
     private var storageService: StorageService
-    private var completion: ((UIImage) -> ())?
+    private lazy var imageService = ImageService()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -71,17 +67,22 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         super.viewDidLoad()
         self.rootView?.tableView?.addSubview(self.refreshControl)
         self.rootView?.tableView?.register(cellClass: PokemonListTableViewCell.self)
+        self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
     }
     
     // MARK: -
-    // MARK: Private
+    // MARK: HandleRefresh
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.pokemonList = []
+        self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
         refreshControl.endRefreshing()
     }
+    
+    // MARK: -
+    // MARK: Private
     
     private func loadPokemonList() {
         if !self.pokemonsAreLoading {
@@ -106,12 +107,23 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     private func iteratePokemons() {
-        self.listModel?.results.forEach { unit in
-            self.pokemon(name: unit.name)
+        DispatchQueue.global(qos: .background).async {
+            let group = DispatchGroup()
+            self.listModel?.results.forEach { unit in
+                self.pokemon(name: unit.name, group: group)
+            }
+            print("<!> before wait \(Thread.current)")
+            group.wait()
+            DispatchQueue.main.async {
+                self.rootView?.tableView?.reloadData()
+            }
+            print("<!> after wait")
         }
     }
     
-    private func pokemon(name: String) {
+    private func pokemon(name: String, group: DispatchGroup) {
+        print("<!> \(name) enter")
+        group.enter()
         self.pokemonProvider.pokemon(
             name: name,
             completion: { result in
@@ -123,6 +135,9 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
                 }
+                group.leave()
+
+                print("<!> \(name) leave")
             }
         )
     }
@@ -136,12 +151,19 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
-        let index = pokemonList.index(pokemonList.startIndex, offsetBy: indexPath.row)
-        let model = self.pokemonList[index]
-        cell.configure(with: model, completion: { error in
-            self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error as! Error)))
-        })
-        
+        let pokemon = self.pokemonList.filter { ($0.id - 1) == indexPath.row }.first
+        if let pokemon = pokemon {
+            self.imageService.image(for: pokemon) { image in
+                cell.pokemonIcon?.showSpinner()
+                if let image = image {
+                    cell.configure(with: pokemon, image: image)
+                    cell.pokemonIcon?.hideSpinner()
+                }
+            } alertHandler: { error in
+                self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
+            }
+        }
+
         return cell
     }
     
@@ -149,12 +171,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let index = pokemonList.index(pokemonList.startIndex, offsetBy: indexPath.row)
-        var pokemon = self.pokemonList[index]
-        pokemon.checkMark = .checkmark
-        self.pokemonList.update(with: pokemon)
-        
-        self.outputEvents?(.needShowDetails(pokemonModel: pokemon))
+        var pokemon = self.pokemonList.filter { ($0.id - 1) == indexPath.row }.first
+        if pokemon != nil {
+            pokemon?.checkMark = .checkmark
+            self.rootView?.tableView?.reloadData()
+            if let pokemon = pokemon {
+                self.pokemonList.update(with: pokemon)
+                self.outputEvents?(.needShowDetails(pokemonModel: pokemon))
+            }
+        }
     }
     
     // MARK: -
