@@ -49,12 +49,16 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
         self.setViewMode(.imageShowing)
-        self.setImage(model: self.model, completion:{error in
-            self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error as! Error)))
-        })
-        
+        self.setImage(model: self.model) { [weak self] error in
+            self?.outputEvents?(
+                .needShowAlert(
+                    alertModel: AlertModel(error: error)
+                )
+            )
+        }
     }
     
     // MARK: -
@@ -74,13 +78,11 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
         self.rootView?.tableView?.isHidden = mode != .imageShowing
     }
     
-    private func setImage(model: Pokemon, completion: @escaping (Error?) -> ()) {
+    private func setImage(model: Pokemon, completion: @escaping (Error) -> ()) {
         self.imageService.image(for: model) { [weak self] image in
             if let image = image {
                 self?.rootView?.set(image: image, text: model.name)
             }
-        } taskHandler: { task in
-            return
         } alertHandler: { error in
             completion(error)
         }

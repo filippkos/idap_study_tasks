@@ -5,14 +5,19 @@ import UIKit
 
 final class ImageService {
     
+    // MARK: -
+    // MARK: Variables
+    
     let networkManager = NetworkManager()
     let storageService = StorageService()
     
+    // MARK: -
+    // MARK: internal
+    
     func image(
         for model: Pokemon,
-        completion: @escaping (UIImage?) -> Void,
-        taskHandler: @escaping (URLSessionDataTask?) -> (),
-        alertHandler: @escaping (Error?) -> ()
+        completion: @escaping F.VoidFunc<UIImage?>,
+        alertHandler: @escaping F.VoidFunc<Error>
     ) {
         self.storageService.checkDirectory(name: model.name, completion: { image in
             switch image {
@@ -20,12 +25,11 @@ final class ImageService {
                 if image != nil {
                     completion(image)
                 } else {
-                    let task = self.getImage(model: model) { image in
+                    self.getImage(model: model) { image in
                         completion(image)
                     } alertHandler: { error in
                         alertHandler(error)
-                    } as! URLSessionDataTask
-                    taskHandler(task)
+                    }
                 }
             case let .failure(error):
                 alertHandler(error)
@@ -34,11 +38,19 @@ final class ImageService {
         )
    }
     
-  private func getImage(model: Pokemon, completion: @escaping (UIImage?) -> Void, alertHandler: @escaping (Error?) -> ()) -> Cancellable {
-        let task = self.networkManager.getImage(from: model.sprites?.frontDefault ?? "") { result in
+    // MARK: -
+    // MARK: Private
+    
+    private func getImage(
+        model: Pokemon,
+        completion: @escaping F.VoidFunc<UIImage?>,
+        alertHandler: @escaping F.VoidFunc<Error>)
+    {
+        self.networkManager.getImage(from: model.sprites?.frontDefault ?? "") { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(image):
+                    print("<#> Image \(model.name) is loaded from network.")
                     self?.storageService.createImage(image: image, name: model.name)
                     completion(image)
                 case let .failure(error):
@@ -46,8 +58,5 @@ final class ImageService {
                 }
             }
         }
-      task.resume()
-    
-      return task
     }
 }

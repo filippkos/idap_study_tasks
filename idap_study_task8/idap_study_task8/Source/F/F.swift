@@ -8,5 +8,3 @@ public enum F {
     typealias ResultHandler<T> = (Result<T, Error>) -> ()
     public typealias VoidFunc<T> = (T) -> ()
 }
-
-

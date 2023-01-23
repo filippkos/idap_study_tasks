@@ -9,8 +9,14 @@ final class StorageService {
     // MARK: Variables
     
     var fileManager = FileManager()
-    let tempDir = NSTemporaryDirectory()
-    var cachedImagesFolderURL = URL(string: "") ?? URL(fileURLWithPath: "")
+    var tempDir = NSTemporaryDirectory()
+    var cachedImagesFolderURL: URL?
+    
+    init() {
+        self.checkAndCreateDirectory()
+        self.tempDir = (self.cachedImagesFolderURL)?.absoluteString ?? ""
+        self.tempDir = String(tempDir.dropFirst(7))   // Needs to be refactored
+    }
     
     // MARK: -
     // MARK: Internal
@@ -19,7 +25,7 @@ final class StorageService {
         let fileName = "\(name).png"
         do {
             var isFound = false
-            let files = try fileManager.contentsOfDirectory(atPath: tempDir)
+            let files = try fileManager.contentsOfDirectory(atPath: self.tempDir)
             if files.count > 0 {
                 files.forEach {
                     if $0 == fileName {
@@ -38,6 +44,36 @@ final class StorageService {
         }
     }
     
+    func readImage(name: String) -> UIImage? {
+        let fileName = "\(name).png"
+        let path = (self.tempDir as NSString).appendingPathComponent(fileName)
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let imageData = try Data(contentsOf: url)
+            print("<@> File with name \(fileName) is found")
+            return UIImage(data: imageData)
+        } catch {
+            print("Error loading image: \(error)")
+        }
+        
+        return nil
+    }
+    
+    func checkAndCreateDirectory() {
+        self.fileManager = FileManager.default
+        self.cachedImagesFolderURL = self.fileManager
+            .urls(for: .cachesDirectory, in: .userDomainMask)
+            .first?.appendingPathComponent("cachedImages")
+
+        do {
+            if let url = self.cachedImagesFolderURL {
+                try? self.fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: [:])
+                
+            }
+        }
+    }
+    
     func createImage(image: UIImage, name: String) {
         let fileName = "\(name).png"
         let path = (tempDir as NSString).appendingPathComponent(fileName)
@@ -46,28 +82,12 @@ final class StorageService {
         do {
             if let pngImageData = image.pngData() {
                 try pngImageData.write(to: fileUrl, options: .atomic)
-                print("File created at temp directory \(fileUrl)")
+                print("<@> File created at temp directory \(fileUrl)")
                 
             }
         } catch let error as NSError {
             print("could't create file text.txt because of error: \(error)")
         }
-    }
-    
-    func readImage(name: String) -> UIImage? {
-        let fileName = "\(name).png"
-        let path = (tempDir as NSString).appendingPathComponent(fileName)
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            let imageData = try Data(contentsOf: url)
-            print("File with name \(fileName) is found")
-            return UIImage(data: imageData)
-        } catch {
-            print("Error loading image : \(error)")
-        }
-        
-        return nil
     }
 }
 
