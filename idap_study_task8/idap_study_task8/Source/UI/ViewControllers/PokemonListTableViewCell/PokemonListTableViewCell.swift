@@ -14,7 +14,7 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
     // MARK: Variables
     
     var isLoaded: Bool = false
-    private var onReuse: ((URLSessionDataTask?) -> ())?
+    private(set) var id = UUID()
     
     // MARK: -
     // MARK: Outlets
@@ -40,5 +40,6 @@ class PokemonListTableViewCell: UITableViewCell, Spinnable {
         self.viewedIcon?.image = nil
         self.pokemonIcon?.image = nil
         self.parameterLabel?.text = nil
+        self.id = UUID()
     }
 }

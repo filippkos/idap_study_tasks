@@ -28,7 +28,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     // MARK: Variables
     
     public var outputEvents: ((PokemonViewControllerOutputEvents) -> ())?
-    private lazy var imageService = ImageService()
+    private var imageService: ImageServiceType
     private var model: Pokemon
     
     // MARK: -
@@ -36,6 +36,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     public init(serviceManager: ServiceManager, pokemonModel: Pokemon) {
         self.model = pokemonModel
+        self.imageService = serviceManager.imageService
 
         super.init(serviceManager: serviceManager)
     }
@@ -97,8 +98,10 @@ class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
-        cell.fill(text: (self.model.grouped[indexPath.section]?.1[indexPath.row]) ?? "")
-        
+        let initialId = cell.id
+        if initialId == cell.id {
+            cell.fill(text: (self.model.grouped[indexPath.section]?.1[indexPath.row]) ?? "")
+        }
         return cell
     }
     

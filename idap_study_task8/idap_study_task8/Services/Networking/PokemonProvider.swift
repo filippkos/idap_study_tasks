@@ -1,9 +1,18 @@
 //Created for idap_study_task8 in 2022
 // Using Swift 5.0
 
+protocol PokemonProviderType {
+    
+    @discardableResult
+    func pokemon(name: String, completion: @escaping F.ResultHandler<Pokemon>) -> URLSessionDataTask
+    @discardableResult
+    func pokemonList(limit: Int, offset: Int, completion: @escaping F.ResultHandler<PokemonList>) -> URLSessionDataTask
+    
+}
+
 import UIKit
 
-class PokemonProvider {
+class PokemonProvider: PokemonProviderType {
     
     // MARK: -
     // MARK: Variables

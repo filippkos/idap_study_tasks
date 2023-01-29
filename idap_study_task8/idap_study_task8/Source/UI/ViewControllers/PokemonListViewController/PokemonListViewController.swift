@@ -24,14 +24,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     private var pokemon: Pokemon?
     private var listModel: PokemonList?
     private var networkManager: NetworkManagerType
-    private var pokemonProvider: PokemonProvider
+    private var pokemonProvider: PokemonProviderType
     
     private var pokemonList: Set<Pokemon> = []
     
     private var pokemonsAreLoading = false
     private let limit = 30
-    private var storageService: StorageService
-    private lazy var imageService = ImageService()
+    private var storageService: StorageServiceType
+    private var imageService: ImageServiceType
+    private let group = DispatchGroup()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -52,6 +53,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
         self.pokemonProvider = serviceManager.pokemonProvider
         self.storageService = serviceManager.storageService
         self.networkManager = serviceManager.networkManager
+        self.imageService = serviceManager.imageService
         
         super.init(serviceManager: serviceManager)
     }
@@ -108,12 +110,11 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     private func iteratePokemons() {
         DispatchQueue.global(qos: .background).async {
-            let group = DispatchGroup()
             self.listModel?.results.forEach { unit in
-                self.pokemon(name: unit.name, group: group)
+                self.pokemon(name: unit.name, group: self.group)
             }
             print("<!> before wait \(Thread.current)")
-            group.wait()
+            self.group.wait()
             DispatchQueue.main.async {
                 self.rootView?.tableView?.reloadData()
             }
@@ -151,19 +152,22 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
-        let pokemon = self.pokemonList.filter { ($0.id - 1) == indexPath.row }.first
-        if let pokemon = pokemon {
-            self.imageService.image(for: pokemon) { image in
-                cell.pokemonIcon?.showSpinner()
-                if let image = image {
-                    cell.configure(with: pokemon, image: image)
-                    cell.pokemonIcon?.hideSpinner()
+        let initialId = cell.id
+        if initialId == cell.id {
+            let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
+            if let pokemon = pokemon {
+                self.imageService.image(for: pokemon) { image in
+                    cell.pokemonIcon?.showSpinner()
+                    if let image = image {
+                        cell.configure(with: pokemon, image: image)
+                        cell.pokemonIcon?.hideSpinner()
+                    }
+                } alertHandler: { error in
+                    self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                 }
-            } alertHandler: { error in
-                self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
             }
         }
-
+        
         return cell
     }
     
@@ -171,7 +175,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var pokemon = self.pokemonList.filter { ($0.id - 1) == indexPath.row }.first
+        var pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
         if pokemon != nil {
             pokemon?.checkMark = .checkmark
             self.rootView?.tableView?.reloadData()

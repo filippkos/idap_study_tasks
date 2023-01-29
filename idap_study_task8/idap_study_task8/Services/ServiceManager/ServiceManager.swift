@@ -9,15 +9,17 @@ class ServiceManager {
     // MARK: Variables
     
     public let networkManager: NetworkManagerType
-    public let storageService: StorageService
-    public let pokemonProvider: PokemonProvider
+    public let storageService: StorageServiceType
+    public let pokemonProvider: PokemonProviderType
+    public let imageService: ImageServiceType
     
     // MARK: -
     // MARK: Init
     
-    public init(networkManager: NetworkManagerType, storageService: StorageService, pokemonProvider: PokemonProvider) {
+    public init(networkManager: NetworkManagerType, storageService: StorageServiceType, pokemonProvider: PokemonProviderType, imageService: ImageServiceType) {
         self.networkManager = networkManager
         self.storageService = storageService
         self.pokemonProvider = pokemonProvider
+        self.imageService = imageService
     }
 }
