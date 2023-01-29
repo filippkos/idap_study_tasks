@@ -136,7 +136,11 @@ struct Sprites: Codable {
     let backShiny: String?
     let frontDefault: String?
     let frontShiny: String?
-
+    
+    var frontDefaultEncoded: String {
+        return frontDefault?.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? ""
+    }
+    
     enum CodingKeys: String, CodingKey {
         
         case backDefault = "back_default"
