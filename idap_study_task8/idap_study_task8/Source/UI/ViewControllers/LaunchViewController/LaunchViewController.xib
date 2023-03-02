@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LaunchViewController" customModule="idap_study_task8" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="IIF-TD-NRY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="LaunchView" customModule="idap_study_task8" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzo-AQ-r9N" userLabel="Start Button">
+                    <rect key="frame" x="169" y="432" width="76" height="42"/>
+                    <color key="backgroundColor" red="0.08235294118" green="0.43921568630000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="tzo-AQ-r9N" secondAttribute="height" multiplier="56:31" id="vH8-dB-kA3"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Start"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Start" cornerStyle="dynamic" buttonSize="small"/>
+                    <connections>
+                        <action selector="startButton:" destination="-1" eventType="touchUpInside" id="6Na-Lc-4lu"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.48889752920000001" green="0.82677558330000001" blue="0.95057094740000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="tzo-AQ-r9N" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="0l2-6o-6p6"/>
+                <constraint firstItem="tzo-AQ-r9N" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="150/812" id="onp-S7-dhI"/>
+                <constraint firstItem="tzo-AQ-r9N" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qTH-6j-ZuS"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="90"/>
+        </view>
+    </objects>
+</document>
