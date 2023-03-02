@@ -29,8 +29,8 @@ class LaunchViewController: UIViewController, RootViewGettable {
     // MARK: -
     // MARK: Variables
     
-    public var inputEvents: ((LaunchViewControllerInputEvents) -> ())?
-    public var outputEvents: ((LaunchViewControllerOutputEvents) -> ())?
+    public var inputEvents: F.Handler<LaunchViewControllerInputEvents>?
+    public var outputEvents: F.Handler<LaunchViewControllerOutputEvents>?
 
     // MARK: -
     // MARK: Life Cycle
@@ -47,12 +47,12 @@ class LaunchViewController: UIViewController, RootViewGettable {
     private func handleName(field: CustomTextField) -> Bool {
         let name = field.field.text ?? ""
         
-        if name != "" { } else {
+        if name.isEmpty {
             self.rootView?.handleInputEvents(event: .emptyField(field: field))
             return false
         }
         
-        if PlayerNameValidator.isValid(name) { } else {
+        if !PlayerNameValidator.isValid(name) {
             self.rootView?.handleInputEvents(event: .onlyWhiteSpaces(field: field))
             return false
         }
@@ -61,12 +61,25 @@ class LaunchViewController: UIViewController, RootViewGettable {
         return true
     }
     
+    private func handleNames(_ firstField: CustomTextField, _ secondField: CustomTextField) -> Bool{
+        var hasError = true
+        
+        if !self.handleName(field: firstField) {
+            hasError = false
+        }
+        if !self.handleName(field: secondField) {
+            hasError = false
+        }
+        
+        return hasError
+    }
+    
     // MARK: -
     // MARK: IBActions
     
     @IBAction func button() {
         if let firstField = self.rootView?.firstField, let secondField = self.rootView?.secondField {
-            if handleName(field: firstField) && handleName(field: secondField) {
+            if handleNames(firstField, secondField) {
                 let firstName = self.rootView?.firstField.field.text ?? ""
                 let secondName = self.rootView?.secondField.field.text ?? ""
                 if !PlayerNameValidator.isEqual(firstName, secondName) {

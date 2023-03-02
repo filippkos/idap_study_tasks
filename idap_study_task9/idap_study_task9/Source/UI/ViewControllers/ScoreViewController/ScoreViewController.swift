@@ -24,7 +24,7 @@ class ScoreViewController: UIViewController, RootViewGettable {
     // MARK: -
     // MARK: Variables
     
-    public var outputEvents: ((ScoreViewControllerOutputEvents) -> ())?
+    public var outputEvents: F.Handler<ScoreViewControllerOutputEvents>?
     private let game: GameModel
     
     // MARK: -

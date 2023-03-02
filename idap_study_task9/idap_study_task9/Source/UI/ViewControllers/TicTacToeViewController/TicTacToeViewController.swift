@@ -28,8 +28,7 @@ class TicTacToeViewController: UIViewController, RootViewGettable {
     // MARK: -
     // MARK: Variables
     
-    public var outputEvents: ((TicTacToeViewControllerOutputEvents) -> ())?
-    private var stepCounter = 0
+    public var outputEvents: F.Handler<TicTacToeViewControllerOutputEvents>?
     private var game: GameModel
     
     private lazy var fields: [UIView?] = [
@@ -86,7 +85,7 @@ class TicTacToeViewController: UIViewController, RootViewGettable {
     }
     
     @objc private func changeColor(_ sender: UITapGestureRecognizer?) {
-        let currentPlayer = self.stepCounter % 2 == 0 ? self.game.firstPlayer : self.game.secondPlayer
+        let currentPlayer = self.game.stepCounter % 2 == 0 ? self.game.firstPlayer : self.game.secondPlayer
 
         sender?.view?.isUserInteractionEnabled = false
         
@@ -105,7 +104,7 @@ class TicTacToeViewController: UIViewController, RootViewGettable {
             }
             
             if points > 2 {
-                showAlert(text: currentPlayer.name + TicTacToeViewTexts.win.rawValue)
+                self.showAlert(text: currentPlayer.name + TicTacToeViewTexts.win.rawValue)
                 
                 if currentPlayer.id == 1 {
                     self.game.firstPlayer.points += 1
@@ -123,23 +122,15 @@ class TicTacToeViewController: UIViewController, RootViewGettable {
             }
         }
         
-        self.stepCounter += 1
-        if self.stepCounter >= 9 {
-            showAlert(text: TicTacToeViewTexts.nobodyWon.rawValue)
+        self.game.stepCounter += 1
+        if self.game.stepCounter >= 9 {
+            self.showAlert(text: TicTacToeViewTexts.nobodyWon.rawValue)
         }
     }
     
     private func showAlert(text: String) {
-        let alertModel = AlertModel(
-            title: nil,
-            message: text,
-            actions: [UIAlertAction(
-                title: "OK",
-                style: .default,
-                handler: {_ in
-                    self.refresh()
-                })
-            ])
+        let action = UIAlertAction(title: "OK", style: .default, handler: { _ in self.refresh() })
+        let alertModel = AlertModel( title: nil, message: text, actions: [action])
         
         self.outputEvents?(.needShowAlert(alertModel: alertModel))
     }
@@ -149,8 +140,7 @@ class TicTacToeViewController: UIViewController, RootViewGettable {
             $0?.backgroundColor = .lightGray
             $0?.isUserInteractionEnabled = true
         }
-        self.game.squares = [0,0,0,0,0,0,0,0,0]
-        self.stepCounter = 0
+        self.game.refresh()
     }
     
     // MARK: -

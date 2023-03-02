@@ -56,7 +56,6 @@ final class CustomTextField: UIControl, UITextFieldDelegate {
     
     private func prepareTitle() {
         self.titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        self.titleLabel.text = "player 1"
         self.titleLabel.backgroundColor = .clear
     }
     

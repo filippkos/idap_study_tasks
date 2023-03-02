@@ -10,6 +10,7 @@
 		2251A3F629ADE62E00AB7A59 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251A3F429ADE62E00AB7A59 /* LaunchViewController.swift */; };
 		2251A3F729ADE62E00AB7A59 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2251A3F529ADE62E00AB7A59 /* LaunchViewController.xib */; };
 		2251A3F929AE41C300AB7A59 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251A3F829AE41C300AB7A59 /* PlayerModel.swift */; };
+		2263A87F29B0820D00720520 /* F.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2263A87E29B0820D00720520 /* F.swift */; };
 		227276202987B5F4008BAF03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272761F2987B5F4008BAF03 /* AppDelegate.swift */; };
 		227276292987B5F6008BAF03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227276282987B5F6008BAF03 /* Assets.xcassets */; };
 		2272762C2987B5F6008BAF03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2272762A2987B5F6008BAF03 /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 		2251A3F529ADE62E00AB7A59 /* LaunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		2251A3F829AE41C300AB7A59 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		225B662E0818C2B1CCD8B6C0 /* Pods-idap_study_task9.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-idap_study_task9.release.xcconfig"; path = "Target Support Files/Pods-idap_study_task9/Pods-idap_study_task9.release.xcconfig"; sourceTree = "<group>"; };
+		2263A87E29B0820D00720520 /* F.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F.swift; sourceTree = "<group>"; };
 		2272761C2987B5F4008BAF03 /* idap_study_task9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2272761F2987B5F4008BAF03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227276282987B5F6008BAF03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				22D9552A298A54AD00C1C7B5 /* Protocols */,
 				227276422987FD72008BAF03 /* Extensions */,
+				2263A87E29B0820D00720520 /* F.swift */,
 			);
 			path = F;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				22D95529298A541700C1C7B5 /* AppCoordinator.swift in Sources */,
 				22E9BBCD29AB85AF004BC242 /* PlayerNameValidator.swift in Sources */,
 				22E433A129895B550037BC9F /* GameModel.swift in Sources */,
+				2263A87F29B0820D00720520 /* F.swift in Sources */,
 				227276442987FDA5008BAF03 /* UIViewController+ViewCast.swift in Sources */,
 				22D9552E298A551000C1C7B5 /* AlertModel.swift in Sources */,
 				2272763D2987C446008BAF03 /* TicTacToeViewController.swift in Sources */,

@@ -10,8 +10,10 @@ import Foundation
 class GameModel {
     
     var squares: [Int]
+    var stepCounter: Int
     var firstPlayer: PlayerModel
     var secondPlayer: PlayerModel
+
     
     let combinationsBool = [
         [true,true,true,false,false,false,false,false,false],
@@ -25,8 +27,14 @@ class GameModel {
     ]
     
     init(firstPlayer: PlayerModel, secondPlayer: PlayerModel) {
-        self.squares = [0,0,0,0,0,0,0,0,0]
+        self.stepCounter = 0
         self.firstPlayer = firstPlayer
         self.secondPlayer = secondPlayer
+        self.squares = [0,0,0,0,0,0,0,0,0]
+    }
+    
+    func refresh() {
+        self.stepCounter = 0
+        self.squares = [0,0,0,0,0,0,0,0,0]
     }
 }

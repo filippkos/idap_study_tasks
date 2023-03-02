@@ -48,7 +48,7 @@ final class AppCoordinator: Coordinator {
             self?.handle(event: event)
         }
         
-        self.navigationViewController.pushViewController(controller, animated: false)
+        self.navigationViewController.pushViewController(controller, animated: true)
     }
     
     private func handle(event: TicTacToeViewControllerOutputEvents) {
@@ -66,7 +66,7 @@ final class AppCoordinator: Coordinator {
             self?.handle(event: event, controller: controller)
         }
         
-        self.navigationViewController.pushViewController(controller, animated: false)
+        self.navigationViewController.pushViewController(controller, animated: true)
     }
     
     private func handle(event: ScoreViewControllerOutputEvents, controller: UIViewController) {
