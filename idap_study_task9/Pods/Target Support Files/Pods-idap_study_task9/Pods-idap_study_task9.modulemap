@@ -1,0 +1,6 @@
+framework module Pods_idap_study_task9 {
+  umbrella header "Pods-idap_study_task9-umbrella.h"
+
+  export *
+  module * { export * }
+}
