@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="KGk-i7-Jjw" customClass="PokemonListTableViewCell" customModule="idap_study_task10" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="387" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKK-ck-xpn" userLabel="Parameter Label">
+                        <rect key="frame" x="0.0" y="0.0" width="275" height="56"/>
+                        <color key="backgroundColor" red="0.61783097519999997" green="0.92022113409999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NHQ-fl-RWn" userLabel="Viewed Checkmark Icon">
+                        <rect key="frame" x="331" y="0.0" width="56" height="56"/>
+                        <color key="backgroundColor" red="0.61783097519999997" green="0.92022113409999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="NHQ-fl-RWn" secondAttribute="height" multiplier="1:1" id="yEK-L7-4wg"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EAl-oB-MZe" userLabel="Pokemon Icon">
+                        <rect key="frame" x="275" y="0.0" width="56" height="56"/>
+                        <color key="backgroundColor" red="0.61783097519999997" green="0.92022113409999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="EAl-oB-MZe" secondAttribute="height" multiplier="1:1" id="L5f-2y-yew"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="LKK-ck-xpn" secondAttribute="trailing" constant="112" id="6nU-sj-dxG"/>
+                    <constraint firstAttribute="bottom" secondItem="NHQ-fl-RWn" secondAttribute="bottom" id="6zm-bP-suV"/>
+                    <constraint firstAttribute="bottom" secondItem="EAl-oB-MZe" secondAttribute="bottom" id="8Ap-Qi-yxg"/>
+                    <constraint firstItem="EAl-oB-MZe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DhU-Pu-Zx7"/>
+                    <constraint firstItem="EAl-oB-MZe" firstAttribute="leading" secondItem="LKK-ck-xpn" secondAttribute="trailing" id="KaK-w1-GMR"/>
+                    <constraint firstItem="NHQ-fl-RWn" firstAttribute="leading" secondItem="EAl-oB-MZe" secondAttribute="trailing" id="e8b-47-eth"/>
+                    <constraint firstItem="LKK-ck-xpn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hLM-Nk-2l9"/>
+                    <constraint firstAttribute="trailing" secondItem="NHQ-fl-RWn" secondAttribute="trailing" id="jVB-gR-EW6"/>
+                    <constraint firstItem="NHQ-fl-RWn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nyj-23-rUR"/>
+                    <constraint firstItem="LKK-ck-xpn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pup-A1-9GE"/>
+                    <constraint firstAttribute="bottom" secondItem="LKK-ck-xpn" secondAttribute="bottom" id="yl1-SB-c6K"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="parameterLabel" destination="LKK-ck-xpn" id="3EJ-UT-qA4"/>
+                <outlet property="pokemonIcon" destination="EAl-oB-MZe" id="Z6G-7K-Lj0"/>
+                <outlet property="viewedIcon" destination="NHQ-fl-RWn" id="HxF-Q5-ivT"/>
+            </connections>
+            <point key="canvasLocation" x="78.625954198473281" y="23.943661971830988"/>
+        </tableViewCell>
+    </objects>
+</document>

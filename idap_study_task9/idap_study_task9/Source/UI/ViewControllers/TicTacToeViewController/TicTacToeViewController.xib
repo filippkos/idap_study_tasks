@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,10 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qo-DB-az7" userLabel="ViewContainer">
-                    <rect key="frame" x="5" y="59" width="383" height="759"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nIn-4J-BDv">
-                            <rect key="frame" x="0.0" y="0.0" width="383" height="759"/>
+                            <rect key="frame" x="5" y="0.0" width="383" height="759"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8o-0t-470" userLabel="HeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="100"/>
@@ -125,8 +126,8 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="nIn-4J-BDv" secondAttribute="trailing" id="d9k-ji-lEI"/>
-                        <constraint firstItem="nIn-4J-BDv" firstAttribute="leading" secondItem="1qo-DB-az7" secondAttribute="leading" id="zNS-57-XPo"/>
+                        <constraint firstAttribute="trailing" secondItem="nIn-4J-BDv" secondAttribute="trailing" constant="5" id="d9k-ji-lEI"/>
+                        <constraint firstItem="nIn-4J-BDv" firstAttribute="leading" secondItem="1qo-DB-az7" secondAttribute="leading" constant="5" id="zNS-57-XPo"/>
                     </constraints>
                 </view>
             </subviews>
@@ -134,14 +135,12 @@
             <color key="backgroundColor" systemColor="systemGrayColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nIn-4J-BDv" secondAttribute="bottom" id="0LP-PQ-B75"/>
-                <constraint firstItem="1qo-DB-az7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3v9-IC-EXa"/>
-                <constraint firstItem="1qo-DB-az7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BUE-vo-jan"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1qo-DB-az7" secondAttribute="bottom" id="ToB-C8-hZR"/>
-                <constraint firstItem="1qo-DB-az7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="Vwb-qn-ZBS"/>
+                <constraint firstItem="1qo-DB-az7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vwb-qn-ZBS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Vmc-aQ-HYl" secondAttribute="bottom" id="api-7b-7RW"/>
                 <constraint firstItem="nIn-4J-BDv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="d2t-A3-Jx6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1qo-DB-az7" secondAttribute="bottom" id="jog-8V-54x"/>
                 <constraint firstItem="1qo-DB-az7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="r1s-xi-etB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1qo-DB-az7" secondAttribute="trailing" constant="5" id="wCo-9y-kCm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1qo-DB-az7" secondAttribute="trailing" id="wCo-9y-kCm"/>
             </constraints>
             <connections>
                 <outlet property="button" destination="9mm-06-5BG" id="Di7-hj-WG9"/>
