@@ -22,10 +22,10 @@ class DashboardCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure() {
-        self.titleLabel.text = "Find out who"
-        self.descriptionLabel.text = "IFunny is fun of your life. Images, GIFs and videos featured seven times a day. Your anaconda definitely wants some."
-        self.button.titleLabel?.text = "GO!"
-        self.button.backgroundColor = .yellow
+        self.titleLabel.text = L10n.Dashboard.First.title
+        self.descriptionLabel.text = L10n.Dashboard.First.description
+        self.button.titleLabel?.text = L10n.Dashboard.buttonTitle
+        self.button.titleLabel?.font = UIFont(name: "PlusJakartaSans-ExtraBold", size: 20)
         self.button.layer.cornerRadius = 30
         self.clipsToBounds = true
     }
