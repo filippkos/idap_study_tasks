@@ -13,11 +13,13 @@ class DashboardView: BaseView {
     // MARK: Outlets
     
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var pager: PagerView!
     
     // MARK: -
     // MARK: Configure
     
     func flowLayoutConfigure() {
+        self.pager = PagerView()
         let itemWidth = UIScreen.main.bounds.width
         let itemHeight = self.collectionView.frame.size.height
         let layout = UICollectionViewFlowLayout()

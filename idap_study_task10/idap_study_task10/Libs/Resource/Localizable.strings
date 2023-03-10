@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  idap_study_task10
+
+  Created by Filipp Kosenko on 07.03.2023.
+  
+*/
+
+// MARK: -
+// MARK: Dashboard
+
+"dashboard.button_title" = "GO!";
+
+"dashboard.first.title" = "Find out who";
+"dashboard.first.description" = "IFunny is fun of your life. Images, GIFs and videos featured seven times a day. Your anaconda definitely wants some.";
+
+"dashboard.second.title" = "Find out about the abilities";
+"dashboard.second.description" = "IFunny is fun of your life. Images, GIFs and videos featured seven times a day. Your anaconda definitely wants some.";
+
+"dashboard.third.title" = "Collect them all";
+"dashboard.third.description" = "IFunny is fun of your life. Images, GIFs and videos featured seven times a day. Your anaconda definitely wants some.";
+
+
+

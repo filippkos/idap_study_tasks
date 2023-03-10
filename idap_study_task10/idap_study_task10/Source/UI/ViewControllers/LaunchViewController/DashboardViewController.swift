@@ -33,6 +33,7 @@ final class DashboardViewController: BaseViewController, RootViewGettable, UICol
     // MARK: -
     // MARK: Variables
     
+    private let numberOfPages: Int = 3
     public var outputEvents: F.VoidFunc<DashboardViewControllerOutputEvents>?
     
     // MARK: -
@@ -48,11 +49,8 @@ final class DashboardViewController: BaseViewController, RootViewGettable, UICol
     // MARK: DataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return self.numberOfPages
     }
-    
-    // MARK: -
-    // MARK: Delegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(cellClass: DashboardCollectionViewCell.self, indexPath: indexPath)

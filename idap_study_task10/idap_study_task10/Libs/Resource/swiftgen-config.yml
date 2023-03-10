@@ -1,0 +1,34 @@
+output_dir: Generated
+xcassets:
+  - inputs:
+    - Images.xcassets
+    outputs:
+      - templateName: swift5
+        output: Images.swift
+        params:
+          enumName: Images
+          publicAccess: true
+  - inputs:
+    - Colors.xcassets
+    outputs:
+      - templateName: swift5
+        output: Colors.swift
+        params:
+          enumName: Colors
+          publicAccess: true
+strings:
+    inputs: Localizable.strings
+    outputs:
+        templateName: structured-swift5
+        output: L10n-Constants.swift
+        params:
+            publicAccess: true
+fonts:
+    inputs:
+        Fonts
+    outputs:
+        templateName: swift5
+        output: Fonts.swift
+        params:
+            enumName: Fonts
+            publicAccess: true
