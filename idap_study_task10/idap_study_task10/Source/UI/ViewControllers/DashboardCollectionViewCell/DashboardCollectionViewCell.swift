@@ -7,27 +7,48 @@
 
 import UIKit
 
-class DashboardCollectionViewCell: UICollectionViewCell {
+enum DashboardCollectionViewCellOutputEvents {
+    case goNext
+}
 
+class DashboardCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: -
+    // MARK: Outlets
+
+    @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var image: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var button: UIButton!
     
+    // MARK: -
+    // MARK: Variables
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    public var outputEvents: F.VoidFunc<DashboardCollectionViewCellOutputEvents>?
+    
+    private let buttonFontSize: CGFloat = 20
+    private let buttonCornerRadius: CGFloat = 35
+    
+    // MARK: -
+    // MARK: Public
+    
+    public func configure(model: DashboardContentModel) {
+        self.titleLabel.text = model.title.description
+        self.descriptionLabel.text = model.description.description
         
+        self.image.image = model.image
+        
+        self.button.isHidden = !model.isVisibleButton
+        self.button.titleLabel?.text = L10n.Dashboard.buttonTitle
+        self.button.titleLabel?.font = Fonts.PlusJakartaSans.extraBold.font(size: self.buttonFontSize)
+        self.button.layer.cornerRadius = self.buttonCornerRadius
     }
     
-    public func configure() {
-        self.titleLabel.text = L10n.Dashboard.First.title
-        self.descriptionLabel.text = L10n.Dashboard.First.description
-        self.button.titleLabel?.text = L10n.Dashboard.buttonTitle
-        self.button.titleLabel?.font = UIFont(name: "PlusJakartaSans-ExtraBold", size: 20)
-        self.button.layer.cornerRadius = 30
-        self.clipsToBounds = true
+    // MARK: -
+    // MARK: Actions
+    
+    @IBAction func goButton() {
+        self.outputEvents?(.goNext)
     }
-
 }

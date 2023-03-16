@@ -12,7 +12,7 @@ enum DashboardViewControllerOutputEvents {
     case needShowPokemonList
 }
 
-final class DashboardViewController: BaseViewController, RootViewGettable, UICollectionViewDelegate, UICollectionViewDataSource {
+final class DashboardViewController: BaseViewController, RootViewGettable, ScrollToPageProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: -
     // MARK: Typealiases
@@ -27,14 +27,20 @@ final class DashboardViewController: BaseViewController, RootViewGettable, UICol
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        
+        if let index = self.rootView?.collectionView.indexPathsForVisibleItems.first?.row {
+            if index < self.numberOfPages - 1 {
+                self.scrollTo(page: IndexPath(item: index + 1, section: 0))
+                self.rootView?.pager.updateViews(number: index)
+            }
+        }
     }
     
     // MARK: -
     // MARK: Variables
     
-    private let numberOfPages: Int = 3
     public var outputEvents: F.VoidFunc<DashboardViewControllerOutputEvents>?
+    private var contentModels: [DashboardContentModel] = []
+    private let numberOfPages: Int = 3
     
     // MARK: -
     // MARK: Life Cycle
@@ -42,7 +48,49 @@ final class DashboardViewController: BaseViewController, RootViewGettable, UICol
     override func viewDidLoad() {
         self.rootView?.collectionView.register(cellClass: DashboardCollectionViewCell.self)
         self.rootView?.collectionView.dataSource = self
+        self.rootView?.collectionView.delegate = self
+        self.rootView?.pager.scrollDelegate = self
         self.rootView?.flowLayoutConfigure()
+        self.fillContentModels()
+    }
+    
+    // MARK: -
+    // MARK: Public
+    
+    func scrollTo(page: IndexPath) {
+        self.rootView?.collectionView.isPagingEnabled = false
+        self.rootView?.collectionView.scrollToItem(at: page, at: .centeredHorizontally, animated: true)
+        self.rootView?.collectionView.isPagingEnabled = true
+    }
+    
+    // MARK: -
+    // MARK: Private
+    
+    private func fillContentModels() {
+        contentModels.append(
+            DashboardContentModel(
+                title: L10n.Dashboard.First.title,
+                description: L10n.Dashboard.First.description,
+                isVisibleButton: false,
+                image: Images.pokemon.image
+            )
+        )
+        contentModels.append(
+            DashboardContentModel(
+                title: L10n.Dashboard.Second.title,
+                description: L10n.Dashboard.Second.description,
+                isVisibleButton: false,
+                image: Images.purplePokemon.image
+            )
+        )
+        contentModels.append(
+            DashboardContentModel(
+                title: L10n.Dashboard.Third.title,
+                description: L10n.Dashboard.Third.description,
+                isVisibleButton: true,
+                image: Images.allPokemons.image
+            )
+        )
     }
     
     // MARK: -
@@ -54,8 +102,24 @@ final class DashboardViewController: BaseViewController, RootViewGettable, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(cellClass: DashboardCollectionViewCell.self, indexPath: indexPath)
-        cell.configure()
+        cell.configure(model: self.contentModels[indexPath.row])
+        cell.outputEvents = { [weak self] event in
+            switch event {
+            case .goNext:
+                self?.outputEvents?(.needShowPokemonList)
+            }
+        }
         return cell
     }
+    
+    // MARK: -
+    // MARK: Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let index = self.rootView?.collectionView.indexPathsForVisibleItems.first?.row {
+            self.rootView?.pager.updateViews(number: index)
+        }
+    }
+    
 }
 

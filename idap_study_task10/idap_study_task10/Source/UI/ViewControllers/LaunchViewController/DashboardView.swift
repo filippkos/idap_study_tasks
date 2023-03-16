@@ -19,7 +19,6 @@ class DashboardView: BaseView {
     // MARK: Configure
     
     func flowLayoutConfigure() {
-        self.pager = PagerView()
         let itemWidth = UIScreen.main.bounds.width
         let itemHeight = self.collectionView.frame.size.height
         let layout = UICollectionViewFlowLayout()
