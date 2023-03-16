@@ -39,7 +39,7 @@ class DashboardCollectionViewCell: UICollectionViewCell {
         
         self.image.image = model.image
         
-        self.button.isHidden = !model.isVisibleButton
+        self.button.isHidden = !model.isVisible
         self.button.titleLabel?.text = L10n.Dashboard.buttonTitle
         self.button.titleLabel?.font = Fonts.PlusJakartaSans.extraBold.font(size: self.buttonFontSize)
         self.button.layer.cornerRadius = self.buttonCornerRadius

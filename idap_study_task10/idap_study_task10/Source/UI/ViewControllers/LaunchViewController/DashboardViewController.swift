@@ -67,30 +67,9 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     // MARK: Private
     
     private func fillContentModels() {
-        contentModels.append(
-            DashboardContentModel(
-                title: L10n.Dashboard.First.title,
-                description: L10n.Dashboard.First.description,
-                isVisibleButton: false,
-                image: Images.pokemon.image
-            )
-        )
-        contentModels.append(
-            DashboardContentModel(
-                title: L10n.Dashboard.Second.title,
-                description: L10n.Dashboard.Second.description,
-                isVisibleButton: false,
-                image: Images.purplePokemon.image
-            )
-        )
-        contentModels.append(
-            DashboardContentModel(
-                title: L10n.Dashboard.Third.title,
-                description: L10n.Dashboard.Third.description,
-                isVisibleButton: true,
-                image: Images.allPokemons.image
-            )
-        )
+        for model in DashboardContentModel.allCases {
+            self.contentModels.append(model)
+        }
     }
     
     // MARK: -

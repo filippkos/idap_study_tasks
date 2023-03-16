@@ -7,10 +7,48 @@
 
 import UIKit
 
-struct DashboardContentModel {
+enum DashboardContentModel: CaseIterable {
     
-    var title: String
-    var description: String
-    var isVisibleButton: Bool
-    var image: UIImage
+    case first
+    case second
+    case third
+    
+    private typealias Loc = L10n.Dashboard
+    
+    var isVisible: Bool {
+        self == .third
+    }
+    
+    var title: String {
+        switch self {
+        case .first:
+            return Loc.First.title
+        case .second:
+            return Loc.Second.title
+        case .third:
+            return Loc.Third.title
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .first:
+            return Loc.First.description
+        case .second:
+            return Loc.Second.description
+        case .third:
+            return Loc.Third.description
+        }
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .first:
+            return Images.pokemon.image
+        case .second:
+            return Images.purplePokemon.image
+        case .third:
+            return Images.allPokemons.image
+        }
+    }
 }

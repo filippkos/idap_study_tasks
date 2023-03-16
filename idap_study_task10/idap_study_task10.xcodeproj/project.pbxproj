@@ -19,7 +19,6 @@
 		22232B2F29B78BC300B52268 /* DashboardLocalizationDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22232B2E29B78BC300B52268 /* DashboardLocalizationDictionary.swift */; };
 		22232B3129B792DA00B52268 /* DashboardContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22232B3029B792DA00B52268 /* DashboardContentModel.swift */; };
 		22232B3329B90DDF00B52268 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22232B3229B90DDF00B52268 /* Fonts.swift */; };
-		22232B3529B90E4800B52268 /* DashboardCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22232B3429B90E4800B52268 /* DashboardCollectionViewModel.swift */; };
 		2287B0F429B0F7BC004EDBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287B0F329B0F7BC004EDBE6 /* AppDelegate.swift */; };
 		2287B0F829B0F7BC004EDBE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287B0F729B0F7BC004EDBE6 /* ViewController.swift */; };
 		2287B10029B0F7BE004EDBE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2287B0FE29B0F7BE004EDBE6 /* LaunchScreen.storyboard */; };
@@ -85,7 +84,6 @@
 		22232B2E29B78BC300B52268 /* DashboardLocalizationDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardLocalizationDictionary.swift; sourceTree = "<group>"; };
 		22232B3029B792DA00B52268 /* DashboardContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContentModel.swift; sourceTree = "<group>"; };
 		22232B3229B90DDF00B52268 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		22232B3429B90E4800B52268 /* DashboardCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCollectionViewModel.swift; sourceTree = "<group>"; };
 		2287B0F029B0F7BC004EDBE6 /* idap_study_task10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2287B0F329B0F7BC004EDBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2287B0F729B0F7BC004EDBE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -322,7 +320,6 @@
 				2287B13329B102FD004EDBE6 /* PokemonList.swift */,
 				2287B13529B10307004EDBE6 /* AlertModel.swift */,
 				22232B3029B792DA00B52268 /* DashboardContentModel.swift */,
-				22232B3429B90E4800B52268 /* DashboardCollectionViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -620,7 +617,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2287B15A29B105BC004EDBE6 /* NetworkManager.swift in Sources */,
-				22232B3529B90E4800B52268 /* DashboardCollectionViewModel.swift in Sources */,
 				2287B12429B101EF004EDBE6 /* TableView+ReusableCell.swift in Sources */,
 				22232B2F29B78BC300B52268 /* DashboardLocalizationDictionary.swift in Sources */,
 				2287B15329B1054F004EDBE6 /* DashboardView.swift in Sources */,
