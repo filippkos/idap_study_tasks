@@ -5,50 +5,105 @@
 //  Created by Filipp Kosenko on 04.03.2023.
 //
 
+protocol ScrollToPageProtocol {
+    
+    func scrollTo(page: IndexPath)
+}
+
 import UIKit
 import SnapKit
 
-class PagerView: UICollectionView, UICollectionViewDataSource {
+class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
 
     // MARK: -
     // MARK: Variables
     
-    let numberOfPages: Int = 3
+    var numberOfPages: Int = 3
     var arrayOfViews: [UIView] = []
+    var scrollDelegate: ScrollToPageProtocol?
+    let containerSize = 24
+    let layout = UICollectionViewFlowLayout()
     
+    // MARK: -
+    // MARK: Init
+
     init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 10, height: 10)
-        layout.minimumLineSpacing = 0
         super.init(frame: CGRect(), collectionViewLayout: layout)
-        
-        self.register(cellClass: UICollectionViewCell.self)
+        self.prepareLayout()
+        self.registerDefaultCell(cellClass: UICollectionViewCell.self)
         self.dataSource = self
+        self.delegate = self
         self.setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
+        super.init(coder: aDecoder)
+        self.prepareLayout()
+        self.registerDefaultCell(cellClass: UICollectionViewCell.self)
+        self.dataSource = self
+        self.delegate = self
+        self.collectionViewLayout = self.layout
+        self.setup()
+    }
+    
+    // MARK: -
+    // MARK: Public
+    
+    func updateViews(number: Int) {
+        arrayOfViews.forEach {
+            $0.subviews.first?.backgroundColor = .white
+            $0.subviews.first?.layer.borderColor = Colors.Colors.heather.color.cgColor
+        }
+        self.arrayOfViews[number].subviews.first?.backgroundColor = Colors.Colors.abbey.color
+        self.arrayOfViews[number].subviews.first?.layer.borderColor = Colors.Colors.abbey.color.cgColor
     }
     
     // MARK: -
     // MARK: Private
     
     private func setup() {
-        self.backgroundColor = .green
         self.prepareViews()
+    }
+    
+    private func prepareLayout() {
+        self.layout.scrollDirection = .horizontal
+        self.layout.sectionInset = self.getInsets()
+        self.layout.itemSize = CGSize(width: self.containerSize, height: self.containerSize)
+        self.layout.minimumLineSpacing = 0
+        self.isScrollEnabled = false
     }
     
     private func prepareViews() {
         for _ in 0...self.numberOfPages {
             let view = UIView()
-            view.backgroundColor = .blue
-            self.arrayOfViews.append(view)
+            view.frame.size = CGSize(width: self.containerSize / 2, height: self.containerSize / 2)
+            view.layer.cornerRadius = CGFloat(self.containerSize / 4)
+            view.backgroundColor = .white
+            view.layer.borderColor = Colors.Colors.heather.color.cgColor
+            view.layer.borderWidth = 1.5
+            
+            let viewContainer = UIView()
+            viewContainer.frame.size = CGSize(width: self.containerSize, height: self.containerSize)
+            viewContainer.addSubview(view)
+            
+            view.snp.makeConstraints {
+                $0.trailing.leading.top.bottom.equalToSuperview().inset(6)
+            }
+            
+            self.arrayOfViews.append(viewContainer)
         }
+        self.updateViews(number: 0)
     }
     
+    private func getInsets() -> UIEdgeInsets {
+        let totalCellWidth = self.containerSize * (self.numberOfPages + 1)
+        
+        let horizontalInset = ((self.frame.size.width - CGFloat(totalCellWidth)) / 2)
+        let verticalInset = (self.frame.size.height - CGFloat(self.containerSize)) / 2
+
+        return UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+    }
+
     // MARK: -
     // MARK: DataSource
     
@@ -59,11 +114,15 @@ class PagerView: UICollectionView, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(cellClass: UICollectionViewCell.self, indexPath: indexPath)
         let view = self.arrayOfViews[indexPath.row]
-        view.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
         cell.addSubview(view)
+ 
         return cell
     }
     
+    // MARK: -
+    // MARK: Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.scrollDelegate?.scrollTo(page: indexPath)
+    }
 }

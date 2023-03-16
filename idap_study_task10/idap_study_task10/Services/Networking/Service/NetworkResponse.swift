@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkResponce: String, Error {
+enum NetworkResponse: String, Error {
 
     case notFound = "No result found for your request."
     case forbidden = "No accsess."

@@ -21,7 +21,7 @@ public struct AlertModel {
     
     public init(error: Error) {
         self.title = "Error"
-        self.message = (error as? NetworkResponce)?.rawValue ?? ""
+        self.message = (error as? NetworkResponse)?.rawValue ?? ""
         self.actions = []
     }
 }

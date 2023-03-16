@@ -44,7 +44,7 @@ class NetworkParser {
         } catch {
             debugPrint("***Parser log - \(error)")
             
-            return .failure(NetworkResponce.unableToDecode)
+            return .failure(NetworkResponse.unableToDecode)
         }
     }
     
@@ -57,14 +57,14 @@ class NetworkParser {
         return result
     }
     
-    internal func handleNetworkResponce(_ statusCode: Int) -> Error {
+    internal func handleNetworkResponse(_ statusCode: Int) -> Error {
         switch statusCode {
-        case 400: return NetworkResponce.badRequest
-        case 403: return NetworkResponce.forbidden
-        case 404: return NetworkResponce.notFound
-        case 405...500: return NetworkResponce.clientError
-        case 501...599: return NetworkResponce.serverError
-        default: return NetworkResponce.failed
+        case 400: return NetworkResponse.badRequest
+        case 403: return NetworkResponse.forbidden
+        case 404: return NetworkResponse.notFound
+        case 405...500: return NetworkResponse.clientError
+        case 501...599: return NetworkResponse.serverError
+        default: return NetworkResponse.failed
         }
     }
 }

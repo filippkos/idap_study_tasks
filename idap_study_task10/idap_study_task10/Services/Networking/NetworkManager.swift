@@ -29,16 +29,16 @@ class NetworkManager: NetworkManagerType {
 
     func task<Model: Codable>(request: URLRequest, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask {
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { (data, responce, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                let statusCode = responce?.getStatusCode()
+                let statusCode = response?.getStatusCode()
                 if statusCode != 200 {
-                    completion(.failure(self.parser.handleNetworkResponce(statusCode ?? 0)))
+                    completion(.failure(self.parser.handleNetworkResponse(statusCode ?? 0)))
                 } else {
                     completion(self.parser.decode(data: data))
                 }
             } else {
-                completion(.failure(NetworkResponce.noData))
+                completion(.failure(NetworkResponse.noData))
             }
             if let error = error {
                 completion(.failure(error))
@@ -73,17 +73,17 @@ class NetworkManager: NetworkManagerType {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 debugPrint("Error downloading data: \(e)")
-                completion(.failure(NetworkResponce.downloadError))
+                completion(.failure(NetworkResponse.downloadError))
             } else {
                 if let res = response as? HTTPURLResponse {
                     debugPrint("Downloaded data with response code \(res.statusCode)")
                     if let data = data {
                             completion(.success(data))
                     } else {
-                        completion(.failure(NetworkResponce.noData))
+                        completion(.failure(NetworkResponse.noData))
                     }
                 } else {
-                    completion(.failure(NetworkResponce.notFound))
+                    completion(.failure(NetworkResponse.notFound))
                 }
             }
         }

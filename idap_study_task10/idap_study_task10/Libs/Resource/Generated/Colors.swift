@@ -25,6 +25,8 @@ public enum Colors {
   public enum Colors {
     public static let abbey = ColorAsset(name: "colors/abbey")
     public static let gold = ColorAsset(name: "colors/gold")
+    public static let heather = ColorAsset(name: "colors/heather")
+    public static let wildSand = ColorAsset(name: "colors/wild_sand")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
