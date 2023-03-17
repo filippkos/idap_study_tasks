@@ -20,5 +20,8 @@
 "dashboard.third.title" = "Collect them all";
 "dashboard.third.description" = "IFunny is fun of your life. Images, GIFs and videos featured seven times a day. Your anaconda definitely wants some.";
 
+// MARK: -
+// MARK: PokemonList
 
+"pokemon_list.title" = "All pokemon";
 

@@ -71,6 +71,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.rootView?.configure()
         self.rootView?.tableView?.addSubview(self.refreshControl)
         self.rootView?.tableView?.register(cellClass: PokemonListTableViewCell.self)
         self.storageService.checkAndCreateDirectory()
