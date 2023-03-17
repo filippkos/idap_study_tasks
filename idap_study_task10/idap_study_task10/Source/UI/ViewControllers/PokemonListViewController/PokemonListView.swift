@@ -12,6 +12,21 @@ final class PokemonListView: BaseView {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet internal var tableView: UITableView?
+    @IBOutlet var tableView: UITableView?
+    @IBOutlet var leftImage: UIImageView!
+    @IBOutlet var rightImage: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    
+    // MARK: -
+    // MARK: Public
+    
+    func configure() {
+        self.leftImage.image = Images.icon24.image
+        self.rightImage.image = UIImage(systemName: "square.grid.2x2")
+        self.rightImage.tintColor = Colors.Colors.abbey.color
+        self.titleLabel.text = L10n.PokemonList.title
+        self.titleLabel.textColor = Colors.Colors.abbey.color
+        self.titleLabel.font = Fonts.PlusJakartaSans.extraBold.font(size: 24)
+    }
 }
 

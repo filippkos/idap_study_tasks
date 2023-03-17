@@ -24,6 +24,7 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 public enum Images {
   public static let allPokemons = ImageAsset(name: "all_pokemons")
   public static let bg = ImageAsset(name: "bg")
+  public static let icon24 = ImageAsset(name: "icon24")
   public static let pokemon = ImageAsset(name: "pokemon")
   public static let purplePokemon = ImageAsset(name: "purple_pokemon")
 }
