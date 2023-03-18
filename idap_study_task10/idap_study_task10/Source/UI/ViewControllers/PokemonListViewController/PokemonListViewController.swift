@@ -13,7 +13,7 @@ enum PokemonListViewControllerOutputEvents {
     case needShowAlert(alertModel: AlertModel)
 }
 
-class PokemonListViewController: BaseViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class PokemonListViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -29,13 +29,11 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     private var listModel: PokemonList?
     private var networkManager: NetworkManagerType
     private var pokemonProvider: PokemonProviderType
-    
     private var pokemonList: Set<Pokemon> = []
-    
     private var pokemonsAreLoading = false
-    private let limit = 30
     private var storageService: StorageServiceType
     private var imageService: ImageServiceType
+    private let limit = 30
     private let group = DispatchGroup()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -72,8 +70,10 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.configure()
-        self.rootView?.tableView?.addSubview(self.refreshControl)
-        self.rootView?.tableView?.register(cellClass: PokemonListTableViewCell.self)
+        self.rootView?.flowLayoutConfigure()
+        self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewCell.self)
+        self.rootView?.collectionView.dataSource = self
+        self.rootView?.collectionView.delegate = self
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
     }
@@ -121,7 +121,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
             print("<!> before wait \(Thread.current)")
             self.group.wait()
             DispatchQueue.main.async {
-                self.rootView?.tableView?.reloadData()
+                self.rootView?.collectionView.reloadData()
             }
             print("<!> after wait")
         }
@@ -149,23 +149,38 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     // MARK: -
-    // MARK: UITableViewDataSource
+    // MARK: UIScrollViewDelegate
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let sectionHeight = (self.rootView?.collectionView?.contentSize.height ?? 0) - scrollView.frame.size.height
+        if let listModel = self.listModel {
+            if self.pokemonList.count < listModel.count {
+                if position > sectionHeight {
+                    self.loadPokemonList()
+                }
+            }
+        }
+    }
+    
+    // MARK: -
+    // MARK: UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.pokemonList.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(cellClass: PokemonListTableViewCell.self)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewCell.self, indexPath: indexPath)
         let initialId = cell.id
         if initialId == cell.id {
             let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
             if let pokemon = pokemon {
                 self.imageService.image(for: pokemon) { image in
-                    cell.pokemonIcon?.showSpinner()
+                    cell.image?.showSpinner()
                     if let image = image {
                         cell.configure(with: pokemon, image: image)
-                        cell.pokemonIcon?.hideSpinner()
+                        cell.image?.hideSpinner()
                     }
                 } alertHandler: { error in
                     self.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
@@ -177,31 +192,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UITableVi
     }
     
     // MARK: -
-    // MARK: UITableViewDelegate
+    // MARK: UICollectionViewDelegate
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
         if pokemon != nil {
-            pokemon?.checkMark = .checkmark
-            self.rootView?.tableView?.reloadData()
+            self.rootView?.collectionView?.reloadData()
             if let pokemon = pokemon {
                 self.pokemonList.update(with: pokemon)
                 self.outputEvents?(.needShowDetails(pokemonModel: pokemon))
-            }
-        }
-    }
-    
-    // MARK: -
-    // MARK: UIScrollViewDelegate
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        let sectionHeight = (self.rootView?.tableView?.contentSize.height ?? 0) - scrollView.frame.size.height
-        if let listModel = self.listModel {
-            if self.pokemonList.count < listModel.count {
-                if position > sectionHeight {
-                    self.loadPokemonList()
-                }
             }
         }
     }
