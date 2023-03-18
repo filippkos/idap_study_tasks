@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="c7G-IQ-IED">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="c7G-IQ-IED">
                     <rect key="frame" x="0.0" y="59" width="393" height="709"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3XL-mP-ONI">
@@ -28,6 +28,7 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <connections>
+                        <outlet property="dataSource" destination="-1" id="w6x-Qs-OOa"/>
                         <outlet property="delegate" destination="-1" id="Yv3-MH-Kg2"/>
                     </connections>
                 </collectionView>
@@ -102,6 +103,7 @@
             </constraints>
             <connections>
                 <outlet property="collectionView" destination="c7G-IQ-IED" id="BNg-BF-U0M"/>
+                <outlet property="nextButton" destination="eZn-Ms-sNP" id="lxv-dh-0C8"/>
                 <outlet property="pager" destination="dcJ-eW-8Sz" id="6fT-uV-rA9"/>
             </connections>
             <point key="canvasLocation" x="38.931297709923662" y="20.422535211267608"/>

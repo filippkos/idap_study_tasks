@@ -60,6 +60,7 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     func scrollTo(page: IndexPath) {
         self.rootView?.collectionView.isPagingEnabled = false
         self.rootView?.collectionView.scrollToItem(at: page, at: .centeredHorizontally, animated: true)
+        self.handleNextButton(page: page)
         self.rootView?.collectionView.isPagingEnabled = true
     }
     
@@ -69,6 +70,14 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     private func fillContentModels() {
         for model in DashboardContentModel.allCases {
             self.contentModels.append(model)
+        }
+    }
+    
+    private func handleNextButton(page: IndexPath) {
+        if page.row == self.numberOfPages - 1 {
+            self.rootView?.nextButton.isHidden = true
+        } else {
+            self.rootView?.nextButton.isHidden = false
         }
     }
     

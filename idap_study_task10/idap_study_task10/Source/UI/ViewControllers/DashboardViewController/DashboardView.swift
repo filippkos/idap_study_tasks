@@ -14,6 +14,7 @@ class DashboardView: BaseView {
     
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var pager: PagerView!
+    @IBOutlet var nextButton: UIButton!
     
     // MARK: -
     // MARK: Configure
@@ -26,6 +27,7 @@ class DashboardView: BaseView {
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
+        layout.collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = true
     }

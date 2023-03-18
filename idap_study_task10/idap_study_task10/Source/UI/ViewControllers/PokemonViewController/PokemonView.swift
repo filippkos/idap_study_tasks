@@ -12,10 +12,10 @@ final class PokemonView: BaseView {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet internal var tableView: UITableView?
-    @IBOutlet internal var nameLabel: UILabel?
-    @IBOutlet internal var imageView: UIImageView?
-    @IBOutlet internal var imageContainer: UIView?
+    @IBOutlet var tableView: UITableView?
+    @IBOutlet var nameLabel: UILabel?
+    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var imageContainer: UIView?
     // MARK: -
     // MARK: Public
     

@@ -98,28 +98,30 @@
                                 <constraint firstItem="ZmY-ut-Aqe" firstAttribute="leading" secondItem="wS8-id-He0" secondAttribute="leading" id="xK7-IU-PFW"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pm3-ut-NSu" userLabel="TableViewContainerView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pm3-ut-NSu" userLabel="CollectionViewContainerView">
                             <rect key="frame" x="0.0" y="56" width="393" height="703"/>
                             <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zVt-Ds-B6Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="701.66666666666663"/>
-                                    <color key="backgroundColor" red="0.48889752920000001" green="0.86400048910000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="tintColor" red="0.26044107100000002" green="0.63823223139999996" blue="0.73483471389999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4zu-uO-IsY">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="703"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kut-sh-oKg">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
                                     <connections>
-                                        <outlet property="dataSource" destination="-1" id="fmg-IE-qZQ"/>
-                                        <outlet property="delegate" destination="-1" id="ZpV-Ml-eIB"/>
+                                        <outlet property="dataSource" destination="-1" id="uwU-h8-NrW"/>
+                                        <outlet property="delegate" destination="-1" id="ma1-zF-g6I"/>
                                     </connections>
-                                </tableView>
+                                </collectionView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="zVt-Ds-B6Q" secondAttribute="trailing" id="6oE-Vh-C6h"/>
-                                <constraint firstAttribute="bottom" secondItem="zVt-Ds-B6Q" secondAttribute="bottom" constant="1.3333333333332575" id="EVH-5n-M9c"/>
-                                <constraint firstItem="zVt-Ds-B6Q" firstAttribute="top" secondItem="Pm3-ut-NSu" secondAttribute="top" id="JGl-gO-2PK"/>
-                                <constraint firstItem="zVt-Ds-B6Q" firstAttribute="leading" secondItem="Pm3-ut-NSu" secondAttribute="leading" id="lvF-cZ-qFq"/>
+                                <constraint firstItem="4zu-uO-IsY" firstAttribute="top" secondItem="Pm3-ut-NSu" secondAttribute="top" id="Y3M-RH-46B"/>
+                                <constraint firstItem="4zu-uO-IsY" firstAttribute="leading" secondItem="Pm3-ut-NSu" secondAttribute="leading" id="YAD-CT-1yA"/>
+                                <constraint firstAttribute="trailing" secondItem="4zu-uO-IsY" secondAttribute="trailing" id="h8Y-oh-Ikv"/>
+                                <constraint firstAttribute="bottom" secondItem="4zu-uO-IsY" secondAttribute="bottom" id="z2q-0U-Dhz"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -138,9 +140,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R5t-vJ-lWR" secondAttribute="trailing" id="mxZ-Sf-Bwo"/>
             </constraints>
             <connections>
+                <outlet property="collectionView" destination="4zu-uO-IsY" id="zAP-pa-L3n"/>
                 <outlet property="leftImage" destination="xhG-DH-zEC" id="AGq-Sa-vz5"/>
                 <outlet property="rightImage" destination="aZ3-F7-yen" id="rnu-jF-Qmt"/>
-                <outlet property="tableView" destination="zVt-Ds-B6Q" id="xfb-Bh-Pbe"/>
                 <outlet property="titleLabel" destination="fPd-Fj-cKU" id="jV6-hK-R9X"/>
             </connections>
             <point key="canvasLocation" x="26.717557251908396" y="19.718309859154932"/>
