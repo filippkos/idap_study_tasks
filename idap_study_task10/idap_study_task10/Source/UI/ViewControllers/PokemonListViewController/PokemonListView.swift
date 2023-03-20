@@ -29,7 +29,7 @@ final class PokemonListView: BaseView {
         self.titleLabel.font = Fonts.PlusJakartaSans.extraBold.font(size: 24)
     }
     
-    func flowLayoutConfigure() {
+    func flowLayoutListConfigure() {
         let itemWidth = self.collectionView.frame.size.width
         let itemHeight = self.collectionView.frame.size.height
         let layout = UICollectionViewFlowLayout()
@@ -39,6 +39,20 @@ final class PokemonListView: BaseView {
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = false
+        self.rightImage.image = UIImage(systemName: "square.grid.2x2")
+    }
+    
+    func flowLayoutSquaresConfigure() {
+        let itemWidth = (self.collectionView.frame.size.width - 42) / 2
+        let itemHeight = (224 * itemWidth) / 167
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.minimumLineSpacing = 9
+        layout.scrollDirection = .vertical
+        self.collectionView.collectionViewLayout = layout
+        self.collectionView.isPagingEnabled = false
+        self.rightImage.image = UIImage(systemName: "rectangle.grid.1x2")
     }
 }
 
