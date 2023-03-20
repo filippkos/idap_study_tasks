@@ -33,6 +33,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     private var pokemonsAreLoading = false
     private var storageService: StorageServiceType
     private var imageService: ImageServiceType
+    private var isOneColumnCollectionView = true
     private let limit = 30
     private let group = DispatchGroup()
     
@@ -70,11 +71,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.configure()
-        self.rootView?.flowLayoutConfigure()
+        self.rootView?.flowLayoutListConfigure()
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewCell.self)
         self.rootView?.collectionView.dataSource = self
         self.rootView?.collectionView.delegate = self
         self.storageService.checkAndCreateDirectory()
+        self.prepareTapGesture(on: self.rootView?.rightImage)
         self.loadPokemonList()
     }
     
@@ -147,6 +149,29 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
             }
         )
     }
+    
+    private func prepareTapGesture(on image: UIImageView?) {
+            let tap = UITapGestureRecognizer(
+                target: self,
+                action: #selector(self.changeCollectionViewLayout(_:))
+            )
+            image?.addGestureRecognizer(tap)
+            image?.isUserInteractionEnabled = true
+        }
+        
+        @objc private func changeCollectionViewLayout(_ sender: UITapGestureRecognizer?) {
+            if self.isOneColumnCollectionView {
+                self.rootView?.flowLayoutSquaresConfigure()
+                self.isOneColumnCollectionView = false
+            } else {
+                self.rootView?.flowLayoutListConfigure()
+                self.isOneColumnCollectionView = true
+            }
+        }
+        
+        private func cell(for indexPath: IndexPath) {
+
+        }
     
     // MARK: -
     // MARK: UIScrollViewDelegate
