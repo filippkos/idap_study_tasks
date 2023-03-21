@@ -11,6 +11,7 @@ enum PokemonListViewControllerOutputEvents {
     
     case needShowDetails(pokemonModel: Pokemon)
     case needShowAlert(alertModel: AlertModel)
+    case needShowAboutUs
 }
 
 class PokemonListViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
@@ -77,8 +78,10 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         self.rootView?.collectionView.dataSource = self
         self.rootView?.collectionView.delegate = self
         self.storageService.checkAndCreateDirectory()
-        self.prepareTapGesture(on: self.rootView?.rightImage)
+        self.prepareTapGesture(on: self.rootView?.rightImage, selector: #selector(self.changeCollectionViewLayout(_:)))
+        self.prepareTapGesture(on: self.rootView?.leftImage, selector: #selector(self.showAboutUs(_:)))
         self.loadPokemonList()
+        self.customizeNavigationBar()
     }
     
     // MARK: -
@@ -151,25 +154,49 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         )
     }
     
-    private func prepareTapGesture(on image: UIImageView?) {
+    private func prepareTapGesture(on image: UIImageView?, selector: Selector) {
             let tap = UITapGestureRecognizer(
                 target: self,
-                action: #selector(self.changeCollectionViewLayout(_:))
+                action: selector
             )
             image?.addGestureRecognizer(tap)
             image?.isUserInteractionEnabled = true
         }
+    
+    @objc private func showAboutUs(_ sender: UITapGestureRecognizer?) {
+        self.outputEvents?(.needShowAboutUs)
+    }
         
     @objc private func changeCollectionViewLayout(_ sender: UITapGestureRecognizer?) {
         if self.isOneColumnCollectionView {
+            self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "rectangle.grid.1x2")
             self.rootView?.flowLayoutSquaresConfigure()
             self.isOneColumnCollectionView = false
+            
             self.rootView?.collectionView.reloadData()
         } else {
+            self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "square.grid.2x2")
+
             self.rootView?.flowLayoutListConfigure()
             self.isOneColumnCollectionView = true
             self.rootView?.collectionView.reloadData()
+
         }
+    }
+    
+    private func customizeNavigationBar() {
+        let leftImage = Images.icon24.image
+        let rightImage = UIImage(systemName: "square.grid.2x2")
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: leftImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), style: .done, target: self, action: #selector(self.showAboutUs(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightImage, style: .plain, target: self, action: #selector(self.changeCollectionViewLayout(_:)))
+        self.navigationItem.rightBarButtonItem?.tintColor = Colors.Colors.abbey.color
+        
+        self.navigationItem.title = L10n.PokemonList.title
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: Colors.Colors.abbey.color,
+            .font: Fonts.PlusJakartaSans.extraBold.font(size: 24)
+        ]
     }
     
     // MARK: -

@@ -31,6 +31,8 @@ class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, Pokemo
     // MARK: Public
     
     func configure(with model: Pokemon, image: UIImage) {
+        self.background.setNeedsLayout()
+        self.background.layoutIfNeeded()
         self.background.layer.cornerRadius = self.background.frame.width / 2
         self.background.backgroundColor = Colors.Colors.wildSand.color
         self.image.image = image
