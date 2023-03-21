@@ -58,7 +58,14 @@ final class AppCoordinator: Coordinator {
             self.pushPokemonViewController(pokemonModel: model)
         case let .needShowAlert(alertModel):
             self.presentAlert(alertModel: alertModel, controller: controller)
+        case .needShowAboutUs:
+            self.pushAboutUsViewController()
         }
+    }
+    
+    private func pushAboutUsViewController() {
+        let controller = AboutUsViewController(serviceManager: self.serviceManager)
+        self.navigationViewController.pushViewController(controller, animated: false)
     }
     
     private func pushPokemonViewController(pokemonModel: Pokemon) {
