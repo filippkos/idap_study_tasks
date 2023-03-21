@@ -16,6 +16,7 @@ final class PokemonView: BaseView {
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var imageContainer: UIView?
+    
     // MARK: -
     // MARK: Public
     

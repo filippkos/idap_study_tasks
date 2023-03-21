@@ -72,7 +72,8 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         super.viewDidLoad()
         self.rootView?.configure()
         self.rootView?.flowLayoutListConfigure()
-        self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewCell.self)
+        self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewListCell.self)
+        self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewGridCell.self)
         self.rootView?.collectionView.dataSource = self
         self.rootView?.collectionView.delegate = self
         self.storageService.checkAndCreateDirectory()
@@ -159,19 +160,17 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
             image?.isUserInteractionEnabled = true
         }
         
-        @objc private func changeCollectionViewLayout(_ sender: UITapGestureRecognizer?) {
-            if self.isOneColumnCollectionView {
-                self.rootView?.flowLayoutSquaresConfigure()
-                self.isOneColumnCollectionView = false
-            } else {
-                self.rootView?.flowLayoutListConfigure()
-                self.isOneColumnCollectionView = true
-            }
+    @objc private func changeCollectionViewLayout(_ sender: UITapGestureRecognizer?) {
+        if self.isOneColumnCollectionView {
+            self.rootView?.flowLayoutSquaresConfigure()
+            self.isOneColumnCollectionView = false
+            self.rootView?.collectionView.reloadData()
+        } else {
+            self.rootView?.flowLayoutListConfigure()
+            self.isOneColumnCollectionView = true
+            self.rootView?.collectionView.reloadData()
         }
-        
-        private func cell(for indexPath: IndexPath) {
-
-        }
+    }
     
     // MARK: -
     // MARK: UIScrollViewDelegate
@@ -196,13 +195,20 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewCell.self, indexPath: indexPath)
+        
+        let cell: PokemonListCollectionViewCell
+        if self.isOneColumnCollectionView {
+            cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewListCell.self, indexPath: indexPath)
+        } else {
+            cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewGridCell.self, indexPath: indexPath)
+        }
+        
         let initialId = cell.id
         if initialId == cell.id {
             let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
             if let pokemon = pokemon {
                 self.imageService.image(for: pokemon) { image in
-                    cell.image?.showSpinner()
+                    cell.image.showSpinner()
                     if let image = image {
                         cell.configure(with: pokemon, image: image)
                         cell.image?.hideSpinner()
@@ -213,7 +219,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
             }
         }
         
-        return cell
+        return cell as! UICollectionViewCell
     }
     
     // MARK: -

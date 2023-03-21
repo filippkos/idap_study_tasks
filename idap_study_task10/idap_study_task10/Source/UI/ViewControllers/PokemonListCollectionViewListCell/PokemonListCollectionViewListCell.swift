@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonListCollectionViewCell: UICollectionViewCell, Spinnable {
+class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, PokemonListCollectionViewCell {
     
     // MARK: -
     // MARK: Typealiases
@@ -39,6 +39,9 @@ class PokemonListCollectionViewCell: UICollectionViewCell, Spinnable {
         self.label.textColor = Colors.Colors.abbey.color
         self.layer.cornerRadius = 16
     }
+    
+    // MARK: -
+    // MARK: Overrided
     
     override func prepareForReuse() {
         super.prepareForReuse()
