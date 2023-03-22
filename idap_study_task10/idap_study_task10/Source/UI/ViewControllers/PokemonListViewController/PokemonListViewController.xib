@@ -21,88 +21,11 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="R5t-vJ-lWR">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wS8-id-He0" userLabel="TitleContainerView">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmY-ut-Aqe" userLabel="Left Button View">
-                                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xhG-DH-zEC" userLabel="Left Image View">
-                                            <rect key="frame" x="16" y="16" width="24" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="xhG-DH-zEC" secondAttribute="height" multiplier="1:1" id="W0K-by-PD7"/>
-                                                <constraint firstAttribute="width" constant="24" id="e43-ca-crp"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="xhG-DH-zEC" secondAttribute="bottom" constant="16" id="0I7-ST-l9I"/>
-                                        <constraint firstAttribute="trailing" secondItem="xhG-DH-zEC" secondAttribute="trailing" constant="16" id="0fu-sj-o17"/>
-                                        <constraint firstAttribute="width" secondItem="ZmY-ut-Aqe" secondAttribute="height" multiplier="1:1" id="flD-Ra-pR0"/>
-                                        <constraint firstItem="xhG-DH-zEC" firstAttribute="top" secondItem="ZmY-ut-Aqe" secondAttribute="top" constant="16" id="gis-4V-S8K"/>
-                                        <constraint firstItem="xhG-DH-zEC" firstAttribute="leading" secondItem="ZmY-ut-Aqe" secondAttribute="leading" constant="16" id="sax-BV-utW"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwx-rl-bao" userLabel="Title View">
-                                    <rect key="frame" x="56" y="0.0" width="281" height="56"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PokemonApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-Fj-cKU">
-                                            <rect key="frame" x="0.0" y="0.0" width="281" height="56"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="fPd-Fj-cKU" secondAttribute="trailing" id="AoR-eP-18R"/>
-                                        <constraint firstItem="fPd-Fj-cKU" firstAttribute="top" secondItem="Rwx-rl-bao" secondAttribute="top" id="evi-0H-t0I"/>
-                                        <constraint firstItem="fPd-Fj-cKU" firstAttribute="leading" secondItem="Rwx-rl-bao" secondAttribute="leading" id="ii2-Dv-sXg"/>
-                                        <constraint firstAttribute="bottom" secondItem="fPd-Fj-cKU" secondAttribute="bottom" id="sbb-gC-G3N"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGr-Tu-mxG" userLabel="Right Button View">
-                                    <rect key="frame" x="337" y="0.0" width="56" height="56"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aZ3-F7-yen" userLabel="Right Image View">
-                                            <rect key="frame" x="16" y="16" width="24" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="24" id="PIc-73-7Wd"/>
-                                                <constraint firstAttribute="width" secondItem="aZ3-F7-yen" secondAttribute="height" multiplier="1:1" id="ZvW-sw-rgH"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="aZ3-F7-yen" firstAttribute="top" secondItem="pGr-Tu-mxG" secondAttribute="top" constant="16" id="daB-Qs-FaC"/>
-                                        <constraint firstAttribute="trailing" secondItem="aZ3-F7-yen" secondAttribute="trailing" constant="16" id="mlG-kH-9mx"/>
-                                        <constraint firstAttribute="bottom" secondItem="aZ3-F7-yen" secondAttribute="bottom" constant="16" id="qxA-SD-YXc"/>
-                                        <constraint firstAttribute="width" secondItem="pGr-Tu-mxG" secondAttribute="height" multiplier="1:1" id="xai-vV-Q5d"/>
-                                        <constraint firstItem="aZ3-F7-yen" firstAttribute="leading" secondItem="pGr-Tu-mxG" secondAttribute="leading" constant="16" id="zPU-1D-Fw0"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="Rwx-rl-bao" firstAttribute="centerX" secondItem="wS8-id-He0" secondAttribute="centerX" id="2GA-fr-oS1"/>
-                                <constraint firstItem="pGr-Tu-mxG" firstAttribute="top" secondItem="wS8-id-He0" secondAttribute="top" id="2IT-Zi-ugy"/>
-                                <constraint firstItem="ZmY-ut-Aqe" firstAttribute="top" secondItem="wS8-id-He0" secondAttribute="top" id="2Jv-jx-NZd"/>
-                                <constraint firstAttribute="bottom" secondItem="Rwx-rl-bao" secondAttribute="bottom" id="6yz-fE-Bnr"/>
-                                <constraint firstAttribute="bottom" secondItem="pGr-Tu-mxG" secondAttribute="bottom" id="G2c-Mo-qQh"/>
-                                <constraint firstItem="Rwx-rl-bao" firstAttribute="leading" secondItem="ZmY-ut-Aqe" secondAttribute="trailing" id="NHr-oq-N33"/>
-                                <constraint firstAttribute="bottom" secondItem="ZmY-ut-Aqe" secondAttribute="bottom" id="j8g-Bf-v0b"/>
-                                <constraint firstItem="Rwx-rl-bao" firstAttribute="top" secondItem="wS8-id-He0" secondAttribute="top" id="jWi-UW-u9f"/>
-                                <constraint firstAttribute="trailing" secondItem="pGr-Tu-mxG" secondAttribute="trailing" id="pkD-Xd-KaV"/>
-                                <constraint firstItem="ZmY-ut-Aqe" firstAttribute="leading" secondItem="wS8-id-He0" secondAttribute="leading" id="xK7-IU-PFW"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pm3-ut-NSu" userLabel="CollectionViewContainerView">
-                            <rect key="frame" x="0.0" y="56" width="393" height="703"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4zu-uO-IsY">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="703"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kut-sh-oKg">
                                         <size key="itemSize" width="128" height="128"/>
@@ -126,9 +49,6 @@
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="393" id="dJu-ER-Oar"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -141,9 +61,6 @@
             </constraints>
             <connections>
                 <outlet property="collectionView" destination="4zu-uO-IsY" id="zAP-pa-L3n"/>
-                <outlet property="leftImage" destination="xhG-DH-zEC" id="AGq-Sa-vz5"/>
-                <outlet property="rightImage" destination="aZ3-F7-yen" id="rnu-jF-Qmt"/>
-                <outlet property="titleLabel" destination="fPd-Fj-cKU" id="jV6-hK-R9X"/>
             </connections>
             <point key="canvasLocation" x="26.717557251908396" y="19.718309859154932"/>
         </view>

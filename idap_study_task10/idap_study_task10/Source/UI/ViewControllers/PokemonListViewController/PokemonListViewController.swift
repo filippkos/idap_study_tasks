@@ -14,7 +14,7 @@ enum PokemonListViewControllerOutputEvents {
     case needShowAboutUs
 }
 
-class PokemonListViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
+class PokemonListViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UISearchBarDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -77,11 +77,10 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewGridCell.self)
         self.rootView?.collectionView.dataSource = self
         self.rootView?.collectionView.delegate = self
-        self.storageService.checkAndCreateDirectory()
-        self.prepareTapGesture(on: self.rootView?.rightImage, selector: #selector(self.changeCollectionViewLayout(_:)))
-        self.prepareTapGesture(on: self.rootView?.leftImage, selector: #selector(self.showAboutUs(_:)))
-        self.loadPokemonList()
         self.customizeNavigationBar()
+        self.storageService.checkAndCreateDirectory()
+        self.loadPokemonList()
+
     }
     
     // MARK: -
@@ -155,13 +154,13 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     }
     
     private func prepareTapGesture(on image: UIImageView?, selector: Selector) {
-            let tap = UITapGestureRecognizer(
-                target: self,
-                action: selector
-            )
-            image?.addGestureRecognizer(tap)
-            image?.isUserInteractionEnabled = true
-        }
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: selector
+        )
+        image?.addGestureRecognizer(tap)
+        image?.isUserInteractionEnabled = true
+    }
     
     @objc private func showAboutUs(_ sender: UITapGestureRecognizer?) {
         self.outputEvents?(.needShowAboutUs)
@@ -172,15 +171,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
             self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "rectangle.grid.1x2")
             self.rootView?.flowLayoutSquaresConfigure()
             self.isOneColumnCollectionView = false
-            
             self.rootView?.collectionView.reloadData()
         } else {
             self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "square.grid.2x2")
-
             self.rootView?.flowLayoutListConfigure()
             self.isOneColumnCollectionView = true
             self.rootView?.collectionView.reloadData()
-
         }
     }
     
@@ -197,6 +193,9 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
             .foregroundColor: Colors.Colors.abbey.color,
             .font: Fonts.PlusJakartaSans.extraBold.font(size: 24)
         ]
+        
+        self.navigationItem.searchController = UISearchController()
+        self.navigationItem.searchController?.searchBar.delegate = self
     }
     
     // MARK: -
@@ -261,5 +260,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
                 self.outputEvents?(.needShowDetails(pokemonModel: pokemon))
             }
         }
+    }
+    
+    // MARK: -
+    // MARK: UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
     }
 }
