@@ -13,20 +13,11 @@ final class PokemonListView: BaseView {
     // MARK: Outlets
     
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var leftImage: UIImageView!
-    @IBOutlet var rightImage: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
     
     // MARK: -
     // MARK: Public
     
     func configure() {
-        self.leftImage.image = Images.icon24.image
-        self.rightImage.image = UIImage(systemName: "square.grid.2x2")
-        self.rightImage.tintColor = Colors.Colors.abbey.color
-        self.titleLabel.text = L10n.PokemonList.title
-        self.titleLabel.textColor = Colors.Colors.abbey.color
-        self.titleLabel.font = Fonts.PlusJakartaSans.extraBold.font(size: 24)
     }
     
     func flowLayoutListConfigure() {
@@ -39,7 +30,6 @@ final class PokemonListView: BaseView {
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = false
-        self.rightImage.image = UIImage(systemName: "square.grid.2x2")
     }
     
     func flowLayoutSquaresConfigure() {
@@ -52,7 +42,6 @@ final class PokemonListView: BaseView {
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = false
-        self.rightImage.image = UIImage(systemName: "rectangle.grid.1x2")
     }
 }
 
