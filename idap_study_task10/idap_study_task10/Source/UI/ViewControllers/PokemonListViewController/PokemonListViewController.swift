@@ -266,6 +266,13 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     // MARK: UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        if self.navigationItem.searchController?.searchBar.searchTextField.text != "" {
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 10
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderColor = Colors.Colors.corn.color.cgColor
+        } else {
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 0
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 0
+        }
     }
 }
