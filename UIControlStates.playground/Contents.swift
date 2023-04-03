@@ -10,3 +10,8 @@ result.contains(.selected)
 result.contains(.normal)
 result.contains(.disabled)
 result.contains([state, stateTwo])
+
+
+
+
+
