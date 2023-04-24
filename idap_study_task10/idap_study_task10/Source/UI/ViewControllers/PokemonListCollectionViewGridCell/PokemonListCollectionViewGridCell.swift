@@ -18,6 +18,7 @@ class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, Pokemo
     // MARK: Variables
     
     var isLoaded: Bool = false
+    var searchedId:Int?
     private(set) var id = UUID()
 
     // MARK: -
