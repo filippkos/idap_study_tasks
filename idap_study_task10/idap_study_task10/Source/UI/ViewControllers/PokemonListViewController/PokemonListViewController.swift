@@ -31,12 +31,14 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     private var networkManager: NetworkManagerType
     private var pokemonProvider: PokemonProviderType
     private var pokemonList: Set<Pokemon> = []
+    private var searchedPokemonList: [Pokemon] = []
     private var pokemonsAreLoading = false
     private var storageService: StorageServiceType
     private var imageService: ImageServiceType
     private var isOneColumnCollectionView = true
     private let limit = 30
     private let group = DispatchGroup()
+    private var searchIsOn = false
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -80,7 +82,6 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         self.customizeNavigationBar()
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
-
     }
     
     // MARK: -
@@ -198,16 +199,29 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         self.navigationItem.searchController?.searchBar.delegate = self
     }
     
+    private func configureSearchBar() {
+        if self.navigationItem.searchController?.searchBar.searchTextField.text != "" {
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 10
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderColor = Colors.Colors.corn.color.cgColor
+        } else {
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 0
+            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 0
+        }
+    }
+    
     // MARK: -
     // MARK: UIScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        let sectionHeight = (self.rootView?.collectionView?.contentSize.height ?? 0) - scrollView.frame.size.height
-        if let listModel = self.listModel {
-            if self.pokemonList.count < listModel.count {
-                if position > sectionHeight {
-                    self.loadPokemonList()
+        if !self.searchIsOn {
+            let position = scrollView.contentOffset.y
+            let sectionHeight = (self.rootView?.collectionView?.contentSize.height ?? 0) - scrollView.frame.size.height
+            if let listModel = self.listModel {
+                if self.pokemonList.count < listModel.count {
+                    if position > sectionHeight {
+                        self.loadPokemonList()
+                    }
                 }
             }
         }
@@ -217,7 +231,13 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.pokemonList.count
+        var cellCount: Int = 0
+        if !self.searchIsOn {
+            cellCount = self.pokemonList.count
+        } else {
+            cellCount = self.searchedPokemonList.count
+        }
+        return cellCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -229,10 +249,17 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
             cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewGridCell.self, indexPath: indexPath)
         }
         
+        var cellPokemon: Pokemon?
         let initialId = cell.id
         if initialId == cell.id {
-            let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
-            if let pokemon = pokemon {
+            if !self.searchIsOn {
+                if let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row } {
+                    cellPokemon = pokemon
+                }
+            } else {
+                cellPokemon = self.searchedPokemonList[indexPath.row]
+            }
+            if let pokemon = cellPokemon {
                 self.imageService.image(for: pokemon) { image in
                     cell.image.showSpinner()
                     if let image = image {
@@ -252,12 +279,18 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row }
-        if pokemon != nil {
+        var cellPokemon: Pokemon?
+        if !self.searchIsOn {
+            if let pokemon = self.pokemonList.first { ($0.id - 1) == indexPath.row } {
+                cellPokemon = pokemon
+            }
+        } else {
+            cellPokemon = self.searchedPokemonList[indexPath.row]
+        }
+        if cellPokemon != nil {
             self.rootView?.collectionView?.reloadData()
-            if let pokemon = pokemon {
-                self.pokemonList.update(with: pokemon)
-                self.outputEvents?(.needShowDetails(pokemonModel: pokemon))
+            if let detailedPokemon = cellPokemon {
+                self.outputEvents?(.needShowDetails(pokemonModel: detailedPokemon))
             }
         }
     }
@@ -266,13 +299,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     // MARK: UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if self.navigationItem.searchController?.searchBar.searchTextField.text != "" {
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 10
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderColor = Colors.Colors.corn.color.cgColor
+        self.configureSearchBar()
+        if searchText != "" {
+            self.searchedPokemonList = self.pokemonList.filter {
+                $0.name.starts(with: searchText.lowercased())
+            }
+            self.searchIsOn = true
         } else {
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 0
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 0
+            self.searchIsOn = false
         }
+        self.rootView?.collectionView?.reloadData()
     }
 }

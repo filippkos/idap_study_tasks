@@ -10,7 +10,9 @@ import UIKit
 // MARK: - Pokemon
 struct Pokemon: Codable {
     
-
+    var image: UIImage?
+    var checkMark: UIImage?
+    
     let id: Int
     let name: String
     let baseExperience: Int = 0
@@ -25,9 +27,7 @@ struct Pokemon: Codable {
     let sprites: Sprites?
     let stats: [Stat]?
     let types: [TypeElement]?
-    var image: UIImage?
-    var checkMark: UIImage?
-
+    
     enum CodingKeys: String, CodingKey {
         
         case id, name
@@ -43,7 +43,7 @@ struct Pokemon: Codable {
         [
          0 : ("Id", [id.description]),
          1 : ("Name", [name.description]),
-         2 : ("Base experiemce", [baseExperience.description]),
+         2 : ("Base experience", [baseExperience.description]),
          3 : ("Height", [height.description]),
          4 : ("Is default", [isDefault.description]),
          5 : ("Order", [order?.description ?? ""]),
