@@ -28,17 +28,20 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     
     private var pokemon: Pokemon?
     private var listModel: PokemonList?
+    private var fullListModel: PokemonList?
     private var networkManager: NetworkManagerType
     private var pokemonProvider: PokemonProviderType
     private var pokemonList: Set<Pokemon> = []
+    private var filteredPokemons: [Unit] = []
     private var searchedPokemonList: [Pokemon] = []
     private var pokemonsAreLoading = false
     private var storageService: StorageServiceType
     private var imageService: ImageServiceType
     private var isOneColumnCollectionView = true
-    private let limit = 30
-    private let group = DispatchGroup()
     private var searchIsOn = false
+    
+    private let limit = 20
+    private let group = DispatchGroup()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -97,23 +100,32 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     // MARK: -
     // MARK: Private
     
-    private func loadPokemonList() {
+    private func loadPokemonList(text: String = "") {
         if !self.pokemonsAreLoading {
-            if self.listModel?.count != self.pokemonList.count {
-                self.pokemonsAreLoading = true
-                self.rootView?.showSpinner()
-                self.pokemonProvider.pokemonList(limit: self.limit, offset: self.pokemonList.count) { result in
-                    DispatchQueue.main.async { [weak self] in
-                        switch result {
-                        case .success(let model):
+            self.pokemonsAreLoading = true
+            self.rootView?.showSpinner()
+            let limit = self.searchIsOn ? 2000 : self.limit
+            let offset = self.searchIsOn ? 0 : self.pokemonList.count
+            self.pokemonProvider.pokemonList(limit: limit, offset: offset) { result in
+                DispatchQueue.main.async { [weak self] in
+                    switch result {
+                    case .success(let model):
+                        if let searchIsOn = self?.searchIsOn, searchIsOn {
+                            self?.fullListModel = model
+                            self?.filteredPokemons = self?.fullListModel?.results.filter {
+                                $0.name.starts(with: text.lowercased())
+                            } ?? []
+                            self?.iteratePokemons()
+                        } else {
                             self?.listModel = model
                             self?.iteratePokemons()
-                        case let .failure(error):
-                            self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                         }
-                        self?.rootView?.hideSpinner()
-                        self?.pokemonsAreLoading = false
+                    case let .failure(error):
+                        self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
+                    
+                    self?.rootView?.hideSpinner()
+                    self?.pokemonsAreLoading = false
                 }
             }
         }
@@ -121,11 +133,18 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     
     private func iteratePokemons() {
         DispatchQueue.global(qos: .background).async {
-            self.listModel?.results.forEach { unit in
-                self.pokemon(name: unit.name, group: self.group)
+            if self.searchIsOn {
+                self.filteredPokemons.forEach { unit in
+                    self.pokemon(name: unit.name, group: self.group)
+                }
+            } else {
+                self.listModel?.results.forEach { unit in
+                    self.pokemon(name: unit.name, group: self.group)
+                }
             }
             print("<!> before wait \(Thread.current)")
             self.group.wait()
+            
             DispatchQueue.main.async {
                 self.rootView?.collectionView.reloadData()
             }
@@ -142,7 +161,11 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
                 DispatchQueue.main.async { [weak self] in
                     switch result {
                     case .success(let model):
-                        self?.pokemonList.insert(model)
+                        if let searchIsOn = self?.searchIsOn, searchIsOn {
+                            self?.searchedPokemonList.append(model)
+                        } else {
+                            self?.pokemonList.insert(model)
+                        }
                     case let .failure(error):
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
@@ -301,13 +324,16 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.configureSearchBar()
         if searchText != "" {
-            self.searchedPokemonList = self.pokemonList.filter {
-                $0.name.starts(with: searchText.lowercased())
-            }
             self.searchIsOn = true
+            self.filteredPokemons.removeAll()
+            self.searchedPokemonList.removeAll()
+            self.loadPokemonList(text: searchText)
         } else {
             self.searchIsOn = false
+            self.pokemonList.removeAll()
+            self.loadPokemonList()
         }
+        
         self.rootView?.collectionView?.reloadData()
     }
 }
