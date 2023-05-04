@@ -27,7 +27,8 @@ public enum Fonts {
   public enum PlusJakartaSans {
     public static let extraBold = FontConvertible(name: "PlusJakartaSans-ExtraBold", family: "Plus Jakarta Sans", path: "PlusJakartaSans-ExtraBold.ttf")
     public static let medium = FontConvertible(name: "PlusJakartaSans-Medium", family: "Plus Jakarta Sans", path: "PlusJakartaSans-Medium.ttf")
-    public static let all: [FontConvertible] = [extraBold, medium]
+    public static let semiBold = FontConvertible(name: "PlusJakartaSans-SemiBold", family: "Plus Jakarta Sans", path: "PlusJakartaSans-SemiBold.ttf")
+    public static let all: [FontConvertible] = [extraBold, medium, semiBold]
   }
   public static let allCustomFonts: [FontConvertible] = [PaytoneOne.all, PlusJakartaSans.all].flatMap { $0 }
   public static func registerAllCustomFonts() {

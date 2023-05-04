@@ -8,6 +8,7 @@
 import UIKit
 
 protocol PokemonListCollectionViewCell {
+    
     var id: UUID { get }
     var background: UIView! { get }
     var image: UIImageView! { get }
