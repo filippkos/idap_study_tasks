@@ -26,6 +26,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     
     public var outputEvents: F.VoidFunc<PokemonListViewControllerOutputEvents>?
     
+    private var timer = Timer()
     private var pokemon: Pokemon?
     private var listModel: PokemonList?
     private var fullListModel: PokemonList?
@@ -82,9 +83,13 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewGridCell.self)
         self.rootView?.collectionView.dataSource = self
         self.rootView?.collectionView.delegate = self
-        self.customizeNavigationBar()
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
+        self.configureSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.customizeNavigationBar()
     }
     
     // MARK: -
@@ -223,6 +228,12 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     }
     
     private func configureSearchBar() {
+        self.navigationItem.searchController?.searchBar.layer.cornerRadius = 20
+        self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
+        self.navigationItem.searchController?.searchBar.clipsToBounds = true
+    }
+    
+    private func configureSearchBarState() {
         if self.navigationItem.searchController?.searchBar.searchTextField.text != "" {
             self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 10
             self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
@@ -322,12 +333,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     // MARK: UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.configureSearchBar()
+        self.timer.invalidate()
+        self.configureSearchBarState()
         if searchText != "" {
-            self.searchIsOn = true
-            self.filteredPokemons.removeAll()
-            self.searchedPokemonList.removeAll()
-            self.loadPokemonList(text: searchText)
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] (timer) in
+                self?.searchIsOn = true
+                self?.filteredPokemons.removeAll()
+                self?.searchedPokemonList.removeAll()
+                self?.loadPokemonList(text: searchText)
+            })
         } else {
             self.searchIsOn = false
             self.pokemonList.removeAll()

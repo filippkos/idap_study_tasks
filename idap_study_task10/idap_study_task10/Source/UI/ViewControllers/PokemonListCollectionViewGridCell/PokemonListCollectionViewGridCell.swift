@@ -32,24 +32,26 @@ class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, Pokemo
     // MARK: Public
     
     func configure(with model: Pokemon, image: UIImage) {
-        self.background.setNeedsLayout()
-        self.background.layoutIfNeeded()
-        self.background.layer.cornerRadius = self.background.frame.width / 2
         self.background.backgroundColor = Colors.Colors.wildSand.color
         self.image.image = image
         self.label.text = model.name
         self.label.font = Fonts.PaytoneOne.regular.font(size: 22)
         self.label.textColor = Colors.Colors.abbey.color
-        self.layer.cornerRadius = 16
     }
     
     // MARK: -
     // MARK: Overrided
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.background.layer.cornerRadius = self.background.frame.width / 2
+        self.layer.cornerRadius = 16
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.image.image = nil
         self.label.text = nil
-        self.id = UUID()
     }
 }

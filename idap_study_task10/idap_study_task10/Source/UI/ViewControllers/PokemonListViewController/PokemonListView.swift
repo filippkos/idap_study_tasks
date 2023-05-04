@@ -30,6 +30,7 @@ final class PokemonListView: BaseView {
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = false
+        self.collectionView.alwaysBounceVertical = true
     }
     
     func flowLayoutSquaresConfigure() {
@@ -42,6 +43,7 @@ final class PokemonListView: BaseView {
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = false
+        self.collectionView.alwaysBounceVertical = true
     }
 }
 
