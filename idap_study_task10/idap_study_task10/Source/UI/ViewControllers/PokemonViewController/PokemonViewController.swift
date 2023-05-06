@@ -99,6 +99,8 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
     private func customizeNavigationBar() {
         let image = Images.backArrow.image.withRenderingMode(.alwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style:.plain, target: self, action: #selector(self.backToPokemonList(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.model.id.description, style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: Fonts.PlusJakartaSans.extraBold.font(size: 24)], for: .normal)
     
         self.navigationItem.leftBarButtonItem?.tintColor = .white
         self.navigationItem.rightBarButtonItem?.tintColor = .white
@@ -128,7 +130,17 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
                 cellClass: PokemonHeaderCollectionViewCell.self,
                 indexPath: indexPath
             )
+            
+            let items = self.model.grouped[13]?.1.map {
+                VerticalTagItem(leftImage: nil, title: $0)
+            }
+            
+            let cellModel = PokemonCollectionViewCellModel(
+                header: self.model.grouped[indexPath.row]?.0 ?? "",
+                items: items ?? [])
+            
             cell.configure(with: self.model, indexPath: indexPath)
+            cell.configure(with: cellModel)
             
             return cell
         } else {

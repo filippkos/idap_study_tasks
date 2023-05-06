@@ -35,19 +35,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="50.333333333333336"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="PaytoneOne-Regular" family="Paytone One" pointSize="36"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="colors/abbey"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Mho-tS-SQu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yh-PP-hER" customClass="VerticalTagViewController" customModule="idap_study_task10" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50.333333333333329" width="400" height="141.66666666666669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5dU-AZ-qsR">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                            </collectionView>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-s1-EIF">
                                 <rect key="frame" x="0.0" y="192" width="400" height="100"/>
                                 <subviews>
@@ -140,13 +134,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="d1I-qm-eCQ" secondAttribute="trailing" id="8kV-ox-Icf"/>
                             <constraint firstAttribute="trailing" secondItem="Wcp-s1-EIF" secondAttribute="trailing" id="HJt-Ls-ovI"/>
-                            <constraint firstItem="Mho-tS-SQu" firstAttribute="leading" secondItem="s2a-b0-dUT" secondAttribute="leading" id="IPx-um-NiI"/>
-                            <constraint firstItem="Mho-tS-SQu" firstAttribute="bottom" secondItem="Wcp-s1-EIF" secondAttribute="top" id="Kom-sp-Iui"/>
                             <constraint firstItem="d1I-qm-eCQ" firstAttribute="leading" secondItem="s2a-b0-dUT" secondAttribute="leading" id="QCr-Un-hhb"/>
                             <constraint firstItem="d1I-qm-eCQ" firstAttribute="top" secondItem="s2a-b0-dUT" secondAttribute="top" id="RIG-CT-wJ7"/>
-                            <constraint firstAttribute="trailing" secondItem="Mho-tS-SQu" secondAttribute="trailing" id="hBc-1h-QKS"/>
+                            <constraint firstItem="0yh-PP-hER" firstAttribute="leading" secondItem="s2a-b0-dUT" secondAttribute="leading" id="nKP-7e-WUH"/>
+                            <constraint firstItem="0yh-PP-hER" firstAttribute="top" secondItem="d1I-qm-eCQ" secondAttribute="bottom" id="nWK-Rm-pTJ"/>
                             <constraint firstAttribute="bottom" secondItem="Wcp-s1-EIF" secondAttribute="bottom" id="pOR-WP-9V8"/>
-                            <constraint firstItem="Mho-tS-SQu" firstAttribute="top" secondItem="d1I-qm-eCQ" secondAttribute="bottom" id="rQf-ym-jyI"/>
+                            <constraint firstItem="Wcp-s1-EIF" firstAttribute="top" secondItem="0yh-PP-hER" secondAttribute="bottom" id="qo0-zw-VL6"/>
+                            <constraint firstAttribute="trailing" secondItem="0yh-PP-hER" secondAttribute="trailing" id="ubj-0Y-knL"/>
                             <constraint firstItem="Wcp-s1-EIF" firstAttribute="leading" secondItem="s2a-b0-dUT" secondAttribute="leading" id="zlp-e6-qMv"/>
                         </constraints>
                     </view>
@@ -165,6 +159,7 @@
                 <outlet property="nameLabel" destination="d1I-qm-eCQ" id="rdN-Xw-7RK"/>
                 <outlet property="orderTitle" destination="oqX-yA-Zfc" id="5ff-qJ-XOY"/>
                 <outlet property="orderValue" destination="tMV-1C-EdC" id="Hd7-YG-rbp"/>
+                <outlet property="verticalTagView" destination="0yh-PP-hER" id="lYo-UE-MBM"/>
                 <outlet property="weightTitle" destination="BTb-qr-38r" id="6wA-E5-mda"/>
                 <outlet property="weightValue" destination="nxs-V4-TeN" id="Cgb-r9-IdM"/>
             </connections>

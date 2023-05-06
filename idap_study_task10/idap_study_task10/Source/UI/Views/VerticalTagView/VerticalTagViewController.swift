@@ -13,7 +13,7 @@ struct VerticalTagItem {
     let title: String
 }
 
-class VerticalTagViewController: NibDesignable, UICollectionViewDelegate, UICollectionViewDataSource {
+class VerticalTagViewController: NibDesignable, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: -
     // MARK: Outlets
@@ -57,6 +57,11 @@ class VerticalTagViewController: NibDesignable, UICollectionViewDelegate, UIColl
         cell.backgroundColor = Colors.Colors.wildSand.color
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 

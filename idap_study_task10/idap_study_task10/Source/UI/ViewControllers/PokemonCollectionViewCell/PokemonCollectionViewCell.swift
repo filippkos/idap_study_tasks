@@ -9,7 +9,7 @@ import UIKit
 
 struct PokemonCollectionViewCellModel {
     
-    let header: String
+    let header: String?
     let items: [VerticalTagItem]
 }
 
@@ -55,7 +55,7 @@ class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
         let itemHeight = 35
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 2
         self.verticalTagView?.collectionView.collectionViewLayout = layout
         self.verticalTagView?.collectionView.isPagingEnabled = false
