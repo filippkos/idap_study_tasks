@@ -12,6 +12,8 @@ protocol PokemonListCollectionViewCell {
     var id: UUID { get }
     var background: UIView! { get }
     var image: UIImageView! { get }
-    var label: UILabel! { get }
+    var nameLabel: UILabel! { get }
+    var idLabel: UILabel! { get }
     func configure(with: Pokemon, image: UIImage)
+    func configure(with model: PokemonCollectionViewCellModel)
 }
