@@ -21,8 +21,6 @@ class ChipCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.handleImageVisibility()
     }
     
     override func layoutSubviews() {
@@ -35,9 +33,5 @@ class ChipCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.image.image = nil
-    }
-    
-    private func handleImageVisibility() {
-        self.image.isHidden = self.image.image == nil ? true : false
     }
 }
