@@ -13,6 +13,7 @@ class ChipCollectionViewCell: UICollectionViewCell {
     private(set) var id = UUID()
     
     @IBOutlet var text: UILabel!
+    @IBOutlet var imageContainer: UIView!
     @IBOutlet var image: UIImageView!
     @IBOutlet var stackView: UIStackView!
     
@@ -26,7 +27,7 @@ class ChipCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.layer.cornerRadius = 17
+        self.layer.cornerRadius = self.frame.height / 2
     }
     
     override func prepareForReuse() {
