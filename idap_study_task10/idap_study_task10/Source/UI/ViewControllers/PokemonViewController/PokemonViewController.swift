@@ -132,7 +132,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
             )
             
             let items = self.model.grouped[13]?.1.map {
-                VerticalTagItem(leftImage: nil, title: $0)
+                VerticalTagItem(leftImage: nil, backgroundColor: nil, textColor: nil, title: $0)
             }
             
             let cellModel = PokemonCollectionViewCellModel(
@@ -149,7 +149,7 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
                 indexPath: indexPath
             )
             let items = self.model.grouped[indexPath.row]?.1.map {
-                VerticalTagItem(leftImage: nil, title: $0)
+                VerticalTagItem(leftImage: nil, backgroundColor: nil, textColor: nil, title: $0)
             }
             
             let cellModel = PokemonCollectionViewCellModel(
