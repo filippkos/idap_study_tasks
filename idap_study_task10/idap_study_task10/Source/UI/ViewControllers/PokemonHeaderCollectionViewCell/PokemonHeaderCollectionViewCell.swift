@@ -45,6 +45,7 @@ class PokemonHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: PokemonCollectionViewCellModel) {
+        self.verticalTagView.isImagesEnabled = true
         self.verticalTagView?.configure(with: model.items)
     }
     
