@@ -97,15 +97,15 @@
                                         <rect key="frame" x="0.0" y="259" width="255" height="189"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO8-g6-9Rz" userLabel="Vertical Tag View" customClass="VerticalTagViewController" customModule="idap_study_task10" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="255" height="173"/>
+                                                <rect key="frame" x="16" y="0.0" width="223" height="173"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="pO8-g6-9Rz" secondAttribute="trailing" id="29n-SF-kBF"/>
+                                            <constraint firstAttribute="trailing" secondItem="pO8-g6-9Rz" secondAttribute="trailing" constant="16" id="29n-SF-kBF"/>
                                             <constraint firstItem="pO8-g6-9Rz" firstAttribute="top" secondItem="LAQ-TW-qto" secondAttribute="top" id="7mc-kT-ZDy"/>
-                                            <constraint firstItem="pO8-g6-9Rz" firstAttribute="leading" secondItem="LAQ-TW-qto" secondAttribute="leading" id="qfe-CO-hSi"/>
+                                            <constraint firstItem="pO8-g6-9Rz" firstAttribute="leading" secondItem="LAQ-TW-qto" secondAttribute="leading" constant="16" id="qfe-CO-hSi"/>
                                             <constraint firstAttribute="bottom" secondItem="pO8-g6-9Rz" secondAttribute="bottom" constant="16" id="xBO-5A-izV"/>
                                         </constraints>
                                     </view>

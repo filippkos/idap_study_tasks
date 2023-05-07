@@ -29,6 +29,46 @@ public enum Colors {
     public static let heather = ColorAsset(name: "colors/heather")
     public static let wildSand = ColorAsset(name: "colors/wild_sand")
   }
+  public enum PokemonTypesBgColors {
+    public static let bug = ColorAsset(name: "pokemonTypesBgColors/bug")
+    public static let dark = ColorAsset(name: "pokemonTypesBgColors/dark")
+    public static let dragon = ColorAsset(name: "pokemonTypesBgColors/dragon")
+    public static let electric = ColorAsset(name: "pokemonTypesBgColors/electric")
+    public static let fairy = ColorAsset(name: "pokemonTypesBgColors/fairy")
+    public static let fighting = ColorAsset(name: "pokemonTypesBgColors/fighting")
+    public static let fire = ColorAsset(name: "pokemonTypesBgColors/fire")
+    public static let flying = ColorAsset(name: "pokemonTypesBgColors/flying")
+    public static let ghost = ColorAsset(name: "pokemonTypesBgColors/ghost")
+    public static let grass = ColorAsset(name: "pokemonTypesBgColors/grass")
+    public static let ground = ColorAsset(name: "pokemonTypesBgColors/ground")
+    public static let icy = ColorAsset(name: "pokemonTypesBgColors/icy")
+    public static let normal = ColorAsset(name: "pokemonTypesBgColors/normal")
+    public static let poison = ColorAsset(name: "pokemonTypesBgColors/poison")
+    public static let psychic = ColorAsset(name: "pokemonTypesBgColors/psychic")
+    public static let rock = ColorAsset(name: "pokemonTypesBgColors/rock")
+    public static let steel = ColorAsset(name: "pokemonTypesBgColors/steel")
+    public static let water = ColorAsset(name: "pokemonTypesBgColors/water")
+  }
+  public enum PokemonTypesMainColors {
+    public static let bug = ColorAsset(name: "pokemonTypesMainColors/bug")
+    public static let dark = ColorAsset(name: "pokemonTypesMainColors/dark")
+    public static let dragon = ColorAsset(name: "pokemonTypesMainColors/dragon")
+    public static let electric = ColorAsset(name: "pokemonTypesMainColors/electric")
+    public static let fairy = ColorAsset(name: "pokemonTypesMainColors/fairy")
+    public static let fighting = ColorAsset(name: "pokemonTypesMainColors/fighting")
+    public static let fire = ColorAsset(name: "pokemonTypesMainColors/fire")
+    public static let flying = ColorAsset(name: "pokemonTypesMainColors/flying")
+    public static let ghost = ColorAsset(name: "pokemonTypesMainColors/ghost")
+    public static let grass = ColorAsset(name: "pokemonTypesMainColors/grass")
+    public static let ground = ColorAsset(name: "pokemonTypesMainColors/ground")
+    public static let icy = ColorAsset(name: "pokemonTypesMainColors/icy")
+    public static let normal = ColorAsset(name: "pokemonTypesMainColors/normal")
+    public static let poison = ColorAsset(name: "pokemonTypesMainColors/poison")
+    public static let psychic = ColorAsset(name: "pokemonTypesMainColors/psychic")
+    public static let rock = ColorAsset(name: "pokemonTypesMainColors/rock")
+    public static let steel = ColorAsset(name: "pokemonTypesMainColors/steel")
+    public static let water = ColorAsset(name: "pokemonTypesMainColors/water")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

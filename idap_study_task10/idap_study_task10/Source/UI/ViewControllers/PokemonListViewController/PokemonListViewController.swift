@@ -308,7 +308,7 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         
         if let pokemon = cellPokemon {
             let items = pokemon.grouped[13]?.1.map {
-                VerticalTagItem(leftImage: nil, title: $0)
+                VerticalTagItem(leftImage: nil, backgroundColor: nil, textColor: nil, title: $0)
             }
             
             let cellModel = PokemonCollectionViewCellModel(
