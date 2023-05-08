@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonHeaderCollectionViewCell: UICollectionViewCell {
+final class PokemonHeaderCollectionViewCell: UICollectionViewCell {
     
     var id: UUID = UUID()
     

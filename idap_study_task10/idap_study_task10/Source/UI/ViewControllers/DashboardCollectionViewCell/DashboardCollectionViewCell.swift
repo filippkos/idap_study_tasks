@@ -11,7 +11,7 @@ enum DashboardCollectionViewCellOutputEvents {
     case goNext
 }
 
-class DashboardCollectionViewCell: UICollectionViewCell {
+final class DashboardCollectionViewCell: UICollectionViewCell {
     
     // MARK: -
     // MARK: Outlets

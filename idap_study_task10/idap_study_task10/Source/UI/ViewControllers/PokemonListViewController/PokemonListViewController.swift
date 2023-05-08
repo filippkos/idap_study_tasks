@@ -14,7 +14,7 @@ enum PokemonListViewControllerOutputEvents {
     case needShowAboutUs
 }
 
-class PokemonListViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UISearchBarDelegate {
+final class PokemonListViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UISearchBarDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -28,19 +28,19 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
     
     private var timer = Timer()
     private var pokemon: Pokemon?
+    private var searchIsOn = false
     private var listModel: PokemonList?
-    private var fullListModel: PokemonList?
-    private var networkManager: NetworkManagerType
-    private var pokemonProvider: PokemonProviderType
-    private var pokemonList: Set<Pokemon> = []
-    private var filteredPokemons: [Unit] = []
-    private var searchedPokemonList: [Pokemon] = []
     private var pokemonsAreLoading = false
-    private var storageService: StorageServiceType
+    private var fullListModel: PokemonList?
+    private var filteredPokemons: [Unit] = []
+    private var pokemonList: Set<Pokemon> = []
     private var imageService: ImageServiceType
     private var isOneColumnCollectionView = true
-    private var searchIsOn = false
-    
+    private var storageService: StorageServiceType
+    private var networkManager: NetworkManagerType
+    private var searchedPokemonList: [Pokemon] = []
+    private var pokemonProvider: PokemonProviderType
+
     private let limit = 20
     private let group = DispatchGroup()
     
@@ -213,8 +213,18 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         let leftImage = Images.icon24.image
         let rightImage = UIImage(systemName: "square.grid.2x2")
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: leftImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), style: .done, target: self, action: #selector(self.showAboutUs(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightImage, style: .plain, target: self, action: #selector(self.changeCollectionViewLayout(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: leftImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
+            style: .done,
+            target: self,
+            action: #selector(self.showAboutUs(_:))
+        )
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: rightImage,
+            style: .plain,
+            target: self,
+            action: #selector(self.changeCollectionViewLayout(_:))
+        )
         self.navigationItem.rightBarButtonItem?.tintColor = Colors.Colors.abbey.color
         
         self.navigationItem.title = L10n.PokemonList.title
@@ -278,9 +288,15 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         
         let cell: PokemonListCollectionViewCell
         if self.isOneColumnCollectionView {
-            cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewListCell.self, indexPath: indexPath)
+            cell = collectionView.dequeueReusableCell(
+                cellClass: PokemonListCollectionViewListCell.self,
+                indexPath: indexPath
+            )
         } else {
-            cell = collectionView.dequeueReusableCell(cellClass: PokemonListCollectionViewGridCell.self, indexPath: indexPath)
+            cell = collectionView.dequeueReusableCell(
+                cellClass: PokemonListCollectionViewGridCell.self,
+                indexPath: indexPath
+            )
         }
         
         var cellPokemon: Pokemon?

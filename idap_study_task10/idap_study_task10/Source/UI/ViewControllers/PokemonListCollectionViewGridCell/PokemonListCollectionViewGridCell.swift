@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, PokemonListCollectionViewCell {
+final class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, PokemonListCollectionViewCell {
 
     // MARK: -
     // MARK: Typealiases

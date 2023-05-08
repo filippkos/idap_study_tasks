@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutUsViewController: BaseViewController, RootViewGettable {
+final class AboutUsViewController: BaseViewController, RootViewGettable {
    
     // MARK: -
     // MARK: Typealiases
