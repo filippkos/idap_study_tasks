@@ -9,8 +9,14 @@ import UIKit
 
 class ChipCollectionViewCell: UICollectionViewCell {
     
+    // MARK: -
+    // MARK: Properties
+    
     var isLoaded: Bool = false
     private(set) var id = UUID()
+    
+    // MARK: -
+    // MARK: Outlets
     
     @IBOutlet var text: UILabel!
     @IBOutlet var imageContainer: UIView!
@@ -19,10 +25,6 @@ class ChipCollectionViewCell: UICollectionViewCell {
     
     // MARK: -
     // MARK: Overrided
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
