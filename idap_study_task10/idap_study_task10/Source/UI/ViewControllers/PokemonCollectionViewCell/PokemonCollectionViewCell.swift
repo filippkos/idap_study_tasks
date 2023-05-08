@@ -26,7 +26,10 @@ class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     var model: PokemonCollectionViewCellModel?
     var isLoaded: Bool = false
     private(set) var id = UUID()
-    //override var intrinsicContentSize: CGSize
+    
+    override open var intrinsicContentSize: CGSize {
+        return CGSize(width: 100, height: 100)
+    }
 
     // MARK: -
     // MARK: Outlets
@@ -55,7 +58,7 @@ class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
         let itemHeight = 35
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 2
         self.verticalTagView?.collectionView.collectionViewLayout = layout
         self.verticalTagView?.collectionView.isPagingEnabled = false

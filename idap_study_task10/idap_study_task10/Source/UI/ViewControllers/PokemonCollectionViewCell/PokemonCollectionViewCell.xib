@@ -29,13 +29,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA0-g7-WQG" customClass="VerticalTagViewController" customModule="idap_study_task10" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="19" width="326" height="166"/>
+                        <rect key="frame" x="0.0" y="27" width="326" height="158"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="aA0-g7-WQG" firstAttribute="top" secondItem="8rc-hb-XrA" secondAttribute="bottom" id="22X-KN-7MR"/>
+                <constraint firstItem="aA0-g7-WQG" firstAttribute="top" secondItem="8rc-hb-XrA" secondAttribute="bottom" constant="8" id="22X-KN-7MR"/>
                 <constraint firstAttribute="trailing" secondItem="8rc-hb-XrA" secondAttribute="trailing" id="8Ee-TZ-x7V"/>
                 <constraint firstItem="8rc-hb-XrA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CYa-Cf-3NC"/>
                 <constraint firstAttribute="trailing" secondItem="aA0-g7-WQG" secondAttribute="trailing" id="LVT-R2-aZc"/>

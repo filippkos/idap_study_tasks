@@ -307,13 +307,14 @@ class PokemonListViewController: BaseViewController, RootViewGettable, UICollect
         }
         
         if let pokemon = cellPokemon {
-            let items = pokemon.grouped[13]?.1.map {
-                VerticalTagItem(leftImage: nil, backgroundColor: nil, textColor: nil, title: $0)
+            let items = pokemon.types?.compactMap {
+                return VerticalTagItem(type: $0.type.name)
             }
             
             let cellModel = PokemonCollectionViewCellModel(
                 header: nil,
-                items: items ?? [])
+                items: items ?? []
+            )
             
             cell.configure(with: cellModel)
         }

@@ -20,10 +20,10 @@ struct Pokemon: Codable {
     let isDefault: Bool
     let order, weight: Int?
     let abilities: [Ability]?
-    let forms: [Species]?
+    let forms: [TestModel]?
     let heldItems: [HeldItem]?
     let moves: [Move]?
-    let species: Species?
+    let species: TestModel?
     let sprites: Sprites?
     let stats: [Stat]?
     let types: [TypeElement]?
@@ -41,20 +41,20 @@ struct Pokemon: Codable {
     
     var grouped: [Int: (String ,[String])] {
         [
-         0 : ("Id", [id.description]),
-         1 : ("Name", [name.description]),
-         2 : ("Base experience", [baseExperience.description]),
-         3 : ("Height", [height.description]),
-         4 : ("Weight", [weight?.description ?? ""]),
-         5 : ("Is default", [isDefault.description]),
-         6 : ("Order", [order?.description ?? ""]),
-         7 : ("Abilities", abilities?.map(\.ability.name) ?? []),
-         8 : ("Forms", forms?.map(\.name) ?? []),
-         9 : ("Held Items", heldItems?.map(\.item.name) ?? []),
-         10 : ("Moves", moves?.map(\.move.name) ?? []),
-         11 : ("Species", [species?.name ?? ""]),
-         12 : ("Stats", stats?.map(\.stat.name) ?? []),
-         13 : ("Types", types?.map(\.type.name) ?? [])
+            0 : ("Id", [self.id.description]),
+            1 : ("Name", [self.name.description]),
+            2 : ("Base experience", [self.baseExperience.description]),
+            3 : ("Height", [self.height.description]),
+            4 : ("Weight", [self.weight?.description ?? ""]),
+            5 : ("Is default", [self.isDefault.description]),
+            6 : ("Order", [self.order?.description ?? ""]),
+            7 : ("Abilities", self.abilities?.map(\.ability.name) ?? []),
+            8 : ("Forms", self.forms?.map(\.name) ?? []),
+            9 : ("Held Items", self.heldItems?.map(\.item.name) ?? []),
+            10 : ("Moves", self.moves?.map(\.move.name) ?? []),
+            11 : ("Species", [self.species?.name ?? ""]),
+            12 : ("Stats", self.stats?.map(\.stat.name) ?? []),
+            13 : ("Types", self.types?.map(\.type.name.rawValue) ?? [])
         ]
     }
 }
@@ -64,7 +64,7 @@ struct Ability: Codable {
     
     let isHidden: Bool
     let slot: Int
-    let ability: Species
+    let ability: TestModel
 
     enum CodingKeys: String, CodingKey {
         
@@ -73,17 +73,24 @@ struct Ability: Codable {
     }
 }
 
+// MARK: - ?
+struct TestModel: Codable {
+    
+    let name: String
+    let url: String
+}
+
 // MARK: - Species
 struct Species: Codable {
     
-    let name: String
+    let name: PokemonType
     let url: String
 }
 
 // MARK: - HeldItem
 struct HeldItem: Codable {
     
-    let item: Species
+    let item: TestModel
     let versionDetails: [VersionDetail]
 
     enum CodingKeys: String, CodingKey {
@@ -97,13 +104,13 @@ struct HeldItem: Codable {
 struct VersionDetail: Codable {
     
     let rarity: Int
-    let version: Species
+    let version: TestModel
 }
 
 // MARK: - Move
 struct Move: Codable {
     
-    let move: Species
+    let move: TestModel
     let versionGroupDetails: [VersionGroupDetail]
 
     enum CodingKeys: String, CodingKey {
@@ -117,7 +124,8 @@ struct Move: Codable {
 struct VersionGroupDetail: Codable {
     
     let levelLearnedAt: Int
-    let versionGroup, moveLearnMethod: Species
+    let versionGroup: TestModel
+    let moveLearnMethod: TestModel
 
     enum CodingKeys: String, CodingKey {
         
@@ -184,7 +192,7 @@ struct OfficialArtwork: Codable {
 struct Stat: Codable {
     
     let baseStat, effort: Int
-    let stat: Species
+    let stat: TestModel
 
     enum CodingKeys: String, CodingKey {
         
