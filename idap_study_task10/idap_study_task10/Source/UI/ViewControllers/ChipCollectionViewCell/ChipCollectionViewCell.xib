@@ -69,10 +69,10 @@
             </constraints>
             <size key="customSize" width="358" height="173"/>
             <connections>
-                <outlet property="image" destination="cSk-aK-Zey" id="S5q-t3-vLQ"/>
-                <outlet property="imageContainer" destination="Nsn-sa-rbQ" id="Fmj-sW-bje"/>
-                <outlet property="stackView" destination="Bvn-ti-5qM" id="97c-3D-HIS"/>
-                <outlet property="text" destination="bO5-GZ-ugm" id="50W-fg-iAZ"/>
+                <outlet property="tagImage" destination="cSk-aK-Zey" id="Mbe-QF-MXc"/>
+                <outlet property="tagImageContainer" destination="Nsn-sa-rbQ" id="CsP-sy-iuq"/>
+                <outlet property="tagLabel" destination="bO5-GZ-ugm" id="0Mp-UR-yss"/>
+                <outlet property="tagStackView" destination="Bvn-ti-5qM" id="HHp-Ek-mvs"/>
             </connections>
             <point key="canvasLocation" x="210.68702290076334" y="63.028169014084511"/>
         </collectionViewCell>

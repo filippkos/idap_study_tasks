@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChipCollectionViewCell: UICollectionViewCell {
+final class ChipCollectionViewCell: UICollectionViewCell {
     
     // MARK: -
     // MARK: Properties
@@ -18,10 +18,10 @@ class ChipCollectionViewCell: UICollectionViewCell {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var text: UILabel!
-    @IBOutlet var imageContainer: UIView!
-    @IBOutlet var image: UIImageView!
-    @IBOutlet var stackView: UIStackView!
+    @IBOutlet var tagLabel: UILabel?
+    @IBOutlet var tagImageContainer: UIView?
+    @IBOutlet var tagImage: UIImageView?
+    @IBOutlet var tagStackView: UIStackView?
     
     // MARK: -
     // MARK: Overrided
@@ -35,6 +35,15 @@ class ChipCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.image.image = nil
+        self.tagImage?.image = nil
+    }
+    
+    // MARK: -
+    // MARK: Public
+    
+    public func fill(with model: VerticalTagItem) {
+        self.tagLabel?.text = model.title
+        self.tagImage?.image = model.leftImage
+        self.tagStackView?.backgroundColor = model.backgroundColor
     }
 }

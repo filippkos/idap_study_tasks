@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DashboardView: BaseView {
+final class DashboardView: BaseView {
     
     // MARK: -
     // MARK: Outlets

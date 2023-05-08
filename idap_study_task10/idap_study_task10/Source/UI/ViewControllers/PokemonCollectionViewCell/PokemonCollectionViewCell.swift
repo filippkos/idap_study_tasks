@@ -13,7 +13,7 @@ struct PokemonCollectionViewCellModel {
     let items: [VerticalTagItem]
 }
 
-class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
+final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     
     // MARK: -
     // MARK: Typealiases
@@ -27,7 +27,7 @@ class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     var isLoaded: Bool = false
     private(set) var id = UUID()
     
-    override open var intrinsicContentSize: CGSize {
+    override var intrinsicContentSize: CGSize {
         return CGSize(width: 100, height: 100)
     }
 

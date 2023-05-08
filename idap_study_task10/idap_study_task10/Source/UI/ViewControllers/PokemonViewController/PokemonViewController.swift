@@ -12,7 +12,7 @@ enum PokemonViewControllerOutputEvents {
     case needShowAlert(alertModel: AlertModel)
 }
 
-class PokemonViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate {
+final class PokemonViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -98,9 +98,24 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
     
     private func customizeNavigationBar() {
         let image = Images.backArrow.image.withRenderingMode(.alwaysOriginal)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style:.plain, target: self, action: #selector(self.backToPokemonList(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.model.id.description, style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: Fonts.PlusJakartaSans.extraBold.font(size: 24)], for: .normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: image,
+            style:.plain,
+            target: self,
+            action: #selector(self.backToPokemonList(_:))
+        )
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: self.model.id.description,
+            style: .plain,
+            target: self,
+            action: nil
+        )
+        
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(
+            [.font: Fonts.PlusJakartaSans.extraBold.font(size: 24)],
+            for: .normal
+        )
     
         self.navigationItem.leftBarButtonItem?.tintColor = .white
         self.navigationItem.rightBarButtonItem?.tintColor = .white
@@ -131,8 +146,8 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
                 indexPath: indexPath
             )
             
-            let items = self.model.grouped[13]?.1.map {
-                VerticalTagItem(leftImage: nil, backgroundColor: nil, textColor: nil, title: $0)
+            let items = self.model.types?.compactMap {
+                return VerticalTagItem(type: $0.type.name)
             }
             
             let cellModel = PokemonCollectionViewCellModel(
@@ -148,41 +163,19 @@ class PokemonViewController: BaseViewController, RootViewGettable, UICollectionV
                 cellClass: PokemonCollectionViewCell.self,
                 indexPath: indexPath
             )
+            
             let items = self.model.grouped[indexPath.row]?.1.map {
-                VerticalTagItem(leftImage: nil, backgroundColor: nil, textColor: nil, title: $0)
+                VerticalTagItem(title: $0)
             }
             
             let cellModel = PokemonCollectionViewCellModel(
                 header: self.model.grouped[indexPath.row]?.0 ?? "",
-                items: items ?? [])
+                items: items ?? []
+            )
             
             cell.configure(with: cellModel)
             
             return cell
         }
     }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.model.grouped[section]?.1.count ?? 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(cellClass: PokemonTableViewCell.self)
-//        let initialId = cell.id
-//        if initialId == cell.id {
-//            cell.fill(text: (self.model.grouped[indexPath.section]?.1[indexPath.row]) ?? "")
-//        }
-//        return cell
-//    }
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return self.model.grouped.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        var sectionName: String = ""
-//        sectionName = self.model.grouped[section]?.0 ?? ""
-//
-//        return sectionName
-//    }
 }

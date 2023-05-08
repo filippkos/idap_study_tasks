@@ -20,10 +20,10 @@ struct Pokemon: Codable {
     let isDefault: Bool
     let order, weight: Int?
     let abilities: [Ability]?
-    let forms: [TestModel]?
+    let forms: [Species]?
     let heldItems: [HeldItem]?
     let moves: [Move]?
-    let species: TestModel?
+    let species: Species?
     let sprites: Sprites?
     let stats: [Stat]?
     let types: [TypeElement]?
@@ -64,7 +64,7 @@ struct Ability: Codable {
     
     let isHidden: Bool
     let slot: Int
-    let ability: TestModel
+    let ability: Species
 
     enum CodingKeys: String, CodingKey {
         
@@ -73,15 +73,15 @@ struct Ability: Codable {
     }
 }
 
-// MARK: - ?
-struct TestModel: Codable {
+// MARK: Speciew ?
+struct Species: Codable {
     
     let name: String
     let url: String
 }
 
 // MARK: - Species
-struct Species: Codable {
+struct PokemonTypeSpecies: Codable {
     
     let name: PokemonType
     let url: String
@@ -90,7 +90,7 @@ struct Species: Codable {
 // MARK: - HeldItem
 struct HeldItem: Codable {
     
-    let item: TestModel
+    let item: Species
     let versionDetails: [VersionDetail]
 
     enum CodingKeys: String, CodingKey {
@@ -104,13 +104,13 @@ struct HeldItem: Codable {
 struct VersionDetail: Codable {
     
     let rarity: Int
-    let version: TestModel
+    let version: Species
 }
 
 // MARK: - Move
 struct Move: Codable {
     
-    let move: TestModel
+    let move: Species
     let versionGroupDetails: [VersionGroupDetail]
 
     enum CodingKeys: String, CodingKey {
@@ -124,8 +124,8 @@ struct Move: Codable {
 struct VersionGroupDetail: Codable {
     
     let levelLearnedAt: Int
-    let versionGroup: TestModel
-    let moveLearnMethod: TestModel
+    let versionGroup: Species
+    let moveLearnMethod: Species
 
     enum CodingKeys: String, CodingKey {
         
@@ -139,7 +139,7 @@ struct VersionGroupDetail: Codable {
 struct TypeElement: Codable {
     
     let slot: Int
-    let type: Species
+    let type: PokemonTypeSpecies
 }
 
 // MARK: - Sprites
@@ -192,7 +192,7 @@ struct OfficialArtwork: Codable {
 struct Stat: Codable {
     
     let baseStat, effort: Int
-    let stat: TestModel
+    let stat: Species
 
     enum CodingKeys: String, CodingKey {
         

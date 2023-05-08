@@ -7,6 +7,6 @@
 
 import UIKit
 
-class AboutUsView: BaseView {
+final class AboutUsView: BaseView {
 
 }
