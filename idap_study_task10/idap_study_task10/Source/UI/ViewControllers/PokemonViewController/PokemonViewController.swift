@@ -71,6 +71,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
     
     override func viewDidLayoutSubviews() {
         self.rootView?.configure()
+        self.rootView?.prepareSlider(model: self.model)
     }
     
     // MARK: -
