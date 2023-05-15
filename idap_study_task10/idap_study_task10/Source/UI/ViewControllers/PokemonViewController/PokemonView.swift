@@ -13,6 +13,7 @@ final class PokemonView: BaseView {
     // MARK: Outlets
     
     @IBOutlet var collectionView: UICollectionView?
+    @IBOutlet var circularSliderContainer: UIView!
     @IBOutlet var imageBackgroundView: UIView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var infoContainer: UIView!
@@ -28,15 +29,24 @@ final class PokemonView: BaseView {
         self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
         self.infoContainer.layer.cornerRadius = 24
         self.flowLayoutConfigure()
-        let action = UIAction(handler: self.someHandler(_ :))
-        self.slider = MTCircularSlider(frame: self.imageView.bounds, primaryAction: action)
-//        self.slider?.addTarget(self, action: Selector("valueChange:"), forControlEvents: .ValueChanged)
-        self.imageView.addSubview(self.slider)
     }
     
     public func set(image: UIImage, text: String) {
         self.imageView?.image = image
         self.backgroundColor = image.getColors().background
+    }
+    
+    public func prepareSlider(model: Pokemon) {
+        let action = UIAction(handler: self.someHandler(_ :))
+        self.slider = MTCircularSlider(frame: self.circularSliderContainer.bounds, primaryAction: action)
+        self.slider.valueMaximum = 255
+        self.slider.valueMinimum = 0
+        self.slider.value = CGFloat(Double(model.baseExperience))
+        self.slider.thumbRadius = 15.5
+        self.slider.thumbShadowRadius = 0
+        self.slider.thumbShadowDepth = 0
+        self.slider.trackWidth = 6.5
+        self.circularSliderContainer.addSubview(self.slider)
     }
     
     func flowLayoutConfigure() {
