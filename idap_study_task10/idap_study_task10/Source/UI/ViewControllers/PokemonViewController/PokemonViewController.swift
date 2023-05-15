@@ -106,7 +106,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
         )
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: self.model.id.description,
+            title: Int.intToFormattedIdString(number: model.id),
             style: .plain,
             target: self,
             action: nil
@@ -165,7 +165,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
             )
             
             let items = self.model.grouped[indexPath.row]?.1.map {
-                VerticalTagItem(title: $0)
+                VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
             }
             
             let cellModel = PokemonCollectionViewCellModel(

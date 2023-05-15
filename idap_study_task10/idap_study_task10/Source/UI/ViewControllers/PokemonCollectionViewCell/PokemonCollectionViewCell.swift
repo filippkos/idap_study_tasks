@@ -59,7 +59,8 @@ final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumLineSpacing = 2
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
         self.verticalTagView?.collectionView.collectionViewLayout = layout
         self.verticalTagView?.collectionView.isPagingEnabled = false
         self.verticalTagView?.collectionView.alwaysBounceVertical = false

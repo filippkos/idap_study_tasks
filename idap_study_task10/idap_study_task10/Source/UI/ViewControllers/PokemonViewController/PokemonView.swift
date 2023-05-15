@@ -14,8 +14,10 @@ final class PokemonView: BaseView {
     
     @IBOutlet var collectionView: UICollectionView?
     @IBOutlet var imageBackgroundView: UIView!
-    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var infoContainer: UIView!
+    
+    var slider: MTCircularSlider!
     
     // MARK: -
     // MARK: Public
@@ -26,10 +28,15 @@ final class PokemonView: BaseView {
         self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
         self.infoContainer.layer.cornerRadius = 24
         self.flowLayoutConfigure()
+        let action = UIAction(handler: self.someHandler(_ :))
+        self.slider = MTCircularSlider(frame: self.imageView.bounds, primaryAction: action)
+//        self.slider?.addTarget(self, action: Selector("valueChange:"), forControlEvents: .ValueChanged)
+        self.imageView.addSubview(self.slider)
     }
     
     public func set(image: UIImage, text: String) {
         self.imageView?.image = image
+        self.backgroundColor = image.getColors().background
     }
     
     func flowLayoutConfigure() {
@@ -43,5 +50,9 @@ final class PokemonView: BaseView {
         self.collectionView?.collectionViewLayout = layout
         self.collectionView?.isPagingEnabled = false
         self.collectionView?.alwaysBounceVertical = true
+    }
+    
+    @objc func someHandler(_ : UIAction) {
+        return
     }
 }

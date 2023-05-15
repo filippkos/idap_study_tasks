@@ -34,28 +34,25 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     
     func configure(with model: Pokemon, image: UIImage) {
         self.flowLayoutConfigure()
-        self.background.backgroundColor = Colors.Colors.wildSand.color
+        self.background.backgroundColor = image.getColors().background.withAlphaComponent(0.5)
         self.image.image = image
-        self.idLabel.text = model.id.description
+        self.idLabel.text = Int.intToFormattedIdString(number: model.id)
         self.nameLabel.text = model.name.capitalizingFirstLetter()
         self.nameLabel.font = Fonts.PaytoneOne.regular.font(size: 22)
         self.nameLabel.textColor = Colors.Colors.abbey.color
     }
     
     func configure(with model: PokemonCollectionViewCellModel) {
-        self.verticalTagView.isImagesEnabled = true
         self.verticalTagView?.configure(with: model.items)
     }
     
     func flowLayoutConfigure() {
-        let itemWidth = 100
-        let itemHeight = 35
+        let itemWidth = 24
+        let itemHeight = 24
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumLineSpacing = 2
-        self.verticalTagView?.collectionView.collectionViewLayout = layout
-        self.verticalTagView?.collectionView.isPagingEnabled = false
+        layout.minimumInteritemSpacing = 8
+        self.verticalTagView?.collectionView.setCollectionViewLayout(layout, animated: false)
         self.verticalTagView?.collectionView.alwaysBounceVertical = false
         self.verticalTagView?.collectionView.isScrollEnabled = false
     }
@@ -74,7 +71,5 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
         super.prepareForReuse()
         
         self.image.image = nil
-        self.nameLabel.text = nil
-        self.id = UUID()
     }
 }

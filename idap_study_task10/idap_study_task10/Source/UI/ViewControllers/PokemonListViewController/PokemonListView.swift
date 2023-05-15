@@ -18,6 +18,7 @@ final class PokemonListView: BaseView {
     // MARK: Public
     
     func configure() {
+        
     }
     
     func flowLayoutListConfigure() {
