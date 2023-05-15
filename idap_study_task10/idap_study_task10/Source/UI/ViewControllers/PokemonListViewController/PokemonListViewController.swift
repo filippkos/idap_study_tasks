@@ -324,7 +324,11 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         
         if let pokemon = cellPokemon {
             let items = pokemon.types?.compactMap {
-                return VerticalTagItem(type: $0.type.name)
+                if self.isOneColumnCollectionView {
+                    return VerticalTagItem(type: $0.type.name)
+                } else {
+                    return VerticalTagItem(type: $0.type.name, state: .image)
+                }
             }
             
             let cellModel = PokemonCollectionViewCellModel(

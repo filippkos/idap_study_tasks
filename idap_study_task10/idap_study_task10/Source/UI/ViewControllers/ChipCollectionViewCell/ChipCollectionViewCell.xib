@@ -9,14 +9,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ChipCollectionViewCell" customModule="idap_study_task10" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="ChipCollectionViewCell" customModule="idap_study_task10" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="358" height="173"/>
-            <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="358" height="173"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvn-ti-5qM">
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" verticalHuggingPriority="240" translatesAutoresizingMaskIntoConstraints="NO" id="Bvn-ti-5qM">
                         <rect key="frame" x="0.0" y="0.0" width="358" height="173"/>
                         <subviews>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" translatesAutoresizingMaskIntoConstraints="NO" id="Nsn-sa-rbQ" userLabel="Image Container">
@@ -70,7 +69,6 @@
             <size key="customSize" width="358" height="173"/>
             <connections>
                 <outlet property="tagImage" destination="cSk-aK-Zey" id="Mbe-QF-MXc"/>
-                <outlet property="tagImageContainer" destination="Nsn-sa-rbQ" id="CsP-sy-iuq"/>
                 <outlet property="tagLabel" destination="bO5-GZ-ugm" id="0Mp-UR-yss"/>
                 <outlet property="tagStackView" destination="Bvn-ti-5qM" id="HHp-Ek-mvs"/>
             </connections>

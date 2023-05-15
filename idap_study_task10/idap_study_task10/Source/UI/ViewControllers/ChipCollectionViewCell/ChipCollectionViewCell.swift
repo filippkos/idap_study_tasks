@@ -10,18 +10,37 @@ import UIKit
 final class ChipCollectionViewCell: UICollectionViewCell {
     
     // MARK: -
-    // MARK: Properties
-    
-    var isLoaded: Bool = false
-    private(set) var id = UUID()
-    
-    // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var tagLabel: UILabel?
-    @IBOutlet var tagImageContainer: UIView?
-    @IBOutlet var tagImage: UIImageView?
-    @IBOutlet var tagStackView: UIStackView?
+    @IBOutlet private var tagLabel: UILabel?
+    @IBOutlet private var tagImage: UIImageView?
+    @IBOutlet private var tagStackView: UIStackView?
+    
+    // MARK: -
+    // MARK: Public
+    
+    public func fill(with model: VerticalTagItem) {
+        self.prepareText(with: model)
+        self.prepareImageView(with: model)
+        self.prepareContainer(with: model)
+    }
+    
+    // MARK: -
+    // MARK: Private
+    
+    private func prepareText(with model: VerticalTagItem) {
+        self.tagLabel?.text = model.title
+        self.tagLabel?.superview?.isHidden = model.title.isEmpty || model.state == .image
+    }
+    
+    private func prepareImageView(with model: VerticalTagItem) {
+        self.tagImage?.image = model.leftImage
+        self.tagImage?.superview?.isHidden = model.leftImage == nil || model.state == .text
+    }
+    
+    private func prepareContainer(with model: VerticalTagItem) {
+        self.tagStackView?.backgroundColor = model.backgroundColor
+    }
     
     // MARK: -
     // MARK: Overrided
@@ -36,14 +55,5 @@ final class ChipCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.tagImage?.image = nil
-    }
-    
-    // MARK: -
-    // MARK: Public
-    
-    public func fill(with model: VerticalTagItem) {
-        self.tagLabel?.text = model.title
-        self.tagImage?.image = model.leftImage
-        self.tagStackView?.backgroundColor = model.backgroundColor
     }
 }
