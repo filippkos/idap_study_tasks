@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MTCircularSlider
 
 final class PokemonView: BaseView {
     
@@ -41,11 +42,20 @@ final class PokemonView: BaseView {
         self.slider = MTCircularSlider(frame: self.circularSliderContainer.bounds, primaryAction: action)
         self.slider.valueMaximum = 255
         self.slider.valueMinimum = 0
-        self.slider.value = CGFloat(Double(model.baseExperience))
-        self.slider.thumbRadius = 15.5
-        self.slider.thumbShadowRadius = 0
-        self.slider.thumbShadowDepth = 0
-        self.slider.trackWidth = 6.5
+        self.slider.value = CGFloat(Double(model.baseExperience ?? 0))
+        self.slider.applyAttributes(
+            [
+                /* Track */
+                Attributes.trackWidth(7),
+
+                /* Thumb */
+                Attributes.hasThumb(true),
+                Attributes.thumbRadius(15.5),
+                Attributes.thumbShadowRadius(0),
+                Attributes.thumbShadowDepth(0)
+            ]
+        )
+        self.slider.isUserInteractionEnabled = false
         self.circularSliderContainer.addSubview(self.slider)
     }
     

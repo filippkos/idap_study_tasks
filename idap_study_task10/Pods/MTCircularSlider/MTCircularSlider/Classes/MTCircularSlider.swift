@@ -23,30 +23,30 @@
 import UIKit
 
 public enum MTCircularSliderError: Error {
-    case windingsSetToPartialSlider
+	case windingsSetToPartialSlider
 }
 
 // MARK: - Attributes for configuring a MTKnobView.
 public enum Attributes {
-    // MARK: Track style
-    case minTrackTint(UIColor)
-    case maxTrackTint(UIColor)
-    case trackWidth(CGFloat)
-    case trackShadowRadius(CGFloat)
-    case trackShadowDepth(CGFloat)
-    case trackMinAngle(CGFloat)
-    case trackMaxAngle(CGFloat)
+	// MARK: Track style
+	case minTrackTint(UIColor)
+	case maxTrackTint(UIColor)
+	case trackWidth(CGFloat)
+	case trackShadowRadius(CGFloat)
+	case trackShadowDepth(CGFloat)
+	case trackMinAngle(CGFloat)
+	case trackMaxAngle(CGFloat)
     case trackRounding(Bool)
-    case maxWinds(CGFloat)
+	case maxWinds(CGFloat)
 
-    // MARK: Thumb style
-    case hasThumb(Bool)
-    case thumbTint(UIColor)
-    case thumbRadius(CGFloat)
-    case thumbShadowRadius(CGFloat)
-    case thumbShadowDepth(CGFloat)
-    case thumbBorderWidth(CGFloat)
-    case thumbBorderColor(UIColor)
+	// MARK: Thumb style
+	case hasThumb(Bool)
+	case thumbTint(UIColor)
+	case thumbRadius(CGFloat)
+	case thumbShadowRadius(CGFloat)
+	case thumbShadowDepth(CGFloat)
+	case thumbBorderWidth(CGFloat)
+	case thumbBorderColor(UIColor)
 
     // MARK: View properties
     case touchPadding(CGFloat)
@@ -54,215 +54,215 @@ public enum Attributes {
 
 @IBDesignable
 open class MTCircularSlider: UIControl {
-    @IBInspectable
-    var minTrackTint: UIColor = UIColor(red: 0.0, green: 0.478, blue: 1.0, alpha: 1.0)
+	@IBInspectable
+	var minTrackTint: UIColor = UIColor(red: 0.0, green: 0.478, blue: 1.0, alpha: 1.0)
 
-    @IBInspectable
-    var maxTrackTint: UIColor = UIColor(red: 0.71, green: 0.71, blue: 0.71, alpha: 1.0)
+	@IBInspectable
+	var maxTrackTint: UIColor = UIColor(red: 0.71, green: 0.71, blue: 0.71, alpha: 1.0)
 
-    @IBInspectable
-    var trackWidth: CGFloat = 2.0 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var trackWidth: CGFloat = 2.0 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var trackShadowRadius: CGFloat = 0.0 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var trackShadowRadius: CGFloat = 0.0 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var trackShadowDepth: CGFloat = 0.0 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var trackShadowDepth: CGFloat = 0.0 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var trackMinAngle: CGFloat = 0.0 {
-        didSet {
-            do {
-                try noWindingIfNotFullCircle()
-            } catch MTCircularSliderError.windingsSetToPartialSlider {
-                print("Error: Cannot set maxWinds to values other than 1 if MTCircularSlider doesn't close a full circle. " +
+	@IBInspectable
+	var trackMinAngle: CGFloat = 0.0 {
+		didSet {
+			do {
+				try noWindingIfNotFullCircle()
+			} catch MTCircularSliderError.windingsSetToPartialSlider {
+				print("Error: Cannot set maxWinds to values other than 1 if MTCircularSlider doesn't close a full circle. " +
                     "Try changing trackMinAngle or trackMaxAngle.")
-            } catch {
-                print("Error: Unknown error")
-            }
-            setNeedsDisplay()
-        }
-    }
+			} catch {
+				print("Error: Unknown error")
+			}
+			setNeedsDisplay()
+		}
+	}
 
-    @IBInspectable
-    var trackMaxAngle: CGFloat = 360.0 {
-        didSet {
-            do {
-                try noWindingIfNotFullCircle()
-            } catch MTCircularSliderError.windingsSetToPartialSlider {
-                print("Error: Cannot set maxWinds to values other than 1 if MTCircularSlider doesn't close a full circle. " +
+	@IBInspectable
+	var trackMaxAngle: CGFloat = 360.0 {
+		didSet {
+			do {
+				try noWindingIfNotFullCircle()
+			} catch MTCircularSliderError.windingsSetToPartialSlider {
+				print("Error: Cannot set maxWinds to values other than 1 if MTCircularSlider doesn't close a full circle. " +
                     "Try changing trackMinAngle or trackMaxAngle.")
-            } catch {
-                print("Error: Unknown error")
-            }
-            setNeedsDisplay()
-        }
-    }
+			} catch {
+				print("Error: Unknown error")
+			}
+			setNeedsDisplay()
+		}
+	}
     
     @IBInspectable
     var trackRounding: Bool = false { didSet { setNeedsDisplay() } }
     
-    @IBInspectable
-    var hasThumb: Bool = true { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var hasThumb: Bool = true { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var thumbTint: UIColor = UIColor.white
+	@IBInspectable
+	var thumbTint: UIColor = UIColor.white
 
-    @IBInspectable
-    var thumbRadius: CGFloat = 14 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var thumbRadius: CGFloat = 14 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var thumbShadowRadius: CGFloat = 2 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var thumbShadowRadius: CGFloat = 2 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var thumbShadowDepth: CGFloat = 3 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var thumbShadowDepth: CGFloat = 3 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var thumbBorderWidth: CGFloat = 0 { didSet { setNeedsDisplay() } }
+	@IBInspectable
+	var thumbBorderWidth: CGFloat = 0 { didSet { setNeedsDisplay() } }
 
-    @IBInspectable
-    var thumbBorderColor: UIColor = UIColor.lightGray
+	@IBInspectable
+	var thumbBorderColor: UIColor = UIColor.lightGray
 
-    @IBInspectable
-    open var value: CGFloat = 0.5 {
-        didSet {
-            let cappedVal = cappedValue(value, forWinds: maxWinds)
-            if value != cappedVal { value = cappedVal }
-            setNeedsDisplay()
+	@IBInspectable
+	open var value: CGFloat = 0.5 {
+		didSet {
+			let cappedVal = cappedValue(value, forWinds: maxWinds)
+			if value != cappedVal { value = cappedVal }
+			setNeedsDisplay()
 
-            sendActions(for: .valueChanged)
-        }
-    }
+			sendActions(for: .valueChanged)
+		}
+	}
 
-    @IBInspectable
-    open var valueMinimum: CGFloat = 0.0 {
-        didSet {
-            value = cappedValue(value)
-            setNeedsDisplay()
-        }
-    }
+	@IBInspectable
+	open var valueMinimum: CGFloat = 0.0 {
+		didSet {
+			value = cappedValue(value)
+			setNeedsDisplay()
+		}
+	}
 
-    @IBInspectable
-    open var valueMaximum: CGFloat = 1.0 {
-        didSet {
-            value = cappedValue(value)
-            setNeedsDisplay()
-        }
-    }
+	@IBInspectable
+	open var valueMaximum: CGFloat = 1.0 {
+		didSet {
+			value = cappedValue(value)
+			setNeedsDisplay()
+		}
+	}
 
-    @IBInspectable
-    open var maxWinds: CGFloat = 1.0 {
-        didSet {
-            do {
-                try noWindingIfNotFullCircle()
-            } catch MTCircularSliderError.windingsSetToPartialSlider {
-                print("Error: Cannot set maxWinds to values other than 1 if MTCircularSlider doesn't close a full circle. " +
+	@IBInspectable
+	open var maxWinds: CGFloat = 1.0 {
+		didSet {
+			do {
+				try noWindingIfNotFullCircle()
+			} catch MTCircularSliderError.windingsSetToPartialSlider {
+				print("Error: Cannot set maxWinds to values other than 1 if MTCircularSlider doesn't close a full circle. " +
                     "Try changing trackMinAngle or trackMaxAngle.")
-            } catch {
-                print("Error: Unknown error")
-            }
-        }
-    }
+			} catch {
+				print("Error: Unknown error")
+			}
+		}
+	}
 
     @IBInspectable
     open var touchPadding: CGFloat = 0.0
     
-    fileprivate var isLeftToRight: Bool {
-        if #available(iOS 9.0, *) {
-            return UIView.userInterfaceLayoutDirection(for: self.semanticContentAttribute) ==
+	fileprivate var isLeftToRight: Bool {
+		if #available(iOS 9.0, *) {
+			return UIView.userInterfaceLayoutDirection(for: self.semanticContentAttribute) ==
                 UIUserInterfaceLayoutDirection.leftToRight
-        } else {
-            // Fallback on earlier versions
-            return true
-        }
-    }
+		} else {
+			// Fallback on earlier versions
+			return true
+		}
+	}
 
-    fileprivate var thumbLayer = CAShapeLayer()
+	fileprivate var thumbLayer = CAShapeLayer()
 
-    fileprivate var viewCenter: CGPoint {
-        return convert(center, from: superview)
-    }
+	fileprivate var viewCenter: CGPoint {
+		return convert(center, from: superview)
+	}
 
-    fileprivate var thumbCenter: CGPoint {
-        var thumbCenter = viewCenter
-        let angle = rtlAwareAngleRadians(thumbAngle)
-        thumbCenter.x += CGFloat(cos(angle)) * controlRadius
-        thumbCenter.y += CGFloat(sin(angle)) * controlRadius
-        return thumbCenter
-    }
+	internal var thumbCenter: CGPoint {
+		var thumbCenter = viewCenter
+		let angle = rtlAwareAngleRadians(thumbAngle)
+		thumbCenter.x += CGFloat(cos(angle)) * controlRadius
+		thumbCenter.y += CGFloat(sin(angle)) * controlRadius
+		return thumbCenter
+	}
 
-    fileprivate var controlRadius: CGFloat {
-        return min(bounds.width, bounds.height) / 2.0 - controlThickness
-    }
+	fileprivate var controlRadius: CGFloat {
+		return min(bounds.width, bounds.height) / 2.0 - controlThickness
+	}
 
-    fileprivate var controlThickness: CGFloat {
-        let thumbRadius = (hasThumb) ? self.thumbRadius : 0.0
-        return max(thumbRadius, trackWidth / 2.0)
-    }
+	fileprivate var controlThickness: CGFloat {
+		let thumbRadius = (hasThumb) ? self.thumbRadius : 0.0
+		return max(thumbRadius, trackWidth / 2.0)
+	}
 
-    fileprivate var innerControlRadius: CGFloat {
-        return controlRadius - trackWidth * 0.5
-    }
+	fileprivate var innerControlRadius: CGFloat {
+		return controlRadius - trackWidth * 0.5
+	}
 
-    fileprivate var outerControlRadius: CGFloat {
-        return controlRadius + trackWidth * 0.5
-    }
+	fileprivate var outerControlRadius: CGFloat {
+		return controlRadius + trackWidth * 0.5
+	}
 
-    fileprivate var thumbAngle: CGFloat {
-        let normalizedValue = (value - valueMinimum) / valueRange()
-        let degrees = normalizedValue * (trackMaxAngle - trackMinAngle) + trackMinAngle
-        // Rotate 180 degrees so that 0 degrees would be on the left and
-        // convert to radians.
-        let radians = degreesToRadians(degrees + 180.0)
-        return CGFloat(radians)
-    }
+	fileprivate var thumbAngle: CGFloat {
+		let normalizedValue = (value - valueMinimum) / valueRange()
+		let degrees = normalizedValue * (trackMaxAngle - trackMinAngle) + trackMinAngle
+		// Rotate 180 degrees so that 0 degrees would be on the left and
+		// convert to radians.
+		let radians = degreesToRadians(degrees + 180.0)
+		return CGFloat(radians)
+	}
 
-    fileprivate var lastPositionForTouch = CGPoint.zero
+	fileprivate var lastPositionForTouch = CGPoint.zero
 
-    fileprivate var pseudoValueForTouch: CGFloat = 0.0
+	fileprivate var pseudoValueForTouch: CGFloat = 0.0
 
-    override
-    open var center: CGPoint {
-        didSet { setNeedsDisplay() }
-    }
+	override
+	open var center: CGPoint {
+		didSet { setNeedsDisplay() }
+	}
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+	override init(frame: CGRect) {
+		super.init(frame: frame)
 
-        prepare()
-    }
+		prepare()
+	}
 
-    required
-    public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+	required
+	public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
 
-        prepare()
-    }
+		prepare()
+	}
 
-    override
-    open func prepareForInterfaceBuilder() {
-        prepare()
+	override
+	open func prepareForInterfaceBuilder() {
+		prepare()
 
-        // Due to a bug in XCode, the shadow is misplaced in Interface Builder.
-        thumbShadowDepth = -thumbShadowDepth * 2
-        thumbShadowRadius *= 2
-    }
+		// Due to a bug in XCode, the shadow is misplaced in Interface Builder.
+		thumbShadowDepth = -thumbShadowDepth * 2
+		thumbShadowRadius *= 2
+	}
 
-    override
-    open func draw(_ rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        context?.saveGState()
+	override
+	open func draw(_ rect: CGRect) {
+		let context = UIGraphicsGetCurrentContext()
+		context?.saveGState()
 
-        clipDrawingPathToTrack()
+		clipDrawingPathToTrack()
 
-        drawTrack(context!)
+		drawTrack(context!)
 
-        context?.restoreGState()
+		context?.restoreGState()
 
-        drawProgressOnTrack()
+		drawProgressOnTrack()
 
-        drawThumb()
-    }
+		drawThumb()
+	}
 
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if (!isUserInteractionEnabled || isHidden) {
@@ -275,103 +275,103 @@ open class MTCircularSlider: UIControl {
         return nil;
     }
 
-    fileprivate func rtlAwareAngleRadians(_ radians: CGFloat) -> CGFloat {
-        return isLeftToRight ? radians : CGFloat(Double.pi) - radians
-    }
+	fileprivate func rtlAwareAngleRadians(_ radians: CGFloat) -> CGFloat {
+		return isLeftToRight ? radians : CGFloat(Double.pi) - radians
+	}
 
-    // swiftlint:disable cyclomatic_complexity
-    open func applyAttributes(_ attributes: [Attributes]) {
-        for attribute in attributes {
-            switch attribute {
-            // MARK: Track style
-            case let .minTrackTint(value):
-                self.minTrackTint = value
-            case let .maxTrackTint(value):
-                self.maxTrackTint = value
-            case let .trackWidth(value):
-                self.trackWidth = value
-            case let .trackShadowRadius(value):
-                self.trackShadowRadius = value
-            case let .trackShadowDepth(value):
-                self.trackShadowDepth = value
-            case let .trackMinAngle(value):
-                self.trackMinAngle = value
-            case let .trackMaxAngle(value):
-                self.trackMaxAngle = value
+	// swiftlint:disable cyclomatic_complexity
+	open func applyAttributes(_ attributes: [Attributes]) {
+		for attribute in attributes {
+			switch attribute {
+			// MARK: Track style
+			case let .minTrackTint(value):
+				self.minTrackTint = value
+			case let .maxTrackTint(value):
+				self.maxTrackTint = value
+			case let .trackWidth(value):
+				self.trackWidth = value
+			case let .trackShadowRadius(value):
+				self.trackShadowRadius = value
+			case let .trackShadowDepth(value):
+				self.trackShadowDepth = value
+			case let .trackMinAngle(value):
+				self.trackMinAngle = value
+			case let .trackMaxAngle(value):
+				self.trackMaxAngle = value
             case let .trackRounding(value):
                 self.trackRounding = value
-            case let .maxWinds(value):
-                self.maxWinds = value
+			case let .maxWinds(value):
+				self.maxWinds = value
 
-            // MARK: Thumb style
-            case let .hasThumb(value):
-                self.hasThumb = value
-            case let .thumbTint(value):
-                self.thumbTint = value
-            case let .thumbRadius(value):
-                self.thumbRadius = value
-            case let .thumbShadowRadius(value):
-                self.thumbShadowRadius = value
-            case let .thumbShadowDepth(value):
-                self.thumbShadowDepth = value
-            case let .thumbBorderWidth(value):
-                self.thumbBorderWidth = value
-            case let .thumbBorderColor(value):
-                self.thumbBorderColor = value
+			// MARK: Thumb style
+			case let .hasThumb(value):
+				self.hasThumb = value
+			case let .thumbTint(value):
+				self.thumbTint = value
+			case let .thumbRadius(value):
+				self.thumbRadius = value
+			case let .thumbShadowRadius(value):
+				self.thumbShadowRadius = value
+			case let .thumbShadowDepth(value):
+				self.thumbShadowDepth = value
+			case let .thumbBorderWidth(value):
+				self.thumbBorderWidth = value
+			case let .thumbBorderColor(value):
+				self.thumbBorderColor = value
 
             // MARK: View properties
             case let .touchPadding(value):
                 self.touchPadding = value
             }
-        }
+		}
 
-        setNeedsDisplay()
-    }
-    // swiftlint:enable cyclomatic_complexity
+		setNeedsDisplay()
+	}
+	// swiftlint:enable cyclomatic_complexity
 
-    /**
-    Returns the current angle of the thumb in radians.
-    */
-    open func getThumbAngle() -> CGFloat {
-        return thumbAngle
-    }
+	/**
+	Returns the current angle of the thumb in radians.
+	*/
+	open func getThumbAngle() -> CGFloat {
+		return thumbAngle
+	}
 
-    fileprivate func prepare() {
-        contentMode = .redraw
-        isOpaque = false
-        backgroundColor = UIColor.clear
+	fileprivate func prepare() {
+		contentMode = .redraw
+		isOpaque = false
+		backgroundColor = UIColor.clear
 
-        layer.insertSublayer(thumbLayer, at: 0)
-    }
+		layer.insertSublayer(thumbLayer, at: 0)
+	}
 
-    fileprivate func cappedValue(_ value: CGFloat) -> CGFloat {
-        return cappedValue(value, forWinds: 1.0)
-    }
+	fileprivate func cappedValue(_ value: CGFloat) -> CGFloat {
+		return cappedValue(value, forWinds: 1.0)
+	}
 
-    fileprivate func cappedValue(_ value: CGFloat, forWinds: CGFloat) -> CGFloat {
-        return min(max(valueMinimum, value), valueMaximum + valueRange() * (maxWinds - 1.0))
-    }
+	fileprivate func cappedValue(_ value: CGFloat, forWinds: CGFloat) -> CGFloat {
+		return min(max(valueMinimum, value), valueMaximum + valueRange() * (maxWinds - 1.0))
+	}
 
-    // True if the provided location is on the thumb, false otherwise.
-    fileprivate func locationOnThumb(_ location: CGPoint) -> Bool {
-        let thumbCenter = self.thumbCenter
-        return sqrt(pow(location.x - thumbCenter.x, 2) +
-            pow(location.y - thumbCenter.y, 2)) <= thumbRadius
-    }
+	// True if the provided location is on the thumb, false otherwise.
+	fileprivate func locationOnThumb(_ location: CGPoint) -> Bool {
+		let thumbCenter = self.thumbCenter
+		return sqrt(pow(location.x - thumbCenter.x, 2) +
+			pow(location.y - thumbCenter.y, 2)) <= thumbRadius
+	}
 
-    fileprivate func isClockwise(_ vector1: CGPoint, vector2: CGPoint) -> Bool {
-        return vector1.y * vector2.x < vector1.x * vector2.y
-    }
+	fileprivate func isClockwise(_ vector1: CGPoint, vector2: CGPoint) -> Bool {
+		return vector1.y * vector2.x < vector1.x * vector2.y
+	}
 
-    fileprivate func noWindingIfNotFullCircle() throws {
-        guard maxWinds == 1 || trackMaxAngle - trackMinAngle == 360 else {
-            throw MTCircularSliderError.windingsSetToPartialSlider
-        }
-    }
+	fileprivate func noWindingIfNotFullCircle() throws {
+		guard maxWinds == 1 || trackMaxAngle - trackMinAngle == 360 else {
+			throw MTCircularSliderError.windingsSetToPartialSlider
+		}
+	}
 
-    fileprivate func valueRange() -> CGFloat {
-        return valueMaximum - valueMinimum
-    }
+	fileprivate func valueRange() -> CGFloat {
+		return valueMaximum - valueMinimum
+	}
 }
 
 // MARK: - Trigonometry converters
