@@ -1,8 +1,10 @@
 PODS:
+  - MTCircularSlider (1.1.0)
   - SnapKit (5.6.0)
   - SwiftGen (6.6.2)
 
 DEPENDENCIES:
+  - MTCircularSlider (from `https://github.com/filippkos/MTCircularSlider`, commit `dce2bcb`)
   - SnapKit
   - SwiftGen
 
@@ -11,10 +13,21 @@ SPEC REPOS:
     - SnapKit
     - SwiftGen
 
+EXTERNAL SOURCES:
+  MTCircularSlider:
+    :commit: dce2bcb
+    :git: https://github.com/filippkos/MTCircularSlider
+
+CHECKOUT OPTIONS:
+  MTCircularSlider:
+    :commit: dce2bcb
+    :git: https://github.com/filippkos/MTCircularSlider
+
 SPEC CHECKSUMS:
+  MTCircularSlider: 9b8fff1d3f7675b1c0dfa9b78d48cae9971c63a4
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
 
-PODFILE CHECKSUM: c921f2ab93503f31eac498be2bc1b65f79f5d258
+PODFILE CHECKSUM: 918d1f9264cfab7f8cd221e6aa00771ebe1ec3d1
 
 COCOAPODS: 1.11.3

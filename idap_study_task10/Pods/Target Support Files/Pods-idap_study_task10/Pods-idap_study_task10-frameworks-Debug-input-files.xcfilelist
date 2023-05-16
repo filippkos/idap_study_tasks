@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-idap_study_task10/Pods-idap_study_task10-frameworks.sh
+${BUILT_PRODUCTS_DIR}/MTCircularSlider/MTCircularSlider.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework

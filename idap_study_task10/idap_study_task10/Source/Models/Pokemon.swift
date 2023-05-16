@@ -15,9 +15,9 @@ struct Pokemon: Codable {
     
     let id: Int
     let name: String
-    let baseExperience: Int
-    let height: Int
-    let isDefault: Bool
+    let baseExperience: Int?
+    let height: Int?
+    let isDefault: Bool?
     let order, weight: Int?
     let abilities: [Ability]?
     let forms: [Species]?
@@ -43,10 +43,10 @@ struct Pokemon: Codable {
         [
             0 : ("Id", [self.id.description]),
             1 : ("Name", [self.name.description]),
-            2 : ("Base experience", [self.baseExperience.description]),
-            3 : ("Height", [self.height.description]),
+            2 : ("Base experience", [self.baseExperience?.description ?? ""]),
+            3 : ("Height", [self.height?.description ?? ""]),
             4 : ("Weight", [self.weight?.description ?? ""]),
-            5 : ("Is default", [self.isDefault.description]),
+            5 : ("Is default", [self.isDefault?.description ?? ""]),
             6 : ("Order", [self.order?.description ?? ""]),
             7 : ("Abilities", self.abilities?.map(\.ability.name) ?? []),
             8 : ("Forms", self.forms?.map(\.name) ?? []),
