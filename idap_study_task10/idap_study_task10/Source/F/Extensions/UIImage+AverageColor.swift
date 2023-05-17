@@ -22,7 +22,7 @@ public struct UIImageColors {
 }
 
 public enum UIImageColorsQuality: CGFloat {
-    case lowest = 5 // 50px
+    case lowest = 20 // 50px
     case low = 100 // 100px
     case high = 250 // 250px
     case highest = 0 // No scale

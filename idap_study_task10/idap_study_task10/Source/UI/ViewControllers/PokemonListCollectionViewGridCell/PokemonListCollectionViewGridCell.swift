@@ -35,7 +35,7 @@ final class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, 
     
     func configure(with model: Pokemon, image: UIImage) {
         self.flowLayoutConfigure()
-        self.background.backgroundColor = image.getColors().background.withAlphaComponent(0.5)
+        self.background.backgroundColor = image.getColors(quality: .lowest).background.withAlphaComponent(0.3)
         self.image.image = image
         self.idLabel.text = Int.intToFormattedIdString(number: model.id)
         self.nameLabel.text = model.name.capitalizingFirstLetter()
