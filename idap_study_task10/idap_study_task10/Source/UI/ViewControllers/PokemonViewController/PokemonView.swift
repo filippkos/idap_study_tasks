@@ -14,21 +14,15 @@ final class PokemonView: BaseView {
     // MARK: Outlets
     
     @IBOutlet var collectionView: UICollectionView?
-    @IBOutlet var circularSliderContainer: UIView!
+    @IBOutlet var circularSliderView: CircularSliderView?
     @IBOutlet var imageBackgroundView: UIView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var infoContainer: UIView!
-    
-    var slider: MTCircularSlider!
-    var sliderLabel: UILabel!
     
     // MARK: -
     // MARK: Public
     
     public func configure() {
-        self.imageBackgroundView.setNeedsLayout()
-        self.imageBackgroundView.layoutIfNeeded()
-        self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
         self.infoContainer.layer.cornerRadius = 24
         self.flowLayoutConfigure()
     }
@@ -38,25 +32,12 @@ final class PokemonView: BaseView {
         self.backgroundColor = image.getColors().background
     }
     
-    public func prepareSlider(model: Pokemon) {
-        self.slider = MTCircularSlider(frame: self.circularSliderContainer.bounds, primaryAction: UIAction(handler: { _ in }))
-        self.slider.valueMaximum = 255
-        self.slider.valueMinimum = 0
-        self.slider.value = CGFloat(Double(model.baseExperience ?? 0))
-        self.slider.applyAttributes(
-            [
-                /* Track */
-                Attributes.trackWidth(7),
-
-                /* Thumb */
-                Attributes.hasThumb(true),
-                Attributes.thumbRadius(15.5),
-                Attributes.thumbShadowRadius(0),
-                Attributes.thumbShadowDepth(0)
-            ]
-        )
-        self.slider.isUserInteractionEnabled = false
-        self.circularSliderContainer.addSubview(self.slider)
+    func configureSlider(model: Pokemon) {
+        self.circularSliderView?.prepareSlider(value: model.baseExperience ?? 0)
+    }
+    
+    override func layoutSubviews() {
+        self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
     }
     
     func flowLayoutConfigure() {

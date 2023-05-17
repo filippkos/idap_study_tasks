@@ -6,24 +6,28 @@
 //
 
 import UIKit
+import MTCircularSlider
 
-class CircularSliderView: UIViewController {
+class CircularSliderView: NibDesignable {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet var slider: MTCircularSlider?
 
-        // Do any additional setup after loading the view.
+    public func prepareSlider(value: Int) {
+        self.slider?.valueMaximum = 255
+        self.slider?.valueMinimum = 0
+        self.slider?.value = CGFloat(Double(value))
+        self.slider?.isUserInteractionEnabled = false
+        self.slider?.applyAttributes(
+            [
+                /* Track */
+                Attributes.trackWidth(7),
+
+                /* Thumb */
+                Attributes.hasThumb(true),
+                Attributes.thumbRadius(15.5),
+                Attributes.thumbShadowRadius(0),
+                Attributes.thumbShadowDepth(0)
+            ]
+        )
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

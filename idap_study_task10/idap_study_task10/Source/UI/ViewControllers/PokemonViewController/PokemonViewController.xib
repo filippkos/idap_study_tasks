@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRb-7J-T5j" userLabel="Circular Slider Container">
+                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRb-7J-T5j" userLabel="Circular Slider Container" customClass="CircularSliderView" customModule="idap_study_task10" customModuleProvider="target">
                     <rect key="frame" x="28" y="57" width="337" height="337"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7SM-81-p4z" userLabel="Image Background View">
@@ -85,7 +85,7 @@
                 <constraint firstAttribute="bottom" secondItem="Nmy-Bu-40O" secondAttribute="bottom" id="bf4-mv-JsG"/>
             </constraints>
             <connections>
-                <outlet property="circularSliderContainer" destination="WRb-7J-T5j" id="nMi-uN-p1d"/>
+                <outlet property="circularSliderView" destination="WRb-7J-T5j" id="s06-eA-q01"/>
                 <outlet property="collectionView" destination="YwC-D6-VMy" id="xvU-E9-9zL"/>
                 <outlet property="imageBackgroundView" destination="7SM-81-p4z" id="Adg-cX-t6q"/>
                 <outlet property="imageView" destination="IL2-WG-ObI" id="gsE-9w-1nC"/>
