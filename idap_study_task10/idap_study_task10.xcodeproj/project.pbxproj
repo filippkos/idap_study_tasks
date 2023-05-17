@@ -80,8 +80,8 @@
 		22D6D91429FBF80700C984F5 /* PokemonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D6D91229FBF80700C984F5 /* PokemonCollectionViewCell.xib */; };
 		22D6D91829FBF92300C984F5 /* ChipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D91629FBF92300C984F5 /* ChipCollectionViewCell.swift */; };
 		22D6D91929FBF92300C984F5 /* ChipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D6D91729FBF92300C984F5 /* ChipCollectionViewCell.xib */; };
-		22D6D9232A038DA400C984F5 /* VerticalTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D9212A038DA400C984F5 /* VerticalTagViewController.swift */; };
-		22D6D9242A038DA400C984F5 /* VerticalTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D6D9222A038DA400C984F5 /* VerticalTagViewController.xib */; };
+		22D6D9232A038DA400C984F5 /* VerticalTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D9212A038DA400C984F5 /* VerticalTagView.swift */; };
+		22D6D9242A038DA400C984F5 /* VerticalTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D6D9222A038DA400C984F5 /* VerticalTagView.xib */; };
 		22D6D9292A03A00700C984F5 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D9282A03A00700C984F5 /* NibDesignable.swift */; };
 		22D6D93A2A06F8D900C984F5 /* String+CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D9392A06F8D900C984F5 /* String+CapitalizeFirstLetter.swift */; };
 		22D6D93F2A09230400C984F5 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D93E2A09230400C984F5 /* Models.swift */; };
@@ -168,8 +168,8 @@
 		22D6D91629FBF92300C984F5 /* ChipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCollectionViewCell.swift; sourceTree = "<group>"; };
 		22D6D91729FBF92300C984F5 /* ChipCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipCollectionViewCell.xib; sourceTree = "<group>"; };
 		22D6D91A29FFC09B00C984F5 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		22D6D9212A038DA400C984F5 /* VerticalTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTagViewController.swift; sourceTree = "<group>"; };
-		22D6D9222A038DA400C984F5 /* VerticalTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalTagViewController.xib; sourceTree = "<group>"; };
+		22D6D9212A038DA400C984F5 /* VerticalTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTagView.swift; sourceTree = "<group>"; };
+		22D6D9222A038DA400C984F5 /* VerticalTagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalTagView.xib; sourceTree = "<group>"; };
 		22D6D9282A03A00700C984F5 /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		22D6D9392A06F8D900C984F5 /* String+CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirstLetter.swift"; sourceTree = "<group>"; };
 		22D6D93E2A09230400C984F5 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -566,8 +566,8 @@
 			isa = PBXGroup;
 			children = (
 				22D6D93D2A0922F900C984F5 /* Private */,
-				22D6D9212A038DA400C984F5 /* VerticalTagViewController.swift */,
-				22D6D9222A038DA400C984F5 /* VerticalTagViewController.xib */,
+				22D6D9212A038DA400C984F5 /* VerticalTagView.swift */,
+				22D6D9222A038DA400C984F5 /* VerticalTagView.xib */,
 			);
 			path = VerticalTagView;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D6D9242A038DA400C984F5 /* VerticalTagViewController.xib in Resources */,
+				22D6D9242A038DA400C984F5 /* VerticalTagView.xib in Resources */,
 				2245E83229C9B13100E8EB80 /* AboutUsViewController.xib in Resources */,
 				2253047B2A13A4E9000C68BD /* CircularSliderView.xib in Resources */,
 				22D6D91929FBF92300C984F5 /* ChipCollectionViewCell.xib in Resources */,
@@ -765,7 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D6D9232A038DA400C984F5 /* VerticalTagViewController.swift in Sources */,
+				22D6D9232A038DA400C984F5 /* VerticalTagView.swift in Sources */,
 				2287B15A29B105BC004EDBE6 /* NetworkManager.swift in Sources */,
 				2287B12429B101EF004EDBE6 /* TableView+ReusableCell.swift in Sources */,
 				22232B2F29B78BC300B52268 /* DashboardLocalizationDictionary.swift in Sources */,

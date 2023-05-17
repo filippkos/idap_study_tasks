@@ -48,7 +48,7 @@ struct VerticalTagItem {
     }
 }
 
-class VerticalTagViewController: NibDesignable, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class VerticalTagView: NibDesignable, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: -
     // MARK: Outlets
