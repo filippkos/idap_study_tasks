@@ -27,6 +27,9 @@
 		2245E83129C9B13100E8EB80 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2245E82F29C9B13100E8EB80 /* AboutUsViewController.swift */; };
 		2245E83229C9B13100E8EB80 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2245E83029C9B13100E8EB80 /* AboutUsViewController.xib */; };
 		2245E83429C9B15000E8EB80 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2245E83329C9B15000E8EB80 /* AboutUsView.swift */; };
+		2253047A2A13A4E9000C68BD /* CircularSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225304782A13A4E9000C68BD /* CircularSliderView.swift */; };
+		2253047B2A13A4E9000C68BD /* CircularSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225304792A13A4E9000C68BD /* CircularSliderView.xib */; };
+		2253047F2A13AFCF000C68BD /* pokeball.json in Resources */ = {isa = PBXBuildFile; fileRef = 2253047E2A13AFCF000C68BD /* pokeball.json */; };
 		2287B0F429B0F7BC004EDBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287B0F329B0F7BC004EDBE6 /* AppDelegate.swift */; };
 		2287B0F829B0F7BC004EDBE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287B0F729B0F7BC004EDBE6 /* ViewController.swift */; };
 		2287B10029B0F7BE004EDBE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2287B0FE29B0F7BE004EDBE6 /* LaunchScreen.storyboard */; };
@@ -109,6 +112,9 @@
 		2245E82F29C9B13100E8EB80 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		2245E83029C9B13100E8EB80 /* AboutUsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsViewController.xib; sourceTree = "<group>"; };
 		2245E83329C9B15000E8EB80 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
+		225304782A13A4E9000C68BD /* CircularSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSliderView.swift; sourceTree = "<group>"; };
+		225304792A13A4E9000C68BD /* CircularSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircularSliderView.xib; sourceTree = "<group>"; };
+		2253047E2A13AFCF000C68BD /* pokeball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pokeball.json; path = ../../../../../../../../Downloads/pokeball.json; sourceTree = "<group>"; };
 		2287B0F029B0F7BC004EDBE6 /* idap_study_task10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2287B0F329B0F7BC004EDBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2287B0F729B0F7BC004EDBE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 		22232B1A29B742F400B52268 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				2253047C2A13A6CD000C68BD /* Animations */,
 				22232B1B29B742FF00B52268 /* Generated */,
 				22232B2529B75BA400B52268 /* swiftgen-config.yml */,
 				22232B1E29B754E700B52268 /* Colors.xcassets */,
@@ -257,6 +264,23 @@
 				2245E83329C9B15000E8EB80 /* AboutUsView.swift */,
 			);
 			path = AboutUsViewController;
+			sourceTree = "<group>";
+		};
+		225304772A13A47C000C68BD /* CircularSliderView */ = {
+			isa = PBXGroup;
+			children = (
+				225304782A13A4E9000C68BD /* CircularSliderView.swift */,
+				225304792A13A4E9000C68BD /* CircularSliderView.xib */,
+			);
+			path = CircularSliderView;
+			sourceTree = "<group>";
+		};
+		2253047C2A13A6CD000C68BD /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				2253047E2A13AFCF000C68BD /* pokeball.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		2287B0E729B0F7BC004EDBE6 = {
@@ -513,6 +537,7 @@
 		2287B17329B38106004EDBE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				225304772A13A47C000C68BD /* CircularSliderView */,
 				22D6D91C2A026C5500C984F5 /* PagerView */,
 				22D6D91B2A026C0800C984F5 /* VerticalTagView */,
 			);
@@ -651,6 +676,7 @@
 			files = (
 				22D6D9242A038DA400C984F5 /* VerticalTagViewController.xib in Resources */,
 				2245E83229C9B13100E8EB80 /* AboutUsViewController.xib in Resources */,
+				2253047B2A13A4E9000C68BD /* CircularSliderView.xib in Resources */,
 				22D6D91929FBF92300C984F5 /* ChipCollectionViewCell.xib in Resources */,
 				2287B13F29B1047C004EDBE6 /* DashboardViewController.xib in Resources */,
 				22232B1F29B754E700B52268 /* Colors.xcassets in Resources */,
@@ -667,6 +693,7 @@
 				2287B14729B104C4004EDBE6 /* PokemonViewController.xib in Resources */,
 				22D6D91429FBF80700C984F5 /* PokemonCollectionViewCell.xib in Resources */,
 				2287B17D29B3819D004EDBE6 /* DashboardCollectionViewCell.xib in Resources */,
+				2253047F2A13AFCF000C68BD /* pokeball.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,6 +795,7 @@
 				2245E82129C8B6FE00E8EB80 /* PokemonListCollectionViewGridCell.swift in Sources */,
 				2287B13E29B1047C004EDBE6 /* DashboardViewController.swift in Sources */,
 				22D6D9292A03A00700C984F5 /* NibDesignable.swift in Sources */,
+				2253047A2A13A4E9000C68BD /* CircularSliderView.swift in Sources */,
 				2287B16229B10604004EDBE6 /* HTTPMethod.swift in Sources */,
 				2287B16C29B106E6004EDBE6 /* ServiceManager.swift in Sources */,
 				2245E83129C9B13100E8EB80 /* AboutUsViewController.swift in Sources */,
