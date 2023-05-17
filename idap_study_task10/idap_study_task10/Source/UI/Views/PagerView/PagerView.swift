@@ -29,7 +29,7 @@ class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewD
 
     init() {
         super.init(frame: CGRect(), collectionViewLayout: layout)
-        self.prepareLayout()
+        
         self.registerDefaultCell(cellClass: UICollectionViewCell.self)
         self.dataSource = self
         self.delegate = self
@@ -38,7 +38,7 @@ class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewD
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.prepareLayout()
+        
         self.registerDefaultCell(cellClass: UICollectionViewCell.self)
         self.dataSource = self
         self.delegate = self
@@ -102,6 +102,12 @@ class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewD
         let verticalInset = (self.frame.size.height - CGFloat(self.containerSize)) / 2
 
         return UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.prepareLayout()
     }
 
     // MARK: -
