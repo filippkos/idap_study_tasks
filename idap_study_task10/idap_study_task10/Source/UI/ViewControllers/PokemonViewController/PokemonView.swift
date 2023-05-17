@@ -20,6 +20,7 @@ final class PokemonView: BaseView {
     @IBOutlet var infoContainer: UIView!
     
     var slider: MTCircularSlider!
+    var sliderLabel: UILabel!
     
     // MARK: -
     // MARK: Public
@@ -38,8 +39,7 @@ final class PokemonView: BaseView {
     }
     
     public func prepareSlider(model: Pokemon) {
-        let action = UIAction(handler: self.someHandler(_ :))
-        self.slider = MTCircularSlider(frame: self.circularSliderContainer.bounds, primaryAction: action)
+        self.slider = MTCircularSlider(frame: self.circularSliderContainer.bounds, primaryAction: UIAction(handler: { _ in }))
         self.slider.valueMaximum = 255
         self.slider.valueMinimum = 0
         self.slider.value = CGFloat(Double(model.baseExperience ?? 0))
@@ -70,9 +70,5 @@ final class PokemonView: BaseView {
         self.collectionView?.collectionViewLayout = layout
         self.collectionView?.isPagingEnabled = false
         self.collectionView?.alwaysBounceVertical = true
-    }
-    
-    @objc func someHandler(_ : UIAction) {
-        return
     }
 }
