@@ -27,7 +27,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     @IBOutlet var image: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var idLabel: UILabel!
-    @IBOutlet var verticalTagView: VerticalTagViewController!
+    @IBOutlet var verticalTagView: VerticalTagView!
     
     // MARK: -
     // MARK: Public

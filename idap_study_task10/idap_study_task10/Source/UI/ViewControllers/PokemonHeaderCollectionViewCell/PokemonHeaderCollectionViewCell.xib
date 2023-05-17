@@ -38,7 +38,7 @@
                                 <color key="textColor" name="colors/abbey"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yh-PP-hER" customClass="VerticalTagViewController" customModule="idap_study_task10" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yh-PP-hER" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50.333333333333329" width="400" height="141.66666666666669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>

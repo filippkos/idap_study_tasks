@@ -22,7 +22,7 @@ final class PokemonHeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet var weightValue: UILabel!
     @IBOutlet var orderTitle: UILabel!
     @IBOutlet var orderValue: UILabel!
-    @IBOutlet var verticalTagView: VerticalTagViewController!
+    @IBOutlet var verticalTagView: VerticalTagView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

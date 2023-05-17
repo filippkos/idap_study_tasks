@@ -35,7 +35,7 @@ final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     // MARK: Outlets
     
     @IBOutlet var header: UILabel!
-    @IBOutlet var verticalTagView: VerticalTagViewController?
+    @IBOutlet var verticalTagView: VerticalTagView?
     
     override func awakeFromNib() {
         super.awakeFromNib()

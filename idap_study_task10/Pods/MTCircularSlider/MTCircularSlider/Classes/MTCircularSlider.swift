@@ -183,7 +183,7 @@ open class MTCircularSlider: UIControl {
 		return convert(center, from: superview)
 	}
 
-	internal var thumbCenter: CGPoint {
+	public var thumbCenter: CGPoint {
 		var thumbCenter = viewCenter
 		let angle = rtlAwareAngleRadians(thumbAngle)
 		thumbCenter.x += CGFloat(cos(angle)) * controlRadius

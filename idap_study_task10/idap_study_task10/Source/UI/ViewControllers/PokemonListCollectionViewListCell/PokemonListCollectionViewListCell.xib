@@ -88,7 +88,7 @@
                                                     <constraint firstItem="NJS-mM-DM8" firstAttribute="leading" secondItem="hWS-LP-rtn" secondAttribute="leading" id="tPI-ja-jpB"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpU-1L-yFc" customClass="VerticalTagViewController" customModule="idap_study_task10" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpU-1L-yFc" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="46.333333333333336" width="123" height="16.333333333333336"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <accessibility key="accessibilityConfiguration">

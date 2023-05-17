@@ -37,6 +37,8 @@ final class PokemonView: BaseView {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
+        
         self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
     }
     
