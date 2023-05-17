@@ -28,17 +28,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-6c-YSm">
                                 <rect key="frame" x="0.0" y="0.0" width="227" height="104"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2x-fa-jf0" userLabel="Image Container">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" translatesAutoresizingMaskIntoConstraints="NO" id="j2x-fa-jf0" userLabel="Image Container">
                                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdM-Ef-pzr">
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="270" verticalHuggingPriority="270" horizontalCompressionResistancePriority="770" verticalCompressionResistancePriority="770" translatesAutoresizingMaskIntoConstraints="NO" id="EdM-Ef-pzr">
                                                 <rect key="frame" x="16" y="16" width="72" height="72"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                                 </accessibility>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P30-b3-Ms2">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="270" verticalHuggingPriority="270" horizontalCompressionResistancePriority="770" verticalCompressionResistancePriority="770" translatesAutoresizingMaskIntoConstraints="NO" id="P30-b3-Ms2">
                                                 <rect key="frame" x="16" y="16" width="72" height="72"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -50,15 +50,14 @@
                                             <accessibilityTraits key="traits" notEnabled="YES"/>
                                         </accessibility>
                                         <constraints>
-                                            <constraint firstItem="EdM-Ef-pzr" firstAttribute="top" secondItem="j2x-fa-jf0" secondAttribute="top" constant="16" id="3wc-1U-2au"/>
-                                            <constraint firstAttribute="width" secondItem="j2x-fa-jf0" secondAttribute="height" multiplier="1:1" id="521-u5-Mfa"/>
                                             <constraint firstItem="P30-b3-Ms2" firstAttribute="top" secondItem="j2x-fa-jf0" secondAttribute="top" constant="16" id="Cax-ov-VCM"/>
-                                            <constraint firstAttribute="trailing" secondItem="EdM-Ef-pzr" secondAttribute="trailing" constant="16" id="RZk-KJ-RLJ"/>
-                                            <constraint firstItem="EdM-Ef-pzr" firstAttribute="leading" secondItem="j2x-fa-jf0" secondAttribute="leading" constant="16" id="SMg-sd-jyG"/>
-                                            <constraint firstAttribute="bottom" secondItem="EdM-Ef-pzr" secondAttribute="bottom" constant="16" id="U2s-vL-Wn6"/>
+                                            <constraint firstItem="EdM-Ef-pzr" firstAttribute="leading" secondItem="P30-b3-Ms2" secondAttribute="leading" id="Rsr-9e-HBi"/>
                                             <constraint firstAttribute="bottom" secondItem="P30-b3-Ms2" secondAttribute="bottom" constant="16" id="aL9-4h-X1L"/>
                                             <constraint firstAttribute="trailing" secondItem="P30-b3-Ms2" secondAttribute="trailing" constant="16" id="bKf-eK-Ryw"/>
                                             <constraint firstItem="P30-b3-Ms2" firstAttribute="leading" secondItem="j2x-fa-jf0" secondAttribute="leading" constant="16" id="hMR-be-fhk"/>
+                                            <constraint firstItem="EdM-Ef-pzr" firstAttribute="top" secondItem="P30-b3-Ms2" secondAttribute="top" id="k0O-L6-tQL"/>
+                                            <constraint firstItem="EdM-Ef-pzr" firstAttribute="bottom" secondItem="P30-b3-Ms2" secondAttribute="bottom" id="tPv-es-ejs"/>
+                                            <constraint firstItem="EdM-Ef-pzr" firstAttribute="trailing" secondItem="P30-b3-Ms2" secondAttribute="trailing" id="wRo-Q8-aHx"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RDD-Wa-dmP">
@@ -67,7 +66,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWS-LP-rtn" userLabel="Label Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="123" height="36.333333333333336"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJS-mM-DM8">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJS-mM-DM8">
                                                         <rect key="frame" x="0.0" y="15.999999999999998" width="123" height="20.333333333333329"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -98,7 +97,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcs-dJ-C2O">
                                                 <rect key="frame" x="0.0" y="72.666666666666671" width="123" height="31.333333333333329"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeW-cE-rCx">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeW-cE-rCx">
                                                         <rect key="frame" x="0.0" y="0.0" width="123" height="15.333333333333334"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
