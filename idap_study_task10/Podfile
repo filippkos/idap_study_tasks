@@ -9,7 +9,7 @@ target 'idap_study_task10' do
 
 pod 'SnapKit'
 pod 'SwiftGen'
-pod 'MTCircularSlider', :git => 'https://github.com/filippkos/MTCircularSlider', :commit => '0b62a0c'
+pod 'MTCircularSlider', :git => 'https://github.com/filippkos/MTCircularSlider', :commit => '4310d40'
 pod 'lottie-ios'
 
 end

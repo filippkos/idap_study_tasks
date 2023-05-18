@@ -204,7 +204,7 @@ open class MTCircularSlider: UIControl {
 		return controlRadius - trackWidth * 0.5
 	}
 
-	fileprivate var outerControlRadius: CGFloat {
+	public var outerControlRadius: CGFloat {
 		return controlRadius + trackWidth * 0.5
 	}
 
