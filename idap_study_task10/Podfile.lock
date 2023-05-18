@@ -6,7 +6,7 @@ PODS:
 
 DEPENDENCIES:
   - lottie-ios
-  - MTCircularSlider (from `https://github.com/filippkos/MTCircularSlider`, commit `0b62a0c`)
+  - MTCircularSlider (from `https://github.com/filippkos/MTCircularSlider`, commit `4310d40`)
   - SnapKit
   - SwiftGen
 
@@ -18,12 +18,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   MTCircularSlider:
-    :commit: 0b62a0c
+    :commit: 4310d40
     :git: https://github.com/filippkos/MTCircularSlider
 
 CHECKOUT OPTIONS:
   MTCircularSlider:
-    :commit: 0b62a0c
+    :commit: 4310d40
     :git: https://github.com/filippkos/MTCircularSlider
 
 SPEC CHECKSUMS:
@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
 
-PODFILE CHECKSUM: 762b2fc11b4606d9eb7d07603c4c5ed5c022cc36
+PODFILE CHECKSUM: b545fe133f11fd7c31488a3859c2bbed2a42d227
 
 COCOAPODS: 1.11.3

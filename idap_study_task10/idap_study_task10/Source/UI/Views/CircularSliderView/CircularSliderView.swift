@@ -26,7 +26,7 @@ class CircularSliderView: NibDesignable {
 
     public func prepareSlider(value: Int) {
         self.labelValue = value
-        self.slider?.valueMaximum = 255
+        self.slider?.valueMaximum = 300
         self.slider?.valueMinimum = 0
         self.slider?.value = CGFloat(Double(self.labelValue))
         self.slider?.isUserInteractionEnabled = false
@@ -63,5 +63,27 @@ class CircularSliderView: NibDesignable {
         super.layoutSubviews()
         
         self.configureLabel()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        
+        let center: CGPoint = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+        var trackRadius = (self.slider?.outerControlRadius ?? 0) - 4
+        let circlePath = UIBezierPath(arcCenter: center, radius: trackRadius ?? CGFloat(), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
+            
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+            
+        // Change the fill color
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        // You can change the stroke color
+        var color = Colors.Colors.wildSand.color.withAlphaComponent(0.5)
+    
+        shapeLayer.strokeColor = color.cgColor
+        
+        // You can change the line width
+        shapeLayer.lineWidth = 11.0
+            
+        self.layer.addSublayer(shapeLayer)
     }
 }
