@@ -84,6 +84,6 @@ class CircularSliderView: NibDesignable {
         // You can change the line width
         shapeLayer.lineWidth = 11.0
             
-        self.layer.addSublayer(shapeLayer)
+        self.layer.insertSublayer(shapeLayer, at: 0)
     }
 }
