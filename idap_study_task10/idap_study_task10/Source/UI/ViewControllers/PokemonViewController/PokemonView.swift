@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import MTCircularSlider
 
 final class PokemonView: BaseView {
     
@@ -29,17 +28,11 @@ final class PokemonView: BaseView {
     
     public func set(image: UIImage, text: String) {
         self.imageView?.image = image
-        self.backgroundColor = image.getColors().background
+        self.prepareGradient(with: image.getColors().background)
     }
     
     func configureSlider(model: Pokemon) {
         self.circularSliderView?.prepareSlider(value: model.baseExperience ?? 0)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
     }
     
     func flowLayoutConfigure() {
@@ -53,5 +46,26 @@ final class PokemonView: BaseView {
         self.collectionView?.collectionViewLayout = layout
         self.collectionView?.isPagingEnabled = false
         self.collectionView?.alwaysBounceVertical = true
+    }
+    
+    // MARK: -
+    // MARK: Private
+    
+    private func prepareGradient(with color: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.cornerRadius = 10
+        gradientLayer.frame = self.bounds
+        gradientLayer.locations = [0.0, 0.5]
+        gradientLayer.colors = [color.withAlphaComponent(0.5).cgColor, color.cgColor]
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    // MARK: -
+    // MARK: Overrided
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
     }
 }
