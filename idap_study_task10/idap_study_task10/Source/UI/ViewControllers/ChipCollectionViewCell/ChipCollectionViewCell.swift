@@ -23,6 +23,7 @@ final class ChipCollectionViewCell: UICollectionViewCell {
         self.prepareText(with: model)
         self.prepareImageView(with: model)
         self.prepareContainer(with: model)
+        
     }
     
     // MARK: -
@@ -30,16 +31,16 @@ final class ChipCollectionViewCell: UICollectionViewCell {
     
     private func prepareText(with model: VerticalTagItem) {
         self.tagLabel?.text = model.title
-        self.tagLabel?.superview?.isHidden = model.title.isEmpty || model.state == .image
+        self.tagLabel?.isHidden = model.title.isEmpty || model.state == .image
     }
     
     private func prepareImageView(with model: VerticalTagItem) {
         self.tagImage?.image = model.leftImage
-        self.tagImage?.superview?.isHidden = model.leftImage == nil || model.state == .text
+        self.tagImage?.isHidden = model.leftImage == nil || model.state == .text
     }
     
     private func prepareContainer(with model: VerticalTagItem) {
-        self.tagStackView?.backgroundColor = model.backgroundColor
+        self.backgroundColor = model.backgroundColor
     }
     
     // MARK: -
