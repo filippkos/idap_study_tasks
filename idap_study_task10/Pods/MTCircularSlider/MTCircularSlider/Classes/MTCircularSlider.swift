@@ -191,7 +191,7 @@ open class MTCircularSlider: UIControl {
 		return thumbCenter
 	}
 
-	fileprivate var controlRadius: CGFloat {
+	public var controlRadius: CGFloat {
 		return min(bounds.width, bounds.height) / 2.0 - controlThickness
 	}
 
@@ -200,7 +200,7 @@ open class MTCircularSlider: UIControl {
 		return max(thumbRadius, trackWidth / 2.0)
 	}
 
-	fileprivate var innerControlRadius: CGFloat {
+	public var innerControlRadius: CGFloat {
 		return controlRadius - trackWidth * 0.5
 	}
 
@@ -220,6 +220,8 @@ open class MTCircularSlider: UIControl {
 	fileprivate var lastPositionForTouch = CGPoint.zero
 
 	fileprivate var pseudoValueForTouch: CGFloat = 0.0
+    
+    public var progressPath: UIBezierPath?
 
 	override
 	open var center: CGPoint {
@@ -275,7 +277,7 @@ open class MTCircularSlider: UIControl {
         return nil;
     }
 
-	fileprivate func rtlAwareAngleRadians(_ radians: CGFloat) -> CGFloat {
+	public func rtlAwareAngleRadians(_ radians: CGFloat) -> CGFloat {
 		return isLeftToRight ? radians : CGFloat(Double.pi) - radians
 	}
 
@@ -359,7 +361,7 @@ open class MTCircularSlider: UIControl {
 			pow(location.y - thumbCenter.y, 2)) <= thumbRadius
 	}
 
-	fileprivate func isClockwise(_ vector1: CGPoint, vector2: CGPoint) -> Bool {
+	public func isClockwise(_ vector1: CGPoint, vector2: CGPoint) -> Bool {
 		return vector1.y * vector2.x < vector1.x * vector2.y
 	}
 
@@ -514,7 +516,7 @@ fileprivate extension MTCircularSlider {
         let minAngle = degreesToRadians(trackMinAngle + 180.0)
         let isRounded = self.value != 0 && self.trackRounding
 
-        let progressPath =
+        self.progressPath =
             isLeftToRight ?
                 getRingSliceArcPath(ringCenter: viewCenter,
                                     innerRadius: innerControlRadius,
@@ -530,7 +532,7 @@ fileprivate extension MTCircularSlider {
                                     isRounded: isRounded)
 
         minTrackTint.setFill()
-        progressPath.fill()
+        self.progressPath?.fill()
     }
 
     func drawTrack(_ context: CGContext) {
