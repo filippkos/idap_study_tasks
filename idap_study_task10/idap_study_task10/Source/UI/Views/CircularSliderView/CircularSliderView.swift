@@ -108,16 +108,17 @@ class CircularSliderView: NibDesignable {
     }
     
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
         let center: CGPoint = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
-        var trackRadius = (self.slider?.outerControlRadius ?? 0) - 4
+        let trackRadius = (self.slider?.outerControlRadius ?? 0) - 4
         let circlePath = UIBezierPath(arcCenter: center, radius: trackRadius, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
-            
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        var color = Colors.Colors.wildSand.color.withAlphaComponent(0.5)
-        shapeLayer.strokeColor = color.cgColor
+        let color = Colors.Colors.wildSand.color.withAlphaComponent(0.5)
         shapeLayer.lineWidth = 11.0
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.strokeColor = color.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
         self.layer.insertSublayer(shapeLayer, at: 0)
     }
 }
