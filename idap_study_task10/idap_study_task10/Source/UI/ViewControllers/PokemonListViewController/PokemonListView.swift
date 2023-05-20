@@ -22,11 +22,11 @@ final class PokemonListView: BaseView {
     }
     
     func flowLayoutListConfigure() {
-        let itemWidth = self.collectionView.frame.size.width
+        let itemWidth = self.collectionView.frame.size.width - 48
         let itemHeight = self.collectionView.frame.size.height
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: itemWidth - 48, height: 127)
+        layout.itemSize = CGSize(width: itemWidth, height: 127)
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout

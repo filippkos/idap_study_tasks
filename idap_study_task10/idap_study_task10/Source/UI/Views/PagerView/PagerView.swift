@@ -96,10 +96,10 @@ class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewD
     }
     
     private func getInsets() -> UIEdgeInsets {
-        let totalCellWidth = self.containerSize * (self.numberOfPages + 1)
+        let totalCellWidth = self.containerSize * self.numberOfPages
         
-        let horizontalInset = ((self.frame.size.width - CGFloat(totalCellWidth)) / 2)
-        let verticalInset = (self.frame.size.height - CGFloat(self.containerSize)) / 2
+        let horizontalInset = (self.bounds.width - CGFloat(totalCellWidth)) / 2
+        let verticalInset = (self.bounds.size.height - CGFloat(self.containerSize)) / 2
 
         return UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
     }

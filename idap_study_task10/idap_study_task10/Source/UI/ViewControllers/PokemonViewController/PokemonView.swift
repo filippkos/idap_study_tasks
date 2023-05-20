@@ -19,6 +19,11 @@ final class PokemonView: BaseView {
     @IBOutlet var infoContainer: UIView!
     
     // MARK: -
+    // MARK: Variables
+    
+    var image: UIImage?
+    
+    // MARK: -
     // MARK: Public
     
     public func configure() {
@@ -27,8 +32,8 @@ final class PokemonView: BaseView {
     }
     
     public func set(image: UIImage, text: String) {
+        self.image = image
         self.imageView?.image = image
-        self.prepareGradient(with: image.getColors().background)
     }
     
     func configureSlider(model: Pokemon) {
@@ -36,16 +41,16 @@ final class PokemonView: BaseView {
     }
     
     func flowLayoutConfigure() {
-        let itemWidth = self.collectionView?.frame.size.width
+        let itemWidth = (self.collectionView?.frame.size.width ?? 0) - 48
         let itemHeight = self.collectionView?.frame.size.height
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: (itemWidth ?? 0) - 48, height: 127)
+        layout.itemSize = CGSize(width: itemWidth, height: 127)
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         self.collectionView?.collectionViewLayout = layout
         self.collectionView?.isPagingEnabled = false
         self.collectionView?.alwaysBounceVertical = true
+        
     }
     
     // MARK: -
@@ -53,8 +58,8 @@ final class PokemonView: BaseView {
     
     private func prepareGradient(with color: UIColor) {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.cornerRadius = 10
-        gradientLayer.frame = self.bounds
+        gradientLayer.cornerRadius = 0
+        gradientLayer.frame = self.frame
         gradientLayer.locations = [0.0, 0.5]
         gradientLayer.colors = [color.withAlphaComponent(0.5).cgColor, color.cgColor]
         self.layer.insertSublayer(gradientLayer, at: 0)
@@ -66,6 +71,8 @@ final class PokemonView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        self.collectionView?.layer.cornerRadius = 24
+        self.prepareGradient(with: self.image?.getColors().background ?? .clear)
         self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
     }
 }
