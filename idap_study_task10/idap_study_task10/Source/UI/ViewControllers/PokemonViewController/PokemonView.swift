@@ -14,9 +14,9 @@ final class PokemonView: BaseView {
     
     @IBOutlet var collectionView: UICollectionView?
     @IBOutlet var circularSliderView: CircularSliderView?
-    @IBOutlet var imageBackgroundView: UIView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var infoContainer: UIView!
+    @IBOutlet var imageBackgroundView: UIView?
+    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var infoContainer: UIView?
     
     // MARK: -
     // MARK: Variables
@@ -27,7 +27,7 @@ final class PokemonView: BaseView {
     // MARK: Public
     
     public func configure() {
-        self.infoContainer.layer.cornerRadius = 24
+        self.infoContainer?.layer.cornerRadius = 24
         self.flowLayoutConfigure()
     }
     
@@ -61,7 +61,7 @@ final class PokemonView: BaseView {
         gradientLayer.cornerRadius = 0
         gradientLayer.frame = self.frame
         gradientLayer.locations = [0.0, 0.5]
-        gradientLayer.colors = [color.withAlphaComponent(0.5).cgColor, color.cgColor]
+        gradientLayer.colors = [color.withAlphaComponent(0.2).cgColor, color.cgColor]
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
@@ -73,6 +73,6 @@ final class PokemonView: BaseView {
         
         self.collectionView?.layer.cornerRadius = 24
         self.prepareGradient(with: self.image?.getColors().background ?? .clear)
-        self.imageBackgroundView.layer.cornerRadius = self.imageBackgroundView.frame.width / 2
+        self.imageBackgroundView?.layer.cornerRadius = (self.imageBackgroundView?.frame.width ?? 0) / 2
     }
 }

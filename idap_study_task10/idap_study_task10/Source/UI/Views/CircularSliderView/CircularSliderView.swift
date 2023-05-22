@@ -56,8 +56,8 @@ class CircularSliderView: NibDesignable {
     }
     
     private func prepareLabelBackground(with point: CGPoint) {
-        self.labelBackground.frame = CGRect(origin: point, size: CGSize(width: 30, height: 30))
-        self.labelBackground.layer.cornerRadius = 15
+        self.labelBackground.frame = CGRect(origin: point, size: CGSize(width: 31, height: 31))
+        self.labelBackground.layer.cornerRadius = 15.5
         self.labelBackground.backgroundColor = .white
         self.labelBackground.center = point
         self.insertSubview(self.labelBackground, at: 3)
