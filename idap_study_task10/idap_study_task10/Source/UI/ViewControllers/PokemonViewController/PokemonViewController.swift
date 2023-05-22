@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIImageColors
 
 enum PokemonViewControllerOutputEvents {
 
@@ -91,6 +92,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
         self.imageService.image(for: model) { [weak self] image in
             if let image = image {
                 self?.rootView?.set(image: image, text: model.name)
+                self?.rootView?.prepareGradient(with: image.getColors()?.background ?? .clear)
             }
         } alertHandler: { error in
             completion(error)

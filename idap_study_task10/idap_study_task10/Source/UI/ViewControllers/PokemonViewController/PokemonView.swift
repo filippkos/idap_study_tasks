@@ -20,11 +20,6 @@ final class PokemonView: BaseView {
     @IBOutlet var infoContainer: UIView?
     
     // MARK: -
-    // MARK: Variables
-    
-    var image: UIImage?
-    
-    // MARK: -
     // MARK: Public
     
     public func configure() {
@@ -33,7 +28,6 @@ final class PokemonView: BaseView {
     }
     
     public func set(image: UIImage, text: String) {
-        self.image = image
         self.imageView?.image = image
     }
     
@@ -54,12 +48,8 @@ final class PokemonView: BaseView {
         
     }
     
-    // MARK: -
-    // MARK: Private
-    
-    private func prepareGradient(with color: UIColor) {
+    func prepareGradient(with color: UIColor) {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.cornerRadius = 0
         gradientLayer.frame = self.frame
         gradientLayer.locations = [0.0, 0.5]
         gradientLayer.colors = [color.withAlphaComponent(0.2).cgColor, color.cgColor]
@@ -73,7 +63,6 @@ final class PokemonView: BaseView {
         super.layoutSubviews()
 
         self.collectionView?.layer.cornerRadius = 24
-        self.prepareGradient(with: self.image?.getColors()?.background ?? .clear)
         self.imageBackgroundView?.layer.cornerRadius = (self.imageBackgroundView?.frame.width ?? 0) / 2
     }
 }
