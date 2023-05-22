@@ -81,8 +81,8 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         self.rootView?.flowLayoutListConfigure()
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewListCell.self)
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewGridCell.self)
-        self.rootView?.collectionView.dataSource = self
-        self.rootView?.collectionView.delegate = self
+        self.rootView?.collectionView?.dataSource = self
+        self.rootView?.collectionView?.delegate = self
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
         self.configureSearchBar()
@@ -151,7 +151,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
             self.group.wait()
             
             DispatchQueue.main.async {
-                self.rootView?.collectionView.reloadData()
+                self.rootView?.collectionView?.reloadData()
             }
             print("<!> after wait")
         }
@@ -200,12 +200,12 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
             self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "rectangle.grid.1x2")
             self.rootView?.flowLayoutSquaresConfigure()
             self.isOneColumnCollectionView = false
-            self.rootView?.collectionView.reloadData()
+            self.rootView?.collectionView?.reloadData()
         } else {
             self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "square.grid.2x2")
             self.rootView?.flowLayoutListConfigure()
             self.isOneColumnCollectionView = true
-            self.rootView?.collectionView.reloadData()
+            self.rootView?.collectionView?.reloadData()
         }
     }
     
@@ -311,7 +311,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
             }
             if let pokemon = cellPokemon {
                 self.imageService.image(for: pokemon) { image in
-                    cell.image.showSpinner()
+                    cell.image?.showSpinner()
                     if let image = image {
                         cell.configure(with: pokemon, image: image)
                         cell.image?.hideSpinner()

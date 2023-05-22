@@ -23,7 +23,6 @@ final class ChipCollectionViewCell: UICollectionViewCell {
         self.prepareText(with: model)
         self.prepareImageView(with: model)
         self.prepareContainer(with: model)
-        
     }
     
     // MARK: -

@@ -34,7 +34,7 @@ final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var header: UILabel!
+    @IBOutlet var header: UILabel?
     @IBOutlet var verticalTagView: VerticalTagView?
     
     override func awakeFromNib() {
@@ -49,7 +49,7 @@ final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     
     func configure(with model: PokemonCollectionViewCellModel) {
         self.model = model
-        self.header.text = model.header
+        self.header?.text = model.header
         self.verticalTagView?.configure(with: model.items)
     }
     

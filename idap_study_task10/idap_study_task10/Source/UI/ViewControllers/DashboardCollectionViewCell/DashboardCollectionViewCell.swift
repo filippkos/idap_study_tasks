@@ -16,11 +16,11 @@ final class DashboardCollectionViewCell: UICollectionViewCell {
     // MARK: -
     // MARK: Outlets
 
-    @IBOutlet var backgroundImage: UIImageView!
-    @IBOutlet var image: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var descriptionLabel: UILabel!
-    @IBOutlet var button: UIButton!
+    @IBOutlet var backgroundImage: UIImageView?
+    @IBOutlet var image: UIImageView?
+    @IBOutlet var titleLabel: UILabel?
+    @IBOutlet var descriptionLabel: UILabel?
+    @IBOutlet var button: UIButton?
     
     // MARK: -
     // MARK: Variables
@@ -34,15 +34,15 @@ final class DashboardCollectionViewCell: UICollectionViewCell {
     // MARK: Public
     
     public func configure(model: DashboardContentModel) {
-        self.titleLabel.text = model.title.description
-        self.descriptionLabel.text = model.description.description
+        self.titleLabel?.text = model.title.description
+        self.descriptionLabel?.text = model.description.description
         
-        self.image.image = model.image
+        self.image?.image = model.image
         
-        self.button.isHidden = !model.isVisible
-        self.button.titleLabel?.text = L10n.Dashboard.buttonTitle
-        self.button.titleLabel?.font = Fonts.PlusJakartaSans.extraBold.font(size: self.buttonFontSize)
-        self.button.layer.cornerRadius = self.buttonCornerRadius
+        self.button?.isHidden = !model.isVisible
+        self.button?.titleLabel?.text = L10n.Dashboard.buttonTitle
+        self.button?.titleLabel?.font = Fonts.PlusJakartaSans.extraBold.font(size: self.buttonFontSize)
+        self.button?.layer.cornerRadius = self.buttonCornerRadius
     }
     
     // MARK: -

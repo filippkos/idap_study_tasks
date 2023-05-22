@@ -27,10 +27,10 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        if let index = self.rootView?.collectionView.indexPathsForVisibleItems.first?.row {
+        if let index = self.rootView?.collectionView?.indexPathsForVisibleItems.first?.row {
             if index < self.numberOfPages - 1 {
                 self.scrollTo(page: IndexPath(item: index + 1, section: 0))
-                self.rootView?.pager.updateViews(number: index)
+                self.rootView?.pager?.updateViews(number: index)
             }
         }
     }
@@ -46,10 +46,10 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     // MARK: Life Cycle
     
     override func viewDidLoad() {
-        self.rootView?.collectionView.register(cellClass: DashboardCollectionViewCell.self)
-        self.rootView?.collectionView.dataSource = self
-        self.rootView?.collectionView.delegate = self
-        self.rootView?.pager.scrollDelegate = self
+        self.rootView?.collectionView?.register(cellClass: DashboardCollectionViewCell.self)
+        self.rootView?.collectionView?.dataSource = self
+        self.rootView?.collectionView?.delegate = self
+        self.rootView?.pager?.scrollDelegate = self
         self.rootView?.flowLayoutConfigure()
         self.fillContentModels()
     }
@@ -58,10 +58,10 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     // MARK: Public
     
     func scrollTo(page: IndexPath) {
-        self.rootView?.collectionView.isPagingEnabled = false
-        self.rootView?.collectionView.scrollToItem(at: page, at: .centeredHorizontally, animated: true)
+        self.rootView?.collectionView?.isPagingEnabled = false
+        self.rootView?.collectionView?.scrollToItem(at: page, at: .centeredHorizontally, animated: true)
         self.handleNextButton(page: page)
-        self.rootView?.collectionView.isPagingEnabled = true
+        self.rootView?.collectionView?.isPagingEnabled = true
     }
     
     // MARK: -
@@ -75,9 +75,9 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     
     private func handleNextButton(page: IndexPath) {
         if page.row == self.numberOfPages - 1 {
-            self.rootView?.nextButton.isHidden = true
+            self.rootView?.nextButton?.isHidden = true
         } else {
-            self.rootView?.nextButton.isHidden = false
+            self.rootView?.nextButton?.isHidden = false
         }
     }
     
@@ -104,8 +104,8 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     // MARK: Delegate
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let index = self.rootView?.collectionView.indexPathsForVisibleItems.first?.row {
-            self.rootView?.pager.updateViews(number: index)
+        if let index = self.rootView?.collectionView?.indexPathsForVisibleItems.first?.row {
+            self.rootView?.pager?.updateViews(number: index)
         }
     }
     

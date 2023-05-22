@@ -1,8 +1,8 @@
 //
-//  UIImageColors.swift
-//  https://github.com/jathu/UIImageColors
+//  Int+FormattedNumber.swift
+//  idap_study_task10
 //
-//  Created by Jathu Satkunarajah (@jathu) on 2015-06-11 - Toronto
+//  Created by Filipp Kosenko on 15.05.2023.
 //
 
 import UIKit

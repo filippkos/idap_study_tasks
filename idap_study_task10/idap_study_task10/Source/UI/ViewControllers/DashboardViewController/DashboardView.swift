@@ -12,23 +12,23 @@ final class DashboardView: BaseView {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var pager: PagerView!
-    @IBOutlet var nextButton: UIButton!
+    @IBOutlet var collectionView: UICollectionView?
+    @IBOutlet var pager: PagerView?
+    @IBOutlet var nextButton: UIButton?
     
     // MARK: -
     // MARK: Configure
     
     func flowLayoutConfigure() {
         let itemWidth = UIScreen.main.bounds.width
-        let itemHeight = self.collectionView.frame.size.height
+        let itemHeight = self.collectionView?.frame.size.height
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight ?? 0)
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
         layout.collectionView?.showsHorizontalScrollIndicator = false
-        self.collectionView.collectionViewLayout = layout
-        self.collectionView.isPagingEnabled = true
+        self.collectionView?.collectionViewLayout = layout
+        self.collectionView?.isPagingEnabled = true
     }
 }
