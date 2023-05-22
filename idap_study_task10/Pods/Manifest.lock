@@ -3,12 +3,14 @@ PODS:
   - MTCircularSlider (1.1.0)
   - SnapKit (5.6.0)
   - SwiftGen (6.6.2)
+  - UIImageColors (2.3.0)
 
 DEPENDENCIES:
   - lottie-ios
   - MTCircularSlider (from `https://github.com/filippkos/MTCircularSlider`, commit `edad59e`)
   - SnapKit
   - SwiftGen
+  - UIImageColors (from `https://github.com/filippkos/UIImageColors`, commit `c13e92c`)
 
 SPEC REPOS:
   trunk:
@@ -20,18 +22,25 @@ EXTERNAL SOURCES:
   MTCircularSlider:
     :commit: edad59e
     :git: https://github.com/filippkos/MTCircularSlider
+  UIImageColors:
+    :commit: c13e92c
+    :git: https://github.com/filippkos/UIImageColors
 
 CHECKOUT OPTIONS:
   MTCircularSlider:
     :commit: edad59e
     :git: https://github.com/filippkos/MTCircularSlider
+  UIImageColors:
+    :commit: c13e92c
+    :git: https://github.com/filippkos/UIImageColors
 
 SPEC CHECKSUMS:
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
   MTCircularSlider: 9b8fff1d3f7675b1c0dfa9b78d48cae9971c63a4
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
+  UIImageColors: 5890c2a973d37956d02993ec268122a08240260a
 
-PODFILE CHECKSUM: f9617706d5ff57bc00c0b69f308ea8618363e135
+PODFILE CHECKSUM: 725286998ff7243a141824e83aac5e45da6c1c00
 
 COCOAPODS: 1.11.3

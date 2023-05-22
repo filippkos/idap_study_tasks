@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIImageColors
 
 final class PokemonView: BaseView {
     
@@ -70,9 +71,9 @@ final class PokemonView: BaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         self.collectionView?.layer.cornerRadius = 24
-        self.prepareGradient(with: self.image?.getColors().background ?? .clear)
+        self.prepareGradient(with: self.image?.getColors()?.background ?? .clear)
         self.imageBackgroundView?.layer.cornerRadius = (self.imageBackgroundView?.frame.width ?? 0) / 2
     }
 }

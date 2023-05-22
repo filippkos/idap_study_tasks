@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIImageColors
 
 final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, PokemonListCollectionViewCell {
     
@@ -34,7 +35,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     
     func configure(with model: Pokemon, image: UIImage) {
         self.flowLayoutConfigure()
-        self.background?.backgroundColor = image.getColors(quality: .lowest).background.withAlphaComponent(0.3)
+        self.background?.backgroundColor = image.getColors(quality: .superLow)?.background.withAlphaComponent(0.3)
         self.image?.image = image
         self.idLabel?.text = Int.intToFormattedIdString(number: model.id)
         self.nameLabel?.text = model.name.capitalizingFirstLetter()
