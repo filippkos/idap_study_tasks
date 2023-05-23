@@ -9,9 +9,10 @@ target 'idap_study_task10' do
 
 pod 'SnapKit'
 pod 'SwiftGen'
+pod 'RxSwift'
+pod 'RxCocoa'
 pod 'MTCircularSlider', :git => 'https://github.com/filippkos/MTCircularSlider', :commit => 'edad59e'
 pod 'UIImageColors', :git => 'https://github.com/filippkos/UIImageColors', :commit => 'c13e92c'
 pod 'lottie-ios'
-
 
 end

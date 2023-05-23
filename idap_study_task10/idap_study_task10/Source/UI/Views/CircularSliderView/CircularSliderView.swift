@@ -40,7 +40,7 @@ class CircularSliderView: NibDesignable {
                 Attributes.hasThumb(true),
                 Attributes.thumbRadius(15.5),
                 Attributes.thumbShadowRadius(0),
-                Attributes.thumbShadowDepth(0),
+                Attributes.thumbShadowDepth(0)`
             ]
         )
     }
