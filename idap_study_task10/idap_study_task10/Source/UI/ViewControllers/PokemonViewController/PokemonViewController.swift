@@ -13,7 +13,7 @@ enum PokemonViewControllerOutputEvents {
     case needShowAlert(alertModel: AlertModel)
 }
 
-final class PokemonViewController: BaseViewController, RootViewGettable, UICollectionViewDataSource, UICollectionViewDelegate {
+final class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: -
     // MARK: Typealiases
@@ -55,10 +55,10 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.collectionView?.register(cellClass: PokemonHeaderCollectionViewCell.self)
-        self.rootView?.collectionView?.register(cellClass: PokemonCollectionViewCell.self)
-        self.rootView?.collectionView?.dataSource = self
-        self.rootView?.collectionView?.delegate = self
+        self.rootView?.tableView?.register(cellClass: PokemonHeaderTableViewCell.self)
+        self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
+        self.rootView?.tableView?.dataSource = self
+        self.rootView?.tableView?.delegate = self
         self.setViewMode(.imageShowing)
         self.setImage(model: self.model) { [weak self] error in
             self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error))
@@ -137,23 +137,21 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
     // MARK: -
     // MARK: UICollectionViewDataSource
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.model.grouped.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(
-                cellClass: PokemonHeaderCollectionViewCell.self,
-                indexPath: indexPath
+            let cell = tableView.dequeueReusableCell(
+                cellClass: PokemonHeaderTableViewCell.self
             )
             
             let items = self.model.types?.compactMap {
                 return VerticalTagItem(type: $0.type.name)
             }
             
-            let cellModel = PokemonCollectionViewCellModel(
+            let cellModel = PokemonTableViewCellModel(
                 header: self.model.grouped[indexPath.row]?.0 ?? "",
                 items: items ?? [])
             
@@ -162,16 +160,16 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UIColle
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(
-                cellClass: PokemonCollectionViewCell.self,
-                indexPath: indexPath
+
+            let cell = tableView.dequeueReusableCell(
+                cellClass: PokemonTableViewCell.self
             )
             
             let items = self.model.grouped[indexPath.row]?.1.map {
                 VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
             }
             
-            let cellModel = PokemonCollectionViewCellModel(
+            let cellModel = PokemonTableViewCellModel(
                 header: self.model.grouped[indexPath.row]?.0 ?? "",
                 items: items ?? []
             )

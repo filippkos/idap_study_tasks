@@ -53,23 +53,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nmy-Bu-40O" userLabel="Info Container">
                     <rect key="frame" x="0.0" y="399" width="393" height="453"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="YwC-D6-VMy">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="453"/>
+                        <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yR7-6q-5gu">
+                            <rect key="frame" x="24" y="0.0" width="345" height="453"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LgB-V7-LBM">
-                                <size key="itemSize" width="128" height="128"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                        </collectionView>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="YwC-D6-VMy" secondAttribute="bottom" id="2Gk-JK-1pQ"/>
-                        <constraint firstItem="YwC-D6-VMy" firstAttribute="leading" secondItem="Nmy-Bu-40O" secondAttribute="leading" id="DcR-z8-REz"/>
-                        <constraint firstAttribute="trailing" secondItem="YwC-D6-VMy" secondAttribute="trailing" id="SiE-7k-l6X"/>
-                        <constraint firstItem="YwC-D6-VMy" firstAttribute="top" secondItem="Nmy-Bu-40O" secondAttribute="top" id="xju-5O-UTk"/>
+                        <constraint firstItem="yR7-6q-5gu" firstAttribute="top" secondItem="Nmy-Bu-40O" secondAttribute="top" id="F66-38-7zm"/>
+                        <constraint firstAttribute="trailing" secondItem="yR7-6q-5gu" secondAttribute="trailing" constant="24" id="MLK-zd-R9C"/>
+                        <constraint firstItem="yR7-6q-5gu" firstAttribute="leading" secondItem="Nmy-Bu-40O" secondAttribute="leading" constant="24" id="frz-z9-JbK"/>
+                        <constraint firstAttribute="bottom" secondItem="yR7-6q-5gu" secondAttribute="bottom" id="xpw-Gr-ffS"/>
                     </constraints>
                 </view>
             </subviews>
@@ -86,10 +80,10 @@
             </constraints>
             <connections>
                 <outlet property="circularSliderView" destination="WRb-7J-T5j" id="s06-eA-q01"/>
-                <outlet property="collectionView" destination="YwC-D6-VMy" id="xvU-E9-9zL"/>
                 <outlet property="imageBackgroundView" destination="7SM-81-p4z" id="Adg-cX-t6q"/>
                 <outlet property="imageView" destination="IL2-WG-ObI" id="gsE-9w-1nC"/>
                 <outlet property="infoContainer" destination="Nmy-Bu-40O" id="qsp-nj-TGE"/>
+                <outlet property="tableView" destination="yR7-6q-5gu" id="5po-V5-Crj"/>
             </connections>
             <point key="canvasLocation" x="27.536231884057973" y="19.419642857142858"/>
         </view>

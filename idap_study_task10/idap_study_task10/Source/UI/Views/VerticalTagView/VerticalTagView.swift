@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxRelay
+
 enum VerticalTagItemState {
     
     case image
@@ -53,44 +56,70 @@ class VerticalTagView: NibDesignable, UICollectionViewDelegate, UICollectionView
     // MARK: -
     // MARK: Outlets
 
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var collectionView: TagViewPresentCollection!
+    @IBOutlet var viewHeight: NSLayoutConstraint?
     
     // MARK: -
     // MARK: Variables
-
-    var items: [VerticalTagItem] = []
     
+    private var items: [VerticalTagItem] = []
+    private var disposeBag = DisposeBag()
+    
+    // MARK: -
+    // MARK: Public
+    
+    public func reuse() {
+        self.disposeBag = DisposeBag()
+        
+        self.viewHeight?.constant = 0
+    }
+    
+    public func configure(with models: [VerticalTagItem]) {
+        self.items = models
+    
+        self.collectionView
+            .collectionSize
+            .skip(1)
+            .bind { [weak self] in
+                debugPrint("***Size - \($0.height)")
+                
+                self?.viewHeight?.constant = $0.height
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.collectionView.update()
+    }
+
     // MARK: -
     // MARK: Overrided
     
     override func configureView() {
+        super.configureView()
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView?.register(cellClass: ChipCollectionViewCell.self)
         self.collectionView.isScrollEnabled = false
     }
-
-    // MARK: -
-    // MARK: Public
-
-    func configure(with models: [VerticalTagItem]) {
-        self.items = models
-        self.collectionView.reloadData()
-    }
-
+    
     // MARK: -
     // MARK: Data Source
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return self.items.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    )
+        -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCell(
             cellClass: ChipCollectionViewCell.self,
             indexPath: indexPath
         )
+        
         cell.fill(with: self.items[indexPath.row])
 
         return cell
@@ -107,6 +136,50 @@ class VerticalTagView: NibDesignable, UICollectionViewDelegate, UICollectionView
         print("<!> \(self.items.count) \(self.bounds.width) \(sideInset)")
 
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
+class TagViewPresentCollection: UICollectionView {
+
+    // MARK: -
+    // MARK: Variables
+
+    public let collectionSize = BehaviorRelay<CGSize>(
+        value: .zero
+    )
+
+    // MARK: -
+    // MARK: Overrided
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        let contentSize = self
+            .collectionViewLayout
+            .collectionViewContentSize
+        
+        self.collectionSize.accept(contentSize)
+    }
+    
+    // MARK: -
+    // MARK: Public
+    
+    public func update() {
+        self.reloadData() { [weak self] in
+            self?.layoutSubviews()
+        }
+    }
+}
+
+extension UICollectionView {
+
+    func reloadData(completion: @escaping () -> Void) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            completion()
+        }
+        self.reloadData()
+        CATransaction.commit()
     }
 }
 

@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="unG-Nx-j0E" id="Ykq-h0-nQE"/>
+                <outlet property="viewHeight" destination="QLI-m5-CLC" id="Oyu-DE-7JL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,9 +18,13 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="unG-Nx-j0E">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="unG-Nx-j0E" customClass="TagViewPresentCollection" customModule="idap_study_task10" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="QLI-m5-CLC"/>
+                        <constraint firstAttribute="height" priority="1" id="UEG-bU-Llk"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aBN-fT-mNv">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -40,7 +45,7 @@
                 <constraint firstAttribute="trailing" secondItem="unG-Nx-j0E" secondAttribute="trailing" id="SIj-kG-Fm8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-18" y="-1"/>
+            <point key="canvasLocation" x="-18.320610687022899" y="-1.4084507042253522"/>
         </view>
     </objects>
     <resources>

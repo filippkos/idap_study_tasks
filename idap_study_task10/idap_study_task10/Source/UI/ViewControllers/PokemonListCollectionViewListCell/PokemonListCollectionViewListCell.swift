@@ -43,7 +43,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
         self.nameLabel?.textColor = Colors.Colors.abbey.color
     }
     
-    func configure(with model: PokemonCollectionViewCellModel) {
+    func configure(with model: PokemonTableViewCellModel) {
         self.verticalTagView?.configure(with: model.items)
     }
     

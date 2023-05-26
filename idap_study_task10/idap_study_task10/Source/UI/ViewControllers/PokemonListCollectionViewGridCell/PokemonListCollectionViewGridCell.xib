@@ -29,10 +29,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="255" height="448"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICi-WE-nJu">
-                                        <rect key="frame" x="0.0" y="0.0" width="255" height="26"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="167"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOn-VB-r1G">
-                                                <rect key="frame" x="0.0" y="8" width="247" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOn-VB-r1G">
+                                                <rect key="frame" x="0.0" y="8" width="247" height="159"/>
                                                 <fontDescription key="fontDescription" name="PlusJakartaSans-SemiBold" family="Plus Jakarta Sans" pointSize="12"/>
                                                 <color key="textColor" name="colors/heather"/>
                                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jM-cr-aWB" userLabel="Image Container">
-                                        <rect key="frame" x="0.0" y="26" width="255" height="183"/>
+                                        <rect key="frame" x="0.0" y="167" width="255" height="183"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="297-9G-p0k">
                                                 <rect key="frame" x="36" y="0.0" width="183" height="183"/>
@@ -76,10 +76,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBz-Xb-bZT" userLabel="Label Container">
-                                        <rect key="frame" x="0.0" y="209" width="255" height="50"/>
+                                        <rect key="frame" x="0.0" y="350" width="255" height="48"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCZ-Zw-ckd">
-                                                <rect key="frame" x="0.0" y="0.0" width="255" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCZ-Zw-ckd">
+                                                <rect key="frame" x="0.0" y="0.0" width="255" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -94,11 +94,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAQ-TW-qto">
-                                        <rect key="frame" x="0.0" y="259" width="255" height="189"/>
+                                        <rect key="frame" x="0.0" y="398" width="255" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO8-g6-9Rz" userLabel="Vertical Tag View" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="0.0" width="223" height="173"/>
+                                                <rect key="frame" x="16" y="0.0" width="223" height="32"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="dMG-gZ-Ps3"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -106,7 +109,7 @@
                                             <constraint firstAttribute="trailing" secondItem="pO8-g6-9Rz" secondAttribute="trailing" constant="16" id="29n-SF-kBF"/>
                                             <constraint firstItem="pO8-g6-9Rz" firstAttribute="top" secondItem="LAQ-TW-qto" secondAttribute="top" id="7mc-kT-ZDy"/>
                                             <constraint firstItem="pO8-g6-9Rz" firstAttribute="leading" secondItem="LAQ-TW-qto" secondAttribute="leading" constant="16" id="qfe-CO-hSi"/>
-                                            <constraint firstAttribute="bottom" secondItem="pO8-g6-9Rz" secondAttribute="bottom" constant="16" id="xBO-5A-izV"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pO8-g6-9Rz" secondAttribute="bottom" constant="16" id="xBO-5A-izV"/>
                                         </constraints>
                                     </view>
                                 </subviews>
