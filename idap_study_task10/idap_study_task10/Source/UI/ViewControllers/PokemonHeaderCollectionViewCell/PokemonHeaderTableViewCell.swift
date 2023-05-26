@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
-final class PokemonHeaderCollectionViewCell: UICollectionViewCell {
+final class PokemonHeaderTableViewCell: UITableViewCell {
     
     var id: UUID = UUID()
+    var dispose = DisposeBag()
     
     // MARK: -
     // MARK: Outlets
@@ -29,10 +31,19 @@ final class PokemonHeaderCollectionViewCell: UICollectionViewCell {
         // Initialization code
         
         self.flowLayoutConfigure()
+        self.bind()
     }
     
     // MARK: -
     // MARK: Public
+    
+    func bind() {
+//        self.verticalTagView?.collectionSize.subscribe(onNext: { [weak self] in
+//            self?.verticalTagView?.viewHeight?.constant = $0.height
+//            self?.verticalTagView?.collectionView.reloadData()
+//        })
+//        .disposed(by: self.dispose)
+    }
     
     func configure(with model: Pokemon, indexPath: IndexPath) {
         self.nameLabel?.text = model.grouped[1]?.1.first?.capitalizingFirstLetter()
@@ -44,7 +55,7 @@ final class PokemonHeaderCollectionViewCell: UICollectionViewCell {
         self.orderValue?.text = model.grouped[6]?.1.first
     }
     
-    func configure(with model: PokemonCollectionViewCellModel) {
+    func configure(with model: PokemonTableViewCellModel) {
         self.verticalTagView?.configure(with: model.items)
     }
     

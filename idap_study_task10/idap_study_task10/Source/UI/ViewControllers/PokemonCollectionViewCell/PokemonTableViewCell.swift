@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import RxSwift
 
-struct PokemonCollectionViewCellModel {
+struct PokemonTableViewCellModel {
     
     let header: String?
     let items: [VerticalTagItem]
 }
 
-final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
+final class PokemonTableViewCell: UITableViewCell, Spinnable {
     
     // MARK: -
     // MARK: Typealiases
@@ -23,47 +24,55 @@ final class PokemonCollectionViewCell: UICollectionViewCell, Spinnable {
     // MARK: -
     // MARK: Variables
     
-    var model: PokemonCollectionViewCellModel?
-    var isLoaded: Bool = false
-    private(set) var id = UUID()
+    internal var isLoaded: Bool = false
     
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 100)
-    }
+    private var model: PokemonTableViewCellModel?
+    private(set) var id = UUID()
 
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var header: UILabel?
-    @IBOutlet var verticalTagView: VerticalTagView?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.flowLayoutConfigure()
-        // Initialization code
-    }
+    @IBOutlet private var header: UILabel?
+    @IBOutlet private var verticalTagView: VerticalTagView?
 
     // MARK: -
     // MARK: Public
     
-    func configure(with model: PokemonCollectionViewCellModel) {
+    public func configure(with model: PokemonTableViewCellModel) {
         self.model = model
         self.header?.text = model.header
         self.verticalTagView?.configure(with: model.items)
     }
     
-    func flowLayoutConfigure() {
+    // MARK: -
+    // MARK: Private
+    
+    private func flowLayoutConfigure() {
         let itemWidth = 100
         let itemHeight = 35
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 8
         self.verticalTagView?.collectionView.collectionViewLayout = layout
         self.verticalTagView?.collectionView.isPagingEnabled = false
         self.verticalTagView?.collectionView.alwaysBounceVertical = false
         self.verticalTagView?.collectionView.isScrollEnabled = false
+    }
+    
+    // MARK: -
+    // MARK: Overrided
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.flowLayoutConfigure()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.verticalTagView?.reuse()
     }
 }

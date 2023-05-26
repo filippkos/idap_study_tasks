@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="PaytoneOne-Regular.ttf">
+            <string>PaytoneOne-Regular</string>
+        </array>
+        <array key="PlusJakartaSans-Medium.ttf">
+            <string>PlusJakartaSans-Medium</string>
+        </array>
+        <array key="PlusJakartaSans-SemiBold.ttf">
+            <string>PlusJakartaSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="245" id="KGk-i7-Jjw" customClass="PokemonHeaderTableViewCell" customModule="idap_study_task10" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="245"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="245"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY1-IU-TWv" userLabel="Pokemon Title Container">
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="245"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkR-qa-P30" userLabel="Name Label">
+                                <rect key="frame" x="0.0" y="0.0" width="380" height="50.333333333333336"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PaytoneOne-Regular" family="Paytone One" pointSize="36"/>
+                                <color key="textColor" name="colors/abbey"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ac-T0-EPT" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50.333333333333329" width="380" height="144.66666666666669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="iRe-0e-k0a">
+                                <rect key="frame" x="0.0" y="195" width="380" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Svv-8b-Jg1" userLabel="Height Label Container">
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGl-Ro-F1x" userLabel="Value Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="126" height="34.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaSans-Medium" family="Plus Jakarta Sans" pointSize="24"/>
+                                                <color key="textColor" name="colors/abbey"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="260" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eV-Tl-FnV">
+                                                <rect key="frame" x="0.0" y="34.666666666666657" width="126" height="15.333333333333336"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaSans-SemiBold" family="Plus Jakarta Sans" pointSize="12"/>
+                                                <color key="textColor" name="colors/heather"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="8eV-Tl-FnV" firstAttribute="leading" secondItem="Svv-8b-Jg1" secondAttribute="leading" id="ILl-X2-zqQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="8eV-Tl-FnV" secondAttribute="trailing" id="Nmv-2w-6Ph"/>
+                                            <constraint firstAttribute="bottom" secondItem="8eV-Tl-FnV" secondAttribute="bottom" id="QfO-L8-4WH"/>
+                                            <constraint firstAttribute="trailing" secondItem="qGl-Ro-F1x" secondAttribute="trailing" id="jCv-6v-Uyn"/>
+                                            <constraint firstItem="qGl-Ro-F1x" firstAttribute="top" secondItem="Svv-8b-Jg1" secondAttribute="top" id="rtt-kX-5uv"/>
+                                            <constraint firstItem="qGl-Ro-F1x" firstAttribute="leading" secondItem="Svv-8b-Jg1" secondAttribute="leading" id="wi8-fd-app"/>
+                                            <constraint firstItem="8eV-Tl-FnV" firstAttribute="top" secondItem="qGl-Ro-F1x" secondAttribute="bottom" id="z64-YH-Rfi"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7h-bP-neS" userLabel="Weight Label Container">
+                                        <rect key="frame" x="127" y="0.0" width="126" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvM-WL-q2u" userLabel="Value Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="126" height="34.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaSans-Medium" family="Plus Jakarta Sans" pointSize="24"/>
+                                                <color key="textColor" name="colors/abbey"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="260" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvL-Ss-ht7">
+                                                <rect key="frame" x="0.0" y="34.666666666666657" width="126" height="15.333333333333336"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaSans-SemiBold" family="Plus Jakarta Sans" pointSize="12"/>
+                                                <color key="textColor" name="colors/heather"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="VvL-Ss-ht7" secondAttribute="bottom" id="ES0-Ss-vHd"/>
+                                            <constraint firstItem="VvL-Ss-ht7" firstAttribute="leading" secondItem="F7h-bP-neS" secondAttribute="leading" id="FDf-bA-uVw"/>
+                                            <constraint firstItem="VvL-Ss-ht7" firstAttribute="top" secondItem="kvM-WL-q2u" secondAttribute="bottom" id="Ql6-VG-yqk"/>
+                                            <constraint firstItem="kvM-WL-q2u" firstAttribute="top" secondItem="F7h-bP-neS" secondAttribute="top" id="Z1H-rI-8bY"/>
+                                            <constraint firstAttribute="trailing" secondItem="kvM-WL-q2u" secondAttribute="trailing" id="ZJc-1u-zgZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="VvL-Ss-ht7" secondAttribute="trailing" id="cZl-em-E0U"/>
+                                            <constraint firstItem="kvM-WL-q2u" firstAttribute="leading" secondItem="F7h-bP-neS" secondAttribute="leading" id="qWj-5r-TpT"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hvb-hA-WDK" userLabel="Order Label Container">
+                                        <rect key="frame" x="254" y="0.0" width="126" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QQ-ga-bIk" userLabel="Value Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="126" height="34.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaSans-Medium" family="Plus Jakarta Sans" pointSize="24"/>
+                                                <color key="textColor" name="colors/abbey"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="260" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wau-3j-Mch">
+                                                <rect key="frame" x="0.0" y="34.666666666666657" width="126" height="15.333333333333336"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaSans-SemiBold" family="Plus Jakarta Sans" pointSize="12"/>
+                                                <color key="textColor" name="colors/heather"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Wau-3j-Mch" secondAttribute="trailing" id="57b-3q-N12"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wau-3j-Mch" secondAttribute="bottom" id="6TC-1x-Fx4"/>
+                                            <constraint firstItem="2QQ-ga-bIk" firstAttribute="leading" secondItem="hvb-hA-WDK" secondAttribute="leading" id="Tzz-dg-k1K"/>
+                                            <constraint firstItem="Wau-3j-Mch" firstAttribute="top" secondItem="2QQ-ga-bIk" secondAttribute="bottom" id="Xug-iV-41T"/>
+                                            <constraint firstAttribute="trailing" secondItem="2QQ-ga-bIk" secondAttribute="trailing" id="beD-tD-cne"/>
+                                            <constraint firstItem="2QQ-ga-bIk" firstAttribute="top" secondItem="hvb-hA-WDK" secondAttribute="top" id="cWb-BF-zxo"/>
+                                            <constraint firstItem="Wau-3j-Mch" firstAttribute="leading" secondItem="hvb-hA-WDK" secondAttribute="leading" id="vCM-HQ-uFz"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="colors/heather"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iRe-0e-k0a" secondAttribute="trailing" id="A63-DP-eCf"/>
+                            <constraint firstItem="iRe-0e-k0a" firstAttribute="top" secondItem="8ac-T0-EPT" secondAttribute="bottom" id="E4k-9h-iPF"/>
+                            <constraint firstAttribute="trailing" secondItem="8ac-T0-EPT" secondAttribute="trailing" id="M6r-zc-qAr"/>
+                            <constraint firstItem="LkR-qa-P30" firstAttribute="leading" secondItem="KY1-IU-TWv" secondAttribute="leading" id="Mz2-pK-txM"/>
+                            <constraint firstAttribute="trailing" secondItem="LkR-qa-P30" secondAttribute="trailing" id="RQb-Xo-XMk"/>
+                            <constraint firstItem="8ac-T0-EPT" firstAttribute="top" secondItem="LkR-qa-P30" secondAttribute="bottom" id="TRy-wv-Xb2"/>
+                            <constraint firstItem="8ac-T0-EPT" firstAttribute="leading" secondItem="KY1-IU-TWv" secondAttribute="leading" id="Uo6-1S-BFT"/>
+                            <constraint firstAttribute="bottom" secondItem="iRe-0e-k0a" secondAttribute="bottom" id="b2A-G6-cF8"/>
+                            <constraint firstItem="LkR-qa-P30" firstAttribute="top" secondItem="KY1-IU-TWv" secondAttribute="top" id="f71-Pp-lks"/>
+                            <constraint firstItem="iRe-0e-k0a" firstAttribute="leading" secondItem="KY1-IU-TWv" secondAttribute="leading" id="fvd-R8-yws"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="KY1-IU-TWv" secondAttribute="trailing" id="1G0-bo-Z8I"/>
+                    <constraint firstAttribute="bottom" secondItem="KY1-IU-TWv" secondAttribute="bottom" id="NoJ-TO-XAK"/>
+                    <constraint firstItem="KY1-IU-TWv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZHq-gi-FhP"/>
+                    <constraint firstItem="KY1-IU-TWv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tk7-Rc-hW5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="heightTitle" destination="8eV-Tl-FnV" id="rc5-dG-O4e"/>
+                <outlet property="heightValue" destination="qGl-Ro-F1x" id="Dad-zo-61X"/>
+                <outlet property="nameLabel" destination="LkR-qa-P30" id="kOg-If-Ngn"/>
+                <outlet property="orderTitle" destination="Wau-3j-Mch" id="Tsa-HT-2T0"/>
+                <outlet property="orderValue" destination="2QQ-ga-bIk" id="SPh-Yc-Uae"/>
+                <outlet property="verticalTagView" destination="8ac-T0-EPT" id="G9g-uD-Fbc"/>
+                <outlet property="weightTitle" destination="VvL-Ss-ht7" id="ZL9-2k-Wl8"/>
+                <outlet property="weightValue" destination="kvM-WL-q2u" id="Km2-z5-l3d"/>
+            </connections>
+            <point key="canvasLocation" x="51.908396946564885" y="91.197183098591552"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="colors/abbey">
+            <color red="0.28235294117647058" green="0.30980392156862746" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colors/heather">
+            <color red="0.72941176470588232" green="0.7686274509803922" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -13,7 +13,7 @@ final class PokemonView: BaseView {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var collectionView: UICollectionView?
+    @IBOutlet var tableView: UITableView?
     @IBOutlet var circularSliderView: CircularSliderView?
     @IBOutlet var imageBackgroundView: UIView?
     @IBOutlet var imageView: UIImageView?
@@ -24,7 +24,6 @@ final class PokemonView: BaseView {
     
     public func configure() {
         self.infoContainer?.layer.cornerRadius = 24
-        self.flowLayoutConfigure()
     }
     
     public func set(image: UIImage, text: String) {
@@ -33,19 +32,6 @@ final class PokemonView: BaseView {
     
     func configureSlider(model: Pokemon) {
         self.circularSliderView?.prepareSlider(value: model.baseExperience ?? 0)
-    }
-    
-    func flowLayoutConfigure() {
-        let itemWidth = (self.collectionView?.frame.size.width ?? 0) - 48
-        let itemHeight = self.collectionView?.frame.size.height
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemWidth, height: 127)
-        layout.minimumLineSpacing = 16
-        layout.scrollDirection = .vertical
-        self.collectionView?.collectionViewLayout = layout
-        self.collectionView?.isPagingEnabled = false
-        self.collectionView?.alwaysBounceVertical = true
-        
     }
     
     func prepareGradient(with color: UIColor) {
@@ -62,7 +48,7 @@ final class PokemonView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.collectionView?.layer.cornerRadius = 24
+        self.tableView?.layer.cornerRadius = 24
         self.imageBackgroundView?.layer.cornerRadius = (self.imageBackgroundView?.frame.width ?? 0) / 2
     }
 }
