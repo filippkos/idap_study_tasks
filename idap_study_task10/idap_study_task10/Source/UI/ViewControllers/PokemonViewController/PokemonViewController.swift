@@ -13,7 +13,7 @@ enum PokemonViewControllerOutputEvents {
     case needShowAlert(alertModel: AlertModel)
 }
 
-final class PokemonViewController: BaseViewController, RootViewGettable, UITableViewDataSource, UITableViewDelegate {
+final class PokemonViewController: BaseViewController, RootViewGettable {
     
     // MARK: -
     // MARK: Typealiases
@@ -55,10 +55,9 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.tableView?.register(cellClass: PokemonHeaderTableViewCell.self)
-        self.rootView?.tableView?.register(cellClass: PokemonTableViewCell.self)
-        self.rootView?.tableView?.dataSource = self
-        self.rootView?.tableView?.delegate = self
+
+        self.prepareHeaderView()
+        self.prepareRegularView()
         self.setViewMode(.imageShowing)
         self.setImage(model: self.model) { [weak self] error in
             self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error))
@@ -99,6 +98,41 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UITable
         }
     }
     
+    private func prepareHeaderView() {
+        
+        let items = self.model.types?.compactMap {
+            return VerticalTagItem(type: $0.type.name)
+        }
+        let cellModel = PokemonTableViewCellModel(
+
+        header: self.model.grouped[0]?.0 ?? "",
+        items: items ?? [])
+
+        let headerView = PokemonHeaderView()
+        headerView.configure(with: self.model, indexPath: IndexPath(index: 0))
+        headerView.configure(with: cellModel)
+        headerView.flowLayoutConfigure()
+        self.rootView?.stackView?.addArrangedSubview(headerView)
+    }
+    
+    private func prepareRegularView() {
+        self.model.grouped.forEach {
+            let items = self.model.grouped[$0.key]?.1.map {
+                VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
+            }
+
+            let cellModel = PokemonTableViewCellModel(
+                header: self.model.grouped[$0.key]?.0 ?? "",
+                items: items ?? []
+            )
+            
+            let cellView = PokemonCellView()
+            cellView.configure(with: cellModel)
+            cellView.flowLayoutConfigure()
+            self.rootView?.stackView?.addArrangedSubview(cellView)
+        }
+    }
+    
     private func customizeNavigationBar() {
         let image = Images.backArrow.image.withRenderingMode(.alwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -132,51 +166,5 @@ final class PokemonViewController: BaseViewController, RootViewGettable, UITable
     
     @objc private func backToPokemonList(_ sender: UITapGestureRecognizer?) {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    // MARK: -
-    // MARK: UICollectionViewDataSource
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model.grouped.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(
-                cellClass: PokemonHeaderTableViewCell.self
-            )
-            
-            let items = self.model.types?.compactMap {
-                return VerticalTagItem(type: $0.type.name)
-            }
-            
-            let cellModel = PokemonTableViewCellModel(
-                header: self.model.grouped[indexPath.row]?.0 ?? "",
-                items: items ?? [])
-            
-            cell.configure(with: self.model, indexPath: indexPath)
-            cell.configure(with: cellModel)
-            
-            return cell
-        } else {
-
-            let cell = tableView.dequeueReusableCell(
-                cellClass: PokemonTableViewCell.self
-            )
-            
-            let items = self.model.grouped[indexPath.row]?.1.map {
-                VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
-            }
-            
-            let cellModel = PokemonTableViewCellModel(
-                header: self.model.grouped[indexPath.row]?.0 ?? "",
-                items: items ?? []
-            )
-            
-            cell.configure(with: cellModel)
-            
-            return cell
-        }
     }
 }

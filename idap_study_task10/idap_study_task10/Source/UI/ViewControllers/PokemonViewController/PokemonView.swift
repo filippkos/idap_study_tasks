@@ -13,7 +13,7 @@ final class PokemonView: BaseView {
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet var tableView: UITableView?
+    @IBOutlet var stackView: UIStackView?
     @IBOutlet var circularSliderView: CircularSliderView?
     @IBOutlet var imageBackgroundView: UIView?
     @IBOutlet var imageView: UIImageView?
@@ -48,7 +48,7 @@ final class PokemonView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.tableView?.layer.cornerRadius = 24
+        self.stackView?.layer.cornerRadius = 24
         self.imageBackgroundView?.layer.cornerRadius = (self.imageBackgroundView?.frame.width ?? 0) / 2
     }
 }

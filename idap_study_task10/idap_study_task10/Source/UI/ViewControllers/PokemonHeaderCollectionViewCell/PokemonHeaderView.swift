@@ -1,15 +1,16 @@
 //
-//  PokemonHeaderCollectionViewCell.swift
+//  PokemonHeaderView.swift
 //  idap_study_task10
 //
-//  Created by Filipp Kosenko on 28.04.2023.
+//  Created by Filipp Kosenko on 26.05.2023.
 //
 
 import UIKit
+
 import RxSwift
 
-final class PokemonHeaderTableViewCell: UITableViewCell {
-    
+class PokemonHeaderView: NibDesignable {
+
     var id: UUID = UUID()
     var dispose = DisposeBag()
     
@@ -25,25 +26,9 @@ final class PokemonHeaderTableViewCell: UITableViewCell {
     @IBOutlet var orderTitle: UILabel?
     @IBOutlet var orderValue: UILabel?
     @IBOutlet var verticalTagView: VerticalTagView?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-        self.flowLayoutConfigure()
-        self.bind()
-    }
     
     // MARK: -
     // MARK: Public
-    
-    func bind() {
-//        self.verticalTagView?.collectionSize.subscribe(onNext: { [weak self] in
-//            self?.verticalTagView?.viewHeight?.constant = $0.height
-//            self?.verticalTagView?.collectionView.reloadData()
-//        })
-//        .disposed(by: self.dispose)
-    }
     
     func configure(with model: Pokemon, indexPath: IndexPath) {
         self.nameLabel?.text = model.grouped[1]?.1.first?.capitalizingFirstLetter()
