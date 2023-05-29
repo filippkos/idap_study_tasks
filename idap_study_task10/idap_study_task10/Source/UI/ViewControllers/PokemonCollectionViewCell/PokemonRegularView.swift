@@ -49,7 +49,6 @@ class PokemonRegularView: NibDesignable {
         let itemWidth = 100
         let itemHeight = 35
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 8

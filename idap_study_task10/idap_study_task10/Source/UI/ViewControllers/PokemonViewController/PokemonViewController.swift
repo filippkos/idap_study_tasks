@@ -116,7 +116,8 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
     }
     
     private func prepareRegularView() {
-        self.model.grouped.forEach {
+        let sortedArray = self.model.grouped.sorted(by: { $0.0 < $1.0 })
+        sortedArray.forEach {
             let items = self.model.grouped[$0.key]?.1.map {
                 VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
             }
