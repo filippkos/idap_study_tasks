@@ -1,11 +1,12 @@
 //
-//  PokemonCollectionViewCell.swift
+//  PokemonView.swift
 //  idap_study_task10
 //
-//  Created by Filipp Kosenko on 28.04.2023.
+//  Created by Filipp Kosenko on 26.05.2023.
 //
 
 import UIKit
+
 import RxSwift
 
 struct PokemonTableViewCellModel {
@@ -14,8 +15,8 @@ struct PokemonTableViewCellModel {
     let items: [VerticalTagItem]
 }
 
-final class PokemonTableViewCell: UITableViewCell, Spinnable {
-    
+class PokemonCellView: NibDesignable {
+
     // MARK: -
     // MARK: Typealiases
     
@@ -44,10 +45,7 @@ final class PokemonTableViewCell: UITableViewCell, Spinnable {
         self.verticalTagView?.configure(with: model.items)
     }
     
-    // MARK: -
-    // MARK: Private
-    
-    private func flowLayoutConfigure() {
+    func flowLayoutConfigure() {
         let itemWidth = 100
         let itemHeight = 35
         let layout = UICollectionViewFlowLayout()
@@ -59,20 +57,5 @@ final class PokemonTableViewCell: UITableViewCell, Spinnable {
         self.verticalTagView?.collectionView.isPagingEnabled = false
         self.verticalTagView?.collectionView.alwaysBounceVertical = false
         self.verticalTagView?.collectionView.isScrollEnabled = false
-    }
-    
-    // MARK: -
-    // MARK: Overrided
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.flowLayoutConfigure()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        self.verticalTagView?.reuse()
     }
 }

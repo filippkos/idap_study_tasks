@@ -28,6 +28,7 @@
                                 <rect key="frame" x="28" y="0.0" width="94" height="24"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="F9d-jQ-695"/>
                                     <constraint firstAttribute="height" constant="24" id="r76-t5-1kg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
