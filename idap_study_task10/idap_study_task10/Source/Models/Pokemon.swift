@@ -41,20 +41,12 @@ struct Pokemon: Codable {
     
     var grouped: [Int: (String ,[String])] {
         [
-            0 : ("Id", [self.id.description]),
-            1 : ("Name", [self.name.description]),
-            2 : ("Base experience", [self.baseExperience?.description ?? ""]),
-            3 : ("Height", [self.height?.description ?? ""]),
-            4 : ("Weight", [self.weight?.description ?? ""]),
-            5 : ("Is default", [self.isDefault?.description ?? ""]),
-            6 : ("Order", [self.order?.description ?? ""]),
-            7 : ("Abilities", self.abilities?.map(\.ability.name) ?? []),
-            8 : ("Forms", self.forms?.map(\.name) ?? []),
-            9 : ("Held Items", self.heldItems?.map(\.item.name) ?? []),
-            10 : ("Moves", self.moves?.map(\.move.name) ?? []),
-            11 : ("Species", [self.species?.name ?? ""]),
-            12 : ("Stats", self.stats?.map(\.stat.name) ?? []),
-            13 : ("Types", self.types?.map(\.type.name.rawValue) ?? [])
+            0 : ("Is default", [self.isDefault?.description ?? ""]),
+            1 : ("Abilities", self.abilities?.map(\.ability.name) ?? []),
+            2 : ("Forms", self.forms?.map(\.name) ?? []),
+            3 : ("Moves", self.moves?.map(\.move.name) ?? []),
+            4 : ("Species", [self.species?.name ?? ""]),
+            5 : ("Stats", self.stats?.map(\.stat.name) ?? [])
         ]
     }
 }

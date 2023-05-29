@@ -46,11 +46,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q65-bD-ev0" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="50.333333333333336" width="369" height="118.66666666666666"/>
+                            <rect key="frame" x="0.0" y="50.333333333333336" width="369" height="78.666666666666657"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="ibE-ks-Ode">
-                            <rect key="frame" x="0.0" y="169" width="369" height="50"/>
+                            <rect key="frame" x="0.0" y="149" width="369" height="50"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuE-th-hyB" userLabel="Height Label Container">
                                     <rect key="frame" x="0.0" y="0.0" width="122.33333333333333" height="50"/>
@@ -141,8 +141,8 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="q65-bD-ev0" secondAttribute="trailing" id="5wY-UM-DRz"/>
                         <constraint firstItem="ibE-ks-Ode" firstAttribute="leading" secondItem="FBm-S5-EIl" secondAttribute="leading" id="9Og-tZ-UHV"/>
-                        <constraint firstItem="ibE-ks-Ode" firstAttribute="top" secondItem="q65-bD-ev0" secondAttribute="bottom" id="OG3-4L-TeT"/>
-                        <constraint firstAttribute="bottom" secondItem="ibE-ks-Ode" secondAttribute="bottom" id="X6i-qe-Uup"/>
+                        <constraint firstItem="ibE-ks-Ode" firstAttribute="top" secondItem="q65-bD-ev0" secondAttribute="bottom" constant="20" id="OG3-4L-TeT"/>
+                        <constraint firstAttribute="bottom" secondItem="ibE-ks-Ode" secondAttribute="bottom" constant="20" id="X6i-qe-Uup"/>
                         <constraint firstItem="q65-bD-ev0" firstAttribute="leading" secondItem="FBm-S5-EIl" secondAttribute="leading" id="bbA-ua-hJa"/>
                         <constraint firstAttribute="trailing" secondItem="ibE-ks-Ode" secondAttribute="trailing" id="ixe-4R-pxk"/>
                         <constraint firstItem="q65-bD-ev0" firstAttribute="top" secondItem="NIb-IG-20I" secondAttribute="bottom" id="mh7-IG-Hkd"/>

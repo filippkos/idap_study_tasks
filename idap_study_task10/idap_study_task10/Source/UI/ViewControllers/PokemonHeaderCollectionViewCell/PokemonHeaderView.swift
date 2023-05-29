@@ -9,10 +9,14 @@ import UIKit
 
 import RxSwift
 
-class PokemonHeaderView: NibDesignable {
+enum PokemonHeaderTitles: String {
+    
+    case height = "Height"
+    case weight = "Weight"
+    case order = "Order"
+}
 
-    var id: UUID = UUID()
-    var dispose = DisposeBag()
+class PokemonHeaderView: NibDesignable {
     
     // MARK: -
     // MARK: Outlets
@@ -31,16 +35,16 @@ class PokemonHeaderView: NibDesignable {
     // MARK: Public
     
     func configure(with model: Pokemon, indexPath: IndexPath) {
-        self.nameLabel?.text = model.grouped[1]?.1.first?.capitalizingFirstLetter()
-        self.heightTitle?.text = model.grouped[3]?.0
-        self.heightValue?.text = "\(model.grouped[3]?.1.first ?? "") cm"
-        self.weightTitle?.text = model.grouped[4]?.0
-        self.weightValue?.text = "\(model.grouped[4]?.1.first ?? "") kg"
-        self.orderTitle?.text = model.grouped[6]?.0
-        self.orderValue?.text = model.grouped[6]?.1.first
+        self.nameLabel?.text = model.name.capitalizingFirstLetter()
+        self.heightTitle?.text = PokemonHeaderTitles.height.rawValue
+        self.heightValue?.text = "\(model.height?.description ?? "") cm"
+        self.weightTitle?.text = PokemonHeaderTitles.weight.rawValue
+        self.weightValue?.text = "\(model.weight?.description ?? "") kg"
+        self.orderTitle?.text = PokemonHeaderTitles.order.rawValue
+        self.orderValue?.text = model.order?.description
     }
     
-    func configure(with model: PokemonTableViewCellModel) {
+    func configure(with model: PokemonRegularViewModel) {
         self.verticalTagView?.configure(with: model.items)
     }
     

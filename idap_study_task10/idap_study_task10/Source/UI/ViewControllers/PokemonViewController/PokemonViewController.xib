@@ -99,6 +99,7 @@
                 <constraint firstItem="Nmy-Bu-40O" firstAttribute="top" secondItem="7SM-81-p4z" secondAttribute="bottom" constant="33" id="PhU-3m-mlM"/>
                 <constraint firstItem="WRb-7J-T5j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-2" id="Z6k-45-rgL"/>
                 <constraint firstAttribute="bottom" secondItem="Nmy-Bu-40O" secondAttribute="bottom" id="bf4-mv-JsG"/>
+                <constraint firstItem="Nmy-Bu-40O" firstAttribute="top" secondItem="WRb-7J-T5j" secondAttribute="bottom" constant="5" id="jxh-7k-mrU"/>
             </constraints>
             <connections>
                 <outlet property="circularSliderView" destination="WRb-7J-T5j" id="s06-eA-q01"/>
