@@ -9,13 +9,13 @@ import UIKit
 
 import RxSwift
 
-struct PokemonTableViewCellModel {
+struct PokemonRegularViewModel {
     
     let header: String?
     let items: [VerticalTagItem]
 }
 
-class PokemonCellView: NibDesignable {
+class PokemonRegularView: NibDesignable {
 
     // MARK: -
     // MARK: Typealiases
@@ -27,7 +27,7 @@ class PokemonCellView: NibDesignable {
     
     internal var isLoaded: Bool = false
     
-    private var model: PokemonTableViewCellModel?
+    private var model: PokemonRegularViewModel?
     private(set) var id = UUID()
 
     // MARK: -
@@ -39,7 +39,7 @@ class PokemonCellView: NibDesignable {
     // MARK: -
     // MARK: Public
     
-    public func configure(with model: PokemonTableViewCellModel) {
+    public func configure(with model: PokemonRegularViewModel) {
         self.model = model
         self.header?.text = model.header
         self.verticalTagView?.configure(with: model.items)

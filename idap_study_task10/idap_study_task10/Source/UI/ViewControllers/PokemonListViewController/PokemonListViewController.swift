@@ -331,7 +331,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
                 }
             }
             
-            let cellModel = PokemonTableViewCellModel(
+            let cellModel = PokemonRegularViewModel(
                 header: nil,
                 items: items ?? []
             )

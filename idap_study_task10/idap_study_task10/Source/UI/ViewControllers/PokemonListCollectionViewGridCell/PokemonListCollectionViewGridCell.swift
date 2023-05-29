@@ -44,7 +44,7 @@ final class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, 
         self.nameLabel?.textColor = Colors.Colors.abbey.color
     }
     
-    func configure(with model: PokemonTableViewCellModel) {
+    func configure(with model: PokemonRegularViewModel) {
         self.verticalTagView?.configure(with: model.items)
     }
     
@@ -55,7 +55,6 @@ final class PokemonListCollectionViewGridCell: UICollectionViewCell, Spinnable, 
         layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumInteritemSpacing = 8
         self.verticalTagView?.collectionView.setCollectionViewLayout(layout, animated: false)
-        self.verticalTagView?.collectionView.alwaysBounceVertical = false
         self.verticalTagView?.collectionView.isScrollEnabled = false
     }
     

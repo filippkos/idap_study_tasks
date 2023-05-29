@@ -103,7 +103,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         let items = self.model.types?.compactMap {
             return VerticalTagItem(type: $0.type.name)
         }
-        let cellModel = PokemonTableViewCellModel(
+        let cellModel = PokemonRegularViewModel(
 
         header: self.model.grouped[0]?.0 ?? "",
         items: items ?? [])
@@ -121,12 +121,12 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
                 VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
             }
 
-            let cellModel = PokemonTableViewCellModel(
+            let cellModel = PokemonRegularViewModel(
                 header: self.model.grouped[$0.key]?.0 ?? "",
                 items: items ?? []
             )
             
-            let cellView = PokemonCellView()
+            let cellView = PokemonRegularView()
             cellView.configure(with: cellModel)
             cellView.flowLayoutConfigure()
             self.rootView?.stackView?.addArrangedSubview(cellView)

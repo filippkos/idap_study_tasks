@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonCellView" customModule="idap_study_task10" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonRegularView" customModule="idap_study_task10" customModuleProvider="target">
             <connections>
                 <outlet property="header" destination="Phf-XG-jge" id="7b5-Qr-Cn3"/>
                 <outlet property="verticalTagView" destination="OnL-cP-g6L" id="OGz-Gz-nBm"/>
