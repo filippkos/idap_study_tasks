@@ -99,7 +99,6 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
     }
     
     private func prepareHeaderView() {
-        
         let items = self.model.types?.compactMap {
             return VerticalTagItem(type: $0.type.name)
         }
@@ -111,7 +110,6 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         let headerView = PokemonHeaderView()
         headerView.configure(with: self.model, indexPath: IndexPath(index: 0))
         headerView.configure(with: cellModel)
-        headerView.flowLayoutConfigure()
         self.rootView?.stackView?.addArrangedSubview(headerView)
     }
     
@@ -129,7 +127,6 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
             
             let cellView = PokemonRegularView()
             cellView.configure(with: cellModel)
-            cellView.flowLayoutConfigure()
             self.rootView?.stackView?.addArrangedSubview(cellView)
         }
     }

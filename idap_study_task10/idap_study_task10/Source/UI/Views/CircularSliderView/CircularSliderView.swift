@@ -8,7 +8,7 @@
 import UIKit
 import MTCircularSlider
 
-class CircularSliderView: NibDesignable {
+final class CircularSliderView: NibDesignable {
     
     // MARK: -
     // MARK: Outlets
@@ -18,9 +18,9 @@ class CircularSliderView: NibDesignable {
     // MARK: -
     // MARK: Variables
  
-    var labelValue = 0
-    var thumbLabel = UILabel()
-    var labelBackground = UIView()
+    private var labelValue = 0
+    private var thumbLabel = UILabel()
+    private var labelBackground = UIView()
     
     // MARK: -
     // MARK: Public

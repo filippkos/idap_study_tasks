@@ -34,7 +34,6 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     // MARK: Public
     
     func configure(with model: Pokemon, image: UIImage) {
-        self.flowLayoutConfigure()
         self.background?.backgroundColor = image.getColors(quality: .superLow)?.background.withAlphaComponent(0.3)
         self.image?.image = image
         self.idLabel?.text = Int.intToFormattedIdString(number: model.id)
@@ -45,16 +44,6 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     
     func configure(with model: PokemonRegularViewModel) {
         self.verticalTagView?.configure(with: model.items)
-    }
-    
-    func flowLayoutConfigure() {
-        let itemWidth = 24
-        let itemHeight = 24
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumInteritemSpacing = 8
-        self.verticalTagView?.collectionView?.setCollectionViewLayout(layout, animated: false)
-        self.verticalTagView?.collectionView?.isScrollEnabled = false
     }
     
     // MARK: -
