@@ -16,17 +16,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PokemonListCollectionViewGridCell" customModule="idap_study_task10" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="255" height="448"/>
+            <rect key="frame" x="0.0" y="0.0" width="255" height="423"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="255" height="448"/>
+                <rect key="frame" x="0.0" y="0.0" width="255" height="423"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-oW-rk0">
-                        <rect key="frame" x="0.0" y="0.0" width="255" height="448"/>
+                        <rect key="frame" x="0.0" y="0.0" width="255" height="423"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-bQ-TYr">
-                                <rect key="frame" x="0.0" y="0.0" width="255" height="448"/>
+                                <rect key="frame" x="0.0" y="0.0" width="255" height="423"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICi-WE-nJu">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="167"/>
@@ -76,10 +76,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBz-Xb-bZT" userLabel="Label Container">
-                                        <rect key="frame" x="0.0" y="350" width="255" height="48"/>
+                                        <rect key="frame" x="0.0" y="350" width="255" height="23"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCZ-Zw-ckd">
-                                                <rect key="frame" x="0.0" y="0.0" width="255" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="255" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -94,7 +94,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAQ-TW-qto">
-                                        <rect key="frame" x="0.0" y="398" width="255" height="50"/>
+                                        <rect key="frame" x="0.0" y="373" width="255" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO8-g6-9Rz" userLabel="Vertical Tag View" customClass="VerticalTagView" customModule="idap_study_task10" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="0.0" width="223" height="32"/>
@@ -136,7 +136,7 @@
                 <constraint firstItem="AgN-oW-rk0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WyR-Ia-GQV"/>
                 <constraint firstItem="AgN-oW-rk0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aF6-hC-Y0E"/>
             </constraints>
-            <size key="customSize" width="255" height="448"/>
+            <size key="customSize" width="255" height="423"/>
             <connections>
                 <outlet property="background" destination="297-9G-p0k" id="rgm-RS-UbQ"/>
                 <outlet property="idLabel" destination="DOn-VB-r1G" id="OhK-Cd-ECi"/>
@@ -144,7 +144,7 @@
                 <outlet property="nameLabel" destination="WCZ-Zw-ckd" id="U25-zK-eyp"/>
                 <outlet property="verticalTagView" destination="pO8-g6-9Rz" id="IJ7-Da-WJd"/>
             </connections>
-            <point key="canvasLocation" x="229.7709923664122" y="158.45070422535213"/>
+            <point key="canvasLocation" x="229.7709923664122" y="167.25352112676057"/>
         </collectionViewCell>
     </objects>
     <resources>

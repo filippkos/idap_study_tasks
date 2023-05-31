@@ -51,12 +51,12 @@ struct VerticalTagItem {
     }
 }
 
-class VerticalTagView: NibDesignable, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class VerticalTagView: NibDesignable {
     
     // MARK: -
     // MARK: Outlets
 
-    @IBOutlet var collectionView: TagViewPresentCollection!
+    @IBOutlet var verticalStackView: UIStackView?
     @IBOutlet var viewHeight: NSLayoutConstraint?
     
     // MARK: -
@@ -68,26 +68,47 @@ class VerticalTagView: NibDesignable, UICollectionViewDelegate, UICollectionView
     // MARK: -
     // MARK: Public
     
-    public func reuse() {
-        self.disposeBag = DisposeBag()
+    public func configure(with models: [VerticalTagItem]) {
         
-        self.viewHeight?.constant = 0
+        self.items = models
+        
+        self.verticalStackView?.removeAllArrangedSubviews()
+        
+
+        let selfWidth = self.frame.width
+        
+        // create row
+        var stackView = createStackView()
+        self.verticalStackView?.addArrangedSubview(stackView)
+        var summaryWidth: CGFloat = -8
+        
+        self.items.forEach {
+            let chipView = ChipView()
+            chipView.fill(with: $0)
+            
+            let chipWidth = chipView.intrinsicContentSize.width
+            summaryWidth += chipWidth + 8
+            
+            if summaryWidth < selfWidth {
+                stackView.addArrangedSubview(chipView)
+            } else {
+                stackView.addArrangedSubview(UIView())
+                stackView = createStackView()
+                self.verticalStackView?.addArrangedSubview(stackView)
+                summaryWidth = -8
+            }
+        }
+        stackView.addArrangedSubview(UIView())
     }
     
-    public func configure(with models: [VerticalTagItem]) {
-        self.items = models
     
-        self.collectionView
-            .collectionSize
-            .skip(1)
-            .bind { [weak self] in
-                debugPrint("***Size - \($0.height)")
-                
-                self?.viewHeight?.constant = $0.height
-            }
-            .disposed(by: self.disposeBag)
+    
+    private func createStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
         
-        self.collectionView.update()
+        return stackView
     }
 
     // MARK: -
@@ -96,90 +117,5 @@ class VerticalTagView: NibDesignable, UICollectionViewDelegate, UICollectionView
     override func configureView() {
         super.configureView()
         
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        self.collectionView?.register(cellClass: ChipCollectionViewCell.self)
-        self.collectionView.isScrollEnabled = false
-    }
-    
-    // MARK: -
-    // MARK: Data Source
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    )
-        -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(
-            cellClass: ChipCollectionViewCell.self,
-            indexPath: indexPath
-        )
-        
-        cell.fill(with: self.items[indexPath.row])
-
-        return cell
-    }
-    
-    // MARK: -
-    // MARK: UICollectionViewDelegateFlowLayout
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let itemSize = 24
-        let spacing = 8
-        let totalCellWidth = ((self.items.count) * (itemSize + spacing)) - spacing
-        let sideInset = (Int(self.bounds.width) - totalCellWidth) / 2 - 5
-        print("<!> \(self.items.count) \(self.bounds.width) \(sideInset)")
-
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
-
-class TagViewPresentCollection: UICollectionView {
-
-    // MARK: -
-    // MARK: Variables
-
-    public let collectionSize = BehaviorRelay<CGSize>(
-        value: .zero
-    )
-
-    // MARK: -
-    // MARK: Overrided
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        let contentSize = self
-            .collectionViewLayout
-            .collectionViewContentSize
-        
-        self.collectionSize.accept(contentSize)
-    }
-    
-    // MARK: -
-    // MARK: Public
-    
-    public func update() {
-        self.reloadData() { [weak self] in
-            self?.layoutSubviews()
-        }
-    }
-}
-
-extension UICollectionView {
-
-    func reloadData(completion: @escaping () -> Void) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            completion()
-        }
-        self.reloadData()
-        CATransaction.commit()
-    }
-}
-

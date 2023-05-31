@@ -47,14 +47,4 @@ class PokemonHeaderView: NibDesignable {
     func configure(with model: PokemonRegularViewModel) {
         self.verticalTagView?.configure(with: model.items)
     }
-    
-    func flowLayoutConfigure() {
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        self.verticalTagView?.collectionView.setCollectionViewLayout(layout, animated: false)
-        self.verticalTagView?.collectionView.alwaysBounceVertical = false
-        self.verticalTagView?.collectionView.isScrollEnabled = false
-    }
 }
