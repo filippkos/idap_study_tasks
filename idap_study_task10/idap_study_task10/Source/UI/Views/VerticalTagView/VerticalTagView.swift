@@ -81,6 +81,12 @@ class VerticalTagView: NibDesignable {
             let chipView = ChipView()
             chipView.fill(with: $0)
             
+            if chipView.model?.state == .full {
+                stackView.addArrangedSubview(chipView)
+                
+                return
+            }
+            
             let chipWidth = chipView.intrinsicContentSize.width
             summaryWidth += chipWidth + self.spacing
             
