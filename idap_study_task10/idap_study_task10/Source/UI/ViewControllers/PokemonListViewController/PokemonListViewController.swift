@@ -89,6 +89,8 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.customizeNavigationBar()
     }
     
