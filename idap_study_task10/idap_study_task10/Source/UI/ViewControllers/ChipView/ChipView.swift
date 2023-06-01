@@ -1,18 +1,18 @@
 //
-//  ChipCollectionViewCell.swift
+//  ChipView.swift
 //  idap_study_task10
 //
-//  Created by Filipp Kosenko on 28.04.2023.
+//  Created by Filipp Kosenko on 30.05.2023.
 //
 
 import UIKit
 
-final class ChipCollectionViewCell: UICollectionViewCell {
+final class ChipView: NibDesignable {
     
     // MARK: -
     // MARK: Outlets
     
-    @IBOutlet private var tagLabel: UILabel?
+    @IBOutlet private var tagLabel: PaddingLabel?
     @IBOutlet private var tagImage: UIImageView?
     @IBOutlet private var tagStackView: UIStackView?
     
@@ -29,7 +29,9 @@ final class ChipCollectionViewCell: UICollectionViewCell {
     // MARK: Private
     
     private func prepareText(with model: VerticalTagItem) {
-        self.tagLabel?.text = model.title
+        self.tagLabel?.text = model.title.capitalizingFirstLetter()
+        self.tagLabel?.textColor = model.textColor
+        self.tagLabel?.font = Fonts.PlusJakartaSans.medium.font(size: 15)
         self.tagLabel?.isHidden = model.title.isEmpty || model.state == .image
     }
     
@@ -51,9 +53,7 @@ final class ChipCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = self.frame.height / 2
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        self.tagImage?.image = nil
+    public override var intrinsicContentSize: CGSize {
+        return self.tagLabel?.intrinsicContentSize ?? CGSize()
     }
 }

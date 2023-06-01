@@ -7,8 +7,7 @@
 
 import UIKit
 
-import RxSwift
-import RxRelay
+import SnapKit
 
 enum VerticalTagItemState {
     
@@ -57,65 +56,81 @@ class VerticalTagView: NibDesignable {
     // MARK: Outlets
 
     @IBOutlet var verticalStackView: UIStackView?
-    @IBOutlet var viewHeight: NSLayoutConstraint?
     
     // MARK: -
     // MARK: Variables
     
+    var spacing: CGFloat = 8
+    var isCentered: Bool = false
+
     private var items: [VerticalTagItem] = []
-    private var disposeBag = DisposeBag()
     
     // MARK: -
     // MARK: Public
     
     public func configure(with models: [VerticalTagItem]) {
-        
         self.items = models
-        
-        self.verticalStackView?.removeAllArrangedSubviews()
-        
-
+        var stackView = createRowStackView()
+        var summaryWidth: CGFloat = -self.spacing
         let selfWidth = self.frame.width
-        
-        // create row
-        var stackView = createStackView()
+        self.verticalStackView?.spacing = self.spacing
+        self.verticalStackView?.removeAllArrangedSubviews()
         self.verticalStackView?.addArrangedSubview(stackView)
-        var summaryWidth: CGFloat = -8
         
         self.items.forEach {
             let chipView = ChipView()
             chipView.fill(with: $0)
             
             let chipWidth = chipView.intrinsicContentSize.width
-            summaryWidth += chipWidth + 8
+            summaryWidth += chipWidth + self.spacing
             
             if summaryWidth < selfWidth {
                 stackView.addArrangedSubview(chipView)
             } else {
-                stackView.addArrangedSubview(UIView())
-                stackView = createStackView()
+                stackView.addArrangedSubview(self.createSpacer())
+                stackView = createRowStackView()
                 self.verticalStackView?.addArrangedSubview(stackView)
-                summaryWidth = -8
+                summaryWidth = -self.spacing
+                summaryWidth += chipWidth + self.spacing
+                stackView.addArrangedSubview(chipView)
             }
         }
-        stackView.addArrangedSubview(UIView())
+        
+        stackView.addArrangedSubview(self.createSpacer())
+        
+        if isCentered {
+            self.prepareСenteringСonstraints()
+        }
     }
     
+    // MARK: -
+    // MARK: Private
     
+    private func prepareСenteringСonstraints() {
+        self.verticalStackView?.arrangedSubviews.forEach {
+            if let row = $0 as? UIStackView {
+                row.insertArrangedSubview(self.createSpacer(), at: 0)
+                if let leading = row.arrangedSubviews.first,
+                   let trailing = row.arrangedSubviews.last {
+                    leading.snp.makeConstraints { $0.width.equalTo(trailing) }
+                }
+            }
+        }
+    }
     
-    private func createStackView() -> UIStackView {
+    private func createRowStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = self.spacing
         
         return stackView
     }
-
-    // MARK: -
-    // MARK: Overrided
     
-    override func configureView() {
-        super.configureView()
+    private func createSpacer() -> UIView {
+        let spacer = UIView()
+        spacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        spacer.setContentCompressionResistancePriority(.defaultLow,for: .horizontal)
         
+        return spacer
     }
 }

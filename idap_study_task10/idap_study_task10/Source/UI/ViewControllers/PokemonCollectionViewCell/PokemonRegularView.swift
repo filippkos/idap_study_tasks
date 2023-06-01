@@ -28,7 +28,6 @@ class PokemonRegularView: NibDesignable {
     internal var isLoaded: Bool = false
     
     private var model: PokemonRegularViewModel?
-    private(set) var id = UUID()
 
     // MARK: -
     // MARK: Outlets
@@ -42,6 +41,7 @@ class PokemonRegularView: NibDesignable {
     public func configure(with model: PokemonRegularViewModel) {
         self.model = model
         self.header?.text = model.header
+        self.verticalTagView?.isCentered = false
         self.verticalTagView?.configure(with: model.items)
     }
 }

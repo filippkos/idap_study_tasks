@@ -34,6 +34,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     // MARK: Public
     
     func configure(with model: Pokemon, image: UIImage) {
+        layoutIfNeeded()
         self.background?.backgroundColor = image.getColors(quality: .superLow)?.background.withAlphaComponent(0.3)
         self.image?.image = image
         self.idLabel?.text = Int.intToFormattedIdString(number: model.id)
@@ -43,6 +44,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     }
     
     func configure(with model: PokemonRegularViewModel) {
+        self.verticalTagView?.isCentered = false
         self.verticalTagView?.configure(with: model.items)
     }
     
@@ -52,7 +54,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.background?.layer.cornerRadius = (self.background?.frame.width ?? 0) / 2
+        self.background?.layer.cornerRadius = (self.background?.bounds.width ?? 0) / 2
         self.layer.cornerRadius = 16
     }
     

@@ -45,6 +45,7 @@ class PokemonHeaderView: NibDesignable {
     }
     
     func configure(with model: PokemonRegularViewModel) {
+        self.verticalTagView?.isCentered = true
         self.verticalTagView?.configure(with: model.items)
     }
 }
