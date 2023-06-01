@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import UIImageColors
 
 final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, PokemonListCollectionViewCell {
@@ -14,12 +15,6 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     // MARK: Typealiases
     
     typealias SpinnerType = SpinnerView
-    
-    // MARK: -
-    // MARK: Variables
-    
-    var isLoaded: Bool = false
-    private(set) var id = UUID()
 
     // MARK: -
     // MARK: Outlets
@@ -29,6 +24,12 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var idLabel: UILabel?
     @IBOutlet var verticalTagView: VerticalTagView?
+    
+    // MARK: -
+    // MARK: Variables
+    
+    var isLoaded: Bool = false
+    private(set) var id = UUID()
     
     // MARK: -
     // MARK: Public

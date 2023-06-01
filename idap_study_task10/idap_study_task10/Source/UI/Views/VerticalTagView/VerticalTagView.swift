@@ -71,7 +71,7 @@ class VerticalTagView: NibDesignable {
     public func configure(with models: [VerticalTagItem]) {
         self.items = models
         var stackView = createRowStackView()
-        var summaryWidth: CGFloat = -self.spacing
+        var summaryWidth: CGFloat = 0
         let selfWidth = self.frame.width
         self.verticalStackView?.spacing = self.spacing
         self.verticalStackView?.removeAllArrangedSubviews()
@@ -86,11 +86,12 @@ class VerticalTagView: NibDesignable {
             
             if summaryWidth < selfWidth {
                 stackView.addArrangedSubview(chipView)
+                summaryWidth += self.spacing
             } else {
                 stackView.addArrangedSubview(self.createSpacer())
                 stackView = createRowStackView()
                 self.verticalStackView?.addArrangedSubview(stackView)
-                summaryWidth = -self.spacing
+                summaryWidth = 0
                 summaryWidth += chipWidth + self.spacing
                 stackView.addArrangedSubview(chipView)
             }
@@ -130,7 +131,7 @@ class VerticalTagView: NibDesignable {
         let spacer = UIView()
         spacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
         spacer.setContentCompressionResistancePriority(.defaultLow,for: .horizontal)
-        
+
         return spacer
     }
 }

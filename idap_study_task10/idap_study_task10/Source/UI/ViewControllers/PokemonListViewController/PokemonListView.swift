@@ -17,10 +17,6 @@ final class PokemonListView: BaseView {
     // MARK: -
     // MARK: Public
     
-    func configure() {
-        
-    }
-    
     func flowLayoutListConfigure() {
         let itemWidth = (self.collectionView?.frame.size.width ?? 0) - 48
         let itemHeight = self.collectionView?.frame.size.height
@@ -30,7 +26,6 @@ final class PokemonListView: BaseView {
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         self.collectionView?.collectionViewLayout = layout
-        self.collectionView?.isPagingEnabled = false
         self.collectionView?.alwaysBounceVertical = true
     }
     
@@ -43,7 +38,6 @@ final class PokemonListView: BaseView {
         layout.minimumLineSpacing = 9
         layout.scrollDirection = .vertical
         self.collectionView?.collectionViewLayout = layout
-        self.collectionView?.isPagingEnabled = false
         self.collectionView?.alwaysBounceVertical = true
     }
 }

@@ -11,6 +11,7 @@ protocol ScrollToPageProtocol {
 }
 
 import UIKit
+
 import SnapKit
 
 class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -103,6 +104,9 @@ class PagerView: UICollectionView, UICollectionViewDataSource, UICollectionViewD
 
         return UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
     }
+    
+    // MARK: -
+    // MARK: Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()

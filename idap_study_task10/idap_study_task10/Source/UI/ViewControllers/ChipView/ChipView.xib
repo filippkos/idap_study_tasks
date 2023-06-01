@@ -8,9 +8,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChipView" customModule="idap_study_task10" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraint" destination="Use-g0-6Cx" id="p1K-Ua-ok8"/>
+                <outlet property="leftConstraint" destination="AgU-aU-U6G" id="Req-va-hqB"/>
+                <outlet property="rightConstraint" destination="u0o-g7-Dxy" id="p8n-xg-H28"/>
                 <outlet property="tagImage" destination="XXd-MU-ZOh" id="4W2-ZX-yox"/>
                 <outlet property="tagLabel" destination="89o-hD-BHB" id="ktR-8o-cub"/>
                 <outlet property="tagStackView" destination="Ly2-tL-Rwr" id="TJ9-Ia-9pt"/>
+                <outlet property="topConstraint" destination="Kp1-LE-lH5" id="2vI-hT-PZX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
