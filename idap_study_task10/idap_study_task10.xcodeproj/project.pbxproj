@@ -81,8 +81,7 @@
 		22C268F22A26415900A538A1 /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C268F02A26415900A538A1 /* ChipView.swift */; };
 		22C268F32A26415900A538A1 /* ChipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C268F12A26415900A538A1 /* ChipView.xib */; };
 		22C268F52A273E4000A538A1 /* UIStackView+RemoveAllArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C268F42A273E4000A538A1 /* UIStackView+RemoveAllArrangedSubviews.swift */; };
-		22D6D91829FBF92300C984F5 /* ChipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D91629FBF92300C984F5 /* ChipCollectionViewCell.swift */; };
-		22D6D91929FBF92300C984F5 /* ChipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D6D91729FBF92300C984F5 /* ChipCollectionViewCell.xib */; };
+		22C268F72A2887B900A538A1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C268F62A2887B900A538A1 /* PaddingLabel.swift */; };
 		22D6D9232A038DA400C984F5 /* VerticalTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D9212A038DA400C984F5 /* VerticalTagView.swift */; };
 		22D6D9242A038DA400C984F5 /* VerticalTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D6D9222A038DA400C984F5 /* VerticalTagView.xib */; };
 		22D6D9292A03A00700C984F5 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6D9282A03A00700C984F5 /* NibDesignable.swift */; };
@@ -170,8 +169,7 @@
 		22C268F02A26415900A538A1 /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
 		22C268F12A26415900A538A1 /* ChipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipView.xib; sourceTree = "<group>"; };
 		22C268F42A273E4000A538A1 /* UIStackView+RemoveAllArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAllArrangedSubviews.swift"; sourceTree = "<group>"; };
-		22D6D91629FBF92300C984F5 /* ChipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCollectionViewCell.swift; sourceTree = "<group>"; };
-		22D6D91729FBF92300C984F5 /* ChipCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipCollectionViewCell.xib; sourceTree = "<group>"; };
+		22C268F62A2887B900A538A1 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		22D6D91A29FFC09B00C984F5 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		22D6D9212A038DA400C984F5 /* VerticalTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTagView.swift; sourceTree = "<group>"; };
 		22D6D9222A038DA400C984F5 /* VerticalTagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalTagView.xib; sourceTree = "<group>"; };
@@ -334,6 +332,7 @@
 				2287B10F29B1001D004EDBE6 /* UI */,
 				2287B11029B10025004EDBE6 /* Models */,
 				2287B11129B10033004EDBE6 /* F */,
+				22C268F62A2887B900A538A1 /* PaddingLabel.swift */,
 				2287B11829B100F7004EDBE6 /* F.swift */,
 				2287B11A29B10106004EDBE6 /* WeakBox.swift */,
 			);
@@ -439,7 +438,7 @@
 				2287B13929B1036F004EDBE6 /* PokemonViewController */,
 				2287B13A29B10384004EDBE6 /* PokemonHeaderCollectionViewCell */,
 				22D6D90B29FBF69D00C984F5 /* PokemonCollectionViewCell */,
-				22D6D91529FBF8E600C984F5 /* ChipCollectionViewCell */,
+				22D6D91529FBF8E600C984F5 /* ChipView */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -557,15 +556,13 @@
 			path = PokemonCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		22D6D91529FBF8E600C984F5 /* ChipCollectionViewCell */ = {
+		22D6D91529FBF8E600C984F5 /* ChipView */ = {
 			isa = PBXGroup;
 			children = (
-				22D6D91629FBF92300C984F5 /* ChipCollectionViewCell.swift */,
-				22D6D91729FBF92300C984F5 /* ChipCollectionViewCell.xib */,
 				22C268F02A26415900A538A1 /* ChipView.swift */,
 				22C268F12A26415900A538A1 /* ChipView.xib */,
 			);
-			path = ChipCollectionViewCell;
+			path = ChipView;
 			sourceTree = "<group>";
 		};
 		22D6D91B2A026C0800C984F5 /* VerticalTagView */ = {
@@ -683,7 +680,6 @@
 				22D6D9242A038DA400C984F5 /* VerticalTagView.xib in Resources */,
 				2245E83229C9B13100E8EB80 /* AboutUsViewController.xib in Resources */,
 				2253047B2A13A4E9000C68BD /* CircularSliderView.xib in Resources */,
-				22D6D91929FBF92300C984F5 /* ChipCollectionViewCell.xib in Resources */,
 				2287B13F29B1047C004EDBE6 /* DashboardViewController.xib in Resources */,
 				22232B1F29B754E700B52268 /* Colors.xcassets in Resources */,
 				22232B1629B604A000B52268 /* PlusJakartaSans-ExtraBold.ttf in Resources */,
@@ -798,6 +794,7 @@
 				2287B0F829B0F7BC004EDBE6 /* ViewController.swift in Sources */,
 				2287B16629B10686004EDBE6 /* SpinnerView.swift in Sources */,
 				2245E82429C8C98000E8EB80 /* PokemonListCollectionViewCell.swift in Sources */,
+				22C268F72A2887B900A538A1 /* PaddingLabel.swift in Sources */,
 				2287B12829B10236004EDBE6 /* Array+OptionalValue.swift in Sources */,
 				2245E82129C8B6FE00E8EB80 /* PokemonListCollectionViewGridCell.swift in Sources */,
 				2287B13E29B1047C004EDBE6 /* DashboardViewController.swift in Sources */,
@@ -827,7 +824,6 @@
 				2287B12629B10218004EDBE6 /* URLResponce+GetStatusCode.swift in Sources */,
 				2287B15529B10563004EDBE6 /* PokemonListView.swift in Sources */,
 				2287B14629B104C4004EDBE6 /* PokemonViewController.swift in Sources */,
-				22D6D91829FBF92300C984F5 /* ChipCollectionViewCell.swift in Sources */,
 				2287B13629B10307004EDBE6 /* AlertModel.swift in Sources */,
 				22C268EE2A20D41100A538A1 /* PokemonRegularView.swift in Sources */,
 				2287B14229B104B0004EDBE6 /* PokemonListViewController.swift in Sources */,
