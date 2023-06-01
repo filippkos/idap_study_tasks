@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 enum DashboardCollectionViewCellOutputEvents {
+    
     case goNext
 }
 

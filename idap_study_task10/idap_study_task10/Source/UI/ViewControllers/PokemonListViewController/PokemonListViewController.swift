@@ -77,7 +77,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.configure()
+        
         self.rootView?.flowLayoutListConfigure()
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewListCell.self)
         self.rootView?.collectionView?.register(cellClass: PokemonListCollectionViewGridCell.self)

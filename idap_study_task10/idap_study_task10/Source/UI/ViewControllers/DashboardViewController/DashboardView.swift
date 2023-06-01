@@ -17,7 +17,7 @@ final class DashboardView: BaseView {
     @IBOutlet var nextButton: UIButton?
     
     // MARK: -
-    // MARK: Configure
+    // MARK: Public
     
     func flowLayoutConfigure() {
         let itemWidth = UIScreen.main.bounds.width
