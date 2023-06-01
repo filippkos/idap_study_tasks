@@ -67,10 +67,14 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.customizeNavigationBar()
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
         self.rootView?.configure()
         self.rootView?.configureSlider(model: self.model)
     }
