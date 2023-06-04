@@ -60,10 +60,6 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         self.prepareHeaderView()
         self.prepareRegularView()
         self.setViewMode(.imageShowing)
-        self.setImage(model: self.model) { [weak self] error in
-            self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error))
-            )
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +73,11 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         
         self.rootView?.configure()
         self.rootView?.configureSlider(model: self.model)
+
+        self.setImage(model: self.model) { [weak self] error in
+            self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error))
+            )
+        }
     }
     
     // MARK: -

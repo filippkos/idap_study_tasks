@@ -36,6 +36,8 @@ public enum L10n {
     }
   }
   public enum PokemonList {
+    /// Nothing was found for your query, try changing the search value.
+    public static let emptySearchResultMessage = L10n.tr("Localizable", "pokemon_list.empty_search_result_message", fallback: "Nothing was found for your query, try changing the search value.")
     /// All pokemon
     public static let title = L10n.tr("Localizable", "pokemon_list.title", fallback: "All pokemon")
   }

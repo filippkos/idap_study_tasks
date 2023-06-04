@@ -27,6 +27,7 @@ public enum Colors {
     public static let corn = ColorAsset(name: "colors/corn")
     public static let gold = ColorAsset(name: "colors/gold")
     public static let heather = ColorAsset(name: "colors/heather")
+    public static let mediumGrey = ColorAsset(name: "colors/medium_grey")
     public static let wildSand = ColorAsset(name: "colors/wild_sand")
   }
   public enum PokemonTypesBgColors {

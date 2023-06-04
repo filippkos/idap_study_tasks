@@ -24,4 +24,5 @@
 // MARK: PokemonList
 
 "pokemon_list.title" = "All pokemon";
+"pokemon_list.empty_search_result_message" = "Nothing was found for your query, try changing the search value.";
 
