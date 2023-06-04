@@ -62,6 +62,7 @@ class VerticalTagView: NibDesignable {
     
     var spacing: CGFloat = 8
     var isCentered: Bool = false
+    var isSingleRow: Bool = false
 
     private var items: [VerticalTagItem] = []
     
@@ -81,7 +82,7 @@ class VerticalTagView: NibDesignable {
             let chipView = ChipView()
             chipView.fill(with: $0)
             
-            if chipView.model?.state == .full {
+            if self.isSingleRow {
                 stackView.addArrangedSubview(chipView)
                 
                 return

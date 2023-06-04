@@ -114,6 +114,7 @@
                                 <constraints>
                                     <constraint firstItem="Azc-vP-4OZ" firstAttribute="centerY" secondItem="PFa-db-iqm" secondAttribute="centerY" id="Wdb-9D-23L"/>
                                     <constraint firstItem="Azc-vP-4OZ" firstAttribute="centerX" secondItem="PFa-db-iqm" secondAttribute="centerX" id="aPA-r7-Z5p"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="ogv-CJ-QS6"/>
                                 </constraints>
                             </view>
                         </subviews>

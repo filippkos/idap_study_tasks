@@ -46,6 +46,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     
     func configure(with model: PokemonRegularViewModel) {
         self.verticalTagView?.isCentered = false
+        self.verticalTagView?.isSingleRow = true
         self.verticalTagView?.configure(with: model.items)
     }
     

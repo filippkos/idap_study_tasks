@@ -7,7 +7,11 @@
 
 import UIKit
 
+import SnapKit
+
 final class PokemonListView: BaseView {
+    
+    typealias Loc = L10n.PokemonList
     
     // MARK: -
     // MARK: Outlets
@@ -15,7 +19,29 @@ final class PokemonListView: BaseView {
     @IBOutlet var collectionView: UICollectionView?
     
     // MARK: -
+    // MARK: Variables
+    
+    var emptyResultLabel: UILabel?
+    
+    // MARK: -
     // MARK: Public
+    
+    func prepareEmptyResultMessage() {
+        self.emptyResultLabel = UILabel()
+        self.emptyResultLabel?.text = Loc.emptySearchResultMessage
+        self.emptyResultLabel?.font = Fonts.PlusJakartaSans.medium.font(size: 15)
+        self.emptyResultLabel?.textColor = Colors.Colors.mediumGrey.color
+        self.emptyResultLabel?.numberOfLines = 0
+        
+        self.addSubview(self.emptyResultLabel ?? UILabel())
+        self.emptyResultLabel?.snp.makeConstraints {
+            $0.top.trailing.leading.equalTo(self.collectionView ?? UIView()).inset(16)
+        }
+    }
+    
+    func removeEmptyResultMessage() {
+        self.emptyResultLabel?.removeFromSuperview()
+    }
     
     func flowLayoutListConfigure() {
         let itemWidth = (self.collectionView?.frame.size.width ?? 0) - 48

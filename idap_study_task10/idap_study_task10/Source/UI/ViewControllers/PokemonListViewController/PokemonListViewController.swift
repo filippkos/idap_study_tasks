@@ -20,6 +20,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     // MARK: Typealiases
     
     typealias RootView = PokemonListView
+    typealias Loc = L10n.PokemonList
     
     // MARK: -
     // MARK: Variables
@@ -122,6 +123,11 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
                             self?.filteredPokemons = self?.fullListModel?.results.filter {
                                 $0.name.starts(with: text.lowercased())
                             } ?? []
+                            if self?.filteredPokemons.count == 0 && self?.searchIsOn ?? false {
+                                self?.rootView?.prepareEmptyResultMessage()
+                            } else {
+                                self?.rootView?.removeEmptyResultMessage()
+                            }
                             self?.iteratePokemons()
                         } else {
                             self?.listModel = model
@@ -184,15 +190,6 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         )
     }
     
-    private func prepareTapGesture(on image: UIImageView?, selector: Selector) {
-        let tap = UITapGestureRecognizer(
-            target: self,
-            action: selector
-        )
-        image?.addGestureRecognizer(tap)
-        image?.isUserInteractionEnabled = true
-    }
-    
     @objc private func showAboutUs(_ sender: UITapGestureRecognizer?) {
         self.outputEvents?(.needShowAboutUs)
     }
@@ -229,7 +226,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         )
         self.navigationItem.rightBarButtonItem?.tintColor = Colors.Colors.abbey.color
         
-        self.navigationItem.title = L10n.PokemonList.title
+        self.navigationItem.title = Loc.title
         self.navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: Colors.Colors.abbey.color,
             .font: Fonts.PlusJakartaSans.extraBold.font(size: 24)
@@ -254,6 +251,22 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
             self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 0
             self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 0
         }
+    }
+    
+    private func startSearch(with text: String) {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] (timer) in
+            self?.searchIsOn = true
+            self?.filteredPokemons.removeAll()
+            self?.searchedPokemonList.removeAll()
+            self?.loadPokemonList(text: text)
+        })
+    }
+    
+    private func stopSearch () {
+        self.searchIsOn = false
+        self.pokemonList.removeAll()
+        self.loadPokemonList()
+        self.rootView?.removeEmptyResultMessage()
     }
     
     // MARK: -
@@ -370,18 +383,18 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         self.timer.invalidate()
         self.configureSearchBarState()
         if searchText != "" {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] (timer) in
-                self?.searchIsOn = true
-                self?.filteredPokemons.removeAll()
-                self?.searchedPokemonList.removeAll()
-                self?.loadPokemonList(text: searchText)
-            })
+            self.startSearch(with: searchText)
         } else {
-            self.searchIsOn = false
-            self.pokemonList.removeAll()
-            self.loadPokemonList()
+            self.stopSearch()
         }
         
         self.rootView?.collectionView?.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.timer.invalidate()
+        self.navigationItem.searchController?.searchBar.searchTextField.text = ""
+        self.configureSearchBarState()
+        self.stopSearch()
     }
 }
