@@ -41,6 +41,18 @@ public enum L10n {
     /// All pokemon
     public static let title = L10n.tr("Localizable", "pokemon_list.title", fallback: "All pokemon")
   }
+  public enum PokemonView {
+    /// cm
+    public static let cm = L10n.tr("Localizable", "pokemon_view.cm", fallback: "cm")
+    /// Height
+    public static let height = L10n.tr("Localizable", "pokemon_view.height", fallback: "Height")
+    /// kg
+    public static let kg = L10n.tr("Localizable", "pokemon_view.kg", fallback: "kg")
+    /// Order
+    public static let order = L10n.tr("Localizable", "pokemon_view.order", fallback: "Order")
+    /// Weight
+    public static let weight = L10n.tr("Localizable", "pokemon_view.weight", fallback: "Weight")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

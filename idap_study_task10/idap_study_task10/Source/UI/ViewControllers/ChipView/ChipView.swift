@@ -24,9 +24,9 @@ final class ChipView: NibDesignable {
     // MARK: -
     // MARK: Variables
     
-    let imageSize: CGFloat = 32
-    let contentInset: CGFloat = 4
-    var model: VerticalTagItem?
+    private let imageSize: CGFloat = 32
+    private let contentInset: CGFloat = 4
+    private var model: VerticalTagItem?
     
     // MARK: -
     // MARK: Public
