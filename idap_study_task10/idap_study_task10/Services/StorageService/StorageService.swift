@@ -69,7 +69,7 @@ final class StorageService: StorageServiceType {
         
         do {
             let imageData = try Data(contentsOf: url)
-            print("<@> File with name \(fileName) is found")
+            
             return UIImage(data: imageData)
         } catch {
             print("Error loading image: \(error)")
@@ -99,8 +99,6 @@ final class StorageService: StorageServiceType {
         do {
             if let pngImageData = image.pngData() {
                 try pngImageData.write(to: fileUrl, options: .atomic)
-                print("<@> File created at temp directory \(fileUrl)")
-                
             }
         } catch let error as NSError {
             print("could't create file text.txt because of error: \(error)")

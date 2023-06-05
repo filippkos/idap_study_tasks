@@ -40,12 +40,15 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     
     public var outputEvents: F.VoidFunc<DashboardViewControllerOutputEvents>?
     private var contentModels: [DashboardContentModel] = []
+    
     private let numberOfPages: Int = 3
     
     // MARK: -
     // MARK: Life Cycle
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.rootView?.collectionView?.register(cellClass: DashboardCollectionViewCell.self)
         self.rootView?.collectionView?.dataSource = self
         self.rootView?.collectionView?.delegate = self

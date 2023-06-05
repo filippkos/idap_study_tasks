@@ -120,14 +120,8 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
                     case .success(let model):
                         if let searchIsOn = self?.searchIsOn, searchIsOn {
                             self?.fullListModel = model
-                            self?.filteredPokemons = self?.fullListModel?.results.filter {
-                                $0.name.starts(with: text.lowercased())
-                            } ?? []
-                            if self?.filteredPokemons.count == 0 && self?.searchIsOn ?? false {
-                                self?.rootView?.prepareEmptyResultMessage()
-                            } else {
-                                self?.rootView?.removeEmptyResultMessage()
-                            }
+                            self?.filterPokemons(with: text)
+                            self?.handleEmptyResultMessage()
                             self?.iteratePokemons()
                         } else {
                             self?.listModel = model
@@ -144,6 +138,20 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         }
     }
     
+    private func filterPokemons(with text: String) {
+        self.filteredPokemons = self.fullListModel?.results.filter {
+            $0.name.starts(with: text.lowercased())
+        } ?? []
+    }
+    
+    private func handleEmptyResultMessage() {
+        if self.filteredPokemons.count == 0 && self.searchIsOn {
+            self.rootView?.prepareEmptyResultMessage()
+        } else {
+            self.rootView?.removeEmptyResultMessage()
+        }
+    }
+    
     private func iteratePokemons() {
         DispatchQueue.global(qos: .background).async {
             if self.searchIsOn {
@@ -155,18 +163,15 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
                     self.pokemon(name: unit.name, group: self.group)
                 }
             }
-            print("<!> before wait \(Thread.current)")
-            self.group.wait()
             
+            self.group.wait()
             DispatchQueue.main.async {
                 self.rootView?.collectionView?.reloadData()
             }
-            print("<!> after wait")
         }
     }
     
     private func pokemon(name: String, group: DispatchGroup) {
-        print("<!> \(name) enter")
         group.enter()
         self.pokemonProvider.pokemon(
             name: name,
@@ -183,9 +188,8 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
                 }
+                
                 group.leave()
-
-                print("<!> \(name) leave")
             }
         )
     }
@@ -262,7 +266,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         })
     }
     
-    private func stopSearch () {
+    private func stopSearch() {
         self.searchIsOn = false
         self.pokemonList.removeAll()
         self.loadPokemonList()

@@ -7,21 +7,13 @@
 
 import UIKit
 
-import RxSwift
-
-enum PokemonHeaderTitles: String {
-    
-    case height = "Height"
-    case weight = "Weight"
-    case order = "Order"
-}
-
 class PokemonHeaderView: NibDesignable {
+    
+    typealias Loc = L10n.PokemonView
     
     // MARK: -
     // MARK: Outlets
-    
-    var header: UILabel?
+  
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var heightTitle: UILabel?
     @IBOutlet var heightValue: UILabel?
@@ -36,11 +28,11 @@ class PokemonHeaderView: NibDesignable {
     
     func configure(with model: Pokemon, indexPath: IndexPath) {
         self.nameLabel?.text = model.name.capitalizingFirstLetter()
-        self.heightTitle?.text = PokemonHeaderTitles.height.rawValue
-        self.heightValue?.text = "\(model.height?.description ?? "") cm"
-        self.weightTitle?.text = PokemonHeaderTitles.weight.rawValue
-        self.weightValue?.text = "\(model.weight?.description ?? "") kg"
-        self.orderTitle?.text = PokemonHeaderTitles.order.rawValue
+        self.heightTitle?.text = Loc.height
+        self.heightValue?.text = "\(model.height?.description ?? "") \(Loc.cm)"
+        self.weightTitle?.text = Loc.weight
+        self.weightValue?.text = "\(model.weight?.description ?? "") \(Loc.kg)"
+        self.orderTitle?.text = Loc.order
         self.orderValue?.text = model.order?.description
     }
     

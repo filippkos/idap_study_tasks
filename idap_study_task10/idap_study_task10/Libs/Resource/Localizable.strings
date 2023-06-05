@@ -26,3 +26,11 @@
 "pokemon_list.title" = "All pokemon";
 "pokemon_list.empty_search_result_message" = "Nothing was found for your query, try changing the search value.";
 
+// MARK: -
+// MARK: PokemonView
+
+"pokemon_view.cm" = "cm";
+"pokemon_view.kg" = "kg";
+"pokemon_view.height" = "Height";
+"pokemon_view.weight" = "Weight";
+"pokemon_view.order" = "Order";
