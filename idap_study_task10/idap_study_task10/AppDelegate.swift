@@ -32,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func prepareRootController() {
         let navigationController = UINavigationController()
-        self.coordinator = AppCoordinator(serviceManager: self.serviceManager(), navigationViewController: navigationController)
-        
+        self.coordinator = AppCoordinator(
+            serviceManager: self.serviceManager(),
+            navigationViewController: navigationController
+        )
         self.window.rootViewController = navigationController
         self.window.makeKeyAndVisible()
     }
@@ -42,12 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let networkManager = NetworkManager()
         let storageService = StorageService()
         let pokemonProvider = PokemonProvider(networkManager: networkManager)
-        let imageService = ImageService(
-            networkManager: networkManager,
-            storageService: storageService
-        )
+        let imageService = ImageService(networkManager: networkManager, storageService: storageService)
         
-        return .init(networkManager: networkManager, storageService: storageService, pokemonProvider: pokemonProvider, imageService: imageService)
+        return .init(
+            networkManager: networkManager,
+            storageService: storageService,
+            pokemonProvider: pokemonProvider,
+            imageService: imageService
+        )
     }
 }
 

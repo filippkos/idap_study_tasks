@@ -23,6 +23,40 @@ final class PokemonView: BaseView {
     // MARK: -
     // MARK: Public
     
+    func prepareHeaderView(model: Pokemon) {
+        let items = model.types?.compactMap {
+            return VerticalTagItem(type: $0.type.name)
+        }
+        
+        let cellModel = PokemonRegularViewModel(
+            header: model.grouped[0]?.0 ?? "",
+            items: items ?? []
+        )
+
+        let headerView = PokemonHeaderView()
+        headerView.configure(with: model, indexPath: IndexPath(index: 0))
+        headerView.configure(with: cellModel)
+        self.stackView?.addArrangedSubview(headerView)
+    }
+    
+    func prepareRegularView(model: Pokemon) {
+        let sortedArray = model.grouped.sorted(by: { $0.0 < $1.0 })
+        sortedArray.forEach {
+            let items = model.grouped[$0.key]?.1.map {
+                VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
+            }
+
+            let cellModel = PokemonRegularViewModel(
+                header: model.grouped[$0.key]?.0 ?? "",
+                items: items ?? []
+            )
+            
+            let cellView = PokemonRegularView()
+            cellView.configure(with: cellModel)
+            self.stackView?.addArrangedSubview(cellView)
+        }
+    }
+    
     public func configure() {
         self.infoContainer?.layer.cornerRadius = 24
     }

@@ -57,9 +57,9 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.prepareHeaderView()
-        self.prepareRegularView()
-        self.setViewMode(.imageShowing)
+        self.rootView?.prepareHeaderView(model: self.model)
+        self.rootView?.prepareRegularView(model: self.model)
+        self.setView(mode: .imageShowing)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,15 +75,14 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         self.rootView?.configureSlider(model: self.model)
 
         self.setImage(model: self.model) { [weak self] error in
-            self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error))
-            )
+            self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
         }
     }
     
     // MARK: -
     // MARK: Private
     
-    private func setViewMode(_ mode: ViewMode) {
+    private func setView(mode: ViewMode) {
         switch mode {
         case .pokemonShowing:
             self.rootView?.imageView?.image = nil
@@ -101,39 +100,6 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
             }
         } alertHandler: { error in
             completion(error)
-        }
-    }
-    
-    private func prepareHeaderView() {
-        let items = self.model.types?.compactMap {
-            return VerticalTagItem(type: $0.type.name)
-        }
-        let cellModel = PokemonRegularViewModel(
-
-        header: self.model.grouped[0]?.0 ?? "",
-        items: items ?? [])
-
-        let headerView = PokemonHeaderView()
-        headerView.configure(with: self.model, indexPath: IndexPath(index: 0))
-        headerView.configure(with: cellModel)
-        self.rootView?.stackView?.addArrangedSubview(headerView)
-    }
-    
-    private func prepareRegularView() {
-        let sortedArray = self.model.grouped.sorted(by: { $0.0 < $1.0 })
-        sortedArray.forEach {
-            let items = self.model.grouped[$0.key]?.1.map {
-                VerticalTagItem(backgroundColor: Colors.Colors.wildSand.color, title: $0)
-            }
-
-            let cellModel = PokemonRegularViewModel(
-                header: self.model.grouped[$0.key]?.0 ?? "",
-                items: items ?? []
-            )
-            
-            let cellView = PokemonRegularView()
-            cellView.configure(with: cellModel)
-            self.rootView?.stackView?.addArrangedSubview(cellView)
         }
     }
     

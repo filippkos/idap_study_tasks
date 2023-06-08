@@ -35,7 +35,7 @@ final class PokemonListCollectionViewListCell: UICollectionViewCell, Spinnable, 
     // MARK: Public
     
     func configure(with model: Pokemon, image: UIImage) {
-        layoutIfNeeded()
+        self.layoutIfNeeded()
         self.background?.backgroundColor = image.getColors(quality: .superLow)?.background.withAlphaComponent(0.3)
         self.image?.image = image
         self.idLabel?.text = Int.intToFormattedIdString(number: model.id)

@@ -86,13 +86,15 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         self.rootView?.collectionView?.delegate = self
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
-        self.configureSearchBar()
+        self.rootView?.configureSearchBar(with: self.navigationItem)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.customizeNavigationBar()
+        self.rootView?.configureNavigationBar(with: self.navigationItem, controller: self.navigationController ?? UINavigationController())
     }
     
     // MARK: -
@@ -185,6 +187,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
                             self?.pokemonList.insert(model)
                         }
                     case let .failure(error):
+                        
                         self?.outputEvents?(.needShowAlert(alertModel: AlertModel(error: error)))
                     }
                 }
@@ -228,33 +231,9 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
             target: self,
             action: #selector(self.changeCollectionViewLayout(_:))
         )
-        self.navigationItem.rightBarButtonItem?.tintColor = Colors.Colors.abbey.color
-        
-        self.navigationItem.title = Loc.title
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: Colors.Colors.abbey.color,
-            .font: Fonts.PlusJakartaSans.extraBold.font(size: 24)
-        ]
-        
+
         self.navigationItem.searchController = UISearchController()
         self.navigationItem.searchController?.searchBar.delegate = self
-    }
-    
-    private func configureSearchBar() {
-        self.navigationItem.searchController?.searchBar.layer.cornerRadius = 20
-        self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
-        self.navigationItem.searchController?.searchBar.clipsToBounds = true
-    }
-    
-    private func configureSearchBarState() {
-        if self.navigationItem.searchController?.searchBar.searchTextField.text != "" {
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 10
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 2
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderColor = Colors.Colors.corn.color.cgColor
-        } else {
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.borderWidth = 0
-            self.navigationItem.searchController?.searchBar.searchTextField.layer.cornerRadius = 0
-        }
     }
     
     private func startSearch(with text: String) {
@@ -385,7 +364,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.timer.invalidate()
-        self.configureSearchBarState()
+        self.rootView?.configureSearchBarState(with: self.navigationItem)
         if searchText != "" {
             self.startSearch(with: searchText)
         } else {
@@ -398,7 +377,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.timer.invalidate()
         self.navigationItem.searchController?.searchBar.searchTextField.text = ""
-        self.configureSearchBarState()
+        self.rootView?.configureSearchBarState(with: self.navigationItem)
         self.stopSearch()
     }
 }

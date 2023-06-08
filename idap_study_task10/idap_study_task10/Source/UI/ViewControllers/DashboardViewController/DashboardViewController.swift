@@ -77,11 +77,7 @@ final class DashboardViewController: BaseViewController, RootViewGettable, Scrol
     }
     
     private func handleNextButton(page: IndexPath) {
-        if page.row == self.numberOfPages - 1 {
-            self.rootView?.nextButton?.isHidden = true
-        } else {
-            self.rootView?.nextButton?.isHidden = false
-        }
+        self.rootView?.nextButton?.isHidden = page.row == self.numberOfPages - 1
     }
     
     // MARK: -

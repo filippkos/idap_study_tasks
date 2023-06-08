@@ -39,6 +39,32 @@ final class PokemonListView: BaseView {
         }
     }
     
+    func configureNavigationBar(with item: UINavigationItem, controller: UINavigationController) {
+        item.rightBarButtonItem?.tintColor = Colors.Colors.abbey.color
+        item.title = Loc.title
+        controller.navigationBar.titleTextAttributes = [
+            .foregroundColor: Colors.Colors.abbey.color,
+            .font: Fonts.PlusJakartaSans.extraBold.font(size: 24)
+        ]
+    }
+    
+    func configureSearchBar(with item: UINavigationItem) {
+        item.searchController?.searchBar.layer.cornerRadius = 20
+        item.searchController?.searchBar.searchTextField.layer.borderWidth = 2
+        item.searchController?.searchBar.clipsToBounds = true
+    }
+    
+    func configureSearchBarState(with item: UINavigationItem) {
+        if item.searchController?.searchBar.searchTextField.text != "" {
+            item.searchController?.searchBar.searchTextField.layer.cornerRadius = 10
+            item.searchController?.searchBar.searchTextField.layer.borderWidth = 2
+            item.searchController?.searchBar.searchTextField.layer.borderColor = Colors.Colors.corn.color.cgColor
+        } else {
+            item.searchController?.searchBar.searchTextField.layer.borderWidth = 0
+            item.searchController?.searchBar.searchTextField.layer.cornerRadius = 0
+        }
+    }
+    
     func removeEmptyResultMessage() {
         self.emptyResultLabel?.removeFromSuperview()
     }

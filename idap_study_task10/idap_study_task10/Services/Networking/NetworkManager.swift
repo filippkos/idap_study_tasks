@@ -38,8 +38,11 @@ class NetworkManager: NetworkManagerType {
                     completion(self.parser.decode(data: data))
                 }
             } else {
-                completion(.failure(NetworkResponse.noData))
+                if let error = error {
+                    completion(.failure(NetworkResponse.noData(error)))
+                }
             }
+            
             if let error = error {
                 completion(.failure(error))
             }
@@ -73,17 +76,21 @@ class NetworkManager: NetworkManagerType {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 debugPrint("Error downloading data: \(e)")
-                completion(.failure(NetworkResponse.downloadError))
+                completion(.failure(NetworkResponse.downloadError(e)))
             } else {
                 if let res = response as? HTTPURLResponse {
                     debugPrint("Downloaded data with response code \(res.statusCode)")
                     if let data = data {
                             completion(.success(data))
                     } else {
-                        completion(.failure(NetworkResponse.noData))
+                        if let error = error {
+                            completion(.failure(NetworkResponse.noData(error)))
+                        }
                     }
                 } else {
-                    completion(.failure(NetworkResponse.notFound))
+                    if let error = error {
+                        completion(.failure(NetworkResponse.notFound(error)))
+                    }
                 }
             }
         }

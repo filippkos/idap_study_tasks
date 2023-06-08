@@ -7,15 +7,39 @@
 
 import Foundation
 
-enum NetworkResponse: String, Error {
+enum NetworkResponse: Error {
 
-    case notFound = "No result found for your request."
-    case forbidden = "No accsess."
-    case clientError = "Client error."
-    case badRequest = "Bad request."
-    case failed = "Network request failed."
-    case serverError = "Server is not available."
-    case noData = "Response returned with no data to decode."
-    case unableToDecode = "We could not decode the responce."
-    case downloadError = "Error downloading data."
+    case notFound(Error)
+    case forbidden(Error)
+    case clientError(Error)
+    case badRequest(Error)
+    case failed(Error)
+    case serverError(Error)
+    case noData(Error)
+    case unableToDecode(Error)
+    case downloadError(Error)
+    
+    var stringValue: String {
+        switch self {
+            
+        case .notFound:
+            return "No result found for your request."
+        case .forbidden:
+            return "No access."
+        case .clientError:
+            return "Client error."
+        case .badRequest:
+            return "Bad request."
+        case .failed:
+            return "Network request failed."
+        case .serverError:
+            return "Server is not available."
+        case .noData:
+            return "Response returned with no data to decode."
+        case .unableToDecode:
+            return "We could not decode the response."
+        case .downloadError:
+            return "Error downloading data."
+        }
+    }
 }
