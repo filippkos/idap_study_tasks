@@ -32,12 +32,13 @@ final class DashboardCollectionViewCell: UICollectionViewCell {
     
     private let buttonFontSize: CGFloat = 20
     private let buttonCornerRadius: CGFloat = 35
-    private let dispose = DisposeBag()
+    private var dispose = DisposeBag()
     
     // MARK: -
     // MARK: Public
     
     func bind() {
+        self.dispose = DisposeBag()
         self.button?.rx.tap.bind {
             self.outputEvents?(.goNext)
         }
