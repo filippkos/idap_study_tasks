@@ -23,6 +23,21 @@ final class PokemonView: BaseView {
     // MARK: -
     // MARK: Public
     
+    func configureNavigationBar(with item: UINavigationItem, controller: UINavigationController) {
+        item.rightBarButtonItem?.setTitleTextAttributes(
+            [.font: Fonts.PlusJakartaSans.extraBold.font(size: 24)],
+            for: .normal
+        )
+        item.leftBarButtonItem?.tintColor = .white
+        item.rightBarButtonItem?.tintColor = .white
+        
+        item.title = "Base experience"
+        controller.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: Fonts.PlusJakartaSans.medium.font(size: 15)
+        ]
+    }
+    
     func prepareHeaderView(model: Pokemon) {
         let items = model.types?.compactMap {
             return VerticalTagItem(type: $0.type.name)

@@ -66,6 +66,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         super.viewWillAppear(animated)
         
         self.customizeNavigationBar()
+        self.rootView?.configureNavigationBar(with: self.navigationItem, controller: self.navigationController ?? UINavigationController())
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,20 +119,6 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
             target: self,
             action: nil
         )
-        
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(
-            [.font: Fonts.PlusJakartaSans.extraBold.font(size: 24)],
-            for: .normal
-        )
-    
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
-        self.navigationItem.rightBarButtonItem?.tintColor = .white
-        
-        self.navigationItem.title = "Base experience"
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.white,
-            .font: Fonts.PlusJakartaSans.medium.font(size: 15)
-        ]
     }
     
     @objc private func backToPokemonList(_ sender: UITapGestureRecognizer?) {
