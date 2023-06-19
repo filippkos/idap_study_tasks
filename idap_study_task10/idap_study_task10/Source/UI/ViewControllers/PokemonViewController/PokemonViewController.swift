@@ -108,7 +108,7 @@ final class PokemonViewController: BaseViewController, RootViewGettable {
         let image = Images.backArrow.image.withRenderingMode(.alwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: image,
-            style:.plain,
+            style: .plain,
             target: self,
             action: #selector(self.backToPokemonList(_:))
         )
