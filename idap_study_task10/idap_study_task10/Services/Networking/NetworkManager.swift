@@ -30,23 +30,21 @@ class NetworkManager: NetworkManagerType {
     func task<Model: Codable>(request: URLRequest, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                let statusCode = response?.getStatusCode()
-                if statusCode != 200 {
-                    completion(.failure(self.parser.handleNetworkResponse(statusCode ?? 0)))
-                } else {
-                    completion(self.parser.decode(data: data))
-                }
-            } else {
-                if let error = error {
-                    completion(.failure(NetworkResponse.noData(error)))
-                }
-            }
-            
             if let error = error {
                 completion(.failure(error))
             }
+            
+            if let responseError = self.parser.handleNetworkResponse(response?.http?.statusCode ?? 0) {
+                completion(.failure(responseError))
+            } else {
+                if let data = data {
+                    completion(self.parser.decode(data: data))
+                } else {
+                    completion(.failure(NetworkError.noData))
+                }
+            }
         }
+        
         task.resume()
 
         return task
@@ -76,7 +74,7 @@ class NetworkManager: NetworkManagerType {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 debugPrint("Error downloading data: \(e)")
-                completion(.failure(NetworkResponse.downloadError(e)))
+                completion(.failure(NetworkError.downloadError))
             } else {
                 if let res = response as? HTTPURLResponse {
                     debugPrint("Downloaded data with response code \(res.statusCode)")
@@ -84,12 +82,12 @@ class NetworkManager: NetworkManagerType {
                             completion(.success(data))
                     } else {
                         if let error = error {
-                            completion(.failure(NetworkResponse.noData(error)))
+                            completion(.failure(NetworkError.noData))
                         }
                     }
                 } else {
                     if let error = error {
-                        completion(.failure(NetworkResponse.notFound(error)))
+                        completion(.failure(NetworkError.notFound))
                     }
                 }
             }

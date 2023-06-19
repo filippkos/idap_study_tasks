@@ -7,19 +7,19 @@
 
 import Foundation
 
-enum NetworkResponse: Error {
+enum NetworkError: Error {
 
-    case notFound(Error)
-    case forbidden(Error)
-    case clientError(Error)
-    case badRequest(Error)
-    case failed(Error)
-    case serverError(Error)
-    case noData(Error)
-    case unableToDecode(Error)
-    case downloadError(Error)
+    case notFound
+    case forbidden
+    case clientError
+    case badRequest
+    case failed
+    case serverError
+    case noData
+    case unableToDecode
+    case downloadError
     
-    var stringValue: String {
+    var localizedDescription: String {
         switch self {
             
         case .notFound:
