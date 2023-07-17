@@ -30,6 +30,7 @@
 		2245E83429C9B15000E8EB80 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2245E83329C9B15000E8EB80 /* AboutUsView.swift */; };
 		2253047A2A13A4E9000C68BD /* CircularSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225304782A13A4E9000C68BD /* CircularSliderView.swift */; };
 		2253047B2A13A4E9000C68BD /* CircularSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225304792A13A4E9000C68BD /* CircularSliderView.xib */; };
+		228127F02A6550E700C3ECFF /* LottieRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228127EF2A6550E700C3ECFF /* LottieRefreshControl.swift */; };
 		2287B0F429B0F7BC004EDBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287B0F329B0F7BC004EDBE6 /* AppDelegate.swift */; };
 		2287B10029B0F7BE004EDBE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2287B0FE29B0F7BE004EDBE6 /* LaunchScreen.storyboard */; };
 		2287B11729B100D0004EDBE6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287B11629B100D0004EDBE6 /* AppCoordinator.swift */; };
@@ -115,6 +116,7 @@
 		2245E83329C9B15000E8EB80 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		225304782A13A4E9000C68BD /* CircularSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSliderView.swift; sourceTree = "<group>"; };
 		225304792A13A4E9000C68BD /* CircularSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircularSliderView.xib; sourceTree = "<group>"; };
+		228127EF2A6550E700C3ECFF /* LottieRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieRefreshControl.swift; sourceTree = "<group>"; };
 		2287B0F029B0F7BC004EDBE6 /* idap_study_task10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = idap_study_task10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2287B0F329B0F7BC004EDBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2287B0FF29B0F7BE004EDBE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -283,6 +285,14 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		228127EE2A65507100C3ECFF /* CustomRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				228127EF2A6550E700C3ECFF /* LottieRefreshControl.swift */,
+			);
+			path = CustomRefreshControl;
+			sourceTree = "<group>";
+		};
 		2287B0E729B0F7BC004EDBE6 = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +349,7 @@
 		2287B10929B0FF6A004EDBE6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				228127EE2A65507100C3ECFF /* CustomRefreshControl */,
 				2287B10A29B0FF7F004EDBE6 /* ImageService */,
 				2287B10B29B0FF95004EDBE6 /* StorageService */,
 				2287B10C29B0FFBB004EDBE6 /* ServiceManager */,
@@ -780,6 +791,7 @@
 				2287B11B29B10106004EDBE6 /* WeakBox.swift in Sources */,
 				2287B12A29B1025E004EDBE6 /* Pokemon+Hashable&Comparable.swift in Sources */,
 				22C268F52A273E4000A538A1 /* UIStackView+RemoveAllArrangedSubviews.swift in Sources */,
+				228127F02A6550E700C3ECFF /* LottieRefreshControl.swift in Sources */,
 				2287B12E29B102B1004EDBE6 /* BaseViewController.swift in Sources */,
 				2287B11929B100F7004EDBE6 /* F.swift in Sources */,
 				2287B17529B38116004EDBE6 /* PagerView.swift in Sources */,

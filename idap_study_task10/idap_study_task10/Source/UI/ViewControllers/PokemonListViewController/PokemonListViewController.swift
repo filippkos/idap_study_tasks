@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 enum PokemonListViewControllerOutputEvents {
     
@@ -45,17 +46,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     private let limit = 20
     private let group = DispatchGroup()
     
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(
-            self,
-            action: #selector(PokemonListViewController.handleRefresh(_:)),
-            for: UIControl.Event.valueChanged
-        )
-        refreshControl.tintColor = UIColor.cyan
-        
-        return refreshControl
-    }()
+    var refreshControl = LottieRefreshControl()
     
     // MARK: -
     // MARK: Init
@@ -87,6 +78,7 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
         self.rootView?.configureSearchBar(with: self.navigationItem)
+        self.configureRefreshing()
 
     }
     
@@ -100,11 +92,19 @@ final class PokemonListViewController: BaseViewController, RootViewGettable, UIC
     // MARK: -
     // MARK: HandleRefresh
     
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+    @objc func handleRefresh(_ refreshControl: LottieRefreshControl) {
+        self.refreshControl.beginRefreshing()
         self.pokemonList = []
         self.storageService.checkAndCreateDirectory()
         self.loadPokemonList()
-        refreshControl.endRefreshing()
+        self.refreshControl.endRefreshing()
+    }
+    
+    func configureRefreshing() {
+        refreshControl.setLottieAnimation(name: "pokeball")
+        refreshControl.addTarget(self, action: #selector(PokemonListViewController.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.setupLayout()
+        self.rootView?.collectionView?.addSubview(self.refreshControl)
     }
     
     // MARK: -
