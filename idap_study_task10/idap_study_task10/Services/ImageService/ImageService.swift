@@ -20,7 +20,8 @@ protocol ImageServiceType {
     func getImage(
         model: Pokemon,
         completion: @escaping F.VoidFunc<UIImage?>,
-        alertHandler: @escaping F.VoidFunc<Error>)
+        alertHandler: @escaping F.VoidFunc<Error>
+    )
 }
 
 final class ImageService: ImageServiceType {

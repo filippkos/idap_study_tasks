@@ -49,7 +49,7 @@ final class PokemonListView: BaseView {
     }
     
     func configureSearchBar(with item: UINavigationItem) {
-        item.searchController?.searchBar.layer.cornerRadius = 20
+        item.searchController?.searchBar.searchTextField.layer.cornerRadius = 18
         item.searchController?.searchBar.searchTextField.layer.borderWidth = 2
         item.searchController?.searchBar.clipsToBounds = true
     }
