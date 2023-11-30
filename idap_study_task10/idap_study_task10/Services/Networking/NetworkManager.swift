@@ -50,26 +50,6 @@ class NetworkManager: NetworkManagerType {
         return task
     }
     
-    @discardableResult
-    func getImage(from url: String, completion: @escaping F.ResultHandler<UIImage>) -> URLSessionDataTask {
-        let url = URL(string: url) ?? URL(fileURLWithPath: "")
-        let session = URLSession(configuration: .default)
-        let task = self.getData(
-            from: url,
-            session: session,
-            completion: { result in
-                switch result {
-                case let .success(data):
-                    completion(.success(self.parser.image(from: data)))
-                case let .failure(error):
-                    completion(.failure(error))
-                }
-            }
-        )
-        
-        return task
-    }
-    
     func getData(from url: URL, session: URLSession, completion: @escaping F.ResultHandler<Data>) -> URLSessionDataTask {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
@@ -93,6 +73,26 @@ class NetworkManager: NetworkManagerType {
             }
         }
         task.resume()
+        
+        return task
+    }
+    
+    @discardableResult
+    func getImage(from url: String, completion: @escaping F.ResultHandler<UIImage>) -> URLSessionDataTask {
+        let url = URL(string: url) ?? URL(fileURLWithPath: "")
+        let session = URLSession(configuration: .default)
+        let task = self.getData(
+            from: url,
+            session: session,
+            completion: { result in
+                switch result {
+                case let .success(data):
+                    completion(.success(self.parser.image(from: data)))
+                case let .failure(error):
+                    completion(.failure(error))
+                }
+            }
+        )
         
         return task
     }

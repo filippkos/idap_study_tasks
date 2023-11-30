@@ -19,6 +19,5 @@ final class AboutUsViewController: BaseViewController, RootViewGettable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 }

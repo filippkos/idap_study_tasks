@@ -82,13 +82,13 @@ final class ChipView: NibDesignable {
         case .none:
             return CGSize()
         case .some(.image):
-            return CGSize(width: imageSize, height: imageSize)
+            return CGSize(width: self.imageSize, height: self.imageSize)
         case .some(.text):
             return CGSize(width: labelWidth + (self.contentInset * 2), height: labelHeight)
         case .some(.full):
             return CGSize(
-                width: imageSize + labelWidth + (self.contentInset * 2) + (self.tagStackView?.spacing ?? CGFloat()),
-                height: imageSize + labelHeight
+                width: self.imageSize + labelWidth + (self.contentInset * 2) + (self.tagStackView?.spacing ?? CGFloat()),
+                height: self.imageSize + labelHeight
             )
         }
     }
