@@ -1,0 +1,60 @@
+PODS:
+  - lottie-ios (4.2.0)
+  - MTCircularSlider (1.1.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.6.0)
+  - SwiftGen (6.6.2)
+  - UIImageColors (2.3.0)
+
+DEPENDENCIES:
+  - lottie-ios
+  - MTCircularSlider (from `https://github.com/filippkos/MTCircularSlider`, commit `edad59e`)
+  - RxCocoa
+  - RxSwift
+  - SnapKit
+  - SwiftGen
+  - UIImageColors (from `https://github.com/filippkos/UIImageColors`, commit `c13e92c`)
+
+SPEC REPOS:
+  trunk:
+    - lottie-ios
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - SwiftGen
+
+EXTERNAL SOURCES:
+  MTCircularSlider:
+    :commit: edad59e
+    :git: https://github.com/filippkos/MTCircularSlider
+  UIImageColors:
+    :commit: c13e92c
+    :git: https://github.com/filippkos/UIImageColors
+
+CHECKOUT OPTIONS:
+  MTCircularSlider:
+    :commit: edad59e
+    :git: https://github.com/filippkos/MTCircularSlider
+  UIImageColors:
+    :commit: c13e92c
+    :git: https://github.com/filippkos/UIImageColors
+
+SPEC CHECKSUMS:
+  lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
+  MTCircularSlider: 9b8fff1d3f7675b1c0dfa9b78d48cae9971c63a4
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
+  UIImageColors: 5890c2a973d37956d02993ec268122a08240260a
+
+PODFILE CHECKSUM: bdef4b91e28bf3b8643cdc46ee152fdc90b078ed
+
+COCOAPODS: 1.15.2

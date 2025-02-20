@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardViewController" customModule="idap_study_task10" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="DashboardView" customModule="idap_study_task10" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="c7G-IQ-IED">
+                    <rect key="frame" x="0.0" y="59" width="393" height="709"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3XL-mP-ONI">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="w6x-Qs-OOa"/>
+                        <outlet property="delegate" destination="-1" id="Yv3-MH-Kg2"/>
+                    </connections>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wb0-mI-MSh">
+                    <rect key="frame" x="0.0" y="768" width="393" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZD-VQ-ahj" userLabel="Skip Button">
+                            <rect key="frame" x="0.0" y="0.0" width="57" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                <color key="baseForegroundColor" name="colors/gold"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="skipButton:" destination="-1" eventType="touchUpInside" id="1iD-TO-sa3"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-6T-SIa" userLabel="Paiger Container">
+                            <rect key="frame" x="57" y="0.0" width="276.33333333333331" height="50"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcJ-eW-8Sz" customClass="PagerView" customModule="idap_study_task10" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="276.33333333333331" height="50"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="dcJ-eW-8Sz" secondAttribute="trailing" id="4H3-uX-OlX"/>
+                                <constraint firstItem="dcJ-eW-8Sz" firstAttribute="leading" secondItem="zCa-6T-SIa" secondAttribute="leading" id="FaD-r6-bA7"/>
+                                <constraint firstItem="dcJ-eW-8Sz" firstAttribute="top" secondItem="zCa-6T-SIa" secondAttribute="top" id="QBc-dY-kRq"/>
+                                <constraint firstAttribute="height" constant="50" id="QzL-lK-OIg"/>
+                                <constraint firstAttribute="bottom" secondItem="dcJ-eW-8Sz" secondAttribute="bottom" id="mcU-T6-xNy"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZn-Ms-sNP" userLabel="Next Button">
+                            <rect key="frame" x="333.33333333333331" y="0.0" width="59.666666666666686" height="50"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Next">
+                                <color key="baseForegroundColor" name="colors/gold"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="nextButton:" destination="-1" eventType="touchUpInside" id="rug-rY-WIy"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="eZn-Ms-sNP" secondAttribute="bottom" id="4DW-Rw-zZM"/>
+                        <constraint firstAttribute="bottom" secondItem="zCa-6T-SIa" secondAttribute="bottom" id="DyJ-5W-MuD"/>
+                        <constraint firstItem="zCa-6T-SIa" firstAttribute="leading" secondItem="tZD-VQ-ahj" secondAttribute="trailing" id="Fbf-Sd-eai"/>
+                        <constraint firstAttribute="height" constant="50" id="GRP-SR-6jP"/>
+                        <constraint firstAttribute="bottom" secondItem="tZD-VQ-ahj" secondAttribute="bottom" id="LgM-28-Xv4"/>
+                        <constraint firstItem="zCa-6T-SIa" firstAttribute="top" secondItem="Wb0-mI-MSh" secondAttribute="top" id="Lm9-li-gT8"/>
+                        <constraint firstItem="eZn-Ms-sNP" firstAttribute="top" secondItem="Wb0-mI-MSh" secondAttribute="top" id="M70-Ig-JYB"/>
+                        <constraint firstAttribute="trailing" secondItem="eZn-Ms-sNP" secondAttribute="trailing" id="OLZ-7k-cYX"/>
+                        <constraint firstItem="tZD-VQ-ahj" firstAttribute="leading" secondItem="Wb0-mI-MSh" secondAttribute="leading" id="PZH-lu-ms5"/>
+                        <constraint firstItem="eZn-Ms-sNP" firstAttribute="leading" secondItem="zCa-6T-SIa" secondAttribute="trailing" id="Taj-nC-cO4"/>
+                        <constraint firstItem="tZD-VQ-ahj" firstAttribute="top" secondItem="Wb0-mI-MSh" secondAttribute="top" id="hND-VG-4FD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="colors/wild_sand"/>
+            <constraints>
+                <constraint firstItem="c7G-IQ-IED" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="K5a-6p-g4w"/>
+                <constraint firstItem="c7G-IQ-IED" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="McU-lg-ypd"/>
+                <constraint firstItem="c7G-IQ-IED" firstAttribute="bottom" secondItem="Wb0-mI-MSh" secondAttribute="top" id="OH9-IT-mv1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c7G-IQ-IED" secondAttribute="trailing" id="P9X-jw-AAc"/>
+                <constraint firstItem="Wb0-mI-MSh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SbQ-qT-vQU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Wb0-mI-MSh" secondAttribute="trailing" id="Z3b-5c-Bat"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Wb0-mI-MSh" secondAttribute="bottom" id="caP-73-sdb"/>
+            </constraints>
+            <connections>
+                <outlet property="collectionView" destination="c7G-IQ-IED" id="BNg-BF-U0M"/>
+                <outlet property="nextButton" destination="eZn-Ms-sNP" id="lxv-dh-0C8"/>
+                <outlet property="pager" destination="dcJ-eW-8Sz" id="6fT-uV-rA9"/>
+            </connections>
+            <point key="canvasLocation" x="38.931297709923662" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="colors/gold">
+            <color red="1" green="0.84313725490196079" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colors/wild_sand">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
